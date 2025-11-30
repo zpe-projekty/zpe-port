@@ -1,0 +1,6 @@
+pdf-engine: xelatex
+include-in-header: pandoc-header.tex
+variables:
+    mainfont: "Helvetica Neue"
+    sansfont: "Helvetica Neue"
+    monofont: "Menlo"

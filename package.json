@@ -1,13 +1,13 @@
 {
-    "name": "zpe",
-    "version": "1.0.2",
-    "description": "",
-    "type": "module",
-    "main": "src/zpe.js",
+    "name": "zpe-port",
+    "version": "1.0.10",
+    "description": "ZPE Developer Kit",
+    "main": "src/zpe.ts",
     "module": "build/zpe.js",
     "types": "build/zpe.d.ts",
     "scripts": {
         "build": "tsc",
+        "md2pdf": "pandoc -d pandoc.yaml README.md -o README.pdf",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
