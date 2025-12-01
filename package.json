@@ -2,9 +2,9 @@
     "name": "zpe-port",
     "version": "1.0.10",
     "description": "ZPE Developer Kit",
-    "main": "src/zpe.ts",
-    "module": "build/zpe.js",
+    "main": "build/zpe.js",
     "types": "build/zpe.d.ts",
+    "module": "build/zpe.js",
     "scripts": {
         "build": "tsc",
         "md2pdf": "pandoc -d pandoc.yaml README.md -o README.pdf",
