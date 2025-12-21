@@ -26,6 +26,16 @@ Pakiet zpe-port jest częścią ZPE Developer Toolkit, który zawiera również 
 -   Jeżeli aplikacja działa na engine 2D/3D to najlepiej UI zrobić na HTML+SVG DOM (DOM elementy nad canvas 2d/3d), uprości to implementację WCAG (np. focus, tabIndex, role itp. działają od razu).
 -   W przypadku aplikacji z 3D należy kompresować tekstury do KTX2, również te ukryte w plikach GLB. Desktopy wytrzymają dużo, ale smartphone można wykończyć bardzo szybko prostymi grafikami bez kompresji (PNG czy JPG to nie jest kompresja z punktu widzenia GPU)
 
+## Zasady dotyczące stylów i układu aplikacji
+
+-   Szerokość kontenera applikacji definiuje platforma. Wysokość kontenera jest dostosowywana dynamicznie w zależności od zawartości aplikacji. Pierwszy element bezpośrednio wewnątrz kontenera aplikacji (dziecko kontenera) powinien mieć zdefiniowaną wysokość.
+-   Nie przykrywamy elementów platformy przez ustawianie z-index powyżej 1. Niektóre elementy platformy nakładane są dynamicznie i mają z-index 2 lub wyższy.
+-   Zabronione jest zmienianie styli platformy ZPE poprzez nadpisywanie CSS.
+-   Zabronione jest usuwanie elementów DOM platformy ZPE.
+-   Zabronione jest resetowanie styli globalnych (np. `* { margin: 0; padding: 0; }`).
+-   Zabronione jest wychodzenie poza obszar kontenera aplikacji
+-   Nie stosujemy @media (max-width/min-width) do zmiany układu aplikacji. Układ aplikacji ma być responsywny i dostosowywać się do szerokości kontenera aplikacji bez konieczności stosowania media queries - kontener aplikacji może mieć różną szerokość w zależności od formatu osadzenia aplikacji na stronie, urządzenia i okna przeglądarki.
+
 ## Inne Pakiety ZPE Developer Toolkit
 
 -   Pakiet zpe-emulator – zajmuje się ładowaniem aplikacji analogicznie tak jak to wykonuje platforma, udaje mechanizmy platformy tj. zapis do profilu, odczyt z profilu, odczyty danych z które może modyfikować nauczyciel
