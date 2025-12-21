@@ -1,6 +1,6 @@
 {
     "name": "zpe-port",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "description": "ZPE Developer Kit",
     "main": "build/zpe.js",
     "types": "build/zpe.d.ts",

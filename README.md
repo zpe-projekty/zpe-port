@@ -1,4 +1,4 @@
-# ZPE Developer Toolkit - ZPE Port
+# ZPE Developer Toolkit
 
 Zadaniem pakietu zpe-port jest dostarczenie interfejsu komunikacyjnego między aplikacją a platformą ZPE. Pakiet udostępnia funkcje do inicjalizacji aplikacji, uruchamiania jej z danymi stanu, zapisywania stanu oraz niszczenia aplikacji.
 
@@ -28,7 +28,7 @@ Pakiet zpe-port jest częścią ZPE Developer Toolkit, który zawiera również 
 
 ## Zasady dotyczące stylów i układu aplikacji
 
--   Szerokość kontenera applikacji definiuje platforma. Wysokość kontenera jest dostosowywana dynamicznie w zależności od zawartości aplikacji. Pierwszy element bezpośrednio wewnątrz kontenera aplikacji (dziecko kontenera) powinien mieć zdefiniowaną wysokość.
+-   Szerokość kontenera aplikacji definiuje platforma. Wysokość kontenera jest dostosowywana dynamicznie w zależności od zawartości aplikacji. Pierwszy element bezpośrednio wewnątrz kontenera aplikacji (dziecko kontenera) powinien mieć zdefiniowaną wysokość.
 -   Nie przykrywamy elementów platformy przez ustawianie z-index powyżej 1. Niektóre elementy platformy nakładane są dynamicznie i mają z-index 2 lub wyższy.
 -   Zabronione jest zmienianie styli platformy ZPE poprzez nadpisywanie CSS.
 -   Zabronione jest usuwanie elementów DOM platformy ZPE.
@@ -36,12 +36,21 @@ Pakiet zpe-port jest częścią ZPE Developer Toolkit, który zawiera również 
 -   Zabronione jest wychodzenie poza obszar kontenera aplikacji
 -   Nie stosujemy @media (max-width/min-width) do zmiany układu aplikacji. Układ aplikacji ma być responsywny i dostosowywać się do szerokości kontenera aplikacji bez konieczności stosowania media queries - kontener aplikacji może mieć różną szerokość w zależności od formatu osadzenia aplikacji na stronie, urządzenia i okna przeglądarki.
 
+## Struktura projektu
+
+Proszę się wzorować na projekcie [starter](https://github.com/zpe-projekty/starter).
+
+## Podgląd działania aplikacji
+
+Aplikację można testować lokalnie używając pakietu zpe-emulator lub uruchamiając aplikację na platformie ZPE poprzez wysłanie jej na serwer przez dedykowane dla każdej aplikacji repozytorium GIT.
+
+> [!TIP]
+> Jeżeli twój projekt nazywa się IX.5_Plecak_ewakuacyjny to repozytorium do wysyłania aplikacji na serwer to IX_5_TEST_Plecak_ewakuacyjny.
+
 ## Inne Pakiety ZPE Developer Toolkit
 
--   Pakiet zpe-emulator – zajmuje się ładowaniem aplikacji analogicznie tak jak to wykonuje platforma, udaje mechanizmy platformy tj. zapis do profilu, odczyt z profilu, odczyty danych z które może modyfikować nauczyciel
+-   Pakiet zpe-emulator – zajmuje się ładowaniem aplikacji analogicznie tak jak to wykonuje platforma, udaje mechanizmy platformy tj. zapis do profilu, odczyt z profilu, odczyty danych z które może modyfikować nauczyciel. Przykład użycia emulatora znajdziesz w projekcie [starter](https://github.com/zpe-projekty/starter).
 -   Pakiet zpe-editor – to edytor danych dla nauczyciela. Edytor jest wspólny dla wszystkich aplikacji i do jego poprawnego działania konieczne jest stworzenie pliku schema.json który opisuje strukturę danych z pliku engine.json sekcja editor/defaultData – o plikach będzie dalej.
-
-> W pakietach staramy się nie grzebać. Jeżeli coś trzeba dajcie znać, postaram się to szybko dodać, a może się przyda też innym.
 
 ## Przykład użycia
 
@@ -65,7 +74,7 @@ unload() => Promise<void>;
 destroy() => Promise<void>;
 ```
 
-**init** - funkcja inicjalizująca aplikację. Na wejściu przyjmuje kontener HTML, w którym aplikacja będzie działać (umieszczać element DOM). Zwraca Promise<void>, który sygnalizuje zakończenie inicjalizacji. Najlepiej jest tutaj załadować dane z plików zewnętrznych (np. scenario.json). Na tym etapie dostępne są dane z DB (te skopiowane z engine.json/editor/defaultData lub te już zmodyfikowane przez edytor), ale nie ma jeszcze stanu aplikacji (savedata). W najprostszym przypadku można zapamietać kontener i zakończyć Promise czekając na run.
+**init** - funkcja inicjalizująca aplikację. Na wejściu przyjmuje kontener HTML, w którym aplikacja będzie działać (umieszczać element DOM). Zwraca Promise<void>, który sygnalizuje zakończenie inicjalizacji. Najlepiej jest tutaj załadować dane z plików zewnętrznych (np. scenario.json). Na tym etapie dostępne są dane z DB (te skopiowane z engine.json/editor/defaultData lub te już zmodyfikowane przez edytor), ale nie ma jeszcze stanu aplikacji (savedata). W najprostszym przypadku można zapamiętać kontener i zakończyć Promise czekając na run.
 
 **run** - funkcja uruchamiająca aplikację. Na wejściu przyjmuje dane stanu aplikacji (lub null, jeśli brak stanu). Tutaj aplikacja powinna zbudować interfejs użytkownika w kontenerze przekazanym w init oraz zainicjalizować stan aplikacji na podstawie przekazanych danych stanu. Dane stanu mogą być puste (null) jeśli aplikacja jest uruchamiana po raz pierwszy.
 
@@ -81,7 +90,7 @@ destroy() => Promise<void>;
 
 ## Cykle życia aplikacji
 
-Nastepujące metody definiują cykl życia aplikacji.
+Następujące metody definiują cykl życia aplikacji.
 
 -   init(container) – inicjalizacja aplikacji
 -   run(stateData, isFrozen=false) – uruchomienie aplikacji z danymi stanu (lub null)
@@ -130,16 +139,53 @@ Jeżeli stan wysyłany jest interwałowo to stan powinien być wysłany też pod
 
 > **Zapis stanu obowiązuje tylko dla trybu "singleplayer", nie stosujemy go do trybu "multiplayer".**
 
-## Struktura plików projektu
+## Organizacja projektu na przykładzie "starter"
 
-### Folder data
+### Struktura folderów
+
+-   static/ - folder z plikami statycznymi (engine.json, entry.js itp.)
+-   data/ - folder z przykładowymi danymi (engine.json, savedata.json itp.)
+-   src/ - folder z kodem źródłowym aplikacji
+    -   main.ts - plik startowy aplikacji (importuje zpe-port i app.ts)
+    -   app.ts - plik z kodem aplikacji (tu trzeba napisać własną aplikację)
+-   build/ - folder dla kodu wynikowego (po uruchomieniu budowy aplikacji)
+-   dist/ - folder dla kodu wynikowym do dystrybucji na platformę (po uruchomieniu budowy aplikacji dla dystrybucji)
+-   packages/zpe-port - pakiet komunikacyjny między aplikacją a platformą ZPE (osobne repozytorium)
+-   packages/zpe-emulator - pakiet z kodem emulatora platformy ZPE (osobne repozytorium)
+-   packages/zpe-editor - pakiet z kodem edytora aplikacji ZPE (w przygotowaniu) (osobne repozytorium)
+
+### Folder "build" a "dist"
+
+Folder "build" służy do generowania kodu na potrzeby programowania. Używając `npm run build` tworzymy kod w folderze "build" w postaci gotowej do uruchomienia na platformie. Używając `npm run build:emu` tworzymy kod w folderze "build" w postaci gotowej do uruchomienia razem z emulatorem - przydatne, jeśli chcemy udostępnić kod na serwerze WWW.
+
+Folder "dist" powinien być podłączony jako submoduł i służy do wysłania gotowego kodu na platformę. Używając `npm run dist` tworzymy kod w folderze "dist" w postaci gotowej do uruchomienia na platformie. Następnie należy zatwierdzić zmiany w submodule i wypchnąć je na GitHuba. GitHab Actions zajmie się przesłaniem kodu na serwer.
+
+> [!NOTE]
+> Na serwer trafia tylko zawartość z brancha main folderu dist.
+
+> [!WARNING]
+> Jeżeli podłączysz folder "dist" jako submoduł GIT to nie usuwaj folderu ".git" i ".github" z folderu "dist", jest on potrzebny do działania submodułu.
+
+Przykładowa konfiguracja w webpack.config.js do czyszczenia folderu "build" lub "dist" przy każdej budowie aplikacji, z zachowaniem plików GIT, GITHUB i README.md:
+
+```js
+output: {
+    ...
+    clean: {
+        keep: /.git|.github|.gitignore|README.md/;
+    }
+    ...
+}
+```
+
+### Folder data (dot. starter)
 
 Folder "data" służy do przechowywania plików używanych w trybie deweloperskim. Pliki te nadpisują domyślne pliki z folderu "static".
 
 -   "engine-data.json" - alternatywny plik "engine.json"
 -   "savedata.json" - domyślny plik stanu aplikacji. Jeśli plik jest pusty lub zawiera "null" lub "undefined", aplikacja otrzyma "null" jako stan (brak stanu). Symuluje to sytuację, gdy w prawidziwym systemie nie ma zapisanego stanu ucznia. Pliki z różnymi stanami można przechowywać w tym folderze i w razie potrzeby zmieniać nazwę pliku na "savedata.json" lub wskazywać inny plik za pomocą opcji wiersza poleceń.
 
-### Pliki z folderu "static"
+### Pliki z folderu "static" (dot. starter)
 
 -   Plik „scenario.json” – wszystkie dane zmienne których nie może zmieniać nauczyciel w edytorze, np. treść zadań, teksty dialogów itp. To które dane podlegają edycji w edytorze jest określone w zamówieniu.
 
@@ -286,6 +332,57 @@ Folder "data" służy do przechowywania plików używanych w trybie deweloperski
     }
 }
 ```
+
+### Skrypty (dot. starter)
+
+```sh
+npm run build
+```
+
+Budowa gotowego kodu w folderze "build"
+
+```sh
+npm run build:emu
+```
+
+Budowa gotowego kodu w folderze "build" wraz z emulatorem.
+
+```sh
+npm run dist
+```
+
+Budowa gotowego kodu w folderze "dist".
+Sama kompilacja kodu jest identyczna jak dla "build". Do folderu "dist" powinno się podłączyć repozytorium GIT służące do dystrybucji aplikacji na platformę.
+
+```sh
+npm run dev
+```
+
+Uruchomienie kodu w emulatorze. W tym trybie stan aplikacji zostanie załadowany zawsze z pliku "data/savedata.json".
+
+```sh
+npm run dev -- --env engine="engine-data.json"
+```
+
+Załadowanie alternatywnego pliku "engine.json" z folderu "data".
+
+```sh
+npm run dev -- --env savedata="other_savedata.json"
+```
+
+Załadowanie alternatywnego zapisu stanu - domyślny plik stanu jest w "data/savedata.json"
+
+Emulator zawsze podaje stan aplikacji korzystając z pliku „data/savedata.json”.
+Jeżeli podczas pisania aplikacji trzeba ładować jakiś konkretny stan to dodaj nowy plik stanu do folderu „data” lub na szybko wpisz stan do pliku „data/savedata.json”. Zob. przykład w „data/savedata-state-1.json”.
+
+> [!NOTE]
+> Folder "data" nie jest częścią pakietu wynikowego i służy tylko do testowania aplikacji w trybie deweloperskim.
+
+> [!NOTE]
+> Pliki z różnymi ustawieniami (innymi niż domyślne) można umieszczać w folderze "data" i w trybie „developer” wymusić jego pobranie zamiast domyślnego - patrz. sekcja developer Należy unikać modyfikowania piku engine.json na potrzeby testowania aplikacji.
+
+> [!NOTE]
+> Jeżeli w pliku „data/savedata.json” znajduje się tylko słowo „null” lub "undefined" lub jest pusty to na wejściu "run(stateData, isFrozen)" w "stateData" dostaniemy "undefined" czyli sytuację z platformy, kiedy w systemie nie ma żadnego zapisanego stanu.
 
 ### Wersje językowe (dot. wybranych aplikacji)
 
