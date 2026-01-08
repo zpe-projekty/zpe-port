@@ -1,0 +1,5 @@
+{
+    "main": "build/zpe.js",
+    "types": "build/zpe.d.ts",
+    "module": "build/zpe.js"
+}

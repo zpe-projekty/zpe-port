@@ -1,0 +1,36 @@
+.wrapper {
+    background-color: white;
+}
+
+.header {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.answer-input {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.hint {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+    font-style: italic;
+}
+
+.correct {
+    background-color: rgb(205, 255, 130) !important;
+}
+
+.incorrect {
+    background-color: rgb(255, 162, 162) !important;
+}

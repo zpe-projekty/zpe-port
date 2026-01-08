@@ -1,0 +1,40 @@
+{
+    "definitions": {
+        "difficulty": {
+            "easy": "łatwy",
+            "medium": "średni",
+            "hard": "trudny"
+        }
+    },
+    "properties": {
+        "message": {
+            "type": "string",
+            "label": "Komunikat powitalny"
+        },
+        "playTime": {
+            "type": "number",
+            "label": "Całkowity czas gry (w minutach)"
+        },
+        "rebuses": {
+            "type": "array",
+            "item": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "private": true
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "label": "Widoczny"
+                    },
+                    "answer": {
+                        "type": "ref",
+                        "path": "scenario.json#/rebuses/${id}/answer",
+                        "label": "Prawidłowa odpowiedź"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,15 +1,38 @@
 {
     "name": "zpe-port",
-    "version": "1.0.11",
+    "version": "1.2.0",
     "description": "ZPE Developer Kit",
     "main": "build/zpe.js",
     "types": "build/zpe.d.ts",
     "module": "build/zpe.js",
     "scripts": {
-        "build": "tsc",
+        "build": "npm run build:port && npm run build:emulator && npm run build:editor && npm run sync:build",
+        "build:port": "tsc -p ./packages/port/tsconfig.json",
+        "build:emulator": "webpack --config ./packages/emulator/webpack.emulator.config.js --mode=production",
+        "build:editor": "webpack --config ./packages/editor/webpack.editor.config.js --mode=production",
+        "build:editor:emulator": "webpack --config ./packages/editor/emulator/webpack.editor.emulator.js --env production",
+        "sync:build": "node scripts/sync-build.js",
+        "dev:editor": "npm run build:editor:emulator && webpack serve --config ./packages/editor/webpack.editor.config.js --env development",
         "md2pdf": "pandoc -d pandoc.yaml README.md -o README.pdf",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "@types/jest": "^30.0.0",
+        "@types/node": "^25.0.3",
+        "copy-webpack-plugin": "^13.0.1",
+        "cross-env": "^10.1.0",
+        "css-loader": "^7.1.2",
+        "html-webpack-plugin": "^5.6.5",
+        "jest": "^30.2.0",
+        "raw-loader": "^4.0.2",
+        "style-loader": "^4.0.0",
+        "ts-loader": "^9.5.4",
+        "url-loader": "^4.1.1",
+        "webpack": "^5.104.1",
+        "webpack-cli": "^6.0.1",
+        "webpack-dev-server": "^5.2.2",
+        "webpack-merge": "^6.0.1"
+    }
 }

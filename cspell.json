@@ -1,0 +1,23 @@
+{
+    "version": "0.2",
+    "language": "en,pl",
+    "ignorePaths": [
+        "**/node_modules/**",
+        "**/build/**",
+        "**/dist/**",
+        "**/out/**",
+        "**/coverage/**",
+        "**/.git/**"
+    ],
+    "dictionaryDefinitions": [],
+    "dictionaries": [
+        "pl"
+    ],
+    "words": [
+        "zpe",
+        "zpe-port",
+        "pandoc"
+    ],
+    "ignoreWords": [],
+    "import": []
+}
