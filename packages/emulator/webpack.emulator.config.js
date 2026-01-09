@@ -76,15 +76,15 @@ module.exports = function (env, argv) {
                         }
                     }
                 ]
-            }),
-            new HtmlWebpackPlugin({
-                inject: false,
-                minify: false,
-                title: `${PACKAGE.name} ${PACKAGE.version}`,
-                favicon: path.resolve(PATHS.STATIC, "favicon.png"),
-                template: path.resolve(PATHS.SRC, "index.html"),
-                filename: "index.html"
             })
+            // new HtmlWebpackPlugin({
+            //     inject: false,
+            //     minify: false,
+            //     title: `${PACKAGE.name} ${PACKAGE.version}`,
+            //     favicon: path.resolve(PATHS.STATIC, "favicon.png"),
+            //     template: path.resolve(PATHS.SRC, "index.html"),
+            //     filename: "index.html"
+            // })
         ],
         optimization: {
             minimize: false

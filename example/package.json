@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "My App Description",
     "scripts": {
-        "build": "webpack --config webpack.config.js --env production",
+        "build": "webpack --config webpack.config.js --env production --",
         "dist": "webpack --config webpack.config.js --env production --env dist",
         "dev": "webpack serve --config webpack.config.js --env development"
     },

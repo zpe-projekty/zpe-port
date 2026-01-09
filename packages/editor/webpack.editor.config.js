@@ -54,27 +54,6 @@ module.exports = [
                 hot: false,
                 host: "0.0.0.0",
                 port: 8080
-                // setupMiddlewares: (middlewares, devServer) => {
-                //     if (!devServer) {
-                //         throw new Error("webpack-dev-server is not defined");
-                //     }
-                //     devServer.app.get("/schema.json", (req, res) => {
-                //         if (env.schema) {
-                //             const schemaFile = path.resolve(
-                //                 PATHS.DATA,
-                //                 env.schema
-                //             );
-                //             res.sendFile(schemaFile);
-                //         } else {
-                //             const defaultSchemaFile = path.resolve(
-                //                 PATHS.DATA,
-                //                 "schema.json"
-                //             );
-                //             res.sendFile(defaultSchemaFile);
-                //         }
-                //     });
-                //     return middlewares;
-                // }
             },
             module: {
                 rules: [
@@ -127,7 +106,7 @@ module.exports = [
                         "editor-emulator.html"
                     ),
                     filename: IS_DEV ? "index.html" : "editor-emulator.html",
-                    minify: false, //env.production ? true : false,
+                    minify: false,
                     chunks: ["editor"]
                 })
             ],

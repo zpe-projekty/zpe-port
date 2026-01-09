@@ -3,7 +3,7 @@ const path = require("path");
 const term = require("./terminal-control").init();
 
 const SOURCE = path.resolve("./build");
-const TARGET = path.resolve("./example/zpe-port/packages/zpe-port/build");
+const TARGET = path.resolve("./example/packages/zpe-port/build");
 
 // ---------- utils ----------
 async function wait(ms) {
@@ -58,7 +58,7 @@ async function copyRecursive(src, dest) {
 
         // const relSrc = path.relative(process.cwd(), src);
         // const relDest = path.relative(process.cwd(), dest);
-        // process.stdout.write(`\n📄 ${relSrc} → ${relDest}\r`);
+        // process.stdout.write(`\n📄 ${relSrc} → ${relDest}\n`);
 
         // term.restoreCursor();
 

@@ -8,8 +8,8 @@
     "scripts": {
         "build": "npm run build:port && npm run build:emulator && npm run build:editor && npm run sync:build",
         "build:port": "tsc -p ./packages/port/tsconfig.json",
-        "build:emulator": "webpack --config ./packages/emulator/webpack.emulator.config.js --mode=production",
-        "build:editor": "webpack --config ./packages/editor/webpack.editor.config.js --mode=production",
+        "build:emulator": "webpack --config ./packages/emulator/webpack.emulator.config.js --env production",
+        "build:editor": "webpack --config ./packages/editor/webpack.editor.config.js --env production",
         "build:editor:emulator": "webpack --config ./packages/editor/emulator/webpack.editor.emulator.js --env production",
         "sync:build": "node scripts/sync-build.js",
         "dev:editor": "npm run build:editor:emulator && webpack serve --config ./packages/editor/webpack.editor.config.js --env development",

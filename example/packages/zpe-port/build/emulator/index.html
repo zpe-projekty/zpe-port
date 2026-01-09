@@ -1,194 +1,166 @@
 <!DOCTYPE html>
 <html lang="pl" class="document-layout no-responsive cp-editor-document" translate="no" data-wcag-font-size="100">
-
-
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="google" content="notranslate">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <title>ZPE Emulator</title>
     <script defer src="emulator.js"></script>
-</head>
 
-<link rel="stylesheet" href="__emulator/p4preview.css" />
-<link rel="stylesheet" href="__emulator/style.css" />
-<link rel="stylesheet" href="__emulator/editor.css" />
-<link rel="stylesheet" href="__emulator/theme.css" />
-<link rel="stylesheet" href="__emulator/entry01.css" />
-<link rel="stylesheet" href="__emulator/entry02.css" />
-<link rel="stylesheet" href="__emulator/entry03.css" />
-<link rel="stylesheet" href="__emulator/entry04.css" />
-<link rel="stylesheet" href="__emulator/entry05.css" />
-<link rel="stylesheet" href="__emulator/entry06.css" />
-<link rel="stylesheet" href="__emulator/entry07.css" />
-<link rel="stylesheet" href="__emulator/entry08.css" />
-<link rel="stylesheet" href="__emulator/entry09.css" />
-<link rel="stylesheet" href="__emulator/entry10.css" />
-<link rel="stylesheet" href="__emulator/entry11.css" />
-<link rel="stylesheet" href="__emulator/entry12.css" />
-<link rel="stylesheet" href="__emulator/entry13.css" />
-<link rel="stylesheet" href="__emulator/exercise-theme.css" />
+    <link rel="stylesheet" href="__emulator/p4preview.css" />
+    <link rel="stylesheet" href="__emulator/style.css" />
+    <link rel="stylesheet" href="__emulator/editor.css" />
+    <link rel="stylesheet" href="__emulator/theme.css" />
+    <link rel="stylesheet" href="__emulator/entry01.css" />
+    <link rel="stylesheet" href="__emulator/entry02.css" />
+    <link rel="stylesheet" href="__emulator/entry03.css" />
+    <link rel="stylesheet" href="__emulator/entry04.css" />
+    <link rel="stylesheet" href="__emulator/entry05.css" />
+    <link rel="stylesheet" href="__emulator/entry06.css" />
+    <link rel="stylesheet" href="__emulator/entry07.css" />
+    <link rel="stylesheet" href="__emulator/entry08.css" />
+    <link rel="stylesheet" href="__emulator/entry09.css" />
+    <link rel="stylesheet" href="__emulator/entry10.css" />
+    <link rel="stylesheet" href="__emulator/entry11.css" />
+    <link rel="stylesheet" href="__emulator/entry12.css" />
+    <link rel="stylesheet" href="__emulator/entry13.css" />
+    <link rel="stylesheet" href="__emulator/exercise-theme.css" />
 
-<style>
-    .app_header {
+    <style>
+      .app_header {
         background: repeating-linear-gradient(45deg, #bbbbcc 0px, #bbbbcc 10px, #ccccdd 10px, #ccccdd 20px);
-    }
+      }
 
-    .app_body {
+      .app_body {
         background: repeating-linear-gradient(45deg, #bbbbbb 0px, #bbbbbb 10px, #cccccc 10px, #cccccc 20px) !important;
-    }
-</style>
+      }
+    </style>
+    <%= htmlWebpackPlugin.tags.headTags %>
+  </head>
 
-<body>
+  <body>
     <div id="appContainer">
-        <div id="app" class="app">
-            <div class="app_nav-drawer-splitter">
-                <div class="preview-layout app_body">
-                    <header id="zpe-emulator-header" class="app_header header"
-                        style="position: relative; height: 60px; z-index: 2"></header>
-                    <div class="preview-layout_container app_content app_scroll">
-                        <div id="zpe-emulator-sidebar" class="wrapper-sidebar close left extra-small header-offset"
-                            aria-hidden="false">
-                            <div class="wrapper-sidebar_toggle">
-                                <div class="project-documents-tree_switcher" tabindex="0">
-                                    <i class="mdi mdi-menu d-flex" aria-hidden="true"></i><span
-                                        class="sr-only">action.showTableContents}</span>
-                                </div>
-                            </div>
-                            <div class="wrapper-sidebar_content">
-                                <!---->
-                                <div class="project-documents-tree">
-                                    <div class="project-documents-tree_project-container">
-                                        <div class="project-documents-tree_cover-container">
-                                            <div class="project-documents-tree_project-cover" style="
-                                                        background-image: linear-gradient(
-                                                                rgba(255, 255, 255, 0),
-                                                                rgba(255, 255, 255, 0),
-                                                                rgb(255, 255, 255)
-                                                            ),
-                                                            url('https://static.zpe.gov.pl/editor/resized/v3/M512xM512xA/storage/project/1ULX/cover/1ULXLEFKRXQCVDNXMLLBFD62ATJ1Z7V7.png');
-                                                        height: 160px;
-                                                    "></div>
-                                            <button class="btn btn--primary-rev project-documents-tree_cover-back flex">
-                                                <span class="mdi mdi-chevron-left" aria-hidden="true"
-                                                    style="margin: auto 0px auto -0.5rem"></span>
-                                                Przejdź do edycji
-                                            </button>
-                                        </div>
-                                        <div class="project-documents-tree_project-content">
-                                            <div class="project-documents-tree_project-title">Tytuł strony</div>
-                                        </div>
-                                    </div>
-                                    <div class="project-documents-tree_content">
-                                        <ul class="editor-tabs__header">
-                                            <li title="Spis treści" class="project-documents-tree_content-tab active">
-                                                <a href="javascript:void(0);" data-toggle-tab="contents"><span
-                                                        class="mdi mdi-content-paste mr-2"
-                                                        style="font-size: 1rem"></span>
-                                                    Spis treści</a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content tab-content-container">
-                                            <div class="active tab-pane" aria-hidden="false" role="tabpanel">
-                                                <div class="project-documents-tree_steps">
-                                                    <div class="project-tree-node active">
-                                                        <div class="project-tree-node_title" style="padding-left: 1rem">
-                                                            <div class="d-flex f-align-center">
-                                                                <span
-                                                                    class="mdi mr-3 mdi-checkbox-bslank-circle"></span><span>IX.5
-                                                                    Plecak ewakuacyjny - makieta
-                                                                    (testowe)</span>
-                                                            </div>
-                                                            <!---->
-                                                        </div>
-                                                        <!---->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="editor-output-comments theme_main module">
-                            <div style="position: relative">
-                                <div class="document-body">
-                                    <div class="page-container" lang="pl">
-                                        <div id="zpe-emulator-title" class="wrapper page-header-container"
-                                            data-editor-no-parse="">
-                                            <div class="wrapper_content">
-                                                <div class="page-header page-header--current">
-                                                    <h1>Tytuł szkolenia</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id="zpe-emulator-text" class="wrapper wrapper--default">
-                                            <span data-specifier-type="section1-weak">
-                                                <span data-alternative=""></span>
-                                                <span data-value=""></span>
-                                            </span>
-                                            <span data-editor-params=""></span>
-
-                                            <div class="wrapper_content">
-                                                <p id="k00000HM0R_00000003" data-id="k00000HM0R_00000003">Lorem ipsum
-                                                    dolor sit amet, consectetur adipiscing elit. Aliquam maximus, odio
-                                                    vel iaculis lobortis, est leo cursus nulla, at ornare elit ante non
-                                                    sem.</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="wrapper wrapper--default wrapper--wide">
-                                            <span data-specifier-type="section1-weak">
-                                                <span data-alternative=""></span>
-                                                <span data-value=""></span>
-                                            </span>
-                                            <span data-editor-params=""></span>
-                                            <div class="wrapper_content">
-                                                <section data-block-name="WidgetProposal"
-                                                    data-block-resolved-by="widget-proposal" data-editor-block=""
-                                                    data-editor-block-id="k00000HM0R_00000003"
-                                                    data-id="k00000HM0R_00000003">
-                                                    <div data-editor-block-content="">
-                                                        <div data-manifest="">
-                                                            <figure
-                                                                class="figure exercise cp-exercise interactive exercise-not-scored"
-                                                                data-exercise-level="" data-storage-id=""
-                                                                data-id="k00000HM0R_00000003" data-editor-no-parse="">
-                                                                <div class="womi-container-v2 print-hide math-jax-disable __editorHasModule__"
-                                                                    data-editor-disabled="">
-                                                                    <div class="classic">
-                                                                        <div class="interactive-object-container module"
-                                                                            data-alt='&lt;span lang="pl"&gt;&lt;/span&gt;'
-                                                                            data-width="100%">
-                                                                            <div class="standard-interactive-object p3056"
-                                                                                data-object-engine="zpe-emulator"
-                                                                                data-manifest=""
-                                                                                style="position: relative">
-                                                                                <div id="zpe-emulator-container" style="
-                                                                                            height: inherit;
-                                                                                            margin: 0px;
-                                                                                        "></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                </section>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <div id="app" class="app">
+        <div class="app_nav-drawer-splitter">
+          <div class="preview-layout app_body">
+            <header id="zpe-emulator-header" class="app_header header" style="position: relative; height: 60px; z-index: 2"></header>
+            <div class="preview-layout_container app_content app_scroll">
+              <div id="zpe-emulator-sidebar" class="wrapper-sidebar close left extra-small header-offset" aria-hidden="false">
+                <div class="wrapper-sidebar_toggle">
+                  <div class="project-documents-tree_switcher" tabindex="0">
+                    <i class="mdi mdi-menu d-flex" aria-hidden="true"></i>
+                    <span class="sr-only"> action.showTableContents} </span>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</body>
+                <div class="wrapper-sidebar_content">
+                  <!---->
+                  <div class="project-documents-tree">
+                    <div class="project-documents-tree_project-container">
+                      <div class="project-documents-tree_cover-container">
+                        <div
+                          class="project-documents-tree_project-cover"
+                          style="
+                            background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgb(255, 255, 255)),
+                              url('https://static.zpe.gov.pl/editor/resized/v3/M512xM512xA/storage/project/1ULX/cover/1ULXLEFKRXQCVDNXMLLBFD62ATJ1Z7V7.png');
+                            height: 160px;
+                          "
+                        ></div>
+                        <button class="btn btn--primary-rev project-documents-tree_cover-back flex">
+                          <span class="mdi mdi-chevron-left" aria-hidden="true" style="margin: auto 0px auto -0.5rem"></span>
+                          Przejdź do edycji
+                        </button>
+                      </div>
+                      <div class="project-documents-tree_project-content">
+                        <div class="project-documents-tree_project-title">Tytuł strony</div>
+                      </div>
+                    </div>
+                    <div class="project-documents-tree_content">
+                      <ul class="editor-tabs__header">
+                        <li title="Spis treści" class="project-documents-tree_content-tab active">
+                          <a href="javascript:void(0);" data-toggle-tab="contents">
+                            <span class="mdi mdi-content-paste mr-2" style="font-size: 1rem"></span>
+                            Spis treści
+                          </a>
+                        </li>
+                      </ul>
+                      <div class="tab-content tab-content-container">
+                        <div class="active tab-pane" aria-hidden="false" role="tabpanel">
+                          <div class="project-documents-tree_steps">
+                            <div class="project-tree-node active">
+                              <div class="project-tree-node_title" style="padding-left: 1rem">
+                                <div class="d-flex f-align-center">
+                                  <span class="mdi mr-3 mdi-checkbox-bslank-circle"></span>
+                                  <span> Makieta (testowe) </span>
+                                </div>
+                                <!---->
+                              </div>
+                              <!---->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="editor-output-comments theme_main module">
+                <div style="position: relative">
+                  <div class="document-body">
+                    <div class="page-container" lang="pl">
+                      <div id="zpe-emulator-title" class="wrapper page-header-container" data-editor-no-parse="">
+                        <div class="wrapper_content">
+                          <div class="page-header page-header--current">
+                            <h1>Tytuł szkolenia</h1>
+                          </div>
+                        </div>
+                      </div>
 
+                      <div id="zpe-emulator-text" class="wrapper wrapper--default">
+                        <span data-specifier-type="section1-weak">
+                          <span data-alternative=""></span>
+                          <span data-value=""></span>
+                        </span>
+                        <span data-editor-params=""></span>
+
+                        <div class="wrapper_content">
+                          <p id="k00000HM0R_00000003" data-id="k00000HM0R_00000003">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam maximus, odio vel iaculis lobortis, est leo cursus nulla, at ornare elit ante non sem.</p>
+                        </div>
+                      </div>
+
+                      <div class="wrapper wrapper--default wrapper--wide">
+                        <span data-specifier-type="section1-weak">
+                          <span data-alternative=""></span>
+                          <span data-value=""></span>
+                        </span>
+                        <span data-editor-params=""></span>
+                        <div class="wrapper_content">
+                          <section data-block-name="WidgetProposal" data-block-resolved-by="widget-proposal" data-editor-block="" data-editor-block-id="k00000HM0R_00000003" data-id="k00000HM0R_00000003">
+                            <div data-editor-block-content="">
+                              <div data-manifest="">
+                                <figure class="figure exercise cp-exercise interactive exercise-not-scored" data-exercise-level="" data-storage-id="" data-id="k00000HM0R_00000003" data-editor-no-parse="">
+                                  <div class="womi-container-v2 print-hide math-jax-disable __editorHasModule__" data-editor-disabled="">
+                                    <div class="classic">
+                                      <div class="interactive-object-container module" data-alt='&lt;span lang="pl"&gt;&lt;/span&gt;' data-width="100%">
+                                        <div class="standard-interactive-object p3056" data-object-engine="zpe-emulator" data-manifest="" style="position: relative">
+                                          <div id="zpe-emulator-container" style="height: inherit; margin: 0px"></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </figure>
+                              </div>
+                            </div>
+                          </section>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

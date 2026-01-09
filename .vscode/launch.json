@@ -11,13 +11,13 @@
       "runtimeArgs": [
         "--auto-open-devtools-for-tabs"
       ],
-      "url": "http://localhost:8080"
+      "url": "http://localhost:8080/index.html"
     },
     {
       "name": "Launch Internal Edge",
       "type": "vscode-edge-devtools.debug",
       "request": "launch",
-      "url": "http://localhost:8080",
+      "url": "http://localhost:8080/index.html",
     }
   ],
 }

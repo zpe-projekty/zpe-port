@@ -219,42 +219,20 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ },
 
-/***/ 354
-(module) {
-
-
-
-module.exports = function (item) {
-  var content = item[1];
-  var cssMapping = item[3];
-  if (!cssMapping) {
-    return content;
-  }
-  if (typeof btoa === "function") {
-    var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(cssMapping))));
-    var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
-    var sourceMapping = "/*# ".concat(data, " */");
-    return [content].concat([sourceMapping]).join("\n");
-  }
-  return [content].join("\n");
-};
-
-/***/ },
-
 /***/ 425
 (module, __webpack_exports__, __webpack_require__) {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(354);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(601);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(314);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
 // Imports
 
 
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
     & .dropdown.icon {
@@ -315,7 +293,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
         }
     }
 }
-`, "",{"version":3,"sources":["webpack://./packages/editor/src/styles/styles.css"],"names":[],"mappings":"AAAA;IACI;QACI,UAAU;QACV,WAAW;QACX,2BAA2B;QAC3B,yBAAyB;;QAEzB;YACI,YAAY;YACZ,aAAa;YACb,uBAAuB;YACvB,mBAAmB;YACnB,WAAW;YACX,YAAY;QAChB;IACJ;;IAEA;QACI,uBAAuB;IAC3B;;IAEA;QACI,sBAAsB;IAC1B;;IAEA;QACI,sBAAsB;QACtB,cAAc;QACd,aAAa;QACb,sBAAsB;QACtB,UAAU;;QAEV;YACI,iBAAiB;YACjB,eAAe;YACf,aAAa;YACb,mBAAmB;YACnB,sBAAsB;YACtB,oCAAoC;YACpC,oBAAoB;YACpB,QAAQ;YACR,mBAAmB;YACnB,sBAAsB;;YAEtB;gBACI,SAAS;YACb;QACJ;;QAEA;YACI,aAAa;YACb,gBAAgB;;YAEhB;gBACI,cAAc;YAClB;QACJ;IACJ;AACJ","sourcesContent":[".oseditor-nmzzpp1hty {\n    & .dropdown.icon {\n        width: 2em;\n        height: 2em;\n        background-color: turquoise;\n        transform: rotate(-90deg);\n\n        &::before {\n            content: \"▼\";\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            width: 100%;\n            height: 100%;\n        }\n    }\n\n    & .active > .dropdown.icon {\n        transform: rotate(0deg);\n    }\n\n    & .content {\n        border: solid 1px #00f;\n    }\n\n    & .object-component {\n        border: solid 1px #f00;\n        padding: 0.5em;\n        display: flex;\n        flex-direction: column;\n        gap: 0.5em;\n\n        & .title {\n            font-weight: bold;\n            cursor: pointer;\n            display: flex;\n            flex-direction: row;\n            /* margin-left: 2em; */\n            /* justify-content: space-between; */\n            /* flex: 0 0 auto; */\n            gap: 1em;\n            align-items: center;\n            justify-content: start;\n\n            & h3 {\n                margin: 0;\n            }\n        }\n\n        & .content {\n            display: none;\n            margin-left: 2em;\n\n            &.active {\n                display: block;\n            }\n        }\n    }\n}\n"],"sourceRoot":""}]);
+`, ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -335,6 +313,17 @@ function insertStyleElement(options) {
   return element;
 }
 module.exports = insertStyleElement;
+
+/***/ },
+
+/***/ 601
+(module) {
+
+
+
+module.exports = function (i) {
+  return i[1];
+};
 
 /***/ },
 
@@ -1878,4 +1867,3 @@ function main_create() {
 /******/ })()
 ;
 });;
-//# sourceMappingURL=editor.js.map
