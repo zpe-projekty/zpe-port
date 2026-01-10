@@ -3,6 +3,7 @@ const fs = require("fs");
 const process = require("process");
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const LibraryUpdateCheckPlugin = require("./scripts/library-update-check-plugin");
 const PACKAGE = require("./package.json");
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -35,7 +36,7 @@ const PATHS = {
     PORT: path.resolve(__dirname, "./packages/zpe-port"),
     DATA: path.resolve(__dirname, "./data"),
     // PATHNAME: `prev/${genCode9()}/pl/main/`
-    PATHNAME: `prev/J8IXNJRXQ/pl/main/`
+    PATHNAME: `prev/RESOURCE-ID/pl/main/`
 };
 
 // console.log(process.argv);
@@ -235,7 +236,13 @@ module.exports = function (env, argv) {
                           ? path.join(PATHS.PATHNAME, "index.html")
                           : "index.html"
                   })
-                : null
+                : null,
+            new LibraryUpdateCheckPlugin({
+                configFile: ".updaterc",
+                checkIntervalHours: 24,
+                timeoutMs: 5000,
+                quiet: false
+            })
         ],
         optimization: {
             minimize: false
