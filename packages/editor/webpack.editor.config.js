@@ -9,8 +9,8 @@ const env = require("process").env;
 const PATHS = {
     STATIC: path.resolve(__dirname, "./static"),
     SRC: path.resolve(__dirname, "./src"),
-    BUILD: path.resolve(__dirname, "../../build/editor"),
-    EMULATOR_BUILD: path.resolve(__dirname, "./emulator/build"),
+    DIST: path.resolve(__dirname, "../../dist/editor"),
+    EMULATOR_DIST: path.resolve(__dirname, "./emulator/dist"),
     DATA: path.resolve(__dirname, "./data")
 };
 
@@ -31,7 +31,7 @@ module.exports = [
                 }
             },
             output: {
-                path: PATHS.BUILD,
+                path: PATHS.DIST,
                 libraryTarget: "amd",
                 filename: "[name].js",
                 clean: {
@@ -85,7 +85,7 @@ module.exports = [
                 new CopyWebpackPlugin({
                     patterns: [
                         {
-                            from: PATHS.EMULATOR_BUILD,
+                            from: PATHS.EMULATOR_DIST,
                             to: "./",
                             info: { minimized: true },
                             globOptions: {
@@ -100,9 +100,9 @@ module.exports = [
                 }),
                 new HtmlWebpackPlugin({
                     title: `${PACKAGE.name} ${PACKAGE.version} - Editor Emulator`,
-                    favicon: path.resolve(PATHS.EMULATOR_BUILD, "favicon.png"),
+                    favicon: path.resolve(PATHS.EMULATOR_DIST, "favicon.png"),
                     template: path.resolve(
-                        PATHS.EMULATOR_BUILD,
+                        PATHS.EMULATOR_DIST,
                         "editor-emulator.html"
                     ),
                     filename: IS_DEV ? "index.html" : "editor-emulator.html",

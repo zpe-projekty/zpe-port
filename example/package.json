@@ -4,7 +4,7 @@
     "description": "My App Description",
     "scripts": {
         "build": "webpack --config webpack.config.js --env production --",
-        "dist": "webpack --config webpack.config.js --env production --env dist",
+        "deploy": "webpack --config webpack.config.js --env production --env deploy",
         "dev": "webpack serve --config webpack.config.js --env development"
     },
     "author": "",

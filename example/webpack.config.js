@@ -10,10 +10,10 @@ const PATHS = {
     STATIC: path.resolve(__dirname, "./static"),
     SRC: path.resolve(__dirname, "./src"),
     BUILD: path.resolve(__dirname, "./build"),
-    DIST: path.resolve(__dirname, "./dist"),
+    DEPLOY: path.resolve(__dirname, "./deploy"),
     PACKAGE: path.resolve(__dirname, "./packages"),
-    EMULATOR: path.resolve(__dirname, "./packages/zpe-port/build/emulator"),
-    EDITOR: path.resolve(__dirname, "./packages/zpe-port/build/editor"),
+    EMULATOR: path.resolve(__dirname, "./packages/zpe-port/dist/emulator"),
+    EDITOR: path.resolve(__dirname, "./packages/zpe-port/dist/editor"),
     PORT: path.resolve(__dirname, "./packages/zpe-port"),
     DATA: path.resolve(__dirname, "./data"),
     PATHNAME: `prev/RESOURCE-ID/pl/main/`
@@ -21,8 +21,8 @@ const PATHS = {
 
 module.exports = function (env, argv) {
     const IS_DEV = env.development ? true : false;
-    const IS_DIST = env.dist ? true : false;
-    const IS_BUILD = !IS_DIST;
+    const IS_DEPLOY = env.deploy ? true : false;
+    const IS_BUILD = env.production && !env.deploy ? true : false;
     const SERVER_PORT = env.port || 8080;
 
     return {
@@ -160,7 +160,7 @@ module.exports = function (env, argv) {
                             ignore: ["*.DS_Store"]
                         }
                     },
-                    ...(IS_DIST
+                    ...(IS_DEPLOY
                         ? [
                               {
                                   from: path.resolve(PATHS.EDITOR, "editor.js"),
@@ -201,8 +201,7 @@ module.exports = function (env, argv) {
             IS_DEV || IS_BUILD
                 ? new HtmlWebpackPlugin({
                       inject: false,
-                      //   minify: false,
-                      //   chunks: ["app"],
+                      minify: false,
                       title: `${PACKAGE.name} ${PACKAGE.version} - Development`,
                       favicon: path.resolve(PATHS.EMULATOR, "favicon.png"),
                       template: path.resolve(PATHS.EMULATOR, "index.html"),

@@ -7,7 +7,7 @@ const PACKAGE = require("./package.json");
 const PATHS = {
     STATIC: path.resolve(__dirname, "./static"),
     SRC: path.resolve(__dirname, "./src"),
-    BUILD: path.resolve(__dirname, "../../build/emulator")
+    DIST: path.resolve(__dirname, "../../dist/emulator")
 };
 
 module.exports = function (env, argv) {
@@ -18,7 +18,7 @@ module.exports = function (env, argv) {
         devtool: "cheap-module-source-map",
         entry: path.resolve(PATHS.SRC, "emulator.ts"),
         output: {
-            path: PATHS.BUILD,
+            path: PATHS.DIST,
             filename: "emulator.js",
             iife: false,
             clean: true
@@ -77,14 +77,6 @@ module.exports = function (env, argv) {
                     }
                 ]
             })
-            // new HtmlWebpackPlugin({
-            //     inject: false,
-            //     minify: false,
-            //     title: `${PACKAGE.name} ${PACKAGE.version}`,
-            //     favicon: path.resolve(PATHS.STATIC, "favicon.png"),
-            //     template: path.resolve(PATHS.SRC, "index.html"),
-            //     filename: "index.html"
-            // })
         ],
         optimization: {
             minimize: false

@@ -7,7 +7,7 @@ const PACKAGE = require("../package.json");
 const PATHS = {
     STATIC: path.resolve(__dirname, "./static"),
     SRC: path.resolve(__dirname, "./src"),
-    BUILD: path.resolve(__dirname, "./build")
+    DIST: path.resolve(__dirname, "./dist")
 };
 
 module.exports = function (env, argv) {
@@ -18,7 +18,7 @@ module.exports = function (env, argv) {
         devtool: "cheap-module-source-map",
         entry: path.resolve(PATHS.SRC, "emulator.ts"),
         output: {
-            path: PATHS.BUILD,
+            path: PATHS.DIST,
             filename: "editor-emulator.js",
             libraryTarget: "module",
             clean: true

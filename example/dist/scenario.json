@@ -1,0 +1,15 @@
+{
+    "config": {},
+    "rebuses": {
+        "rebus001": {
+            "imagePath": "images/rebus-001.jpg",
+            "answer": "krokus",
+            "hint": "To wiosenny kwiat."
+        },
+        "rebus002": {
+            "imagePath": "images/rebus-002.jpg",
+            "answer": "dostawa",
+            "hint": "Coś, co przyjeżdża do sklepu."
+        }
+    }
+}

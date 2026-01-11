@@ -1,17 +1,48 @@
-const { rm, mkdir, readdir, copyFile, stat } = require("fs/promises");
+const fs = require("fs/promises");
 const path = require("path");
 const term = require("./terminal-control").init();
 
-const SOURCE = path.resolve("./build");
-const TARGET = path.resolve("./example/packages/zpe-port/build");
+const SOURCE = path.resolve("./dist");
+const TARGET = path.resolve("./example/packages/zpe-port/dist");
 
 // ---------- utils ----------
 async function wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+async function copyPackageJson(src, dest) {
+    // Wczytaj źródłowy package.json
+    const content = await fs.readFile(src, "utf8");
+    const json = JSON.parse(content);
+
+    // Klucze, które zostawiamy
+    const allowedKeys = [
+        "name",
+        "version",
+        "description",
+        "main",
+        "types",
+        "module"
+    ];
+
+    // Zbuduj nowy obiekt tylko z wybranymi polami (jeśli istnieją)
+    const filtered = {};
+    for (const key of allowedKeys) {
+        if (json[key] !== undefined) {
+            filtered[key] = json[key];
+        }
+    }
+
+    // Upewnij się, że katalog docelowy istnieje
+    const destDir = path.dirname(dest);
+    await fs.mkdir(destDir, { recursive: true });
+
+    // Zapisz nowy package.json (nadpisuje, jeśli istnieje)
+    await fs.writeFile(dest, JSON.stringify(filtered, null, 2) + "\n", "utf8");
+}
+
 async function countFiles(dir) {
-    const entries = await readdir(dir, { withFileTypes: true });
+    const entries = await fs.readdir(dir, { withFileTypes: true });
     let count = 0;
 
     for (const entry of entries) {
@@ -39,17 +70,17 @@ let copied = 0;
 let totalFiles = 0;
 
 async function copyRecursive(src, dest) {
-    const stats = await stat(src);
+    const stats = await fs.stat(src);
 
     if (stats.isDirectory()) {
-        await mkdir(dest, { recursive: true });
-        const entries = await readdir(src);
+        await fs.mkdir(dest, { recursive: true });
+        const entries = await fs.readdir(src);
 
         for (const entry of entries) {
             await copyRecursive(path.join(src, entry), path.join(dest, entry));
         }
     } else {
-        await copyFile(src, dest);
+        await fs.copyFile(src, dest);
         copied++;
 
         // term.saveCursor();
@@ -71,16 +102,21 @@ async function copyRecursive(src, dest) {
 async function main() {
     try {
         console.log(`🧹 Usuwam: ${TARGET}`);
-        await rm(TARGET, { recursive: true, force: true });
+        await fs.rm(TARGET, { recursive: true, force: true });
 
         console.log(`📁 Tworzę: ${TARGET}`);
-        await mkdir(TARGET, { recursive: true });
+        await fs.mkdir(TARGET, { recursive: true });
 
         console.log("🔍 Liczę pliki...");
         totalFiles = await countFiles(SOURCE);
         console.log(`📦 Do skopiowania: ${totalFiles} plików\n`);
 
         await copyRecursive(SOURCE, TARGET);
+
+        await copyPackageJson(
+            path.resolve("./package.json"),
+            path.join(TARGET, "../package.json")
+        );
 
         console.log("\n\n✅ Kopiowanie zakończone");
     } catch (err) {

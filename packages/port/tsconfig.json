@@ -10,7 +10,7 @@
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "moduleResolution": "node",
-        "outDir": "../../build",
+        "outDir": "../../dist",
         "rootDir": "./src",
     }
 }
