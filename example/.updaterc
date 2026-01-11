@@ -1,6 +1,0 @@
-{
-    "remotePackageJsonUrl": "https://raw.githubusercontent.com/zpe-projekty/zpe-port/refs/heads/main/package.json",
-    "localPackageJsonPath": "./packages/zpe-port/package.json",
-    "checkIntervalHours": 24,
-    "timeoutMs": 5000
-}

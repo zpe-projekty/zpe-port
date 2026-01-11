@@ -3,27 +3,8 @@ const fs = require("fs");
 const process = require("process");
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const LibraryUpdateCheckPlugin = require("./scripts/library-update-check-plugin");
+const ZpePortUpdatePlugin = require("./scripts/zpe-port-update-check-plugin");
 const PACKAGE = require("./package.json");
-
-const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const CODE_LEN = 9;
-
-function genCode9() {
-    let out = "";
-    for (let i = 0; i < CODE_LEN; i++) {
-        out += ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
-    }
-    return out;
-}
-
-function getArg(flag, defaultValue) {
-    const index = process.argv.indexOf(flag);
-    if (index !== -1 && index + 1 < process.argv.length) {
-        return process.argv[index + 1];
-    }
-    return defaultValue;
-}
 
 const PATHS = {
     STATIC: path.resolve(__dirname, "./static"),
@@ -35,23 +16,14 @@ const PATHS = {
     EDITOR: path.resolve(__dirname, "./packages/zpe-port/build/editor"),
     PORT: path.resolve(__dirname, "./packages/zpe-port"),
     DATA: path.resolve(__dirname, "./data"),
-    // PATHNAME: `prev/${genCode9()}/pl/main/`
     PATHNAME: `prev/RESOURCE-ID/pl/main/`
 };
-
-// console.log(process.argv);
 
 module.exports = function (env, argv) {
     const IS_DEV = env.development ? true : false;
     const IS_DIST = env.dist ? true : false;
     const IS_BUILD = !IS_DIST;
     const SERVER_PORT = env.port || 8080;
-
-    console.log(
-        `\x1b[36m[Webpack Config] Mode: ${
-            IS_DEV ? "Development" : IS_DIST ? "Distribution" : "Build"
-        }, Port: ${SERVER_PORT}\x1b[0m`
-    );
 
     return {
         mode: env.production ? "production" : "development",
@@ -176,6 +148,8 @@ module.exports = function (env, argv) {
             ]
         },
         plugins: [
+            new ZpePortUpdatePlugin(),
+
             new CopyPlugin({
                 patterns: [
                     {
@@ -236,13 +210,7 @@ module.exports = function (env, argv) {
                           ? path.join(PATHS.PATHNAME, "index.html")
                           : "index.html"
                   })
-                : null,
-            new LibraryUpdateCheckPlugin({
-                configFile: ".updaterc",
-                checkIntervalHours: 24,
-                timeoutMs: 5000,
-                quiet: false
-            })
+                : null
         ],
         optimization: {
             minimize: false
