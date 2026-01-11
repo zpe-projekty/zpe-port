@@ -34,6 +34,7 @@ const COLOR = {
     green: "\x1b[32m",
     red: "\x1b[31m",
     yellow: "\x1b[33m",
+    magenta: "\x1b[35m",
     dim: "\x1b[2m",
     bold: "\x1b[1m"
 };
@@ -367,7 +368,7 @@ class ZpePortUpdatePlugin {
             if (cmp === null) {
                 if (localVersion !== remoteVersion) {
                     console.log(
-                        red(
+                        magenta(
                             `[zpe-port] update required (local ${localVersion} vs remote ${remoteVersion})`
                         )
                     );
