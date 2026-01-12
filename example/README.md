@@ -22,14 +22,14 @@ Jeżeli chcesz uruchomić aplikację z innymi plikiem "engine", umieść plik w 
 npm run dev -- --env engine=engine-data.json
 ```
 
-Przygotowanie aplikacji do dystrybucji - wgrania na serwer.
-
-```bash
-npm run dist
-```
-
 Jeżeli chcesz uruchomić aplikację na swoim serwerze lokalnym, możesz to zrobić za pomocą polecenia:
 
 ```bash
 npm run build
+```
+
+Przygotowanie aplikacji do dystrybucji - wgrania na serwer.
+
+```bash
+npm run deploy
 ```
