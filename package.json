@@ -1,17 +1,16 @@
 {
     "name": "zpe-port",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "ZPE Developer Kit",
     "main": "dist/zpe.js",
     "types": "dist/zpe.d.ts",
     "module": "dist/zpe.js",
     "scripts": {
-        "dist": "npm run dist:port && npm run dist:emulator && npm run dist:editor && npm run sync:dist",
+        "dist": "npm run dist:port && npm run dist:emulator && npm run dist:editor",
         "dist:port": "tsc -p ./packages/port/tsconfig.json",
         "dist:emulator": "webpack --config ./packages/emulator/webpack.emulator.config.js --env production",
         "dist:editor": "webpack --config ./packages/editor/webpack.editor.config.js --env production",
         "dist:editor:emulator": "webpack --config ./packages/editor/emulator/webpack.editor.emulator.js --env production",
-        "sync:dist": "node scripts/sync-dist.js",
         "dev:editor": "npm run dist:editor:emulator && webpack serve --config ./packages/editor/webpack.editor.config.js --env development",
         "md2pdf": "pandoc -d pandoc.yaml README.md -o README.pdf",
         "test": "echo \"Error: no test specified\" && exit 1"

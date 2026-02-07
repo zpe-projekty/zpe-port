@@ -6,18 +6,22 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ZpePortUpdatePlugin = require("./scripts/zpe-port-update-check-plugin");
 const PACKAGE = require("./package.json");
 
+const ZPE_PORT = path.resolve(__dirname, "../dist");
+
 const PATHS = {
     STATIC: path.resolve(__dirname, "./static"),
     SRC: path.resolve(__dirname, "./src"),
     BUILD: path.resolve(__dirname, "./build"),
     DEPLOY: path.resolve(__dirname, "./deploy"),
     PACKAGE: path.resolve(__dirname, "./packages"),
-    EMULATOR: path.resolve(__dirname, "./packages/zpe-port/dist/emulator"),
-    EDITOR: path.resolve(__dirname, "./packages/zpe-port/dist/editor"),
-    PORT: path.resolve(__dirname, "./packages/zpe-port"),
+    EMULATOR: path.resolve(ZPE_PORT, "emulator"),
+    EDITOR: path.resolve(ZPE_PORT, "editor"),
+    PORT: ZPE_PORT,
     DATA: path.resolve(__dirname, "./data"),
     PATHNAME: `prev/RESOURCE-ID/pl/main/`
 };
+
+console.log(ZPE_PORT);
 
 module.exports = function (env, argv) {
     const IS_DEV = env.development ? true : false;
@@ -36,8 +40,8 @@ module.exports = function (env, argv) {
             path: IS_DEV
                 ? path.resolve(PATHS.BUILD, PATHS.PATHNAME)
                 : IS_DEPLOY
-                ? PATHS.DEPLOY
-                : PATHS.BUILD,
+                  ? PATHS.DEPLOY
+                  : PATHS.BUILD,
             filename: "entry.js",
             clean: {
                 keep: /.git|.github|.gitignore|README.md/
@@ -49,7 +53,7 @@ module.exports = function (env, argv) {
         resolve: {
             alias: {
                 "~": path.join(PATHS.SRC),
-                "@": path.join(PATHS.PACKAGE)
+                "@/zpe-port": path.join(__dirname, "..")
             },
             modules: ["packages", "node_modules", "src"],
             extensions: [".ts", ".tsx", ".js", ".jsx"]
@@ -89,35 +93,44 @@ module.exports = function (env, argv) {
                     res.sendFile(faviconFile);
                 });
 
-                devServer.app.get("/engine.json", (req, res) => {
-                    if (IS_DEV && env.engine) {
-                        const engineFile = path.resolve(PATHS.DATA, env.engine);
-                        res.sendFile(engineFile);
-                    } else {
-                        const defaultEngineFile = path.resolve(
-                            PATHS.STATIC,
-                            "engine.json"
-                        );
-                        res.sendFile(defaultEngineFile);
+                devServer.app.get(
+                    `/${PATHS.PATHNAME}engine.json`,
+                    (req, res) => {
+                        if (IS_DEV && env.engine) {
+                            const engineFile = path.resolve(
+                                PATHS.DATA,
+                                env.engine
+                            );
+                            res.sendFile(engineFile);
+                        } else {
+                            const defaultEngineFile = path.resolve(
+                                PATHS.STATIC,
+                                "engine.json"
+                            );
+                            res.sendFile(defaultEngineFile);
+                        }
                     }
-                });
+                );
 
-                devServer.app.get("/savedata.json", (req, res) => {
-                    const savedataFile = path.resolve(
-                        PATHS.DATA,
-                        env.savedata || "savedata.json"
-                    );
-                    if (fs.existsSync(savedataFile)) {
-                        res.sendFile(savedataFile);
-                    } else {
-                        console.log(
-                            "\x1b[35m[devServerMid] Savedata file not found, returning null:",
-                            savedataFile,
-                            "\x1b[0m"
+                devServer.app.get(
+                    `/${PATHS.PATHNAME}savedata.json`,
+                    (req, res) => {
+                        const savedataFile = path.resolve(
+                            PATHS.DATA,
+                            env.savedata || "savedata.json"
                         );
-                        res.send("null");
+                        if (fs.existsSync(savedataFile)) {
+                            res.sendFile(savedataFile);
+                        } else {
+                            console.log(
+                                "\x1b[35m[devServerMid] Savedata file not found, returning null:",
+                                savedataFile,
+                                "\x1b[0m"
+                            );
+                            res.send("null");
+                        }
                     }
-                });
+                );
 
                 return middlewares;
             }
@@ -135,14 +148,19 @@ module.exports = function (env, argv) {
                 {
                     test: /\.css$/i,
                     use: [
-                        "style-loader",
+                        {
+                            loader: "style-loader",
+                            options: {
+                                injectType: "singletonStyleTag",
+                                insert: "body"
+                            }
+                        },
                         {
                             loader: "css-loader",
                             options: {
                                 modules: {
                                     mode: "local",
-                                    localIdentName:
-                                        "[name]__[local]--[hash:base64:5]"
+                                    localIdentName: "[local]--[hash:base64:5]"
                                 }
                             }
                         }
@@ -158,10 +176,7 @@ module.exports = function (env, argv) {
                     {
                         from: PATHS.STATIC,
                         to: "./",
-                        info: { minimized: true },
-                        globOptions: {
-                            ignore: ["*.DS_Store"]
-                        }
+                        info: { minimized: true }
                     },
                     ...(IS_DEPLOY
                         ? [
@@ -178,29 +193,50 @@ module.exports = function (env, argv) {
                                   from: path.resolve(PATHS.EDITOR),
                                   to: "./",
                                   info: { minimized: true },
-                                  globOptions: {
-                                      ignore: [
-                                          "**/*.DS_Store",
-                                          "**/favicon.png"
-                                      ]
+                                  filter: async (resourcePath) => {
+                                      const relativePath = path.relative(
+                                          PATHS.EMULATOR,
+                                          resourcePath
+                                      );
+                                      return ![
+                                          "favicon.png",
+                                          ".DS_Store"
+                                      ].includes(relativePath);
                                   }
                               },
                               {
                                   from: path.resolve(PATHS.EMULATOR),
                                   to: "./",
                                   info: { minimized: true },
-                                  globOptions: {
-                                      ignore: [
-                                          "**/index.html",
-                                          "**/*.DS_Store",
-                                          "**/favicon.png"
-                                      ]
+                                  filter: async (resourcePath) => {
+                                      const relativePath = path.relative(
+                                          PATHS.EMULATOR,
+                                          resourcePath
+                                      );
+                                      return ![
+                                          "index.html",
+                                          "favicon.png",
+                                          ".DS_Store"
+                                      ].includes(relativePath);
                                   }
+                              }
+                          ]
+                        : []),
+                    ...(IS_BUILD
+                        ? [
+                              {
+                                  from: path.resolve(
+                                      PATHS.DATA,
+                                      "savedata.json"
+                                  ),
+                                  to: "./",
+                                  info: { minimized: true }
                               }
                           ]
                         : [])
                 ]
             }),
+
             IS_DEV || IS_BUILD
                 ? new HtmlWebpackPlugin({
                       inject: false,

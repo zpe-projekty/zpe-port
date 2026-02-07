@@ -1,8 +1,0 @@
-{
-  "name": "zpe-port",
-  "version": "2.0.0",
-  "description": "ZPE Developer Kit",
-  "main": "dist/zpe.js",
-  "types": "dist/zpe.d.ts",
-  "module": "dist/zpe.js"
-}

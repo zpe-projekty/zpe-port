@@ -260,6 +260,15 @@ class ZpePortUpdatePlugin {
             CONFIG.localPackageJsonPath
         );
 
+        if (!fs.existsSync(localPkgPath)) {
+            console.warn(
+                yellow(
+                    `[${this.name}] Warning: zpe-port package.json not found at ${CONFIG.localPackageJsonPath}. This may cause issues if it is not the actual package.json of zpe-port.`
+                )
+            );
+            return;
+        }
+
         compiler.hooks.done.tapPromise(this.name, async () => {
             let localVersion;
             try {
