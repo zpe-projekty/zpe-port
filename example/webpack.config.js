@@ -5,8 +5,8 @@ const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ZpePortUpdatePlugin = require("./scripts/zpe-port-update-check-plugin");
+const DefinePlugin = require("webpack").DefinePlugin;
 const PACKAGE = require("./package.json");
-const { url } = require("inspector");
 
 const ZPE_PORT = path.resolve(__dirname, "../dist");
 
@@ -23,16 +23,15 @@ const PATHS = {
     PATHNAME: `prev/RESOURCE-ID/pl/main/`
 };
 
-console.log(ZPE_PORT);
-
 module.exports = function (env, argv) {
     const IS_DEV = env.development ? true : false;
     const IS_DEPLOY = env.deploy ? true : false;
     const IS_BUILD = env.production && !env.deploy ? true : false;
     const SERVER_PORT = env.port || 8080;
+    const MODE = IS_DEV ? "development" : "production";
 
     return {
-        mode: env.production ? "production" : "development",
+        mode: MODE,
         devtool: IS_DEV ? "cheap-module-source-map" : false,
         entry: {
             entry: path.resolve(PATHS.SRC, "main.ts")
@@ -169,8 +168,8 @@ module.exports = function (env, argv) {
                             options: {
                                 url: false,
                                 modules: {
-                                    mode: "pure",
-                                    localIdentName: "[local]"
+                                    mode: "local",
+                                    localIdentName: "[local]__[hash:base64:6]"
                                 }
                             }
                         },
@@ -182,7 +181,7 @@ module.exports = function (env, argv) {
                                           plugins: [
                                               [
                                                   "postcss-scopify",
-                                                  { scope: ".p3056" }
+                                                  { scope: ":global(.p3056)" }
                                               ]
                                           ]
                                       }
@@ -198,6 +197,10 @@ module.exports = function (env, argv) {
 
             new MiniCssExtractPlugin({
                 filename: "[name].css"
+            }),
+
+            new DefinePlugin({
+                __MODE__: JSON.stringify(MODE)
             }),
 
             new CopyPlugin({
