@@ -45,6 +45,9 @@ function define(fn) {
     const container = document.getElementById("zpe-emulator-container");
     const api = {
         enginePath: (path) => path,
+        loadCss: (path) => {
+            return Promise.resolve();
+        },
         triggerStateSave: async () => {
             return new Promise((resolve) => {
                 console.log("State save triggered");

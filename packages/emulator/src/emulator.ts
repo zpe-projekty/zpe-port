@@ -28,6 +28,10 @@ export function define(fn: () => any) {
     const api = {
         enginePath: (path: string) => path,
 
+        loadCss: (path: string) => {
+            return Promise.resolve();
+        },
+
         triggerStateSave: async (): Promise<void> => {
             return new Promise((resolve) => {
                 console.log("State save triggered");

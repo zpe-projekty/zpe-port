@@ -3,8 +3,10 @@ const fs = require("fs");
 const process = require("process");
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ZpePortUpdatePlugin = require("./scripts/zpe-port-update-check-plugin");
 const PACKAGE = require("./package.json");
+const { url } = require("inspector");
 
 const ZPE_PORT = path.resolve(__dirname, "../dist");
 
@@ -33,7 +35,7 @@ module.exports = function (env, argv) {
         mode: env.production ? "production" : "development",
         devtool: IS_DEV ? "cheap-module-source-map" : false,
         entry: {
-            app: path.resolve(PATHS.SRC, "main.ts")
+            entry: path.resolve(PATHS.SRC, "main.ts")
         },
         output: {
             libraryTarget: "amd",
@@ -148,28 +150,55 @@ module.exports = function (env, argv) {
                 {
                     test: /\.css$/i,
                     use: [
-                        {
-                            loader: "style-loader",
-                            options: {
-                                injectType: "singletonStyleTag",
-                                insert: "body"
-                            }
-                        },
+                        IS_DEV || IS_BUILD
+                            ? {
+                                  loader: "style-loader",
+                                  options: {
+                                      injectType: "singletonStyleTag",
+                                      insert: "body"
+                                  }
+                              }
+                            : {
+                                  loader: MiniCssExtractPlugin.loader,
+                                  options: {
+                                      publicPath: PATHS.PATHNAME
+                                  }
+                              },
                         {
                             loader: "css-loader",
                             options: {
+                                url: false,
                                 modules: {
-                                    mode: "local",
-                                    localIdentName: "[local]--[hash:base64:5]"
+                                    mode: "pure",
+                                    localIdentName: "[local]"
                                 }
                             }
-                        }
+                        },
+                        IS_DEV || IS_BUILD
+                            ? {
+                                  loader: "postcss-loader",
+                                  options: {
+                                      postcssOptions: {
+                                          plugins: [
+                                              [
+                                                  "postcss-scopify",
+                                                  { scope: ".p3056" }
+                                              ]
+                                          ]
+                                      }
+                                  }
+                              }
+                            : null
                     ]
                 }
             ]
         },
         plugins: [
             new ZpePortUpdatePlugin(),
+
+            new MiniCssExtractPlugin({
+                filename: "[name].css"
+            }),
 
             new CopyPlugin({
                 patterns: [

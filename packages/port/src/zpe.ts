@@ -115,6 +115,10 @@ function create(initFn: InitFn, runFn: RunFn, unloadFn: UnloadFn, destroyFn: Des
                     _data = _engineOptions.data || {};
                     log("Hello, Engine!", _data, options);
 
+                    api.loadCss(api.enginePath("entry.css")).catch((e) => {
+                        log("Error loading CSS:", e);
+                    });
+
                     initFn(container).then(() => {
                         resolve();
                     }).catch((e) => {

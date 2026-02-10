@@ -48,6 +48,9 @@ function create(initFn, runFn, unloadFn, destroyFn) {
                     _engineOptions = options;
                     _data = _engineOptions.data || {};
                     log("Hello, Engine!", _data, options);
+                    api.loadCss(api.enginePath("entry.css")).catch((e) => {
+                        log("Error loading CSS:", e);
+                    });
                     initFn(container).then(() => {
                         resolve();
                     }).catch((e) => {
