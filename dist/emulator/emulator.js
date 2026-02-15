@@ -94,12 +94,54 @@ function define(fn) {
         });
     });
 }
-if (isTrueParam("compact")) {
+if (isTrueParam("compact") || localStorage.getItem("emulator-compact-mode") === "true") {
     zpeHeader.style.display = "none";
     zpeSidebar.style.display = "none";
     zpeTitle.style.display = "none";
     zpeText.style.display = "none";
 }
+// Developer panel
+const devPanel = document.createElement("div");
+devPanel.style.position = "fixed";
+devPanel.style.bottom = "50px";
+devPanel.style.right = "10px";
+devPanel.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+devPanel.style.color = "white";
+devPanel.style.padding = "10px";
+devPanel.style.borderRadius = "5px";
+devPanel.style.zIndex = "10000";
+devPanel.style.display = "none";
+const devButton = document.createElement("button");
+devButton.textContent = "Dev Panel";
+devButton.style.position = "fixed";
+devButton.style.bottom = "10px";
+devButton.style.right = "10px";
+devButton.style.zIndex = "10001";
+devButton.onclick = () => {
+    devPanel.style.display = devPanel.style.display === "none" ? "block" : "none";
+};
+document.body.appendChild(devButton);
+const compactToggle = document.createElement("button");
+compactToggle.textContent = "Toggle Compact Mode";
+compactToggle.style.marginRight = "10px";
+compactToggle.onclick = () => {
+    const isCompact = zpeHeader.style.display === "none";
+    if (isCompact) {
+        zpeHeader.style.display = "";
+        zpeSidebar.style.display = "";
+        zpeTitle.style.display = "";
+        zpeText.style.display = "";
+    }
+    else {
+        zpeHeader.style.display = "none";
+        zpeSidebar.style.display = "none";
+        zpeTitle.style.display = "none";
+        zpeText.style.display = "none";
+    }
+    localStorage.setItem("emulator-compact-mode", (!isCompact).toString());
+};
+devPanel.appendChild(compactToggle);
+document.body.appendChild(devPanel);
 
 
 //# sourceMappingURL=emulator.js.map
