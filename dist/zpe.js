@@ -42,26 +42,23 @@ function create(initFn, runFn, unloadFn, destroyFn) {
         return {
             init: (container, api, options) => {
                 return new Promise((resolve) => {
-                    log("ZPE initializing engine with options:", options);
+                    console.log(logH(), "ZPE initializing engine with options:", options);
                     _container = container;
                     _exerciseApi = api;
                     _engineOptions = options;
                     _data = _engineOptions.data || {};
-                    log("Hello, Engine!", _data, options);
-                    api.loadCss(api.enginePath("entry.css")).catch((e) => {
-                        log("Error loading CSS:", e);
-                    });
+                    console.log(logH(), "Hello, Engine!", _data, options);
                     initFn(container).then(() => {
                         resolve();
                     }).catch((e) => {
-                        log("Error during init:", e);
+                        console.log(logH(), "Error during init:", e);
                         resolve();
                     });
                 });
             },
             destroy: () => {
                 return Promise.resolve().then(() => {
-                    log("ZPE destroying engine.");
+                    console.log(logH(), "ZPE destroying engine.");
                     try {
                         const result = unloadFn();
                         if (result instanceof Promise) {
@@ -69,7 +66,7 @@ function create(initFn, runFn, unloadFn, destroyFn) {
                         }
                     }
                     catch (e) {
-                        log("Error during unload:", e);
+                        console.log(logH(), "Error during unload:", e);
                     }
                     return Promise.resolve();
                 }).then(() => {
@@ -80,15 +77,15 @@ function create(initFn, runFn, unloadFn, destroyFn) {
                         }
                     }
                     catch (e) {
-                        log("Error during destroy:", e);
+                        console.log(logH(), "Error during destroy:", e);
                     }
                     return Promise.resolve();
                 }).then(() => {
-                    log("ZPE engine destroyed.");
+                    console.log(logH(), "ZPE engine destroyed.");
                 });
             },
             setState(stateData) {
-                log("ZPE setting state:", stateData);
+                console.log(logH(), "ZPE setting state:", stateData);
                 _state = typeof stateData === "object" ? stateData : null;
                 _isStateRestored = true;
                 _isFrozen = false;
@@ -101,38 +98,38 @@ function create(initFn, runFn, unloadFn, destroyFn) {
                             }
                         }
                         catch (e) {
-                            log("Error during unload:", e);
+                            console.log(logH(), "Error during unload:", e);
                         }
                     }
                     return Promise.resolve();
                 }).then(() => {
-                    log("ZPE running engine with state:", _state, "frozen:", _isFrozen);
+                    console.log(logH(), "ZPE running engine with state:", _state, "frozen:", _isFrozen);
                     try {
                         runFn(structuredClone(_state), _isFrozen);
                     }
                     catch (e) {
-                        log("Error during run:", e);
+                        console.log(logH(), "Error during run:", e);
                     }
                     _isRunning = true;
                 });
             },
             getState() {
-                log("ZPE getting state:", _state);
+                console.log(logH(), "ZPE getting state:", _state);
                 return _state;
             },
             setStateFrozen(value) {
                 _isFrozen = value;
-                log("Setting state frozen:", _isFrozen);
+                console.log(logH(), "Setting state frozen:", _isFrozen);
             },
             getStateProgress(data) {
-                log("Getting state progress with data:", data);
+                console.log(logH(), "Getting state progress with data:", data);
                 return {};
             }
         };
     };
 }
-function log(...args) {
-    console.log("[ZPEPort]", ...args);
+function logH() {
+    return "[ZPEPort]";
 }
 // function waitForStateRestore(): Promise<void> {
 //     return new Promise((resolve) => {
@@ -170,8 +167,12 @@ function waitForFrozenOrTimeout(ms) {
 function path(relativePath) {
     return _exerciseApi.enginePath(relativePath);
 }
+// Ładuje plik CSS do dokumentu na podstawie ścieżki względnej wewnątrz silnika
+function loadCss(relativePath) {
+    return _exerciseApi.loadCss(_exerciseApi.enginePath(relativePath));
+}
 // Zwraca dane zmienne (te które moe zmieniać nauczyciel podczas tworzenia ćwiczenia)
-// Jeeli nauczyciel nic nie zmienił, zwraca dane domyślne które znajdują się w engine.json 
+// Jeżeli nauczyciel nic nie zmienił, zwraca dane domyślne które znajdują się w engine.json 
 // w sekcji "editor/defaultData"
 function getData() {
     return structuredClone(_data);
@@ -180,7 +181,7 @@ function getData() {
 // za pomocą setState. Jeżeli nie ma zapisanego stanu, zwraca null
 function getState() {
     return _exerciseApi.triggerStateRestore().then(() => {
-        log("State restored.");
+        console.log(logH(), "State restored.");
         return _state;
     });
 }
@@ -189,11 +190,11 @@ function getState() {
 // Jeżeli stan jest nieprawidłowy lub pusty, ćwiczenie powinno zainicjować się w stanie domyślnym
 function setState(stateData) {
     if (_isFrozen) {
-        log("State is frozen, returning null.");
+        console.log(logH(), "State is frozen, returning null.");
         return Promise.resolve();
     }
     _state = stateData;
     return _exerciseApi.triggerStateSave();
 }
-export { create, path, getData, getState, setState };
+export { create, path, loadCss, getData, getState, setState };
 //# sourceMappingURL=zpe.js.map

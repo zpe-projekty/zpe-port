@@ -34,7 +34,8 @@ interface ExerciseApi {
 }
 declare function create(initFn: InitFn, runFn: RunFn, unloadFn: UnloadFn, destroyFn: DestroyFn): () => Engine & Stateful;
 declare function path(relativePath: string): string;
+declare function loadCss(relativePath: string): Promise<void>;
 declare function getData(): Record<string, any>;
 declare function getState(): Promise<Record<string, any> | null>;
 declare function setState(stateData: Record<string, any>): Promise<void>;
-export { create, path, getData, getState, setState };
+export { create, path, loadCss, getData, getState, setState };
