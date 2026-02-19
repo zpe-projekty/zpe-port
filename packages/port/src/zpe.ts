@@ -67,7 +67,7 @@ let _isStateRestored: boolean = false;
 let _isFrozen: boolean = false;
 let _isRunning: boolean = false;
 
-// Główna funkcja starująca aplikację.
+// Główna funkcja startująca aplikację.
 // Aplikacja pracuje jako biblioteka AMD wywoływana przez platformę.
 // Przykład użycia:
 //
@@ -83,7 +83,7 @@ let _isRunning: boolean = false;
 //          rozwiązuje się gdy aplikacja jest gotowa do użycia.
 //   destroy - funkcja sprzątająca zasoby przy niszczeniu aplikacji
 //
-// 1. Razem z funkcją init przekazwyana jest kontener HTML. Tylko w nim aplikacja może tworzyć swoje elementy.
+// 1. Razem z funkcją init przekazywana jest kontener HTML. Tylko w nim aplikacja może tworzyć swoje elementy.
 // 2. Funkcja init musi zwracać Promise, który powinien się rozwiązać gdy aplikacja jest gotowa do użycia.
 // 3. Funkcja destroy jest wywoływana przy niszczeniu aplikacji i powinna posprzątać zasoby (usunąć elementy z DOM itp.)
 function create(initFn: InitFn, runFn: RunFn, unloadFn: UnloadFn, destroyFn: DestroyFn): () => Engine & Stateful {
@@ -201,25 +201,6 @@ function logH(): string {
     return "[ZPEPort]";
 }
 
-// function waitForStateRestore(): Promise<void> {
-//     return new Promise((resolve) => {
-//         if (_isStateRestored) {
-//             resolve();
-//         } else {
-//             const checkInterval = setInterval(() => {
-//                 if (_isStateRestored) {
-//                     clearInterval(checkInterval);
-//                     resolve();
-//                 }
-//             }, 100);
-//         }
-//     });
-// }
-
-// function wait(ms: number): Promise<void> {
-//     return new Promise((resolve) => setTimeout(resolve, ms));
-// }
-
 function waitForFrozenOrTimeout(ms: number): Promise<void> {
     return new Promise((resolve) => {
         const timeout = setTimeout(() => {
@@ -239,11 +220,21 @@ function waitForFrozenOrTimeout(ms: number): Promise<void> {
 // Zwraca pełną ścieżkę do zasobu wewnątrz silnika na podstawie ścieżki względnej
 // np. path("img/image.png") zwróci coś w stylu "https://example.com/engine/img/image.png"
 function path(relativePath: string): string {
+    if (!_exerciseApi) {
+        console.error(logH(), "You must call path after the engine is initialized.");
+        return "";
+    }
+
     return _exerciseApi.enginePath(relativePath);
 }
 
 // Ładuje plik CSS do dokumentu na podstawie ścieżki względnej wewnątrz silnika
 function loadCss(relativePath: string): Promise<void> {
+    if (!_exerciseApi) {
+        console.error(logH(), "You must call loadCss after the engine is initialized.");
+        return Promise.reject(new Error("Engine not initialized"));
+    }
+
     return _exerciseApi.loadCss(_exerciseApi.enginePath(relativePath));
 }
 
@@ -257,6 +248,11 @@ function getData(): Record<string, any> {
 // Zwraca stan ćwiczenia (np. odpowiedzi ucznia) które zostały zapisane wcześniej
 // za pomocą setState. Jeżeli nie ma zapisanego stanu, zwraca null
 function getState(): Promise<Record<string, any> | null> {
+    if (!_exerciseApi) {
+        console.error(logH(), "You must call getState after the engine is initialized.");
+        return Promise.resolve(null);
+    }
+
     return _exerciseApi.triggerStateRestore().then(() => {
         console.log(logH(), "State restored.");
         return _state;
