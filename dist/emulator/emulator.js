@@ -44,7 +44,7 @@ function define(fn) {
     const entry = fn().default();
     const container = document.getElementById("zpe-emulator-container");
     const api = {
-        enginePath: (path) => path,
+        enginePath: (path) => `/assets/${path}`,
         loadCss: (path) => {
             return Promise.resolve();
         },
@@ -76,14 +76,14 @@ function define(fn) {
             }, 200);
         });
     }
-    fetch("engine.json").then(response => response.json()).then(async (engineManifest) => {
+    fetch(`/engine.json`).then(response => response.json()).then(async (engineManifest) => {
         console.log(engineManifest);
         options.data = engineManifest?.editor?.defaultData || {};
     }).then(() => {
         entry.init(container, api, options).then(() => {
             console.log("Engine initialized");
             // const lastState = localStorage.getItem("emulator-last-state");
-            return fetch("savedata.json").then(response => {
+            return fetch(`/savedata.json`).then(response => {
                 response.text().then(text => {
                     const lastState = (text.trim().startsWith("null") || text.trim().startsWith("undefined") || text.trim() === "") ? undefined : JSON.parse(text);
                     callSetState(lastState).then(() => {
