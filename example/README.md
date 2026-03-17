@@ -2,6 +2,25 @@
 
 Pamiętaj że zawsze możesz zajrzeć do [wiki projektu](https://github.com/zpe-projekty/zpe-port/wiki) aby uzyskać więcej przydatnych informacji.
 
+# Przygotowanie środowiska
+
+1. Załóż nowy katalog i skopiuj do niego ten folder - będzie to katalog projektu.
+2. Pobierz `zpe-port` i umieść go w katalogu projektu w katalogu `packages/zpe-port`.
+3. Zainstaluj zależności dla projektu
+
+```bash
+npm install
+```
+
+4. Uruchom projekt w trybie deweloperskim
+
+```bash
+npm run dev
+```
+
+5. Otwórz przeglądarkę i przejdź do `http://localhost:8080` aby zobaczyć działającą aplikację w trybie emulatora.
+6. Jeżeli korzystasz z Visual Studio Code kliknij F5 aby uruchomić projekt w trybie debugowania.
+
 ## NPM
 
 Uruchomienie aplikacji w emulatorze. Stan aplikacji zostanie załadowany z pliku “data/savedata.json”.

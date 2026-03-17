@@ -8,8 +8,7 @@ const ZpePortUpdatePlugin = require("./scripts/zpe-port-update-check-plugin");
 const DefinePlugin = require("webpack").DefinePlugin;
 const PACKAGE = require("./package.json");
 
-const ZPE_PORT = path.resolve(__dirname, "../dist");
-
+const ZPE_PORT = path.resolve(__dirname, "./packages/zpe-port/dist");
 const PATHS = {
     STATIC: path.resolve(__dirname, "./static"),
     SRC: path.resolve(__dirname, "./src"),
@@ -20,7 +19,8 @@ const PATHS = {
     EDITOR: path.resolve(ZPE_PORT, "editor"),
     PORT: ZPE_PORT,
     DATA: path.resolve(__dirname, "./data"),
-    PATHNAME: `prev/RESOURCE-ID/pl/main/`
+    PATHNAME: `prev/`,
+    ASSETS: `/assets/`
 };
 
 module.exports = function (env, argv) {
@@ -54,7 +54,7 @@ module.exports = function (env, argv) {
         resolve: {
             alias: {
                 "~": path.join(PATHS.SRC),
-                "@/zpe-port": path.join(__dirname, "..")
+                "@": path.join(PATHS.PACKAGE)
             },
             modules: ["packages", "node_modules", "src"],
             extensions: [".ts", ".tsx", ".js", ".jsx"]
@@ -63,7 +63,8 @@ module.exports = function (env, argv) {
             static: [
                 {
                     directory: path.resolve(PATHS.STATIC),
-                    publicPath: `/${PATHS.PATHNAME}`
+                    // publicPath: `/${PATHS.PATHNAME}`,
+                    publicPath: "/assets/"
                 },
                 {
                     directory: path.resolve(PATHS.EMULATOR),
@@ -74,6 +75,14 @@ module.exports = function (env, argv) {
             hot: false,
             host: "0.0.0.0",
             port: SERVER_PORT,
+            server: {
+                // type: "https",
+                // options: {
+                //     key: "./ssl/localhost-key.pem",
+                //     cert: "./ssl/localhost-cert.pem",
+                //     passphrase: "webpack-dev-server"
+                // }
+            },
             setupMiddlewares: (middlewares, devServer) => {
                 if (!devServer) {
                     throw new Error("webpack-dev-server is not defined");
@@ -94,44 +103,35 @@ module.exports = function (env, argv) {
                     res.sendFile(faviconFile);
                 });
 
-                devServer.app.get(
-                    `/${PATHS.PATHNAME}engine.json`,
-                    (req, res) => {
-                        if (IS_DEV && env.engine) {
-                            const engineFile = path.resolve(
-                                PATHS.DATA,
-                                env.engine
-                            );
-                            res.sendFile(engineFile);
-                        } else {
-                            const defaultEngineFile = path.resolve(
-                                PATHS.STATIC,
-                                "engine.json"
-                            );
-                            res.sendFile(defaultEngineFile);
-                        }
-                    }
-                );
-
-                devServer.app.get(
-                    `/${PATHS.PATHNAME}savedata.json`,
-                    (req, res) => {
-                        const savedataFile = path.resolve(
-                            PATHS.DATA,
-                            env.savedata || "savedata.json"
+                devServer.app.get(`/engine.json`, (req, res) => {
+                    if (IS_DEV && env.engine) {
+                        const engineFile = path.resolve(PATHS.DATA, env.engine);
+                        res.sendFile(engineFile);
+                    } else {
+                        const defaultEngineFile = path.resolve(
+                            PATHS.STATIC,
+                            "engine.json"
                         );
-                        if (fs.existsSync(savedataFile)) {
-                            res.sendFile(savedataFile);
-                        } else {
-                            console.log(
-                                "\x1b[35m[devServerMid] Savedata file not found, returning null:",
-                                savedataFile,
-                                "\x1b[0m"
-                            );
-                            res.send("null");
-                        }
+                        res.sendFile(defaultEngineFile);
                     }
-                );
+                });
+
+                devServer.app.get(`/savedata.json`, (req, res) => {
+                    const savedataFile = path.resolve(
+                        PATHS.DATA,
+                        env.savedata || "savedata.json"
+                    );
+                    if (fs.existsSync(savedataFile)) {
+                        res.sendFile(savedataFile);
+                    } else {
+                        console.log(
+                            "\x1b[35m[devServerMid] Savedata file not found, returning null:",
+                            savedataFile,
+                            "\x1b[0m"
+                        );
+                        res.send("null");
+                    }
+                });
 
                 return middlewares;
             }
@@ -182,6 +182,21 @@ module.exports = function (env, argv) {
                                               [
                                                   "postcss-scopify",
                                                   { scope: ":global(.p3056)" }
+                                              ],
+                                              [
+                                                  "postcss-url",
+                                                  {
+                                                      url: (asset) => {
+                                                          if (
+                                                              asset.url.startsWith(
+                                                                  "data:"
+                                                              )
+                                                          ) {
+                                                              return asset.url;
+                                                          }
+                                                          return `${PATHS.ASSETS}${asset.url}`;
+                                                      }
+                                                  }
                                               ]
                                           ]
                                       }
@@ -208,7 +223,10 @@ module.exports = function (env, argv) {
                     {
                         from: PATHS.STATIC,
                         to: "./",
-                        info: { minimized: true }
+                        info: { minimized: true },
+                        globOptions: {
+                            ignore: ["*.DS_Store"]
+                        }
                     },
                     ...(IS_DEPLOY
                         ? [
@@ -268,7 +286,6 @@ module.exports = function (env, argv) {
                         : [])
                 ]
             }),
-
             IS_DEV || IS_BUILD
                 ? new HtmlWebpackPlugin({
                       inject: false,

@@ -1,4 +1,4 @@
-import { getData, path, setState } from "@/zpe-port";
+import { getData, loadCss, path, setState } from "@/zpe-port";
 import * as styles from "./styles/style.css";
 import { Rebus } from "./rebus";
 import { State } from "./state";
@@ -43,19 +43,21 @@ export function init(container: HTMLElement): Promise<void> {
 
         _wrapper.appendChild(createText(getData().message || "No message found in data.", styles.header));
 
-        fetch(path("scenario.json")).then((response) => response.json()).then((scenario: Scenario) => {
-            _scenario = scenario;
-            // Inicjalizuje stan gry, ustawiając puste odpowiedzi dla wszystkich rebusów
-            const emptyState: Record<string, any> = {};
-            const data = getData() as Data;
-            for (const rebusData of data.rebuses) {
-                emptyState[`${rebusData.id}`] = "";
-            }
+        loadCss('entry.css').then(() => {
+            fetch(path("scenario.json")).then((response) => response.json()).then((scenario: Scenario) => {
+                _scenario = scenario;
+                // Inicjalizuje stan gry, ustawiając puste odpowiedzi dla wszystkich rebusów
+                const emptyState: Record<string, any> = {};
+                const data = getData() as Data;
+                for (const rebusData of data.rebuses) {
+                    emptyState[`${rebusData.id}`] = "";
+                }
 
-            state.set(emptyState);
+                state.set(emptyState);
+            });
+
+            resolve();
         });
-
-        resolve();
     });
 }
 
