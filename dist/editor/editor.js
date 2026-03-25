@@ -2,62 +2,6 @@ define(() => { return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 51
-(module) {
-
-
-
-/* istanbul ignore next  */
-function insertStyleElement(options) {
-  var element = document.createElement("style");
-  options.setAttributes(element, options.attributes);
-  options.insert(element, options.options);
-  return element;
-}
-module.exports = insertStyleElement;
-
-/***/ },
-
-/***/ 128
-(module) {
-
-
-
-var memo = {};
-
-/* istanbul ignore next  */
-function getTarget(target) {
-  if (typeof memo[target] === "undefined") {
-    var styleTarget = document.querySelector(target);
-
-    // Special case to return head of iframe instead of iframe itself
-    if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
-      try {
-        // This will throw an exception if access to iframe is blocked
-        // due to cross-origin restrictions
-        styleTarget = styleTarget.contentDocument.head;
-      } catch (e) {
-        // istanbul ignore next
-        styleTarget = null;
-      }
-    }
-    memo[target] = styleTarget;
-  }
-  return memo[target];
-}
-
-/* istanbul ignore next  */
-function insertBySelector(insert, style) {
-  var target = getTarget(insert);
-  if (!target) {
-    throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
-  }
-  target.appendChild(style);
-}
-module.exports = insertBySelector;
-
-/***/ },
-
 /***/ 256
 (module, __webpack_exports__, __webpack_require__) {
 
@@ -136,6 +80,108 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
+
+/***/ },
+
+/***/ 935
+(module) {
+
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+module.exports = function (cssWithMappingToString) {
+  var list = [];
+
+  // return the list of modules as css string
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = "";
+      var needLayer = typeof item[5] !== "undefined";
+      if (item[4]) {
+        content += "@supports (".concat(item[4], ") {");
+      }
+      if (item[2]) {
+        content += "@media ".concat(item[2], " {");
+      }
+      if (needLayer) {
+        content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
+      }
+      content += cssWithMappingToString(item);
+      if (needLayer) {
+        content += "}";
+      }
+      if (item[2]) {
+        content += "}";
+      }
+      if (item[4]) {
+        content += "}";
+      }
+      return content;
+    }).join("");
+  };
+
+  // import a list of modules into the list
+  list.i = function i(modules, media, dedupe, supports, layer) {
+    if (typeof modules === "string") {
+      modules = [[null, modules, undefined]];
+    }
+    var alreadyImportedModules = {};
+    if (dedupe) {
+      for (var k = 0; k < this.length; k++) {
+        var id = this[k][0];
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+    for (var _k = 0; _k < modules.length; _k++) {
+      var item = [].concat(modules[_k]);
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        continue;
+      }
+      if (typeof layer !== "undefined") {
+        if (typeof item[5] === "undefined") {
+          item[5] = layer;
+        } else {
+          item[1] = "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {").concat(item[1], "}");
+          item[5] = layer;
+        }
+      }
+      if (media) {
+        if (!item[2]) {
+          item[2] = media;
+        } else {
+          item[1] = "@media ".concat(item[2], " {").concat(item[1], "}");
+          item[2] = media;
+        }
+      }
+      if (supports) {
+        if (!item[4]) {
+          item[4] = "".concat(supports);
+        } else {
+          item[1] = "@supports (".concat(item[4], ") {").concat(item[1], "}");
+          item[4] = supports;
+        }
+      }
+      list.push(item);
+    }
+  };
+  return list;
+};
+
+/***/ },
+
+/***/ 758
+(module) {
+
+
+
+module.exports = function (i) {
+  return i[1];
+};
 
 /***/ },
 
@@ -229,23 +275,75 @@ module.exports = function (list, options) {
 
 /***/ },
 
-/***/ 656
+/***/ 128
+(module) {
+
+
+
+var memo = {};
+
+/* istanbul ignore next  */
+function getTarget(target) {
+  if (typeof memo[target] === "undefined") {
+    var styleTarget = document.querySelector(target);
+
+    // Special case to return head of iframe instead of iframe itself
+    if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+      try {
+        // This will throw an exception if access to iframe is blocked
+        // due to cross-origin restrictions
+        styleTarget = styleTarget.contentDocument.head;
+      } catch (e) {
+        // istanbul ignore next
+        styleTarget = null;
+      }
+    }
+    memo[target] = styleTarget;
+  }
+  return memo[target];
+}
+
+/* istanbul ignore next  */
+function insertBySelector(insert, style) {
+  var target = getTarget(insert);
+  if (!target) {
+    throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+  }
+  target.appendChild(style);
+}
+module.exports = insertBySelector;
+
+/***/ },
+
+/***/ 51
 (module) {
 
 
 
 /* istanbul ignore next  */
-function styleTagTransform(css, styleElement) {
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css;
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild);
-    }
-    styleElement.appendChild(document.createTextNode(css));
+function insertStyleElement(options) {
+  var element = document.createElement("style");
+  options.setAttributes(element, options.attributes);
+  options.insert(element, options.options);
+  return element;
+}
+module.exports = insertStyleElement;
+
+/***/ },
+
+/***/ 855
+(module, __unused_webpack_exports, __webpack_require__) {
+
+
+
+/* istanbul ignore next  */
+function setAttributesWithoutAttributes(styleElement) {
+  var nonce =  true ? __webpack_require__.nc : 0;
+  if (nonce) {
+    styleElement.setAttribute("nonce", nonce);
   }
 }
-module.exports = styleTagTransform;
+module.exports = setAttributesWithoutAttributes;
 
 /***/ },
 
@@ -316,121 +414,23 @@ module.exports = domAPI;
 
 /***/ },
 
-/***/ 758
+/***/ 656
 (module) {
-
-
-
-module.exports = function (i) {
-  return i[1];
-};
-
-/***/ },
-
-/***/ 855
-(module, __unused_webpack_exports, __webpack_require__) {
 
 
 
 /* istanbul ignore next  */
-function setAttributesWithoutAttributes(styleElement) {
-  var nonce =  true ? __webpack_require__.nc : 0;
-  if (nonce) {
-    styleElement.setAttribute("nonce", nonce);
+function styleTagTransform(css, styleElement) {
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css;
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild);
+    }
+    styleElement.appendChild(document.createTextNode(css));
   }
 }
-module.exports = setAttributesWithoutAttributes;
-
-/***/ },
-
-/***/ 935
-(module) {
-
-
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-*/
-module.exports = function (cssWithMappingToString) {
-  var list = [];
-
-  // return the list of modules as css string
-  list.toString = function toString() {
-    return this.map(function (item) {
-      var content = "";
-      var needLayer = typeof item[5] !== "undefined";
-      if (item[4]) {
-        content += "@supports (".concat(item[4], ") {");
-      }
-      if (item[2]) {
-        content += "@media ".concat(item[2], " {");
-      }
-      if (needLayer) {
-        content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
-      }
-      content += cssWithMappingToString(item);
-      if (needLayer) {
-        content += "}";
-      }
-      if (item[2]) {
-        content += "}";
-      }
-      if (item[4]) {
-        content += "}";
-      }
-      return content;
-    }).join("");
-  };
-
-  // import a list of modules into the list
-  list.i = function i(modules, media, dedupe, supports, layer) {
-    if (typeof modules === "string") {
-      modules = [[null, modules, undefined]];
-    }
-    var alreadyImportedModules = {};
-    if (dedupe) {
-      for (var k = 0; k < this.length; k++) {
-        var id = this[k][0];
-        if (id != null) {
-          alreadyImportedModules[id] = true;
-        }
-      }
-    }
-    for (var _k = 0; _k < modules.length; _k++) {
-      var item = [].concat(modules[_k]);
-      if (dedupe && alreadyImportedModules[item[0]]) {
-        continue;
-      }
-      if (typeof layer !== "undefined") {
-        if (typeof item[5] === "undefined") {
-          item[5] = layer;
-        } else {
-          item[1] = "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {").concat(item[1], "}");
-          item[5] = layer;
-        }
-      }
-      if (media) {
-        if (!item[2]) {
-          item[2] = media;
-        } else {
-          item[1] = "@media ".concat(item[2], " {").concat(item[1], "}");
-          item[2] = media;
-        }
-      }
-      if (supports) {
-        if (!item[4]) {
-          item[4] = "".concat(supports);
-        } else {
-          item[1] = "@supports (".concat(item[4], ") {").concat(item[1], "}");
-          item[4] = supports;
-        }
-      }
-      list.push(item);
-    }
-  };
-  return list;
-};
+module.exports = styleTagTransform;
 
 /***/ }
 
@@ -677,6 +677,7 @@ class DummyDisposable extends Disposable {
 }
 
 ;// ../duct-tape/src/to.ts
+/* unused harmony import specifier */ var Value;
 
 function toBoolean(value, defaultValue = false) {
     if (value instanceof value_Value) {
@@ -1073,17 +1074,30 @@ class DOMNode extends Disposable {
         }
         super.dispose();
     }
-    attr(name, value, condition = true) {
+    attr(name, value, condition) {
+        if (value === undefined && condition === undefined) {
+            return this._element.getAttribute(name);
+        }
         if (condition instanceof value_Value) {
             this.register(condition.subscribe((cond) => {
                 if (cond) {
                     if (value instanceof value_Value) {
                         this.register(value.subscribe((val) => {
-                            this._element.setAttribute(name, String(val));
+                            if (val === null || val === undefined || val === "") {
+                                this._element.removeAttribute(name);
+                            }
+                            else {
+                                this._element.setAttribute(name, String(val));
+                            }
                         }));
                     }
                     else {
-                        this._element.setAttribute(name, String(value));
+                        if (value === null || value === undefined || value === "") {
+                            this._element.removeAttribute(name);
+                        }
+                        else {
+                            this._element.setAttribute(name, String(value));
+                        }
                     }
                 }
                 else {
@@ -1091,18 +1105,45 @@ class DOMNode extends Disposable {
                 }
             }));
         }
-        else if (condition) {
+        else if (condition === true) {
             if (value instanceof value_Value) {
                 this.register(value.subscribe((val) => {
-                    this._element.setAttribute(name, String(val));
+                    if (val === null || val === undefined || val === "") {
+                        this._element.removeAttribute(name);
+                    }
+                    else {
+                        this._element.setAttribute(name, String(val));
+                    }
                 }));
             }
             else {
-                this._element.setAttribute(name, String(value));
+                if (value === null || value === undefined || value === "") {
+                    this._element.removeAttribute(name);
+                }
+                else {
+                    this._element.setAttribute(name, String(value));
+                }
             }
         }
         else {
-            this._element.removeAttribute(name);
+            if (value instanceof value_Value) {
+                this.register(value.subscribe((v) => {
+                    if (v === null || v === undefined || v === "" || condition === false) {
+                        this._element.removeAttribute(name);
+                    }
+                    else {
+                        this._element.setAttribute(name, String(v));
+                    }
+                }));
+            }
+            else {
+                if (value === null || value === undefined || value === "" || condition === false) {
+                    this._element.removeAttribute(name);
+                }
+                else {
+                    this._element.setAttribute(name, String(value));
+                }
+            }
         }
         return this;
     }
@@ -1116,7 +1157,12 @@ class DOMNode extends Disposable {
             }));
         }
         else {
-            this._element[name] = value;
+            if (value === null || value === undefined || value === "") {
+                delete this._element[name];
+            }
+            else {
+                this._element[name] = value;
+            }
         }
         return this;
     }
@@ -1220,14 +1266,24 @@ class DOMNode extends Disposable {
         }
         return this;
     }
-    data(data) {
-        if (arguments.length === 0) {
-            return this._element.__data__;
+    dataset(name, value) {
+        if (arguments.length === 1) {
+            return this._element.dataset[name];
+        }
+        if (value instanceof value_Value) {
+            this.register(value.subscribe((val) => {
+                this._element.dataset[name] = String(val);
+            }));
         }
         else {
-            this._element.__data__ = data;
-            return this;
+            if (value === null || value === undefined) {
+                delete this._element.dataset[name];
+            }
+            else {
+                this._element.dataset[name] = String(value);
+            }
         }
+        return this;
     }
     text(content) {
         if (content instanceof value_Value) {
@@ -1263,6 +1319,9 @@ class DOMNode extends Disposable {
     }
     get element() {
         return this._element;
+    }
+    get parent() {
+        return this._element.parentElement;
     }
 }
 
@@ -1500,7 +1559,7 @@ var PageType;
 (function (PageType) {
     PageType[PageType["Normal"] = 0] = "Normal";
     PageType[PageType["Background"] = 1] = "Background";
-    PageType[PageType["Overflow"] = 2] = "Overflow";
+    PageType[PageType["Overlay"] = 2] = "Overlay";
 })(PageType || (PageType = {}));
 function encodeParams(map) {
     const arr = [];
@@ -1520,8 +1579,10 @@ function decodeParams(value) {
     });
     return params;
 }
+const FOCUSABLE_ELEMENT_SELECTOR = 'a[href], button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 class App extends Disposable {
     appDiv;
+    appContainer;
     backgroundContainer;
     pageContainer;
     overflowContainer;
@@ -1532,12 +1593,14 @@ class App extends Disposable {
     backgroundPageConstructors = [];
     overflowPageConstructors = [];
     _options;
+    _parent;
     store;
     config;
     backgroundPages = [];
     overflowPages = [];
     _currentPage;
     pageId = new ValueStoreRaw(null);
+    _isFocusPageLocked = false;
     static create(parent, store, config, options = {}) {
         return new App(parent, store, config, options);
     }
@@ -1547,15 +1610,17 @@ class App extends Disposable {
         this.store = store;
         this.config = config;
         this._options = options;
-        this.appDiv = this.register(create("div").class(options.appClassName ?? []).mount(parent));
+        this._parent = parent;
+        this.appDiv = this.register(create("div").class(options.appClassName ?? []).mount(this._parent));
+        this.appContainer = this.register(create("div").class(options.appContainerClassName ?? []).mount(this.appDiv));
         if (options.backgroundContainerEnabled === true) {
-            this.backgroundContainer = this.register(create("div").class(options.backgroundContainerClassName ?? []).mount(this.appDiv));
+            this.backgroundContainer = this.register(create("div").class(options.backgroundContainerClassName ?? []).mount(this.appContainer));
         }
-        this.pageContainer = this.register(create("div").class(options.pageContainerClassName ?? []).mount(this.appDiv));
+        this.pageContainer = this.register(create("div").class(options.pageContainerClassName ?? []).mount(this.appContainer));
         if (options.overflowContainerEnabled === true) {
-            this.overflowContainer = this.register(create("div").class(options.overflowContainerClassName ?? []).mount(this.appDiv));
+            this.overflowContainer = this.register(create("div").class(options.overflowContainerClassName ?? []).mount(this.appContainer));
         }
-        this.modalsContainer = this.register(create("div").class(options.modalContainerClassName ?? []).style("display", "none").mount(this.appDiv));
+        this.modalsContainer = this.register(create("div").class(options.modalContainerClassName ?? []).style("display", "none").mount(this.appContainer));
     }
     dispose() {
         this.removeAllModals();
@@ -1574,29 +1639,24 @@ class App extends Disposable {
         super.dispose();
     }
     fullscreen() {
-        if (this.appDiv.element.requestFullscreen) {
-            this.appDiv.element.requestFullscreen();
-        }
-        else if (this.appDiv.element.webkitRequestFullscreen) { /* Safari */
-            this.appDiv.element.webkitRequestFullscreen();
-        }
-        else if (this.appDiv.element.msRequestFullscreen) { /* IE11 */
-            this.appDiv.element.msRequestFullscreen();
-        }
+        this.appDiv.element.requestFullscreen();
     }
     exitFullscreen() {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
+        document.exitFullscreen();
+    }
+    toggleFullscreen() {
+        if (this.isFullscreen) {
+            this.exitFullscreen();
         }
-        else if (document.webkitExitFullscreen) { /* Safari */
-            document.webkitExitFullscreen();
-        }
-        else if (document.msExitFullscreen) { /* IE11 */
-            document.msExitFullscreen();
+        else {
+            this.fullscreen();
         }
     }
     get isFullscreen() {
         return !!document.fullscreenElement;
+    }
+    get parent() {
+        return this._parent;
     }
     findPageByName(name) {
         for (const pageConstructor of this.pagesConstructors) {
@@ -1621,7 +1681,7 @@ class App extends Disposable {
             }
             this.backgroundPageConstructors.push(pageConstructor);
         }
-        else if (type === PageType.Overflow) {
+        else if (type === PageType.Overlay) {
             if (this._options.overflowContainerEnabled !== true || !this.overflowContainer) {
                 log.error("Overflow container is not enabled in App options.");
                 return;
@@ -1651,6 +1711,39 @@ class App extends Disposable {
     }
     get currentPage() {
         return this._currentPage;
+    }
+    saveAndLockPageFocusableElements() {
+        //find all focusable elements
+        const focusableElements = this.getPageFocusableElements();
+        focusableElements?.forEach(el => {
+            el.setAttribute("data-original-tabindex", el.getAttribute("tabindex") || "0");
+            el.setAttribute("tabindex", "-1");
+        });
+        const overflowFocusableElements = this.getOverflowFocusableElements();
+        overflowFocusableElements?.forEach(el => {
+            el.setAttribute("data-original-tabindex", el.getAttribute("tabindex") || "0");
+            el.setAttribute("tabindex", "-1");
+        });
+        this._isFocusPageLocked = true;
+    }
+    restorePageFocusableElements() {
+        const focusableElements = this.currentPage?.element.querySelectorAll('[data-original-tabindex]');
+        focusableElements?.forEach(el => {
+            const originalTabIndex = el.getAttribute("data-original-tabindex");
+            if (originalTabIndex) {
+                el.setAttribute("tabindex", originalTabIndex);
+                el.removeAttribute("data-original-tabindex");
+            }
+        });
+        const overflowFocusableElements = this.overflowContainer?.element.querySelectorAll('[data-original-tabindex]');
+        overflowFocusableElements?.forEach(el => {
+            const originalTabIndex = el.getAttribute("data-original-tabindex");
+            if (originalTabIndex) {
+                el.setAttribute("tabindex", originalTabIndex);
+                el.removeAttribute("data-original-tabindex");
+            }
+        });
+        this._isFocusPageLocked = false;
     }
     async navigate(to, params = new Map()) {
         // const newHash = `${to}@${encodeParams(new Map([...params, ...this.getData()]))}`;
@@ -1685,6 +1778,7 @@ class App extends Disposable {
         await this._currentPage.load();
         this._currentPage.mount(this.pageContainer);
         this.pageId.set(to);
+        this.appDiv.element.setAttribute("data-page", to.name);
         // loader?.classList.add("none");
         // pages.style.removeProperty("visibility");
         // if (location.hash.slice(1) !== newHash) {
@@ -1743,19 +1837,19 @@ class App extends Disposable {
         if (this.modals.includes(modal)) {
             return;
         }
+        if (this.modals.length > 0) {
+            this.modals[this.modals.length - 1].element.style.display = "none";
+        }
         this.modals.push(modal);
         modal.mount(this.modalsContainer);
         await modal.load();
         this.updateModals();
         await modal.show();
-    }
-    async addModalAndWait(modal) {
-        return new Promise(async (resolve) => {
-            await this.addModal(modal);
-            modal.on("afterClose", () => {
-                resolve();
-            });
-        });
+        // focus first focusable element in modal
+        const focusableElements = modal.element.querySelectorAll(FOCUSABLE_ELEMENT_SELECTOR);
+        if (focusableElements.length > 0) {
+            focusableElements[0].focus();
+        }
     }
     async removeModal(modal) {
         if (!this.modals.includes(modal)) {
@@ -1765,7 +1859,23 @@ class App extends Disposable {
         await modal.close();
         await modal.unload();
         modal.dispose();
+        if (this.modals.length > 0) {
+            this.modals[this.modals.length - 1].element.style.display = "flex";
+        }
         this.updateModals();
+        if (this.modals.length > 0) {
+            const focusableElements = this.modals[this.modals.length - 1].element.querySelectorAll(FOCUSABLE_ELEMENT_SELECTOR);
+            if (focusableElements.length > 0) {
+                focusableElements[0].focus();
+            }
+        }
+        else {
+            // focus current page
+            const focusableElements = this.getPageFocusableElements();
+            if (focusableElements && focusableElements.length > 0) {
+                focusableElements[0].focus();
+            }
+        }
     }
     removeAllModals() {
         let modal;
@@ -1774,12 +1884,24 @@ class App extends Disposable {
         }
         this.updateModals();
     }
+    getPageFocusableElements() {
+        return this.currentPage?.element.querySelectorAll(FOCUSABLE_ELEMENT_SELECTOR);
+    }
+    getOverflowFocusableElements() {
+        return this.overflowContainer?.element.querySelectorAll(FOCUSABLE_ELEMENT_SELECTOR);
+    }
     updateModals() {
         if (this.modals.length > 0) {
             this.modalsContainer.element.style.display = "flex";
+            if (!this._isFocusPageLocked) {
+                this.saveAndLockPageFocusableElements();
+            }
         }
         else {
             this.modalsContainer.element.style.display = "none";
+            if (this._isFocusPageLocked) {
+                this.restorePageFocusableElements();
+            }
         }
     }
 }
@@ -1801,6 +1923,18 @@ class Page extends DOMNode {
     }
     async unload() {
         return Promise.resolve();
+    }
+    setActiveElement(element) {
+        if (element instanceof DOMNode) {
+            setTimeout(() => {
+                element.element.focus();
+            }, 100);
+        }
+        else if (element instanceof HTMLElement) {
+            setTimeout(() => {
+                element.focus();
+            }, 100);
+        }
     }
 }
 
@@ -1827,24 +1961,24 @@ class Modal extends DOMNode {
         }
     }
     async load() {
-        if (this._options?.onafterload) {
-            this._options.onafterload(this);
+        if (this._options?.onAfterLoad) {
+            this._options.onAfterLoad(this);
         }
     }
     async unload() {
-        if (this._options?.onafterunload) {
-            this._options.onafterunload(this);
+        if (this._options?.onAfterUnload) {
+            this._options.onAfterUnload(this);
         }
     }
     async show() {
-        if (this._options?.onaftershow) {
-            this._options.onaftershow(this);
+        if (this._options?.onAfterShow) {
+            this._options.onAfterShow(this);
         }
     }
     async close() {
         await this._app?.removeModal(this);
-        if (this._options?.onafterclose) {
-            this._options.onafterclose(this);
+        if (this._options?.onAfterClose) {
+            this._options.onAfterClose(this);
         }
     }
 }

@@ -114,6 +114,14 @@ devButton.onclick = () => {
 document.body.appendChild(devButton);
 
 
+const editor = document.createElement("button");
+editor.textContent = "Editor";
+editor.style.marginRight = "10px";
+editor.onclick = () => {
+    window.location.href = "/editor-emulator.html";
+};
+devPanel.appendChild(editor);
+
 const compactToggle = document.createElement("button");
 compactToggle.textContent = "Toggle Compact Mode";
 compactToggle.style.marginRight = "10px";
