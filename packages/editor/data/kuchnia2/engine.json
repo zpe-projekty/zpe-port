@@ -1,0 +1,59 @@
+{
+    "entry": "runtime/entry.e27ed001.js",
+    "stateful": true,
+    "useWebGL": false,
+    "editor": {
+        "entry": "runtime/editor.85e1fa39.js",
+        "defaultData": {
+            "enabledEras": {
+                "era1": true,
+                "era2": true,
+                "era3": true
+            },
+            "enabledRecipes": {
+                "bigos": true,
+                "zurek": true,
+                "pierogi": true,
+                "schabowy": true,
+                "rosol": true,
+                "kluski_slaskie": true,
+                "flaki_po_warszawsku": true,
+                "bowl_fit": true,
+                "burger": true,
+                "sushi": true
+            },
+            "timerSeconds": 300,
+            "allowTimerDisable": true,
+            "allowStudentRecipes": false,
+            "showCalories": true,
+            "showHistoricalInfo": true,
+            "requireAllIngredients": true
+        },
+        "demoData": {
+            "enabledEras": {
+                "era1": true,
+                "era2": true,
+                "era3": true
+            },
+            "enabledRecipes": {
+                "bigos": true,
+                "zurek": true,
+                "pierogi": true,
+                "schabowy": true,
+                "rosol": true,
+                "kluski_slaskie": true,
+                "flaki_po_warszawsku": true,
+                "bowl_fit": true,
+                "burger": true,
+                "sushi": true
+            },
+            "timerSeconds": 300,
+            "allowTimerDisable": true,
+            "allowStudentRecipes": false,
+            "showCalories": true,
+            "showHistoricalInfo": true,
+            "requireAllIngredients": true
+        },
+        "editorIcon": "editor-icon.svg"
+    }
+}

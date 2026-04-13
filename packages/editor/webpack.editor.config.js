@@ -11,8 +11,12 @@ const PATHS = {
     SRC: path.resolve(__dirname, "./src"),
     DIST: path.resolve(__dirname, "../../dist/editor"),
     EMULATOR_DIST: path.resolve(__dirname, "./emulator/dist"),
-    DATA: path.resolve(__dirname, "./data")
+    DATA: env.DATA
+        ? path.resolve(__dirname, "./data", env.DATA)
+        : path.resolve(__dirname, "./data")
 };
+
+console.log("PATHS", PATHS);
 
 module.exports = [
     // Editor Build

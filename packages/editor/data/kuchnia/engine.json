@@ -1,0 +1,111 @@
+{
+    "entry": "runtime/entry.e27ed001.js",
+    "stateful": true,
+    "useWebGL": false,
+    "editor": {
+        "entry": "runtime/editor.85e1fa39.js",
+        "defaultData": {
+            "enabledEras": {
+                "era1": true,
+                "era2": true,
+                "era3": true
+            },
+            "enabledRecipes": [
+                {
+                    "id": "bigos",
+                    "enabled": true
+                },
+                {
+                    "id": "zurek",
+                    "enabled": true
+                },
+                {
+                    "id": "pierogi",
+                    "enabled": true
+                },
+                {
+                    "id": "schabowy",
+                    "enabled": true
+                },
+                {
+                    "id": "rosol",
+                    "enabled": true
+                },
+                {
+                    "id": "kluski_slaskie",
+                    "enabled": true
+                },
+                {
+                    "id": "bowl_fit",
+                    "enabled": true
+                },
+                {
+                    "id": "burger",
+                    "enabled": true
+                },
+                {
+                    "id": "sushi",
+                    "enabled": true
+                }
+            ],
+            "timerSeconds": 300,
+            "allowTimerDisable": true,
+            "allowStudentRecipes": false,
+            "showCalories": true,
+            "showHistoricalInfo": true,
+            "requireAllIngredients": true
+        },
+        "demoData": {
+            "enabledEras": {
+                "era1": true,
+                "era2": true,
+                "era3": true
+            },
+            "enabledRecipes": [
+                {
+                    "id": "bigos",
+                    "enabled": true
+                },
+                {
+                    "id": "zurek",
+                    "enabled": true
+                },
+                {
+                    "id": "pierogi",
+                    "enabled": true
+                },
+                {
+                    "id": "schabowy",
+                    "enabled": true
+                },
+                {
+                    "id": "rosol",
+                    "enabled": true
+                },
+                {
+                    "id": "kluski_slaskie",
+                    "enabled": true
+                },
+                {
+                    "id": "bowl_fit",
+                    "enabled": true
+                },
+                {
+                    "id": "burger",
+                    "enabled": true
+                },
+                {
+                    "id": "sushi",
+                    "enabled": true
+                }
+            ],
+            "timerSeconds": 300,
+            "allowTimerDisable": true,
+            "allowStudentRecipes": false,
+            "showCalories": true,
+            "showHistoricalInfo": true,
+            "requireAllIngredients": true
+        },
+        "editorIcon": "editor-icon.svg"
+    }
+}

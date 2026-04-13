@@ -1,0 +1,349 @@
+{
+    "config": {
+        "defaultTimerSeconds": 300,
+        "extendedTimerSeconds": 600,
+        "familySize": 4,
+        "requiredTableItemsPerPerson": 4
+    },
+    "eras": {
+        "1": {
+            "id": 1,
+            "name": "Kuchnia Staropolska",
+            "period": "XVI-XVIII wiek",
+            "description": "Poznaj wystawne uczty szlachty polskiej! Odkryj smaki Rzeczypospolitej Obojga Narodów.",
+            "kitchenDescription": "Drewniane meble, gliniane garnki, ręczne narzędzia kuchenne",
+            "icon": "🏰",
+            "iconImage": "images/icons/icon1_screen1.png",
+            "themeColors": {
+                "primary": "#8B4513",
+                "secondary": "#DEB887",
+                "accent": "#CD853F"
+            }
+        },
+        "2": {
+            "id": 2,
+            "name": "Kuchnia II RP i PRL",
+            "period": "1918-1989",
+            "description": "Przenieś się do czasów II RP i PRL! Poznaj kuchnię oszczędności i pomysłowości.",
+            "kitchenDescription": "Emaliowane garnki, metalowe narzędzia, prosty wystrój",
+            "icon": "🏭",
+            "iconImage": "images/icons/icon2_screen1.png",
+            "themeColors": {
+                "primary": "#708090",
+                "secondary": "#C0C0C0",
+                "accent": "#A9A9A9"
+            }
+        },
+        "3": {
+            "id": 3,
+            "name": "Kuchnia XXI wieku",
+            "period": "Współczesność",
+            "description": "Odkryj nowoczesną polską kuchnię! Fast food, fit i smaki świata.",
+            "kitchenDescription": "Nowoczesna kuchnia z zaawansowanymi sprzętami AGD",
+            "icon": "🌍",
+            "iconImage": "images/icons/icon3_screen1.png",
+            "themeColors": {
+                "primary": "#00CED1",
+                "secondary": "#E0FFFF",
+                "accent": "#20B2AA"
+            }
+        }
+    },
+    "recipes": {
+        "bigos": {
+            "id": "bigos",
+            "name": "Bigos Staropolski",
+            "era": 1,
+            "emoji": "🍲",
+            "description": "Król polskich potraw, duma staropolskiej kuchni!",
+            "historicalInfo": "Bigos był opisany przez Adama Mickiewicza w 'Panu Tadeuszu'. To danie gościło na szlacheckich stołach przez wieki.",
+            "socialInfo": "Bigos jadali głównie szlachta i zamożni mieszczanie. Im dłużej się gotował (nawet kilka dni), tym był smaczniejszy.",
+            "calories": 150,
+            "ingredients": [
+                { "id": "kapusta_kiszona", "name": "Kapusta kiszona", "emoji": "🥬", "quantity": 500, "unit": "g", "isCorrect": true },
+                { "id": "kapusta_biala", "name": "Kapusta biała", "emoji": "🥗", "quantity": 300, "unit": "g", "isCorrect": true },
+                { "id": "kielbasa", "name": "Kiełbasa myśliwska", "emoji": "🌭", "quantity": 200, "unit": "g", "isCorrect": true },
+                { "id": "boczek", "name": "Boczek wędzony", "emoji": "🥓", "quantity": 150, "unit": "g", "isCorrect": true },
+                { "id": "suszone_grzyby", "name": "Suszone grzyby", "emoji": "🍄", "quantity": 30, "unit": "g", "isCorrect": true },
+                { "id": "sliwki", "name": "Śliwki suszone", "emoji": "🫐", "quantity": 50, "unit": "g", "isCorrect": true },
+                { "id": "pomidory", "name": "Pomidory", "emoji": "🍅", "quantity": 100, "unit": "g", "isCorrect": false },
+                { "id": "papryka", "name": "Papryka", "emoji": "🫑", "quantity": 100, "unit": "g", "isCorrect": false }
+            ],
+            "failureMessages": [
+                "Bigos wysechł na wiór!",
+                "Kapusta się przypaliła do garnka!",
+                "Mięso stwardniało jak podeszwa!"
+            ]
+        },
+        "zurek": {
+            "id": "zurek",
+            "name": "Żurek Staropolski",
+            "era": 1,
+            "emoji": "🥣",
+            "description": "Tradycyjna zupa na zakwasie żytnim z białą kiełbasą.",
+            "historicalInfo": "Żurek znany był już w średniowieczu. Zakwas żytni był podstawą wielu potraw chłopskich i szlacheckich.",
+            "socialInfo": "Żurek jadali wszyscy - od chłopów po szlachtę. Był to posiłek postny, popularny w czasie Wielkiego Postu.",
+            "calories": 120,
+            "ingredients": [
+                { "id": "zakwas", "name": "Zakwas żytni", "emoji": "🫙", "quantity": 500, "unit": "ml", "isCorrect": true },
+                { "id": "kielbasa_biala", "name": "Kiełbasa biała", "emoji": "🌭", "quantity": 300, "unit": "g", "isCorrect": true },
+                { "id": "jajka", "name": "Jajka", "emoji": "🥚", "quantity": 4, "unit": "szt", "isCorrect": true },
+                { "id": "czosnek", "name": "Czosnek", "emoji": "🧄", "quantity": 3, "unit": "ząbki", "isCorrect": true },
+                { "id": "majeranek", "name": "Majeranek", "emoji": "🌿", "quantity": 1, "unit": "łyżeczka", "isCorrect": true },
+                { "id": "makaron", "name": "Makaron", "emoji": "🍝", "quantity": 100, "unit": "g", "isCorrect": false },
+                { "id": "ryz", "name": "Ryż", "emoji": "🍚", "quantity": 100, "unit": "g", "isCorrect": false }
+            ],
+            "failureMessages": [
+                "Żurek skwaśniał za bardzo!",
+                "Kiełbasa się rozgotowała!",
+                "Jajka pękły podczas gotowania!"
+            ]
+        },
+        "pierogi": {
+            "id": "pierogi",
+            "name": "Pierogi Ruskie",
+            "era": 1,
+            "emoji": "🥟",
+            "description": "Pierogi z nadzieniem z ziemniaków i twarogu.",
+            "historicalInfo": "Pierogi przybyły do Polski prawdopodobnie ze Wschodu w XIII wieku. Stały się symbolem polskiej kuchni.",
+            "socialInfo": "Pierogi jadali wszyscy - chłopi, mieszczanie i szlachta. Różniły się tylko nadzieniem - bogatsi dodawali mięso.",
+            "calories": 180,
+            "ingredients": [
+                { "id": "maka", "name": "Mąka pszenna", "emoji": "🌾", "quantity": 500, "unit": "g", "isCorrect": true },
+                { "id": "ziemniaki", "name": "Ziemniaki", "emoji": "🥔", "quantity": 500, "unit": "g", "isCorrect": true },
+                { "id": "twarog", "name": "Twaróg", "emoji": "🧀", "quantity": 300, "unit": "g", "isCorrect": true },
+                { "id": "cebula", "name": "Cebula", "emoji": "🧅", "quantity": 2, "unit": "szt", "isCorrect": true },
+                { "id": "jajko", "name": "Jajko", "emoji": "🥚", "quantity": 1, "unit": "szt", "isCorrect": true },
+                { "id": "ryz", "name": "Ryż", "emoji": "🍚", "quantity": 100, "unit": "g", "isCorrect": false },
+                { "id": "pomidor", "name": "Pomidor", "emoji": "🍅", "quantity": 1, "unit": "szt", "isCorrect": false }
+            ],
+            "failureMessages": [
+                "Ciasto na pierogi wyschło!",
+                "Pierogi się rozkleiły!",
+                "Nadzienie się przypaliło!"
+            ]
+        },
+        "schabowy": {
+            "id": "schabowy",
+            "name": "Kotlet Schabowy",
+            "era": 2,
+            "emoji": "🍖",
+            "description": "Klasyczny polski obiad - panierowany kotlet z ziemniakami i kapustą.",
+            "historicalInfo": "Kotlet schabowy pojawił się w Polsce w XIX wieku, inspirowany wiedeńskim schnitzlem. Stał się symbolem niedzielnego obiadu.",
+            "socialInfo": "W czasach PRL schabowy był luksusem. 'Niedziela bez schabowego to nie niedziela' - mawiano.",
+            "calories": 350,
+            "ingredients": [
+                { "id": "schab", "name": "Schab wieprzowy", "emoji": "🥩", "quantity": 600, "unit": "g", "isCorrect": true },
+                { "id": "jajka", "name": "Jajka", "emoji": "🥚", "quantity": 2, "unit": "szt", "isCorrect": true },
+                { "id": "bulka_tarta", "name": "Bułka tarta", "emoji": "🍞", "quantity": 100, "unit": "g", "isCorrect": true },
+                { "id": "maka", "name": "Mąka", "emoji": "🌾", "quantity": 50, "unit": "g", "isCorrect": true },
+                { "id": "sol_pieprz", "name": "Sól i pieprz", "emoji": "🧂", "quantity": 1, "unit": "szczypta", "isCorrect": true },
+                { "id": "sos_sojowy", "name": "Sos sojowy", "emoji": "🫗", "quantity": 50, "unit": "ml", "isCorrect": false },
+                { "id": "curry", "name": "Curry", "emoji": "🟡", "quantity": 10, "unit": "g", "isCorrect": false }
+            ],
+            "failureMessages": [
+                "Kotlet się przypalił!",
+                "Panierka odpadła od mięsa!",
+                "Mięso jest za twarde!"
+            ]
+        },
+        "rosol": {
+            "id": "rosol",
+            "name": "Rosół z Makaronem",
+            "era": 2,
+            "emoji": "🍜",
+            "description": "Złocisty rosół z kury - lekarstwo na wszystko!",
+            "historicalInfo": "Rosół był znany w Polsce od średniowiecza, ale prawdziwą popularność zyskał w XX wieku jako niedzielny obiad.",
+            "socialInfo": "W czasach PRL rosół był symbolem niedzielnego obiadu. 'Złoty rosół' - tak nazywano dobrze ugotowany bulion.",
+            "calories": 80,
+            "ingredients": [
+                { "id": "kurczak", "name": "Kurczak", "emoji": "🍗", "quantity": 1, "unit": "szt", "isCorrect": true },
+                { "id": "marchew", "name": "Marchew", "emoji": "🥕", "quantity": 3, "unit": "szt", "isCorrect": true },
+                { "id": "pietruszka", "name": "Pietruszka", "emoji": "🌿", "quantity": 2, "unit": "szt", "isCorrect": true },
+                { "id": "seler", "name": "Seler", "emoji": "🥬", "quantity": 1, "unit": "szt", "isCorrect": true },
+                { "id": "cebula", "name": "Cebula", "emoji": "🧅", "quantity": 1, "unit": "szt", "isCorrect": true },
+                { "id": "makaron", "name": "Makaron", "emoji": "🍝", "quantity": 200, "unit": "g", "isCorrect": true },
+                { "id": "pomidory", "name": "Pomidory", "emoji": "🍅", "quantity": 2, "unit": "szt", "isCorrect": false },
+                { "id": "papryka", "name": "Papryka", "emoji": "🫑", "quantity": 1, "unit": "szt", "isCorrect": false }
+            ],
+            "failureMessages": [
+                "Rosół się zagotował i jest mętny!",
+                "Makaron się rozgotował!",
+                "Warzywa są niedogotowane!"
+            ]
+        },
+        "kluski_slaskie": {
+            "id": "kluski_slaskie",
+            "name": "Kluski Śląskie z Sosem",
+            "era": 2,
+            "emoji": "🥔",
+            "description": "Tradycyjne kluski z dziurką, podawane z sosem z pieczeni.",
+            "historicalInfo": "Kluski śląskie pochodzą z regionu Górnego Śląska. Charakterystyczna dziurka w środku powstaje przez naciskanie kciukiem.",
+            "socialInfo": "To był codzienny posiłek górniczych rodzin. Tani, sycący i pożywny - idealny dla ciężko pracujących.",
+            "calories": 200,
+            "ingredients": [
+                { "id": "ziemniaki", "name": "Ziemniaki", "emoji": "🥔", "quantity": 1000, "unit": "g", "isCorrect": true },
+                { "id": "maka_ziemniaczana", "name": "Mąka ziemniaczana", "emoji": "🌾", "quantity": 200, "unit": "g", "isCorrect": true },
+                { "id": "jajko", "name": "Jajko", "emoji": "🥚", "quantity": 1, "unit": "szt", "isCorrect": true },
+                { "id": "sol", "name": "Sól", "emoji": "🧂", "quantity": 1, "unit": "łyżeczka", "isCorrect": true },
+                { "id": "ryz", "name": "Ryż", "emoji": "🍚", "quantity": 100, "unit": "g", "isCorrect": false },
+                { "id": "makaron", "name": "Makaron", "emoji": "🍝", "quantity": 200, "unit": "g", "isCorrect": false }
+            ],
+            "failureMessages": [
+                "Kluski się rozpadły w wodzie!",
+                "Ciasto jest za rzadkie!",
+                "Kluski są twarde w środku!"
+            ]
+        },
+        "flaki_po_warszawsku": {
+            "id": "flaki_po_warszawsku",
+            "name": "Flaki po warszawsku",
+            "era": 2,
+            "emoji": "🍲",
+            "headerImage": "images/backgrounds/bg_flaki_po_warszawsku.png",
+            "description": "Popularne danie z okresu PRL, które podawane było w szczególnych momentach.",
+            "historicalInfo": "W czasach PRL, czyli kilkadziesiąt lat temu, flaki po warszawsku były bardzo znaną i często jedzoną potrawą w Polsce. Wiele rodzin jadło je na obiad, ponieważ były tanie, sycące i łatwo dostępne. Przygotowywano je z flaków wołowych i warzyw, a całość długo gotowano, żeby zupa była aromatyczna i rozgrzewająca.\\n\\nFlaki można było zjeść nie tylko w domu, ale także w barach mlecznych, stołówkach szkolnych i zakładowych. Były szczególnie popularne zimą, bo dobrze rozgrzewały. Dorośli uważali je za 'porządny obiad', który dawał dużo energii do pracy.\\n\\nDziś flaki kojarzą się wielu osobom z dawnymi czasami i kuchnią naszych dziadków. To przykład potrawy, która pokazuje, jak kiedyś radzono sobie z gotowaniem w trudniejszych warunkach, wykorzystując proste składniki i tradycyjne przepisy.",
+            "socialInfo": "",
+            "totalCalories": 1575,
+            "calories": 180,
+            "ingredients": [
+                { "id": "flaki_wolowe", "name": "Flaki wołowe", "emoji": "🥩", "quantity": 500, "unit": "g", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/flaki_wolowe_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/flaki_wolowe_over.png" },
+                { "id": "kosci_wolowe", "name": "Kości wołowe", "emoji": "🦴", "quantity": 300, "unit": "g", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/kosci_wolowe_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/kosci_wolowe_over.png" },
+                { "id": "marchewki", "name": "Marchewki", "emoji": "🥕", "quantity": 200, "unit": "g", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/marchewki_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/marchewki_over.png" },
+                { "id": "cebula", "name": "Cebula", "emoji": "🧅", "quantity": 2, "unit": "szt", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/cebula_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/cebula_over.png" },
+                { "id": "seler", "name": "Seler", "emoji": "🥬", "quantity": 100, "unit": "g", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/seler_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/seler_over.png" },
+                { "id": "por", "name": "Por", "emoji": "🥒", "quantity": 1, "unit": "szt", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/por_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/por_over.png" },
+                { "id": "pietruszka", "name": "Pietruszka", "emoji": "🌿", "quantity": 100, "unit": "g", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/pietruszka_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/pietruszka_over.png" },
+                { "id": "maslo", "name": "Masło", "emoji": "🧈", "quantity": 50, "unit": "g", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/maslo_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/maslo_over.png" },
+                { "id": "przecier_pomidorowy", "name": "Przecier pomidorowy", "emoji": "🍅", "quantity": 2, "unit": "łyżki", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/przecier_pomidorowy_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/przecier_pomidorowy_over.png" },
+                { "id": "majeranek", "name": "Majeranek", "emoji": "🌿", "quantity": 1, "unit": "łyżeczka", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/majeranek_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/majeranek_over.png" },
+                { "id": "liscie_laurowe", "name": "Liście laurowe", "emoji": "🍃", "quantity": 3, "unit": "szt", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/liscie_laurowe_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/liscie_laurowe_over.png" },
+                { "id": "ziele_angielskie", "name": "Ziele angielskie", "emoji": "🫛", "quantity": 5, "unit": "szt", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/ziele_angielskie_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/ziele_angielskie_over.png" },
+                { "id": "sol", "name": "Sól", "emoji": "🧂", "quantity": 1, "unit": "łyżeczka", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/sol_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/sol_over.png" },
+                { "id": "pieprz", "name": "Pieprz", "emoji": "🌶️", "quantity": 1, "unit": "szczypta", "isCorrect": true, "image": "images/ingredients/flaki_po_warszawsku/pieprz_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/pieprz_over.png" },
+                { "id": "papryka_ostra", "name": "Papryka ostra", "emoji": "🌶️", "quantity": 1, "unit": "łyżeczka", "isCorrect": false, "image": "images/ingredients/flaki_po_warszawsku/papryka_ostra_out.png", "imageHover": "images/ingredients/flaki_po_warszawsku/papryka_ostra_over.png" }
+            ],
+            "failureMessages": [
+                "Flaki są gumowate - za krótko się gotowały!",
+                "Zupa jest za słona!",
+                "Warzywa się rozgotowały!"
+            ]
+        },
+        "bowl_fit": {
+            "id": "bowl_fit",
+            "name": "Buddha Bowl",
+            "era": 3,
+            "emoji": "🥗",
+            "description": "Zdrowa miska pełna warzyw, białka i dobrych tłuszczów.",
+            "historicalInfo": "Buddha bowls stały się popularne w Polsce w latach 2010. Trend zdrowego odżywiania przyszedł z USA.",
+            "socialInfo": "To symbol współczesnego podejścia do jedzenia - zdrowo, kolorowo i instagramowo.",
+            "calories": 450,
+            "ingredients": [
+                { "id": "quinoa", "name": "Quinoa", "emoji": "🌾", "quantity": 100, "unit": "g", "isCorrect": true },
+                { "id": "awokado", "name": "Awokado", "emoji": "🥑", "quantity": 1, "unit": "szt", "isCorrect": true },
+                { "id": "ciecierzyca", "name": "Ciecierzyca", "emoji": "🫘", "quantity": 150, "unit": "g", "isCorrect": true },
+                { "id": "szpinak", "name": "Szpinak", "emoji": "🥬", "quantity": 50, "unit": "g", "isCorrect": true },
+                { "id": "pomidorki", "name": "Pomidorki koktajlowe", "emoji": "🍅", "quantity": 100, "unit": "g", "isCorrect": true },
+                { "id": "kielbasa", "name": "Kiełbasa", "emoji": "🌭", "quantity": 100, "unit": "g", "isCorrect": false },
+                { "id": "frytki", "name": "Frytki", "emoji": "🍟", "quantity": 150, "unit": "g", "isCorrect": false }
+            ],
+            "failureMessages": [
+                "Quinoa się rozgotowała!",
+                "Awokado jest zbyt twarde!",
+                "Warzywa zwiędły!"
+            ]
+        },
+        "burger": {
+            "id": "burger",
+            "name": "Burger Wołowy",
+            "era": 3,
+            "emoji": "🍔",
+            "description": "Amerykański klasyk w polskiej wersji - soczysty burger wołowy.",
+            "historicalInfo": "Pierwszy McDonald's w Polsce otwarto w 1992 roku w Warszawie. Rozpoczęła się era fast foodów.",
+            "socialInfo": "Burgery stały się symbolem globalizacji i 'makdonaldyzacji' polskiej kuchni. Dziś mamy też wiele lokalnych burgerowni.",
+            "calories": 550,
+            "ingredients": [
+                { "id": "wolowina", "name": "Mięso wołowe mielone", "emoji": "🥩", "quantity": 200, "unit": "g", "isCorrect": true },
+                { "id": "bulka", "name": "Bułka hamburgerowa", "emoji": "🍞", "quantity": 1, "unit": "szt", "isCorrect": true },
+                { "id": "salata", "name": "Sałata", "emoji": "🥬", "quantity": 2, "unit": "liście", "isCorrect": true },
+                { "id": "pomidor", "name": "Pomidor", "emoji": "🍅", "quantity": 2, "unit": "plastry", "isCorrect": true },
+                { "id": "ser", "name": "Ser żółty", "emoji": "🧀", "quantity": 1, "unit": "plaster", "isCorrect": true },
+                { "id": "kapusta_kiszona", "name": "Kapusta kiszona", "emoji": "🥬", "quantity": 100, "unit": "g", "isCorrect": false },
+                { "id": "grzyby", "name": "Grzyby leśne", "emoji": "🍄", "quantity": 50, "unit": "g", "isCorrect": false }
+            ],
+            "failureMessages": [
+                "Burger się rozpadł!",
+                "Mięso jest spalone!",
+                "Bułka zmiękła od soków!"
+            ]
+        },
+        "sushi": {
+            "id": "sushi",
+            "name": "Sushi Maki",
+            "era": 3,
+            "emoji": "🍣",
+            "description": "Japońskie sushi - symbol internacjonalizacji polskiej kuchni.",
+            "historicalInfo": "Pierwsze restauracje sushi pojawiły się w Polsce w latach 90. Dziś sushi jest dostępne nawet w supermarketach.",
+            "socialInfo": "Sushi symbolizuje otwartość Polaków na kuchnie świata. Jest popularne szczególnie wśród młodych ludzi w miastach.",
+            "calories": 250,
+            "ingredients": [
+                { "id": "ryz_sushi", "name": "Ryż do sushi", "emoji": "🍚", "quantity": 200, "unit": "g", "isCorrect": true },
+                { "id": "nori", "name": "Nori (wodorosty)", "emoji": "🌿", "quantity": 4, "unit": "arkusze", "isCorrect": true },
+                { "id": "losos", "name": "Łosoś", "emoji": "🐟", "quantity": 150, "unit": "g", "isCorrect": true },
+                { "id": "ogorek", "name": "Ogórek", "emoji": "🥒", "quantity": 1, "unit": "szt", "isCorrect": true },
+                { "id": "awokado", "name": "Awokado", "emoji": "🥑", "quantity": 1, "unit": "szt", "isCorrect": true },
+                { "id": "kielbasa", "name": "Kiełbasa", "emoji": "🌭", "quantity": 100, "unit": "g", "isCorrect": false },
+                { "id": "ziemniaki", "name": "Ziemniaki", "emoji": "🥔", "quantity": 200, "unit": "g", "isCorrect": false }
+            ],
+            "failureMessages": [
+                "Ryż jest za suchy!",
+                "Nori się rozmoczyło!",
+                "Rolki się rozpadły!"
+            ]
+        }
+    },
+    "tableItems": {
+        "1": [
+            { "id": "talerz_gliniany", "name": "Talerz gliniany", "emoji": "🍽️", "type": "plate", "isCorrect": true },
+            { "id": "miska_drewniana", "name": "Miska drewniana", "emoji": "🥣", "type": "bowl", "isCorrect": true },
+            { "id": "lyzka_drewniana", "name": "Łyżka drewniana", "emoji": "🥄", "type": "spoon", "isCorrect": true },
+            { "id": "noz_zelazny", "name": "Nóż żelazny", "emoji": "🔪", "type": "knife", "isCorrect": true },
+            { "id": "kubek_gliniany", "name": "Kubek gliniany", "emoji": "🍺", "type": "glass", "isCorrect": true },
+            { "id": "polmisek_drewniany", "name": "Półmisek drewniany", "emoji": "🍛", "type": "platter", "isCorrect": true },
+            { "id": "serwetka_lniana", "name": "Serwetka lniana", "emoji": "🧻", "type": "napkin", "isCorrect": true },
+            { "id": "talerz_plastikowy", "name": "Talerz plastikowy", "emoji": "🍽️", "type": "plate", "isCorrect": false },
+            { "id": "widelec_metalowy", "name": "Widelec metalowy", "emoji": "🍴", "type": "fork", "isCorrect": false },
+            { "id": "kubek_papierowy", "name": "Kubek papierowy", "emoji": "🥤", "type": "glass", "isCorrect": false }
+        ],
+        "2": [
+            { "id": "talerz_emaliowany", "name": "Talerz emaliowany", "emoji": "🍽️", "type": "plate", "isCorrect": true },
+            { "id": "miska_metalowa", "name": "Miska metalowa", "emoji": "🥣", "type": "bowl", "isCorrect": true },
+            { "id": "lyzka_metalowa", "name": "Łyżka metalowa", "emoji": "🥄", "type": "spoon", "isCorrect": true },
+            { "id": "widelec_metalowy", "name": "Widelec metalowy", "emoji": "🍴", "type": "fork", "isCorrect": true },
+            { "id": "noz_metalowy", "name": "Nóż stołowy", "emoji": "🔪", "type": "knife", "isCorrect": true },
+            { "id": "szklanka", "name": "Szklanka", "emoji": "🥛", "type": "glass", "isCorrect": true },
+            { "id": "serwetka_papierowa", "name": "Serwetka papierowa", "emoji": "🧻", "type": "napkin", "isCorrect": true },
+            { "id": "talerz_plastikowy", "name": "Talerz plastikowy", "emoji": "🍽️", "type": "plate", "isCorrect": false },
+            { "id": "patyczki", "name": "Pałeczki", "emoji": "🥢", "type": "fork", "isCorrect": false },
+            { "id": "kubek_jednorazowy", "name": "Kubek jednorazowy", "emoji": "🥤", "type": "glass", "isCorrect": false }
+        ],
+        "3": [
+            { "id": "talerz_ceramiczny", "name": "Talerz ceramiczny", "emoji": "🍽️", "type": "plate", "isCorrect": true },
+            { "id": "miska_szklana", "name": "Miska szklana", "emoji": "🥣", "type": "bowl", "isCorrect": true },
+            { "id": "sztucce_nowoczesne", "name": "Sztućce nowoczesne", "emoji": "🍴", "type": "fork", "isCorrect": true },
+            { "id": "noz_nowoczesny", "name": "Nóż nowoczesny", "emoji": "🔪", "type": "knife", "isCorrect": true },
+            { "id": "lyzka_nowoczesna", "name": "Łyżka nowoczesna", "emoji": "🥄", "type": "spoon", "isCorrect": true },
+            { "id": "kieliszek", "name": "Kieliszek", "emoji": "🍷", "type": "glass", "isCorrect": true },
+            { "id": "serwetka_materialowa", "name": "Serwetka materiałowa", "emoji": "🧻", "type": "napkin", "isCorrect": true },
+            { "id": "patyczki", "name": "Pałeczki", "emoji": "🥢", "type": "fork", "isCorrect": true },
+            { "id": "talerz_drewniany", "name": "Talerz drewniany", "emoji": "🍽️", "type": "plate", "isCorrect": false },
+            { "id": "kubek_gliniany", "name": "Kubek gliniany", "emoji": "🍺", "type": "glass", "isCorrect": false }
+        ]
+    },
+    "familyMembers": [
+        { "id": "dad", "name": "Tata", "emoji": "👨" },
+        { "id": "mom", "name": "Mama", "emoji": "👩" },
+        { "id": "son", "name": "Syn", "emoji": "👦" },
+        { "id": "daughter", "name": "Córka", "emoji": "👧" }
+    ]
+}
