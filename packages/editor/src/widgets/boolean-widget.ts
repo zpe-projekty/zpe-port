@@ -1,4 +1,4 @@
-import { DOMNode } from "duct-tape";
+import { create, DOMNode } from "@/duct-tape";
 import { Editor, SchemaElementBoolean } from "~/editor";
 import { Widget } from "./widget";
 
@@ -16,7 +16,7 @@ export class BooleanWidget extends Widget {
         this.class("boolean-component");
 
         const label = schema.label || key;
-        this._checkbox = new DOMNode<"input">("input")
+        this._checkbox = create("input", this)
             .attr("type", "checkbox")
             .style("marginRight", "8px")
             .property("checked", !!this._data[key])
@@ -25,10 +25,10 @@ export class BooleanWidget extends Widget {
                 this._editor.saveState();
             });
 
-        const labelNode = new DOMNode<"label">("label")
+        const labelNode = create("label", this)
             .style("cursor", "pointer")
             .append(this._checkbox)
-            .append(new DOMNode<"span">("span").text(label));
+            .append(create("span", this).text(label));
 
         this.append(labelNode);
     }

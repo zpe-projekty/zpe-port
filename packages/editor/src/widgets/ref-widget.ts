@@ -1,4 +1,4 @@
-import { DOMNode } from "duct-tape";
+import { create, DOMNode } from "@/duct-tape";
 import { Editor, SchemaElementRef, SchemaElementString } from "~/editor";
 import { Widget } from "./widget";
 
@@ -17,11 +17,11 @@ export class RefWidget extends Widget {
         this.class("string-component");
 
         const label = this._schema.label || key;
-        this._ref = new DOMNode<"div">("div")
+        this._ref = create("div", this)
             .style("display", "block")
             .style("marginBottom", "8px")
 
-        const labelNode = new DOMNode<"label">("label")
+        const labelNode = create("label", this)
             .text(label)
             .style("display", "block")
             .style("marginBottom", "4px");

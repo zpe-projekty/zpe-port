@@ -1,4 +1,4 @@
-import { create, DOMNode } from "duct-tape";
+import { create, DOMNode } from "@/duct-tape";
 import { Editor, SchemaElementArray, SchemaElementObject } from "~/editor";
 import { ObjectWidget } from "./object-widget";
 import { Widget } from "./widget";
@@ -16,6 +16,19 @@ export class ArrayWidget extends Widget {
         this._data = data;
         this.class("array-component");
 
+        if (this._schema.title || this._schema.label) {
+            const titleText = this._schema.title ?? this._schema.label ?? key;
+
+            if (this._schema.label) {
+                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
+            }
+
+            create("div", this)
+                .class("title")
+                .text(titleText)
+                .mount(this);
+        }
+
         this.append(
             this._itemsContainer = create("div", this)
                 .class("items-container")
@@ -30,7 +43,7 @@ export class ArrayWidget extends Widget {
         }
 
         this._data.forEach((data, index) => {
-            const item = create("div").class("array-item");
+            const item = create("div", this).class("array-item");
             this._itemsContainer.append(item);
 
             if (this._schema.item.type === "object") {

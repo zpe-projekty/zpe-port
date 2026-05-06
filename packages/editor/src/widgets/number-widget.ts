@@ -1,4 +1,4 @@
-import { DOMNode } from "duct-tape";
+import { create, DOMNode } from "@/duct-tape";
 import { Editor, SchemaElementNumber } from "~/editor";
 import { Widget } from "./widget";
 
@@ -37,7 +37,7 @@ export class NumberWidget extends Widget {
         this._max = schema.max !== undefined ? schema.max : Infinity;
 
         const label = schema.label || key;
-        this._input = new DOMNode<"input">("input")
+        this._input = create("input", this)
             .attr("type", "number")
             .style("display", "block")
             .style("marginBottom", "8px")
@@ -77,12 +77,12 @@ export class NumberWidget extends Widget {
                 this._editor.saveState();
             });
 
-        const labelNode = new DOMNode<"label">("label")
+        const labelNode = create("label", this)
             .text(label)
             .style("display", "block")
             .style("marginBottom", "4px");
 
-        this._messageNode = new DOMNode<"div">("div")
+        this._messageNode = create("div", this)
             .class("message")
             .style("color", "red")
             .style("fontSize", "12px")

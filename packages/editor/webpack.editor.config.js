@@ -6,22 +6,24 @@ const PACKAGE = require("./package.json");
 const { runtime, library } = require("webpack");
 const env = require("process").env;
 
-const PATHS = {
-    STATIC: path.resolve(__dirname, "./static"),
-    SRC: path.resolve(__dirname, "./src"),
-    DIST: path.resolve(__dirname, "../../dist/editor"),
-    EMULATOR_DIST: path.resolve(__dirname, "./emulator/dist"),
-    DATA: env.DATA
-        ? path.resolve(__dirname, "./data", env.DATA)
-        : path.resolve(__dirname, "./data")
-};
-
-console.log("PATHS", PATHS);
-
 module.exports = [
     // Editor Build
     // ===================================================
     function (env, argv) {
+        const PATHS = {
+            STATIC: path.resolve(__dirname, "./static"),
+            SRC: path.resolve(__dirname, "./src"),
+            DIST: path.resolve(__dirname, "../../dist/editor"),
+            EMULATOR_DIST: path.resolve(__dirname, "./emulator/dist"),
+            PACKAGE: path.resolve(__dirname, "./packages"),
+            DATA: env.DATA
+                ? path.resolve(__dirname, "./data", env.DATA)
+                : path.resolve(__dirname, "./data")
+        };
+
+        console.log(env);
+        console.log("PATHS", PATHS);
+
         const IS_DEV = env.production ? false : true;
         console.log("******", env, env.production);
 
@@ -45,7 +47,8 @@ module.exports = [
             externals: {},
             resolve: {
                 alias: {
-                    "~": path.join(PATHS.SRC)
+                    "~": path.join(PATHS.SRC),
+                    "@": path.join(PATHS.PACKAGE)
                 },
                 modules: ["packages", "node_modules", "src"],
                 extensions: [".ts", ".tsx", ".js", ".jsx"]

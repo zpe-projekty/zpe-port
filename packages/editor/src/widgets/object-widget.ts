@@ -1,4 +1,4 @@
-import { create, DOMNode, ValueStore } from "duct-tape";
+import { create, DOMNode, ValueStore } from "@/duct-tape";
 import { Editor, SchemaElementObject } from "~/editor";
 import { NumberWidget } from "./number-widget";
 import { ArrayWidget } from "./array-widget";
@@ -10,9 +10,7 @@ import { Widget } from "./widget";
 export class ObjectWidget extends Widget {
     private _schema: SchemaElementObject;
     private _data: Record<string, any>;
-    private _title: DOMNode<"a">;
     private _content: DOMNode<"div">;
-    private _active: ValueStore<boolean> = new ValueStore<boolean>(false);
 
     constructor(editor: Editor, key: string, schema: SchemaElementObject, data: Record<string, any>) {
         super(editor);
@@ -21,24 +19,22 @@ export class ObjectWidget extends Widget {
         this._data = data;
         this.class("object-component");
 
-        this.append(
-            this._title = create("a", this)
+        if (this._schema.title || this._schema.label) {
+            const titleText = this._schema.title ?? this._schema.label ?? key;
+
+            if (this._schema.label) {
+                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
+            }
+
+            create("div", this)
                 .class("title")
-                .class("active", this._active)
-                // .text(this._data.label || key)
-                .on("click", () => {
-                    this._active.set(!this._active.get());
-                })
-                .append(
-                    create("i", this)
-                        .class("dropdown")
-                        .class("icon"),
-                    create("h3", this)
-                        .text(this._schema.label || key)
-                ),
+                .text(titleText)
+                .mount(this);
+        }
+
+        this.append(
             this._content = create("div", this)
                 .class("content")
-                .class("active", this._active)
         )
 
         this.build();
@@ -46,7 +42,6 @@ export class ObjectWidget extends Widget {
 
     override dispose(): void {
         if (this._disposed) return;
-        this._active.dispose();
         super.dispose();
     }
 
