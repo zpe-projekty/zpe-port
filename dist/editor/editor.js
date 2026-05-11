@@ -2,88 +2,133 @@ define(() => { return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 256
-(module, __webpack_exports__, __webpack_require__) {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(758);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(935);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
-// Imports
+/***/ 56
+(module, __unused_webpack_exports, __webpack_require__) {
 
 
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
-    & .dropdown.icon {
-        width: 2em;
-        height: 2em;
-        background-color: turquoise;
-        transform: rotate(-90deg);
 
-        &::before {
-            content: "▼";
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    & .active > .dropdown.icon {
-        transform: rotate(0deg);
-    }
-
-    & .content {
-        border: solid 1px #00f;
-    }
-
-    & .object-component {
-        border: solid 1px #f00;
-        padding: 0.5em;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
-
-        & .title {
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            flex-direction: row;
-            /* margin-left: 2em; */
-            /* justify-content: space-between; */
-            /* flex: 0 0 auto; */
-            gap: 1em;
-            align-items: center;
-            justify-content: start;
-
-            & h3 {
-                margin: 0;
-            }
-        }
-
-        & .content {
-            display: none;
-            margin-left: 2em;
-
-            &.active {
-                display: block;
-            }
-        }
-    }
+/* istanbul ignore next  */
+function setAttributesWithoutAttributes(styleElement) {
+  var nonce =  true ? __webpack_require__.nc : 0;
+  if (nonce) {
+    styleElement.setAttribute("nonce", nonce);
+  }
 }
-`, ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
+module.exports = setAttributesWithoutAttributes;
 
 /***/ },
 
-/***/ 935
+/***/ 72
+(module) {
+
+
+
+var stylesInDOM = [];
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+  for (var i = 0; i < stylesInDOM.length; i++) {
+    if (stylesInDOM[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+  return result;
+}
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var indexByIdentifier = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3],
+      supports: item[4],
+      layer: item[5]
+    };
+    if (indexByIdentifier !== -1) {
+      stylesInDOM[indexByIdentifier].references++;
+      stylesInDOM[indexByIdentifier].updater(obj);
+    } else {
+      var updater = addElementStyle(obj, options);
+      options.byIndex = i;
+      stylesInDOM.splice(i, 0, {
+        identifier: identifier,
+        updater: updater,
+        references: 1
+      });
+    }
+    identifiers.push(identifier);
+  }
+  return identifiers;
+}
+function addElementStyle(obj, options) {
+  var api = options.domAPI(options);
+  api.update(obj);
+  var updater = function updater(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
+        return;
+      }
+      api.update(obj = newObj);
+    } else {
+      api.remove();
+    }
+  };
+  return updater;
+}
+module.exports = function (list, options) {
+  options = options || {};
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDOM[index].references--;
+    }
+    var newLastIdentifiers = modulesToDom(newList, options);
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+      var _index = getIndexByIdentifier(_identifier);
+      if (stylesInDOM[_index].references === 0) {
+        stylesInDOM[_index].updater();
+        stylesInDOM.splice(_index, 1);
+      }
+    }
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ },
+
+/***/ 113
+(module) {
+
+
+
+/* istanbul ignore next  */
+function styleTagTransform(css, styleElement) {
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css;
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild);
+    }
+    styleElement.appendChild(document.createTextNode(css));
+  }
+}
+module.exports = styleTagTransform;
+
+/***/ },
+
+/***/ 314
 (module) {
 
 
@@ -174,7 +219,113 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ },
 
-/***/ 758
+/***/ 425
+(module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(601);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(314);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
+    & .dropdown.icon {
+        width: 2em;
+        height: 2em;
+        background-color: turquoise;
+        transform: rotate(-90deg);
+
+        &::before {
+            content: "▼";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    & .active > .dropdown.icon {
+        transform: rotate(0deg);
+    }
+
+    & .content {
+        background-color: #eee;
+    }
+
+    & .object-component {
+        /* border: solid 1px #f00; */
+        padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+
+        & .title {
+            background-color: #000;
+            color: #fff;
+            padding: 0.25em;
+        }
+
+        & .content {
+            &.active {
+                display: block;
+            }
+        }
+    }
+
+    & .array-component {
+        padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+
+        & .title {
+            background-color: #000;
+            color: #fff;
+            padding: 0.25em;
+        }
+
+        & .items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+
+            & .array-item {
+                border-bottom: solid 1px #000;
+            }
+        }
+    }
+}
+`, ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ },
+
+/***/ 540
+(module) {
+
+
+
+/* istanbul ignore next  */
+function insertStyleElement(options) {
+  var element = document.createElement("style");
+  options.setAttributes(element, options.attributes);
+  options.insert(element, options.options);
+  return element;
+}
+module.exports = insertStyleElement;
+
+/***/ },
+
+/***/ 601
 (module) {
 
 
@@ -185,97 +336,7 @@ module.exports = function (i) {
 
 /***/ },
 
-/***/ 591
-(module) {
-
-
-
-var stylesInDOM = [];
-function getIndexByIdentifier(identifier) {
-  var result = -1;
-  for (var i = 0; i < stylesInDOM.length; i++) {
-    if (stylesInDOM[i].identifier === identifier) {
-      result = i;
-      break;
-    }
-  }
-  return result;
-}
-function modulesToDom(list, options) {
-  var idCountMap = {};
-  var identifiers = [];
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i];
-    var id = options.base ? item[0] + options.base : item[0];
-    var count = idCountMap[id] || 0;
-    var identifier = "".concat(id, " ").concat(count);
-    idCountMap[id] = count + 1;
-    var indexByIdentifier = getIndexByIdentifier(identifier);
-    var obj = {
-      css: item[1],
-      media: item[2],
-      sourceMap: item[3],
-      supports: item[4],
-      layer: item[5]
-    };
-    if (indexByIdentifier !== -1) {
-      stylesInDOM[indexByIdentifier].references++;
-      stylesInDOM[indexByIdentifier].updater(obj);
-    } else {
-      var updater = addElementStyle(obj, options);
-      options.byIndex = i;
-      stylesInDOM.splice(i, 0, {
-        identifier: identifier,
-        updater: updater,
-        references: 1
-      });
-    }
-    identifiers.push(identifier);
-  }
-  return identifiers;
-}
-function addElementStyle(obj, options) {
-  var api = options.domAPI(options);
-  api.update(obj);
-  var updater = function updater(newObj) {
-    if (newObj) {
-      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
-        return;
-      }
-      api.update(obj = newObj);
-    } else {
-      api.remove();
-    }
-  };
-  return updater;
-}
-module.exports = function (list, options) {
-  options = options || {};
-  list = list || [];
-  var lastIdentifiers = modulesToDom(list, options);
-  return function update(newList) {
-    newList = newList || [];
-    for (var i = 0; i < lastIdentifiers.length; i++) {
-      var identifier = lastIdentifiers[i];
-      var index = getIndexByIdentifier(identifier);
-      stylesInDOM[index].references--;
-    }
-    var newLastIdentifiers = modulesToDom(newList, options);
-    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
-      var _identifier = lastIdentifiers[_i];
-      var _index = getIndexByIdentifier(_identifier);
-      if (stylesInDOM[_index].references === 0) {
-        stylesInDOM[_index].updater();
-        stylesInDOM.splice(_index, 1);
-      }
-    }
-    lastIdentifiers = newLastIdentifiers;
-  };
-};
-
-/***/ },
-
-/***/ 128
+/***/ 659
 (module) {
 
 
@@ -315,39 +376,7 @@ module.exports = insertBySelector;
 
 /***/ },
 
-/***/ 51
-(module) {
-
-
-
-/* istanbul ignore next  */
-function insertStyleElement(options) {
-  var element = document.createElement("style");
-  options.setAttributes(element, options.attributes);
-  options.insert(element, options.options);
-  return element;
-}
-module.exports = insertStyleElement;
-
-/***/ },
-
-/***/ 855
-(module, __unused_webpack_exports, __webpack_require__) {
-
-
-
-/* istanbul ignore next  */
-function setAttributesWithoutAttributes(styleElement) {
-  var nonce =  true ? __webpack_require__.nc : 0;
-  if (nonce) {
-    styleElement.setAttribute("nonce", nonce);
-  }
-}
-module.exports = setAttributesWithoutAttributes;
-
-/***/ },
-
-/***/ 740
+/***/ 825
 (module) {
 
 
@@ -411,26 +440,6 @@ function domAPI(options) {
   };
 }
 module.exports = domAPI;
-
-/***/ },
-
-/***/ 656
-(module) {
-
-
-
-/* istanbul ignore next  */
-function styleTagTransform(css, styleElement) {
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css;
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild);
-    }
-    styleElement.appendChild(document.createTextNode(css));
-  }
-}
-module.exports = styleTagTransform;
 
 /***/ }
 
@@ -517,7 +526,7 @@ __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ main)
 });
 
-;// ../duct-tape/src/common.ts
+;// ./packages/editor/packages/duct-tape/src/common.ts
 function isObject(value) {
     return (typeof value === 'object' &&
         value !== null &&
@@ -601,7 +610,7 @@ function mergeDeep(target, ...sources) {
     return mergeDeep(target, ...sources);
 }
 
-;// ../duct-tape/src/disposable.ts
+;// ./packages/editor/packages/duct-tape/src/disposable.ts
 
 function createDisposeFn(fn) {
     return fn;
@@ -676,8 +685,7 @@ class DummyDisposable extends Disposable {
     }
 }
 
-;// ../duct-tape/src/to.ts
-/* unused harmony import specifier */ var Value;
+;// ./packages/editor/packages/duct-tape/src/to.ts
 
 function toBoolean(value, defaultValue = false) {
     if (value instanceof value_Value) {
@@ -729,7 +737,7 @@ function to_toString(value, defaultValue = '') {
     return defaultValue;
 }
 
-;// ../duct-tape/src/value.ts
+;// ./packages/editor/packages/duct-tape/src/value.ts
 
 
 
@@ -742,6 +750,9 @@ class value_Value extends Disposable {
         if (test instanceof Function) {
             transform = test;
         }
+        else if (Array.isArray(test)) {
+            transform = (v) => test.includes(v);
+        }
         else {
             transform = (v) => v === test;
         }
@@ -753,8 +764,11 @@ class value_Value extends Disposable {
     }
     notEqual(test, register) {
         let transform;
-        if (typeof test === 'string') {
+        if (typeof test === 'string' || typeof test === 'number' || typeof test === 'boolean') {
             transform = (v) => v !== test;
+        }
+        else if (Array.isArray(test)) {
+            transform = (v) => !test.includes(v);
         }
         else {
             transform = (value) => !test(value);
@@ -1029,48 +1043,84 @@ class ValueLogicObserver extends value_Value {
     }
 }
 
-;// ../duct-tape/src/dom.ts
+;// ./packages/editor/packages/duct-tape/src/dom.ts
 
 
-function create(selector, register) {
-    const dom = DOMNode.create(selector, register);
+// export const SELECTOR_REGEX = /([\w-]+)?(#([\w-]+))?((\.([\w-]+))*)/;
+// export enum DOMNamespace {
+//     HTML = "http://www.w3.org/1999/xhtml",
+//     SVG = "http://www.w3.org/2000/svg"
+// }
+// export type DOMAttrs = {
+//     [key: string]: undefined | string | number | EventListenerOrEventListenerObject;
+// };
+// export type DOMChild = Node | string | ((owner: Element) => Node);
+// create("div", this)
+//     .attr("id", "app")
+//     .class("container")
+//     .append(
+//         create("h1", this).text("Welcome to My App"),
+//         create("button", this)
+//             .text("Click Me")
+//             .on("click", () => alert("Button Clicked!"))
+//     )
+//     .mount(document.body);
+const SVG_TAGS = new Set([
+    "svg", "circle", "rect", "path", "line", "ellipse", "polygon", "polyline", "g", "defs", "symbol", "use", "text", "tspan"
+]);
+function create(selector, owner) {
+    const dom = DOMNode.create(selector, owner);
     return dom;
 }
 class DOMNode extends Disposable {
-    _element;
+    _element = null;
     _events = new Map();
-    _register;
-    static create(selector, register) {
-        const dom = new DOMNode(selector, register);
+    _owner = null;
+    static create(selector, owner) {
+        const dom = new DOMNode(selector, owner);
         return dom;
     }
-    constructor(selector, register) {
+    constructor(selector, owner) {
         super();
-        this._register = register;
-        const match = selector.split(':');
-        if (match.length === 1) {
-            this._element = document.createElement(selector);
-        }
-        else if (match.length === 2) {
-            const namespace = match[0];
-            const tagName = match[1];
-            this._element = document.createElementNS(namespace, tagName);
+        this._owner = owner;
+        if (SVG_TAGS.has(selector)) {
+            this._element = document.createElementNS('http://www.w3.org/2000/svg', selector);
         }
         else {
-            throw new Error('Invalid selector');
+            this._element = document.createElement(selector);
         }
-        if (this._register) {
-            this._register.register(this);
+        if (this._owner) {
+            this._owner.register(this);
         }
+        // const match = selector.split(':');
+        // if (match.length === 1) {
+        //   this._element = document.createElement(selector);
+        // } else if (match.length === 2) {
+        //   const namespace = match[0];
+        //   const tagName = match[1];
+        //   if (namespace === 'svg') {
+        //     this._element = document.createElementNS('http://www.w3.org/2000/svg', tagName) as unknown as SVGElement;
+        //   } if (namespace === 'html') {
+        //     this._element = document.createElementNS(
+        //       'http://www.w3.org/1999/xhtml',
+        //       tagName,
+        //     ) as HTMLElement;
+        //   } else {
+        //     throw new Error('Invalid selector');
+        //   }
+        //   if (this._owner) {
+        //     this._owner.register(this);
+        //   }
+        // }
     }
     dispose() {
         if (this._disposed) {
             return;
         }
         this._element.remove();
-        if (this._register) {
-            this._register.unregister(this);
-            this._register = undefined;
+        if (this._owner) {
+            this._owner.unregister(this);
+            this._owner = null;
         }
         super.dispose();
     }
@@ -1166,7 +1216,10 @@ class DOMNode extends Disposable {
         }
         return this;
     }
-    style(name, value, condition = true) {
+    style(name, value, condition) {
+        if (value === undefined) {
+            return this._element.style.getPropertyValue(name);
+        }
         if (condition instanceof value_Value) {
             this.register(condition.subscribe((cond) => {
                 if (cond) {
@@ -1184,7 +1237,7 @@ class DOMNode extends Disposable {
                 }
             }));
         }
-        else if (condition) {
+        else if (condition === true || condition === undefined) {
             if (value instanceof value_Value) {
                 this.register(value.subscribe((val) => {
                     this._element.style.setProperty(name, val);
@@ -1194,9 +1247,15 @@ class DOMNode extends Disposable {
                 this._element.style.setProperty(name, value);
             }
         }
+        else {
+            this._element.style.removeProperty(name);
+        }
         return this;
     }
     class(className, active = true) {
+        if (className === undefined) {
+            return this;
+        }
         if (active instanceof value_Value) {
             this.register(active.subscribe((val) => {
                 if (val) {
@@ -1235,6 +1294,19 @@ class DOMNode extends Disposable {
                 }
             }
         }
+        return this;
+    }
+    empty() {
+        [...this._disposables].forEach(([key, dispose]) => {
+            if (key instanceof DOMNode) {
+                if (key._owner !== this) {
+                    console.warn(`Cannot dispose child DOMNode that is not owned by this node.`, key);
+                    return;
+                }
+                key.dispose();
+            }
+        });
+        this._element.innerHTML = '';
         return this;
     }
     on(eventType, listener, options) {
@@ -1286,25 +1358,56 @@ class DOMNode extends Disposable {
         return this;
     }
     text(content) {
+        this.empty();
         if (content instanceof value_Value) {
-            const textNode = document.createTextNode('');
-            this._element.appendChild(textNode);
             this.register(content.subscribe((val) => {
-                textNode.textContent = String(val);
+                if (this.element instanceof HTMLElement) {
+                    if (val === null || val === undefined) {
+                        this._element.innerText = '';
+                    }
+                    else {
+                        this._element.innerText = String(val);
+                    }
+                }
             }));
         }
         else {
-            this._element.innerText = String(content);
+            if (this.element instanceof HTMLElement) {
+                this._element.innerText = String(content);
+            }
         }
         return this;
     }
     html(content) {
+        this.empty();
         this._element.innerHTML = content;
+        return this;
+    }
+    display(isVisible) {
+        if (isVisible instanceof value_Value) {
+            this.register(isVisible.subscribe((visible) => {
+                this._element.style.display = visible ? '' : 'none';
+            }));
+        }
+        else {
+            this._element.style.display = isVisible ? '' : 'none';
+        }
+        return this;
+    }
+    visibility(isVisible) {
+        if (isVisible instanceof value_Value) {
+            this.register(isVisible.subscribe((visible) => {
+                this._element.style.visibility = visible ? 'visible' : 'hidden';
+            }));
+        }
+        else {
+            this._element.style.visibility = isVisible ? 'visible' : 'hidden';
+        }
         return this;
     }
     append(...children) {
         for (const child of children) {
-            this._element.appendChild(child.element);
+            child.mount(this);
         }
         return this;
     }
@@ -1320,12 +1423,12 @@ class DOMNode extends Disposable {
     get element() {
         return this._element;
     }
-    get parent() {
-        return this._element.parentElement;
+    get owner() {
+        return this._owner;
     }
 }
 
-;// ../duct-tape/src/emitter.ts
+;// ./packages/editor/packages/duct-tape/src/emitter.ts
 
 class Emitter extends Disposable {
     _emitterHandles;
@@ -1384,7 +1487,7 @@ class Emitter extends Disposable {
 }
 /* harmony default export */ const emitter = ((/* unused pure expression or super */ null && (Emitter)));
 
-;// ../duct-tape/src/utils/console-colors.ts
+;// ./packages/editor/packages/duct-tape/src/utils/console-colors.ts
 /* console-colors.ts
    Minimalna biblioteka do kolorowania logów w konsoli przeglądarki (%c + CSS)
 */
@@ -1546,11 +1649,11 @@ function tagged(ns, opts) {
     return createLogger({ ...(opts ?? {}), namespace: ns });
 }
 
-;// ../duct-tape/src/utils/log.ts
+;// ./packages/editor/packages/duct-tape/src/utils/log.ts
 
 const log = createLogger({ namespace: "DUCT-TAPE", minLevel: "debug" });
 
-;// ../duct-tape/src/app.ts
+;// ./packages/editor/packages/duct-tape/src/app.ts
 
 
 
@@ -1601,6 +1704,7 @@ class App extends Disposable {
     _currentPage;
     pageId = new ValueStoreRaw(null);
     _isFocusPageLocked = false;
+    isFullscreen = new ValueStoreRaw(false);
     static create(parent, store, config, options = {}) {
         return new App(parent, store, config, options);
     }
@@ -1611,16 +1715,20 @@ class App extends Disposable {
         this.config = config;
         this._options = options;
         this._parent = parent;
-        this.appDiv = this.register(create("div").class(options.appClassName ?? []).mount(this._parent));
-        this.appContainer = this.register(create("div").class(options.appContainerClassName ?? []).mount(this.appDiv));
+        this.appDiv = this.register(create("div", this).class(options.appClassName ?? []).mount(this._parent));
+        this.appContainer = this.register(create("div", this).class(options.appContainerClassName ?? []).mount(this.appDiv));
         if (options.backgroundContainerEnabled === true) {
-            this.backgroundContainer = this.register(create("div").class(options.backgroundContainerClassName ?? []).mount(this.appContainer));
+            this.backgroundContainer = this.register(create("div", this).class(options.backgroundContainerClassName ?? []).mount(this.appContainer));
         }
-        this.pageContainer = this.register(create("div").class(options.pageContainerClassName ?? []).mount(this.appContainer));
+        this.pageContainer = this.register(create("div", this).class(options.pageContainerClassName ?? []).mount(this.appContainer));
         if (options.overflowContainerEnabled === true) {
-            this.overflowContainer = this.register(create("div").class(options.overflowContainerClassName ?? []).mount(this.appContainer));
+            this.overflowContainer = this.register(create("div", this).class(options.overflowContainerClassName ?? []).mount(this.appContainer));
         }
-        this.modalsContainer = this.register(create("div").class(options.modalContainerClassName ?? []).style("display", "none").mount(this.appContainer));
+        this.modalsContainer = this.register(create("div", this).class(options.modalContainerClassName ?? []).style("display", "none").mount(this.appContainer));
+        document.addEventListener("fullscreenchange", () => {
+            const isFullscreen = !!document.fullscreenElement;
+            this.isFullscreen.set(isFullscreen);
+        });
     }
     dispose() {
         this.removeAllModals();
@@ -1642,18 +1750,17 @@ class App extends Disposable {
         this.appDiv.element.requestFullscreen();
     }
     exitFullscreen() {
-        document.exitFullscreen();
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
     }
     toggleFullscreen() {
-        if (this.isFullscreen) {
+        if (document.fullscreenElement) {
             this.exitFullscreen();
         }
         else {
             this.fullscreen();
         }
-    }
-    get isFullscreen() {
-        return !!document.fullscreenElement;
     }
     get parent() {
         return this._parent;
@@ -1906,14 +2013,14 @@ class App extends Disposable {
     }
 }
 
-;// ../duct-tape/src/page.ts
+;// ./packages/editor/packages/duct-tape/src/page.ts
 
 class Page extends DOMNode {
     _app;
     _store;
     _config;
     constructor(app, store, config) {
-        super("div");
+        super("div", null);
         this._app = app;
         this._store = store;
         this._config = config;
@@ -1938,7 +2045,7 @@ class Page extends DOMNode {
     }
 }
 
-;// ../duct-tape/src/modal.ts
+;// ./packages/editor/packages/duct-tape/src/modal.ts
 
 class Modal extends DOMNode {
     _app;
@@ -1959,6 +2066,10 @@ class Modal extends DOMNode {
                 this.class(options.classNames);
             }
         }
+    }
+    dispose() {
+        this._app.removeModal(this);
+        super.dispose();
     }
     async load() {
         if (this._options?.onAfterLoad) {
@@ -1983,7 +2094,7 @@ class Modal extends DOMNode {
     }
 }
 
-;// ../duct-tape/index.ts
+;// ./packages/editor/packages/duct-tape/index.ts
 
 
 
@@ -2001,7 +2112,7 @@ class Modal extends DOMNode {
 class Widget extends DOMNode {
     _editor;
     constructor(editor) {
-        super("div");
+        super("div", editor);
         this._editor = editor;
     }
 }
@@ -2041,7 +2152,7 @@ class NumberWidget extends Widget {
         this._min = schema.min !== undefined ? schema.min : -Infinity;
         this._max = schema.max !== undefined ? schema.max : Infinity;
         const label = schema.label || key;
-        this._input = new DOMNode("input")
+        this._input = create("input", this)
             .attr("type", "number")
             .style("display", "block")
             .style("marginBottom", "8px")
@@ -2081,11 +2192,11 @@ class NumberWidget extends Widget {
             this._data[key] = value;
             this._editor.saveState();
         });
-        const labelNode = new DOMNode("label")
+        const labelNode = create("label", this)
             .text(label)
             .style("display", "block")
             .style("marginBottom", "4px");
-        this._messageNode = new DOMNode("div")
+        this._messageNode = create("div", this)
             .class("message")
             .style("color", "red")
             .style("fontSize", "12px")
@@ -2108,6 +2219,16 @@ class ArrayWidget extends Widget {
         this._schema = schema;
         this._data = data;
         this.class("array-component");
+        if (this._schema.title || this._schema.label) {
+            const titleText = this._schema.title ?? this._schema.label ?? key;
+            if (this._schema.label) {
+                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
+            }
+            create("div", this)
+                .class("title")
+                .text(titleText)
+                .mount(this);
+        }
         this.append(this._itemsContainer = create("div", this)
             .class("items-container"));
         this.build();
@@ -2117,7 +2238,7 @@ class ArrayWidget extends Widget {
             return;
         }
         this._data.forEach((data, index) => {
-            const item = create("div").class("array-item");
+            const item = create("div", this).class("array-item");
             this._itemsContainer.append(item);
             if (this._schema.item.type === "object") {
                 item.append(new ObjectWidget(this._editor, `Element #${index + 1}`, this._schema.item, data));
@@ -2193,7 +2314,7 @@ class BooleanWidget extends Widget {
         this._data = data;
         this.class("boolean-component");
         const label = schema.label || key;
-        this._checkbox = new DOMNode("input")
+        this._checkbox = create("input", this)
             .attr("type", "checkbox")
             .style("marginRight", "8px")
             .property("checked", !!this._data[key])
@@ -2201,10 +2322,10 @@ class BooleanWidget extends Widget {
             this._data[key] = this._checkbox.property("checked");
             this._editor.saveState();
         });
-        const labelNode = new DOMNode("label")
+        const labelNode = create("label", this)
             .style("cursor", "pointer")
             .append(this._checkbox)
-            .append(new DOMNode("span").text(label));
+            .append(create("span", this).text(label));
         this.append(labelNode);
     }
 }
@@ -2223,10 +2344,10 @@ class RefWidget extends Widget {
         this._data = data;
         this.class("string-component");
         const label = this._schema.label || key;
-        this._ref = new DOMNode("div")
+        this._ref = create("div", this)
             .style("display", "block")
             .style("marginBottom", "8px");
-        const labelNode = new DOMNode("label")
+        const labelNode = create("label", this)
             .text(label)
             .style("display", "block")
             .style("marginBottom", "4px");
@@ -2357,33 +2478,29 @@ class RefWidget extends Widget {
 class ObjectWidget extends Widget {
     _schema;
     _data;
-    _title;
     _content;
-    _active = new ValueStore(false);
     constructor(editor, key, schema, data) {
         super(editor);
         this._schema = schema;
         this._data = data;
         this.class("object-component");
-        this.append(this._title = create("a", this)
-            .class("title")
-            .class("active", this._active)
-            // .text(this._data.label || key)
-            .on("click", () => {
-            this._active.set(!this._active.get());
-        })
-            .append(create("i", this)
-            .class("dropdown")
-            .class("icon"), create("h3", this)
-            .text(this._schema.label || key)), this._content = create("div", this)
-            .class("content")
-            .class("active", this._active));
+        if (this._schema.title || this._schema.label) {
+            const titleText = this._schema.title ?? this._schema.label ?? key;
+            if (this._schema.label) {
+                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
+            }
+            create("div", this)
+                .class("title")
+                .text(titleText)
+                .mount(this);
+        }
+        this.append(this._content = create("div", this)
+            .class("content"));
         this.build();
     }
     dispose() {
         if (this._disposed)
             return;
-        this._active.dispose();
         super.dispose();
     }
     build() {
@@ -2458,7 +2575,7 @@ class Editor extends Disposable {
                     this._types = schema.definitions;
                     this.replaceDefinitions(propertiesSchema);
                 }
-                this._rootWidget = this.register(new ObjectWidget(this, "Root", propertiesSchema, this._data).mount(this._container));
+                this._rootWidget = new ObjectWidget(this, "Root", propertiesSchema, this._data).mount(this._container);
                 resolve();
             }).catch((error) => {
                 console.error("Error loading schema:", error);
@@ -2487,26 +2604,26 @@ class Editor extends Disposable {
     }
 }
 
-// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js
-var injectStylesIntoStyleTag = __webpack_require__(591);
+// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js
+var injectStylesIntoStyleTag = __webpack_require__(72);
 var injectStylesIntoStyleTag_default = /*#__PURE__*/__webpack_require__.n(injectStylesIntoStyleTag);
-// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/styleDomAPI.js
-var styleDomAPI = __webpack_require__(740);
+// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/styleDomAPI.js
+var styleDomAPI = __webpack_require__(825);
 var styleDomAPI_default = /*#__PURE__*/__webpack_require__.n(styleDomAPI);
-// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/insertBySelector.js
-var insertBySelector = __webpack_require__(128);
+// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/insertBySelector.js
+var insertBySelector = __webpack_require__(659);
 var insertBySelector_default = /*#__PURE__*/__webpack_require__.n(insertBySelector);
-// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js
-var setAttributesWithoutAttributes = __webpack_require__(855);
+// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js
+var setAttributesWithoutAttributes = __webpack_require__(56);
 var setAttributesWithoutAttributes_default = /*#__PURE__*/__webpack_require__.n(setAttributesWithoutAttributes);
-// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/insertStyleElement.js
-var insertStyleElement = __webpack_require__(51);
+// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/insertStyleElement.js
+var insertStyleElement = __webpack_require__(540);
 var insertStyleElement_default = /*#__PURE__*/__webpack_require__.n(insertStyleElement);
-// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/styleTagTransform.js
-var styleTagTransform = __webpack_require__(656);
+// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/styleTagTransform.js
+var styleTagTransform = __webpack_require__(113);
 var styleTagTransform_default = /*#__PURE__*/__webpack_require__.n(styleTagTransform);
-// EXTERNAL MODULE: ../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./packages/editor/src/styles/styles.css
-var styles = __webpack_require__(256);
+// EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./packages/editor/src/styles/styles.css
+var styles = __webpack_require__(425);
 ;// ./packages/editor/src/styles/styles.css
 
       
