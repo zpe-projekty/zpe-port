@@ -2,7 +2,7 @@
     "include": [
         "**/*",
         "emulator/**/*",
-        "packages/duct-tape/**/*"
+        "packages/duct-tape/**/*",
     ],
     "compilerOptions": {
         "target": "esnext",
@@ -11,7 +11,6 @@
         "sourceMap": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
-        "moduleResolution": "node",
         "outDir": "./build",
         "rootDirs": [
             "./src",
@@ -21,8 +20,8 @@
             "~/*": [
                 "./src/*"
             ],
-            "duct-tape": [
-                "./packages/duct-tape/src/index.ts"
+            "@/*": [
+                "./packages/*"
             ]
         }
     }

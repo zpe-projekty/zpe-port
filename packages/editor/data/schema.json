@@ -7,16 +7,25 @@
         }
     },
     "properties": {
-        "playTime": {
-            "type": "number",
-            "format": "integer",
-            "min": 1,
-            "max": 10000,
-            "label": "Całkowity czas gry (w minutach)"
-        },
-        "rebuses": {
+        "settings": {
             "type": "object",
+            "title": "Ustawienia gry",
             "properties": {
+                "enableHints": {
+                    "type": "boolean",
+                    "label": "Włącz podpowiedzi do rebusów"
+                },
+                "enableTimer": {
+                    "type": "boolean",
+                    "label": "Ograniczenie czasowe"
+                },
+                "playTime": {
+                    "type": "number",
+                    "format": "integer",
+                    "min": 1,
+                    "max": 10000,
+                    "label": "Całkowity czas gry (w minutach)"
+                },
                 "numberOfRebusesToSolve": {
                     "type": "number",
                     "format": "integer",
@@ -37,31 +46,32 @@
                     "type": "number",
                     "label": "Limit czasu na rozwiązanie każdego rebusu (w minutach)",
                     "help": "Dotyczy tylko trybu 'trudny'."
-                },
-                "rebuses": {
-                    "type": "array",
-                    "item": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string",
-                                "private": true
-                            },
-                            "enabled": {
-                                "type": "boolean",
-                                "label": "Włączony"
-                            },
-                            "style": {
-                                "type": "string",
-                                "enum": "styles",
-                                "label": "Styl rebusu"
-                            },
-                            "answer": {
-                                "type": "ref",
-                                "path": "scenario.json#/rebuses/${id}/answer",
-                                "label": "Odpowiedź"
-                            }
-                        }
+                }
+            }
+        },
+        "rebuses": {
+            "type": "array",
+            "title": "Rebusy",
+            "item": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "private": true
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "label": "Dostępny dla uczniów"
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": "styles",
+                        "label": "Styl rebusu"
+                    },
+                    "answer": {
+                        "type": "ref",
+                        "path": "scenario.json#/rebuses/${id}/answer",
+                        "label": "Odpowiedź"
                     }
                 }
             }

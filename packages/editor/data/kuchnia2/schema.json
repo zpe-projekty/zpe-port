@@ -1,8 +1,52 @@
 {
     "properties": {
+        "settings": {
+            "type": "object",
+            "title": "Ustawienia gry",
+            "properties": {
+                "timerSeconds": {
+                    "type": "number",
+                    "label": "Czas na nakrycie stołu (sekundy)",
+                    "description": "Limit czasu na nakrycie stołu. Domyślnie 5 minut.",
+                    "default": 300,
+                    "min": 60,
+                    "max": 600
+                },
+                "allowTimerDisable": {
+                    "type": "boolean",
+                    "label": "Pozwól wyłączyć timer",
+                    "description": "Uczniowie z ograniczeniami mogą wyłączyć limit czasu",
+                    "default": true
+                },
+                "allowStudentRecipes": {
+                    "type": "boolean",
+                    "label": "Pozwól dodawać przepisy",
+                    "description": "Uczniowie mogą dodawać własne przepisy do Księgi",
+                    "default": false
+                },
+                "showCalories": {
+                    "type": "boolean",
+                    "label": "Pokazuj kalorie",
+                    "description": "Wyświetlaj informacje o wartości kalorycznej potraw",
+                    "default": true
+                },
+                "showHistoricalInfo": {
+                    "type": "boolean",
+                    "label": "Pokazuj informacje historyczne",
+                    "description": "Wyświetlaj informacje o historii i kontekście społecznym potraw",
+                    "default": true
+                },
+                "requireAllIngredients": {
+                    "type": "boolean",
+                    "label": "Wymagaj wszystkich składników",
+                    "description": "Gracz musi zebrać wszystkie poprawne składniki, aby ukończyć etap",
+                    "default": true
+                }
+            }
+        },
         "enabledEras": {
             "type": "object",
-            "label": "Dostępne epoki",
+            "title": "Dostępne epoki",
             "description": "Wybierz epoki kulinarne dostępne dla uczniów",
             "properties": {
                 "era1": {
@@ -21,7 +65,7 @@
         },
         "enabledRecipes": {
             "type": "object",
-            "label": "Dostępne przepisy",
+            "title": "Dostępne przepisy",
             "description": "Wybierz przepisy dostępne w grze",
             "properties": {
                 "bigos": {
@@ -65,44 +109,6 @@
                     "label": "Sushi Maki"
                 }
             }
-        },
-        "timerSeconds": {
-            "type": "number",
-            "label": "Czas na nakrycie stołu (sekundy)",
-            "description": "Limit czasu na nakrycie stołu. Domyślnie 5 minut.",
-            "default": 300,
-            "min": 60,
-            "max": 600
-        },
-        "allowTimerDisable": {
-            "type": "boolean",
-            "label": "Pozwól wyłączyć timer",
-            "description": "Uczniowie z ograniczeniami mogą wyłączyć limit czasu",
-            "default": true
-        },
-        "allowStudentRecipes": {
-            "type": "boolean",
-            "label": "Pozwól dodawać przepisy",
-            "description": "Uczniowie mogą dodawać własne przepisy do Księgi",
-            "default": false
-        },
-        "showCalories": {
-            "type": "boolean",
-            "label": "Pokazuj kalorie",
-            "description": "Wyświetlaj informacje o wartości kalorycznej potraw",
-            "default": true
-        },
-        "showHistoricalInfo": {
-            "type": "boolean",
-            "label": "Pokazuj informacje historyczne",
-            "description": "Wyświetlaj informacje o historii i kontekście społecznym potraw",
-            "default": true
-        },
-        "requireAllIngredients": {
-            "type": "boolean",
-            "label": "Wymagaj wszystkich składników",
-            "description": "Gracz musi zebrać wszystkie poprawne składniki, aby ukończyć etap",
-            "default": true
         }
     }
 }

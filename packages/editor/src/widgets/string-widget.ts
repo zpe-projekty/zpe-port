@@ -1,4 +1,4 @@
-import { create, DOMNode } from "duct-tape";
+import { create, DOMNode } from "@/duct-tape";
 import { Editor, SchemaElementString } from "~/editor";
 import { Widget } from "./widget";
 

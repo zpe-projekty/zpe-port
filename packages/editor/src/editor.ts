@@ -1,4 +1,4 @@
-import { Disposable, DOMNode } from "duct-tape";
+import { Disposable, DOMNode } from "@/duct-tape";
 import { ObjectWidget } from "./widgets/object-widget";
 import { ExerciseEditorApi } from "./main";
 
@@ -19,6 +19,7 @@ export type SchemaElement =
 export interface SchemaElementBase {
     private?: boolean;
     label?: string;
+    title?: string;
     help?: string;
 }
 
@@ -100,9 +101,7 @@ export class Editor extends Disposable {
                     this.replaceDefinitions(propertiesSchema);
                 }
 
-                this._rootWidget = this.register(
-                    new ObjectWidget(this, "Root", propertiesSchema, this._data).mount(this._container)
-                );
+                this._rootWidget = new ObjectWidget(this, "Root", propertiesSchema, this._data).mount(this._container);
 
                 resolve();
             }).catch((error) => {

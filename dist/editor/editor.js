@@ -39,39 +39,48 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
     }
 
     & .content {
-        border: solid 1px #00f;
+        background-color: #eee;
     }
 
     & .object-component {
-        border: solid 1px #f00;
+        /* border: solid 1px #f00; */
         padding: 0.5em;
         display: flex;
         flex-direction: column;
         gap: 0.5em;
 
         & .title {
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            flex-direction: row;
-            /* margin-left: 2em; */
-            /* justify-content: space-between; */
-            /* flex: 0 0 auto; */
-            gap: 1em;
-            align-items: center;
-            justify-content: start;
-
-            & h3 {
-                margin: 0;
-            }
+            background-color: #000;
+            color: #fff;
+            padding: 0.25em;
         }
 
         & .content {
-            display: none;
-            margin-left: 2em;
-
             &.active {
                 display: block;
+            }
+        }
+    }
+
+    & .array-component {
+        padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+
+        & .title {
+            background-color: #000;
+            color: #fff;
+            padding: 0.25em;
+        }
+
+        & .items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+
+            & .array-item {
+                border-bottom: solid 1px #000;
             }
         }
     }
@@ -517,7 +526,7 @@ __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ main)
 });
 
-;// ../duct-tape/src/common.ts
+;// ./packages/editor/packages/duct-tape/src/common.ts
 function isObject(value) {
     return (typeof value === 'object' &&
         value !== null &&
@@ -601,7 +610,7 @@ function mergeDeep(target, ...sources) {
     return mergeDeep(target, ...sources);
 }
 
-;// ../duct-tape/src/disposable.ts
+;// ./packages/editor/packages/duct-tape/src/disposable.ts
 
 function createDisposeFn(fn) {
     return fn;
@@ -676,7 +685,7 @@ class DummyDisposable extends Disposable {
     }
 }
 
-;// ../duct-tape/src/to.ts
+;// ./packages/editor/packages/duct-tape/src/to.ts
 /* unused harmony import specifier */ var Value;
 
 function toBoolean(value, defaultValue = false) {
@@ -729,7 +738,7 @@ function to_toString(value, defaultValue = '') {
     return defaultValue;
 }
 
-;// ../duct-tape/src/value.ts
+;// ./packages/editor/packages/duct-tape/src/value.ts
 
 
 
@@ -742,6 +751,9 @@ class value_Value extends Disposable {
         if (test instanceof Function) {
             transform = test;
         }
+        else if (Array.isArray(test)) {
+            transform = (v) => test.includes(v);
+        }
         else {
             transform = (v) => v === test;
         }
@@ -753,8 +765,11 @@ class value_Value extends Disposable {
     }
     notEqual(test, register) {
         let transform;
-        if (typeof test === 'string') {
+        if (typeof test === 'string' || typeof test === 'number' || typeof test === 'boolean') {
             transform = (v) => v !== test;
+        }
+        else if (Array.isArray(test)) {
+            transform = (v) => !test.includes(v);
         }
         else {
             transform = (value) => !test(value);
@@ -1029,48 +1044,84 @@ class ValueLogicObserver extends value_Value {
     }
 }
 
-;// ../duct-tape/src/dom.ts
+;// ./packages/editor/packages/duct-tape/src/dom.ts
 
 
-function create(selector, register) {
-    const dom = DOMNode.create(selector, register);
+// export const SELECTOR_REGEX = /([\w-]+)?(#([\w-]+))?((\.([\w-]+))*)/;
+// export enum DOMNamespace {
+//     HTML = "http://www.w3.org/1999/xhtml",
+//     SVG = "http://www.w3.org/2000/svg"
+// }
+// export type DOMAttrs = {
+//     [key: string]: undefined | string | number | EventListenerOrEventListenerObject;
+// };
+// export type DOMChild = Node | string | ((owner: Element) => Node);
+// create("div", this)
+//     .attr("id", "app")
+//     .class("container")
+//     .append(
+//         create("h1", this).text("Welcome to My App"),
+//         create("button", this)
+//             .text("Click Me")
+//             .on("click", () => alert("Button Clicked!"))
+//     )
+//     .mount(document.body);
+const SVG_TAGS = new Set([
+    "svg", "circle", "rect", "path", "line", "ellipse", "polygon", "polyline", "g", "defs", "symbol", "use", "text", "tspan"
+]);
+function create(selector, owner) {
+    const dom = DOMNode.create(selector, owner);
     return dom;
 }
 class DOMNode extends Disposable {
-    _element;
+    _element = null;
     _events = new Map();
-    _register;
-    static create(selector, register) {
-        const dom = new DOMNode(selector, register);
+    _owner = null;
+    static create(selector, owner) {
+        const dom = new DOMNode(selector, owner);
         return dom;
     }
-    constructor(selector, register) {
+    constructor(selector, owner) {
         super();
-        this._register = register;
-        const match = selector.split(':');
-        if (match.length === 1) {
-            this._element = document.createElement(selector);
-        }
-        else if (match.length === 2) {
-            const namespace = match[0];
-            const tagName = match[1];
-            this._element = document.createElementNS(namespace, tagName);
+        this._owner = owner;
+        if (SVG_TAGS.has(selector)) {
+            this._element = document.createElementNS('http://www.w3.org/2000/svg', selector);
         }
         else {
-            throw new Error('Invalid selector');
+            this._element = document.createElement(selector);
         }
-        if (this._register) {
-            this._register.register(this);
+        if (this._owner) {
+            this._owner.register(this);
         }
+        // const match = selector.split(':');
+        // if (match.length === 1) {
+        //   this._element = document.createElement(selector);
+        // } else if (match.length === 2) {
+        //   const namespace = match[0];
+        //   const tagName = match[1];
+        //   if (namespace === 'svg') {
+        //     this._element = document.createElementNS('http://www.w3.org/2000/svg', tagName) as unknown as SVGElement;
+        //   } if (namespace === 'html') {
+        //     this._element = document.createElementNS(
+        //       'http://www.w3.org/1999/xhtml',
+        //       tagName,
+        //     ) as HTMLElement;
+        //   } else {
+        //     throw new Error('Invalid selector');
+        //   }
+        //   if (this._owner) {
+        //     this._owner.register(this);
+        //   }
+        // }
     }
     dispose() {
         if (this._disposed) {
             return;
         }
         this._element.remove();
-        if (this._register) {
-            this._register.unregister(this);
-            this._register = undefined;
+        if (this._owner) {
+            this._owner.unregister(this);
+            this._owner = null;
         }
         super.dispose();
     }
@@ -1166,7 +1217,10 @@ class DOMNode extends Disposable {
         }
         return this;
     }
-    style(name, value, condition = true) {
+    style(name, value, condition) {
+        if (value === undefined) {
+            return this._element.style.getPropertyValue(name);
+        }
         if (condition instanceof value_Value) {
             this.register(condition.subscribe((cond) => {
                 if (cond) {
@@ -1184,7 +1238,7 @@ class DOMNode extends Disposable {
                 }
             }));
         }
-        else if (condition) {
+        else if (condition === true || condition === undefined) {
             if (value instanceof value_Value) {
                 this.register(value.subscribe((val) => {
                     this._element.style.setProperty(name, val);
@@ -1194,9 +1248,15 @@ class DOMNode extends Disposable {
                 this._element.style.setProperty(name, value);
             }
         }
+        else {
+            this._element.style.removeProperty(name);
+        }
         return this;
     }
     class(className, active = true) {
+        if (className === undefined) {
+            return this;
+        }
         if (active instanceof value_Value) {
             this.register(active.subscribe((val) => {
                 if (val) {
@@ -1235,6 +1295,19 @@ class DOMNode extends Disposable {
                 }
             }
         }
+        return this;
+    }
+    empty() {
+        [...this._disposables].forEach(([key, dispose]) => {
+            if (key instanceof DOMNode) {
+                if (key._owner !== this) {
+                    console.warn(`Cannot dispose child DOMNode that is not owned by this node.`, key);
+                    return;
+                }
+                key.dispose();
+            }
+        });
+        this._element.innerHTML = '';
         return this;
     }
     on(eventType, listener, options) {
@@ -1286,25 +1359,56 @@ class DOMNode extends Disposable {
         return this;
     }
     text(content) {
+        this.empty();
         if (content instanceof value_Value) {
-            const textNode = document.createTextNode('');
-            this._element.appendChild(textNode);
             this.register(content.subscribe((val) => {
-                textNode.textContent = String(val);
+                if (this.element instanceof HTMLElement) {
+                    if (val === null || val === undefined) {
+                        this._element.innerText = '';
+                    }
+                    else {
+                        this._element.innerText = String(val);
+                    }
+                }
             }));
         }
         else {
-            this._element.innerText = String(content);
+            if (this.element instanceof HTMLElement) {
+                this._element.innerText = String(content);
+            }
         }
         return this;
     }
     html(content) {
+        this.empty();
         this._element.innerHTML = content;
+        return this;
+    }
+    display(isVisible) {
+        if (isVisible instanceof value_Value) {
+            this.register(isVisible.subscribe((visible) => {
+                this._element.style.display = visible ? '' : 'none';
+            }));
+        }
+        else {
+            this._element.style.display = isVisible ? '' : 'none';
+        }
+        return this;
+    }
+    visibility(isVisible) {
+        if (isVisible instanceof value_Value) {
+            this.register(isVisible.subscribe((visible) => {
+                this._element.style.visibility = visible ? 'visible' : 'hidden';
+            }));
+        }
+        else {
+            this._element.style.visibility = isVisible ? 'visible' : 'hidden';
+        }
         return this;
     }
     append(...children) {
         for (const child of children) {
-            this._element.appendChild(child.element);
+            child.mount(this);
         }
         return this;
     }
@@ -1317,15 +1421,23 @@ class DOMNode extends Disposable {
         }
         return this;
     }
+    focus(options) {
+        if (this._element instanceof HTMLElement || this._element instanceof SVGElement) {
+            setTimeout(() => {
+                this._element.focus(options);
+            }, 100);
+        }
+        return this;
+    }
     get element() {
         return this._element;
     }
-    get parent() {
-        return this._element.parentElement;
+    get owner() {
+        return this._owner;
     }
 }
 
-;// ../duct-tape/src/emitter.ts
+;// ./packages/editor/packages/duct-tape/src/emitter.ts
 
 class Emitter extends Disposable {
     _emitterHandles;
@@ -1384,7 +1496,7 @@ class Emitter extends Disposable {
 }
 /* harmony default export */ const emitter = ((/* unused pure expression or super */ null && (Emitter)));
 
-;// ../duct-tape/src/utils/console-colors.ts
+;// ./packages/editor/packages/duct-tape/src/utils/console-colors.ts
 /* console-colors.ts
    Minimalna biblioteka do kolorowania logów w konsoli przeglądarki (%c + CSS)
 */
@@ -1546,11 +1658,11 @@ function tagged(ns, opts) {
     return createLogger({ ...(opts ?? {}), namespace: ns });
 }
 
-;// ../duct-tape/src/utils/log.ts
+;// ./packages/editor/packages/duct-tape/src/utils/log.ts
 
 const log = createLogger({ namespace: "DUCT-TAPE", minLevel: "debug" });
 
-;// ../duct-tape/src/app.ts
+;// ./packages/editor/packages/duct-tape/src/app.ts
 
 
 
@@ -1601,6 +1713,7 @@ class App extends Disposable {
     _currentPage;
     pageId = new ValueStoreRaw(null);
     _isFocusPageLocked = false;
+    isFullscreen = new ValueStoreRaw(false);
     static create(parent, store, config, options = {}) {
         return new App(parent, store, config, options);
     }
@@ -1611,16 +1724,28 @@ class App extends Disposable {
         this.config = config;
         this._options = options;
         this._parent = parent;
-        this.appDiv = this.register(create("div").class(options.appClassName ?? []).mount(this._parent));
-        this.appContainer = this.register(create("div").class(options.appContainerClassName ?? []).mount(this.appDiv));
+        this.appDiv = create("div", this).class(options.appClassName ?? [])
+            .mount(this._parent);
+        this.appContainer = create("div", this).class(options.appContainerClassName ?? [])
+            .mount(this.appDiv);
         if (options.backgroundContainerEnabled === true) {
-            this.backgroundContainer = this.register(create("div").class(options.backgroundContainerClassName ?? []).mount(this.appContainer));
+            this.backgroundContainer = create("div", this)
+                .class(options.backgroundContainerClassName ?? [])
+                .mount(this.appContainer);
         }
-        this.pageContainer = this.register(create("div").class(options.pageContainerClassName ?? []).mount(this.appContainer));
+        this.pageContainer = create("div", this).class(options.pageContainerClassName ?? [])
+            .mount(this.appContainer);
         if (options.overflowContainerEnabled === true) {
-            this.overflowContainer = this.register(create("div").class(options.overflowContainerClassName ?? []).mount(this.appContainer));
+            this.overflowContainer = create("div", this).class(options.overflowContainerClassName ?? [])
+                .mount(this.appContainer);
         }
-        this.modalsContainer = this.register(create("div").class(options.modalContainerClassName ?? []).style("display", "none").mount(this.appContainer));
+        this.modalsContainer = create("div", this).class(options.modalContainerClassName ?? [])
+            .style("display", "none")
+            .mount(this.appContainer);
+        document.addEventListener("fullscreenchange", () => {
+            const isFullscreen = !!document.fullscreenElement;
+            this.isFullscreen.set(isFullscreen);
+        });
     }
     dispose() {
         this.removeAllModals();
@@ -1642,18 +1767,17 @@ class App extends Disposable {
         this.appDiv.element.requestFullscreen();
     }
     exitFullscreen() {
-        document.exitFullscreen();
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
     }
     toggleFullscreen() {
-        if (this.isFullscreen) {
+        if (document.fullscreenElement) {
             this.exitFullscreen();
         }
         else {
             this.fullscreen();
         }
-    }
-    get isFullscreen() {
-        return !!document.fullscreenElement;
     }
     get parent() {
         return this._parent;
@@ -1906,14 +2030,14 @@ class App extends Disposable {
     }
 }
 
-;// ../duct-tape/src/page.ts
+;// ./packages/editor/packages/duct-tape/src/page.ts
 
 class Page extends DOMNode {
     _app;
     _store;
     _config;
     constructor(app, store, config) {
-        super("div");
+        super("div", null);
         this._app = app;
         this._store = store;
         this._config = config;
@@ -1938,7 +2062,7 @@ class Page extends DOMNode {
     }
 }
 
-;// ../duct-tape/src/modal.ts
+;// ./packages/editor/packages/duct-tape/src/modal.ts
 
 class Modal extends DOMNode {
     _app;
@@ -1959,6 +2083,10 @@ class Modal extends DOMNode {
                 this.class(options.classNames);
             }
         }
+    }
+    dispose() {
+        this._app.removeModal(this);
+        super.dispose();
     }
     async load() {
         if (this._options?.onAfterLoad) {
@@ -1983,7 +2111,7 @@ class Modal extends DOMNode {
     }
 }
 
-;// ../duct-tape/index.ts
+;// ./packages/editor/packages/duct-tape/index.ts
 
 
 
@@ -2001,7 +2129,7 @@ class Modal extends DOMNode {
 class Widget extends DOMNode {
     _editor;
     constructor(editor) {
-        super("div");
+        super("div", editor);
         this._editor = editor;
     }
 }
@@ -2041,7 +2169,7 @@ class NumberWidget extends Widget {
         this._min = schema.min !== undefined ? schema.min : -Infinity;
         this._max = schema.max !== undefined ? schema.max : Infinity;
         const label = schema.label || key;
-        this._input = new DOMNode("input")
+        this._input = create("input", this)
             .attr("type", "number")
             .style("display", "block")
             .style("marginBottom", "8px")
@@ -2081,11 +2209,11 @@ class NumberWidget extends Widget {
             this._data[key] = value;
             this._editor.saveState();
         });
-        const labelNode = new DOMNode("label")
+        const labelNode = create("label", this)
             .text(label)
             .style("display", "block")
             .style("marginBottom", "4px");
-        this._messageNode = new DOMNode("div")
+        this._messageNode = create("div", this)
             .class("message")
             .style("color", "red")
             .style("fontSize", "12px")
@@ -2108,6 +2236,16 @@ class ArrayWidget extends Widget {
         this._schema = schema;
         this._data = data;
         this.class("array-component");
+        if (this._schema.title || this._schema.label) {
+            const titleText = this._schema.title ?? this._schema.label ?? key;
+            if (this._schema.label) {
+                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
+            }
+            create("div", this)
+                .class("title")
+                .text(titleText)
+                .mount(this);
+        }
         this.append(this._itemsContainer = create("div", this)
             .class("items-container"));
         this.build();
@@ -2117,7 +2255,7 @@ class ArrayWidget extends Widget {
             return;
         }
         this._data.forEach((data, index) => {
-            const item = create("div").class("array-item");
+            const item = create("div", this).class("array-item");
             this._itemsContainer.append(item);
             if (this._schema.item.type === "object") {
                 item.append(new ObjectWidget(this._editor, `Element #${index + 1}`, this._schema.item, data));
@@ -2193,7 +2331,7 @@ class BooleanWidget extends Widget {
         this._data = data;
         this.class("boolean-component");
         const label = schema.label || key;
-        this._checkbox = new DOMNode("input")
+        this._checkbox = create("input", this)
             .attr("type", "checkbox")
             .style("marginRight", "8px")
             .property("checked", !!this._data[key])
@@ -2201,10 +2339,10 @@ class BooleanWidget extends Widget {
             this._data[key] = this._checkbox.property("checked");
             this._editor.saveState();
         });
-        const labelNode = new DOMNode("label")
+        const labelNode = create("label", this)
             .style("cursor", "pointer")
             .append(this._checkbox)
-            .append(new DOMNode("span").text(label));
+            .append(create("span", this).text(label));
         this.append(labelNode);
     }
 }
@@ -2223,10 +2361,10 @@ class RefWidget extends Widget {
         this._data = data;
         this.class("string-component");
         const label = this._schema.label || key;
-        this._ref = new DOMNode("div")
+        this._ref = create("div", this)
             .style("display", "block")
             .style("marginBottom", "8px");
-        const labelNode = new DOMNode("label")
+        const labelNode = create("label", this)
             .text(label)
             .style("display", "block")
             .style("marginBottom", "4px");
@@ -2357,33 +2495,29 @@ class RefWidget extends Widget {
 class ObjectWidget extends Widget {
     _schema;
     _data;
-    _title;
     _content;
-    _active = new ValueStore(false);
     constructor(editor, key, schema, data) {
         super(editor);
         this._schema = schema;
         this._data = data;
         this.class("object-component");
-        this.append(this._title = create("a", this)
-            .class("title")
-            .class("active", this._active)
-            // .text(this._data.label || key)
-            .on("click", () => {
-            this._active.set(!this._active.get());
-        })
-            .append(create("i", this)
-            .class("dropdown")
-            .class("icon"), create("h3", this)
-            .text(this._schema.label || key)), this._content = create("div", this)
-            .class("content")
-            .class("active", this._active));
+        if (this._schema.title || this._schema.label) {
+            const titleText = this._schema.title ?? this._schema.label ?? key;
+            if (this._schema.label) {
+                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
+            }
+            create("div", this)
+                .class("title")
+                .text(titleText)
+                .mount(this);
+        }
+        this.append(this._content = create("div", this)
+            .class("content"));
         this.build();
     }
     dispose() {
         if (this._disposed)
             return;
-        this._active.dispose();
         super.dispose();
     }
     build() {
@@ -2458,7 +2592,7 @@ class Editor extends Disposable {
                     this._types = schema.definitions;
                     this.replaceDefinitions(propertiesSchema);
                 }
-                this._rootWidget = this.register(new ObjectWidget(this, "Root", propertiesSchema, this._data).mount(this._container));
+                this._rootWidget = new ObjectWidget(this, "Root", propertiesSchema, this._data).mount(this._container);
                 resolve();
             }).catch((error) => {
                 console.error("Error loading schema:", error);
