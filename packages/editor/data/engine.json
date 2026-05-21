@@ -5,7 +5,7 @@
     "editor": {
         "entry": "editor.js",
         "defaultData": {
-            "options": {
+            "settings": {
                 "enableHints": true,
                 "enableTimer": false,
                 "playTime": 120,

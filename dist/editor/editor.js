@@ -2,133 +2,97 @@ define(() => { return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 56
-(module, __unused_webpack_exports, __webpack_require__) {
+/***/ 256
+(module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(758);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(935);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
 
 
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
+    & .dropdown.icon {
+        width: 2em;
+        height: 2em;
+        background-color: turquoise;
+        transform: rotate(-90deg);
 
-/* istanbul ignore next  */
-function setAttributesWithoutAttributes(styleElement) {
-  var nonce =  true ? __webpack_require__.nc : 0;
-  if (nonce) {
-    styleElement.setAttribute("nonce", nonce);
-  }
+        &::before {
+            content: "▼";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    & .active > .dropdown.icon {
+        transform: rotate(0deg);
+    }
+
+    & .content {
+        background-color: #eee;
+    }
+
+    & .object-component {
+        /* border: solid 1px #f00; */
+        padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+
+        & .title {
+            background-color: #000;
+            color: #fff;
+            padding: 0.25em;
+        }
+
+        & .content {
+            &.active {
+                display: block;
+            }
+        }
+    }
+
+    & .array-component {
+        padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+
+        & .title {
+            background-color: #000;
+            color: #fff;
+            padding: 0.25em;
+        }
+
+        & .items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+
+            & .array-item {
+                border-bottom: solid 1px #000;
+            }
+        }
+    }
 }
-module.exports = setAttributesWithoutAttributes;
+`, ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
 
 /***/ },
 
-/***/ 72
-(module) {
-
-
-
-var stylesInDOM = [];
-function getIndexByIdentifier(identifier) {
-  var result = -1;
-  for (var i = 0; i < stylesInDOM.length; i++) {
-    if (stylesInDOM[i].identifier === identifier) {
-      result = i;
-      break;
-    }
-  }
-  return result;
-}
-function modulesToDom(list, options) {
-  var idCountMap = {};
-  var identifiers = [];
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i];
-    var id = options.base ? item[0] + options.base : item[0];
-    var count = idCountMap[id] || 0;
-    var identifier = "".concat(id, " ").concat(count);
-    idCountMap[id] = count + 1;
-    var indexByIdentifier = getIndexByIdentifier(identifier);
-    var obj = {
-      css: item[1],
-      media: item[2],
-      sourceMap: item[3],
-      supports: item[4],
-      layer: item[5]
-    };
-    if (indexByIdentifier !== -1) {
-      stylesInDOM[indexByIdentifier].references++;
-      stylesInDOM[indexByIdentifier].updater(obj);
-    } else {
-      var updater = addElementStyle(obj, options);
-      options.byIndex = i;
-      stylesInDOM.splice(i, 0, {
-        identifier: identifier,
-        updater: updater,
-        references: 1
-      });
-    }
-    identifiers.push(identifier);
-  }
-  return identifiers;
-}
-function addElementStyle(obj, options) {
-  var api = options.domAPI(options);
-  api.update(obj);
-  var updater = function updater(newObj) {
-    if (newObj) {
-      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
-        return;
-      }
-      api.update(obj = newObj);
-    } else {
-      api.remove();
-    }
-  };
-  return updater;
-}
-module.exports = function (list, options) {
-  options = options || {};
-  list = list || [];
-  var lastIdentifiers = modulesToDom(list, options);
-  return function update(newList) {
-    newList = newList || [];
-    for (var i = 0; i < lastIdentifiers.length; i++) {
-      var identifier = lastIdentifiers[i];
-      var index = getIndexByIdentifier(identifier);
-      stylesInDOM[index].references--;
-    }
-    var newLastIdentifiers = modulesToDom(newList, options);
-    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
-      var _identifier = lastIdentifiers[_i];
-      var _index = getIndexByIdentifier(_identifier);
-      if (stylesInDOM[_index].references === 0) {
-        stylesInDOM[_index].updater();
-        stylesInDOM.splice(_index, 1);
-      }
-    }
-    lastIdentifiers = newLastIdentifiers;
-  };
-};
-
-/***/ },
-
-/***/ 113
-(module) {
-
-
-
-/* istanbul ignore next  */
-function styleTagTransform(css, styleElement) {
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css;
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild);
-    }
-    styleElement.appendChild(document.createTextNode(css));
-  }
-}
-module.exports = styleTagTransform;
-
-/***/ },
-
-/***/ 314
+/***/ 935
 (module) {
 
 
@@ -219,113 +183,7 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ },
 
-/***/ 425
-(module, __webpack_exports__, __webpack_require__) {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(601);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(314);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
-// Imports
-
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
-    & .dropdown.icon {
-        width: 2em;
-        height: 2em;
-        background-color: turquoise;
-        transform: rotate(-90deg);
-
-        &::before {
-            content: "▼";
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    & .active > .dropdown.icon {
-        transform: rotate(0deg);
-    }
-
-    & .content {
-        background-color: #eee;
-    }
-
-    & .object-component {
-        /* border: solid 1px #f00; */
-        padding: 0.5em;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
-
-        & .title {
-            background-color: #000;
-            color: #fff;
-            padding: 0.25em;
-        }
-
-        & .content {
-            &.active {
-                display: block;
-            }
-        }
-    }
-
-    & .array-component {
-        padding: 0.5em;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
-
-        & .title {
-            background-color: #000;
-            color: #fff;
-            padding: 0.25em;
-        }
-
-        & .items-container {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5em;
-
-            & .array-item {
-                border-bottom: solid 1px #000;
-            }
-        }
-    }
-}
-`, ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ },
-
-/***/ 540
-(module) {
-
-
-
-/* istanbul ignore next  */
-function insertStyleElement(options) {
-  var element = document.createElement("style");
-  options.setAttributes(element, options.attributes);
-  options.insert(element, options.options);
-  return element;
-}
-module.exports = insertStyleElement;
-
-/***/ },
-
-/***/ 601
+/***/ 758
 (module) {
 
 
@@ -336,7 +194,97 @@ module.exports = function (i) {
 
 /***/ },
 
-/***/ 659
+/***/ 591
+(module) {
+
+
+
+var stylesInDOM = [];
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+  for (var i = 0; i < stylesInDOM.length; i++) {
+    if (stylesInDOM[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+  return result;
+}
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var indexByIdentifier = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3],
+      supports: item[4],
+      layer: item[5]
+    };
+    if (indexByIdentifier !== -1) {
+      stylesInDOM[indexByIdentifier].references++;
+      stylesInDOM[indexByIdentifier].updater(obj);
+    } else {
+      var updater = addElementStyle(obj, options);
+      options.byIndex = i;
+      stylesInDOM.splice(i, 0, {
+        identifier: identifier,
+        updater: updater,
+        references: 1
+      });
+    }
+    identifiers.push(identifier);
+  }
+  return identifiers;
+}
+function addElementStyle(obj, options) {
+  var api = options.domAPI(options);
+  api.update(obj);
+  var updater = function updater(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
+        return;
+      }
+      api.update(obj = newObj);
+    } else {
+      api.remove();
+    }
+  };
+  return updater;
+}
+module.exports = function (list, options) {
+  options = options || {};
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDOM[index].references--;
+    }
+    var newLastIdentifiers = modulesToDom(newList, options);
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+      var _index = getIndexByIdentifier(_identifier);
+      if (stylesInDOM[_index].references === 0) {
+        stylesInDOM[_index].updater();
+        stylesInDOM.splice(_index, 1);
+      }
+    }
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ },
+
+/***/ 128
 (module) {
 
 
@@ -376,7 +324,39 @@ module.exports = insertBySelector;
 
 /***/ },
 
-/***/ 825
+/***/ 51
+(module) {
+
+
+
+/* istanbul ignore next  */
+function insertStyleElement(options) {
+  var element = document.createElement("style");
+  options.setAttributes(element, options.attributes);
+  options.insert(element, options.options);
+  return element;
+}
+module.exports = insertStyleElement;
+
+/***/ },
+
+/***/ 855
+(module, __unused_webpack_exports, __webpack_require__) {
+
+
+
+/* istanbul ignore next  */
+function setAttributesWithoutAttributes(styleElement) {
+  var nonce =  true ? __webpack_require__.nc : 0;
+  if (nonce) {
+    styleElement.setAttribute("nonce", nonce);
+  }
+}
+module.exports = setAttributesWithoutAttributes;
+
+/***/ },
+
+/***/ 740
 (module) {
 
 
@@ -440,6 +420,26 @@ function domAPI(options) {
   };
 }
 module.exports = domAPI;
+
+/***/ },
+
+/***/ 656
+(module) {
+
+
+
+/* istanbul ignore next  */
+function styleTagTransform(css, styleElement) {
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css;
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild);
+    }
+    styleElement.appendChild(document.createTextNode(css));
+  }
+}
+module.exports = styleTagTransform;
 
 /***/ }
 
@@ -686,6 +686,7 @@ class DummyDisposable extends Disposable {
 }
 
 ;// ./packages/editor/packages/duct-tape/src/to.ts
+/* unused harmony import specifier */ var Value;
 
 function toBoolean(value, defaultValue = false) {
     if (value instanceof value_Value) {
@@ -1420,6 +1421,14 @@ class DOMNode extends Disposable {
         }
         return this;
     }
+    focus(options) {
+        if (this._element instanceof HTMLElement || this._element instanceof SVGElement) {
+            setTimeout(() => {
+                this._element.focus(options);
+            }, 100);
+        }
+        return this;
+    }
     get element() {
         return this._element;
     }
@@ -1715,16 +1724,24 @@ class App extends Disposable {
         this.config = config;
         this._options = options;
         this._parent = parent;
-        this.appDiv = this.register(create("div", this).class(options.appClassName ?? []).mount(this._parent));
-        this.appContainer = this.register(create("div", this).class(options.appContainerClassName ?? []).mount(this.appDiv));
+        this.appDiv = create("div", this).class(options.appClassName ?? [])
+            .mount(this._parent);
+        this.appContainer = create("div", this).class(options.appContainerClassName ?? [])
+            .mount(this.appDiv);
         if (options.backgroundContainerEnabled === true) {
-            this.backgroundContainer = this.register(create("div", this).class(options.backgroundContainerClassName ?? []).mount(this.appContainer));
+            this.backgroundContainer = create("div", this)
+                .class(options.backgroundContainerClassName ?? [])
+                .mount(this.appContainer);
         }
-        this.pageContainer = this.register(create("div", this).class(options.pageContainerClassName ?? []).mount(this.appContainer));
+        this.pageContainer = create("div", this).class(options.pageContainerClassName ?? [])
+            .mount(this.appContainer);
         if (options.overflowContainerEnabled === true) {
-            this.overflowContainer = this.register(create("div", this).class(options.overflowContainerClassName ?? []).mount(this.appContainer));
+            this.overflowContainer = create("div", this).class(options.overflowContainerClassName ?? [])
+                .mount(this.appContainer);
         }
-        this.modalsContainer = this.register(create("div", this).class(options.modalContainerClassName ?? []).style("display", "none").mount(this.appContainer));
+        this.modalsContainer = create("div", this).class(options.modalContainerClassName ?? [])
+            .style("display", "none")
+            .mount(this.appContainer);
         document.addEventListener("fullscreenchange", () => {
             const isFullscreen = !!document.fullscreenElement;
             this.isFullscreen.set(isFullscreen);
@@ -2604,26 +2621,26 @@ class Editor extends Disposable {
     }
 }
 
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js
-var injectStylesIntoStyleTag = __webpack_require__(72);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js
+var injectStylesIntoStyleTag = __webpack_require__(591);
 var injectStylesIntoStyleTag_default = /*#__PURE__*/__webpack_require__.n(injectStylesIntoStyleTag);
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/styleDomAPI.js
-var styleDomAPI = __webpack_require__(825);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/styleDomAPI.js
+var styleDomAPI = __webpack_require__(740);
 var styleDomAPI_default = /*#__PURE__*/__webpack_require__.n(styleDomAPI);
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/insertBySelector.js
-var insertBySelector = __webpack_require__(659);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/insertBySelector.js
+var insertBySelector = __webpack_require__(128);
 var insertBySelector_default = /*#__PURE__*/__webpack_require__.n(insertBySelector);
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js
-var setAttributesWithoutAttributes = __webpack_require__(56);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js
+var setAttributesWithoutAttributes = __webpack_require__(855);
 var setAttributesWithoutAttributes_default = /*#__PURE__*/__webpack_require__.n(setAttributesWithoutAttributes);
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/insertStyleElement.js
-var insertStyleElement = __webpack_require__(540);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/insertStyleElement.js
+var insertStyleElement = __webpack_require__(51);
 var insertStyleElement_default = /*#__PURE__*/__webpack_require__.n(insertStyleElement);
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/styleTagTransform.js
-var styleTagTransform = __webpack_require__(113);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/styleTagTransform.js
+var styleTagTransform = __webpack_require__(656);
 var styleTagTransform_default = /*#__PURE__*/__webpack_require__.n(styleTagTransform);
-// EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./packages/editor/src/styles/styles.css
-var styles = __webpack_require__(425);
+// EXTERNAL MODULE: ../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./packages/editor/src/styles/styles.css
+var styles = __webpack_require__(256);
 ;// ./packages/editor/src/styles/styles.css
 
       

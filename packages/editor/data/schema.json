@@ -7,9 +7,9 @@
         }
     },
     "properties": {
-        "options": {
+        "settings": {
             "type": "object",
-            "title": "Opcje",
+            "title": "Ustawienia gry",
             "properties": {
                 "enableHints": {
                     "type": "boolean",
@@ -17,7 +17,7 @@
                 },
                 "enableTimer": {
                     "type": "boolean",
-                    "label": "Włącz timer"
+                    "label": "Ograniczenie czasowe"
                 },
                 "playTime": {
                     "type": "number",
