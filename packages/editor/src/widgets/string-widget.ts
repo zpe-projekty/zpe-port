@@ -22,6 +22,7 @@ export class StringWidget extends Widget {
                 .style("marginBottom", "8px")
                 .on("change", () => {
                     this._data[key] = this._input.property("value");
+                    this._editor.saveState();
                 });
 
             for (const [enumKey, enumLabel] of Object.entries(schema.enum)) {
