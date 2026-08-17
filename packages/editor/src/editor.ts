@@ -26,6 +26,7 @@ export interface SchemaElementBase {
 export interface SchemaElementString extends SchemaElementBase {
     type: "string";
     enum?: Record<string, string>;
+    default?: string;
 }
 
 export interface SchemaElementNumber extends SchemaElementBase {
@@ -33,10 +34,12 @@ export interface SchemaElementNumber extends SchemaElementBase {
     format?: "integer" | "float" | "number";
     min?: number;
     max?: number;
+    default?: number;
 }
 
 export interface SchemaElementBoolean extends SchemaElementBase {
     type: "boolean";
+    default?: boolean;
 }
 
 export interface SchemaElementRef extends SchemaElementBase {
@@ -52,7 +55,13 @@ export interface SchemaElementObject extends SchemaElementBase {
 export interface SchemaElementArray extends SchemaElementBase {
     type: "array";
     item: SchemaElement;
+    // Pozwala na zmainę kolejności elementów w tablicy, jeśli jest ustawione na true
+    reorderable?: boolean;
+    // Pozwala na dodawanie i usuwanie elementów do tablicy, jeśli jest ustawione na true
+    editable?: boolean;
 }
+
+export const UseDefaultData: Record<string, boolean> = { __useDefaultData: true };
 
 type Data = Record<string, any>;
 
@@ -102,6 +111,7 @@ export class Editor extends Disposable {
                 }
 
                 this._rootWidget = new ObjectWidget(this, "Root", propertiesSchema, this._data).mount(this._container);
+                this._rootWidget.class("root-widget");
 
                 resolve();
             }).catch((error) => {
@@ -109,6 +119,10 @@ export class Editor extends Disposable {
                 resolve();
             });
         });
+    }
+
+    getData(): Data {
+        return this._rootWidget ? this._rootWidget.getValue() : {};
     }
 
     replaceDefinitions(schema: SchemaElementObject): void {

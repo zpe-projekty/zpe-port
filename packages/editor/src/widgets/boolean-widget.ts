@@ -4,32 +4,36 @@ import { Widget } from "./widget";
 
 export class BooleanWidget extends Widget {
     private _schema: SchemaElementBoolean;
-    private _data: Record<string, any>;
     private _checkbox: DOMNode<"input">;
+    private _value: boolean;
 
-    constructor(editor: Editor, key: string, schema: SchemaElementBoolean, data: Record<string, any>) {
-        super(editor);
+    constructor(editor: Editor, key: string, schema: SchemaElementBoolean, value: boolean) {
+        super(editor, key);
 
+        this._value = value !== undefined ? value : schema.default ?? false;
         this._editor = editor;
         this._schema = schema;
-        this._data = data;
-        this.class("boolean-component");
+        this.class("boolean-widget");
 
         const label = schema.label || key;
-        this._checkbox = create("input", this)
+        this._checkbox = create(this, "input")
             .attr("type", "checkbox")
             .style("marginRight", "8px")
-            .property("checked", !!this._data[key])
+            .property("checked", this._value)
             .on("input", () => {
-                this._data[key] = this._checkbox.property("checked");
+                this._value = Boolean(this._checkbox.property("checked")) || false;
                 this._editor.saveState();
             });
 
-        const labelNode = create("label", this)
+        const labelNode = create(this, "label")
             .style("cursor", "pointer")
             .append(this._checkbox)
-            .append(create("span", this).text(label));
+            .append(create(this, "span").text(label));
 
         this.append(labelNode);
+    }
+
+    getValue(): any {
+        return this._value;
     }
 }

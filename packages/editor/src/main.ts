@@ -37,7 +37,7 @@ export interface ExerciseEditorApi {
 
 export function create() {
     let _api: ExerciseEditorApi | null = null;
-    let _data: State = {};
+    // let _data: State = {};
     let editor: Editor | null = null;
 
     return {
@@ -65,14 +65,13 @@ export function create() {
 
         setState(stateData: State) {
             if (editor) {
-                _data = stateData;
-                editor.run(_data);
+                editor.run(stateData);
             } else {
                 console.warn("Editor instance is not initialized yet.");
             }
         },
         getState(): State {
-            return _data;
+            return editor ? editor.getData() : {};
         }
     }
 }

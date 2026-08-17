@@ -2,16 +2,15 @@
     "include": [
         "**/*",
         "emulator/**/*",
-        "packages/duct-tape/**/*",
+        "packages/duct-tape/**/*"
     ],
     "compilerOptions": {
         "target": "esnext",
-        "module": "node16",
+        "module": "esnext",
         "declaration": false,
         "sourceMap": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
-        "rootDir": ".",
         "outDir": "./build",
         "rootDirs": [
             "./src",

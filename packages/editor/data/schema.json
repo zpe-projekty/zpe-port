@@ -7,9 +7,9 @@
         }
     },
     "properties": {
-        "settings": {
+        "options": {
             "type": "object",
-            "title": "Ustawienia gry",
+            "title": "Opcje",
             "properties": {
                 "enableHints": {
                     "type": "boolean",
@@ -17,16 +17,16 @@
                 },
                 "enableTimer": {
                     "type": "boolean",
-                    "label": "Ograniczenie czasowe"
+                    "label": "Włącz timer"
                 },
-                "playTime": {
+                "_playTime": {
                     "type": "number",
                     "format": "integer",
                     "min": 1,
                     "max": 10000,
                     "label": "Całkowity czas gry (w minutach)"
                 },
-                "numberOfRebusesToSolve": {
+                "_numberOfRebusesToSolve": {
                     "type": "number",
                     "format": "integer",
                     "min": 1,
@@ -52,6 +52,8 @@
         "rebuses": {
             "type": "array",
             "title": "Rebusy",
+            "reorderable": true,
+            "editable": true,
             "item": {
                 "type": "object",
                 "properties": {
