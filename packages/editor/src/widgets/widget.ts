@@ -1,4 +1,4 @@
-import { DOMNode } from "@/duct-tape";
+import { create, DOMNode } from "@/duct-tape";
 import { Editor } from "~/editor";
 
 export abstract class Widget extends DOMNode<"div"> {

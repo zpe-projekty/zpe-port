@@ -1,11 +1,12 @@
 import { create, DOMNode } from "@/duct-tape";
 import { Editor, SchemaElementString } from "~/editor";
 import { Widget } from "./widget";
+import { createHelpButton } from "~/components/help";
 
 export class StringWidget extends Widget {
     private _schema: SchemaElementString;
     private _value: string;
-    private _input: DOMNode<"input"> | DOMNode<"select">;
+    private _input: DOMNode<"input"> | DOMNode<"select"> | DOMNode<"textarea">;
 
     constructor(editor: Editor, key: string, schema: SchemaElementString, value: string) {
         super(editor, key);
@@ -16,10 +17,23 @@ export class StringWidget extends Widget {
 
         const label = schema.label || key;
 
+        const labelNode = create(this, "label")
+            .text(label)
+            .mount(this)
+            ;
+
+        if (schema.help || schema.helpFile) {
+            createHelpButton(this, this._editor, {
+                content: schema.help,
+                helpFile: schema.helpFile,
+            })
+                .mount(labelNode);
+        }
+
         if (schema.enum) {
             this._input = create(this, "select")
-                .style("display", "block")
-                .style("marginBottom", "8px")
+                .class("input-select")
+                .mount(this)
                 .on("change", () => {
                     this._value = this._input.property("value") || "";
                     this._editor.saveState();
@@ -35,25 +49,31 @@ export class StringWidget extends Widget {
                 this._input.append(option);
             }
         } else {
-
-            this._input = create(this, "input")
-                .attr("type", "text")
-                .style("display", "block")
-                .style("marginBottom", "8px")
-                .property("value", this._value)
-                .on("input", () => {
-                    this._value = this._input.property("value") || "";
-                    this._editor.saveState();
-                });
+            if (schema.multiline) {
+                this._input = create(this, "textarea")
+                    .class("input-textarea")
+                    .attr("rows", typeof schema.multiline === "number" ? schema.multiline : 2)
+                    .property("value", this._value)
+                    .mount(this)
+                    .on("input", () => {
+                        this._value = this._input.property("value") || "";
+                        this._editor.saveState();
+                    });
+            } else {
+                this._input = create(this, "input")
+                    .attr("type", "text")
+                    .class("input-text")
+                    .property("value", this._value)
+                    .mount(this)
+                    .on("input", () => {
+                        this._value = this._input.property("value") || "";
+                        this._editor.saveState();
+                    });
+            }
         }
 
-        const labelNode = create(this, "label")
-            .text(label)
-            .style("display", "block")
-            .style("marginBottom", "4px");
-
-        this.append(labelNode);
-        this.append(this._input);
+        // this.append(labelNode);
+        // this.append(this._input);
     }
 
     getValue(): any {

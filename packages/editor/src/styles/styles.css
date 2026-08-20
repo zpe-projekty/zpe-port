@@ -3,9 +3,9 @@
     font-size: 1rem;
 
     & button {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        height: 1.5rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        height: 2rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -15,11 +15,90 @@
         gap: 0.3rem;
         border-radius: 0.25rem;
         cursor: pointer;
+
+        &:hover {
+            background-color: #005a9e;
+        }
+        &:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 0.25rem;
+        border: solid 1px #aaa;
+        border-radius: 0.25rem;
     }
 
     label {
         font-size: 0.75rem;
         font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        line-height: 1.5rem;
+    }
+
+    & dialog {
+        position: fixed;
+        max-width: clamp(20rem, 80%, 40rem);
+        max-height: clamp(10rem, 80%, 30rem);
+        background-color: #fff;
+        border-radius: 0.25rem;
+        padding: 0;
+        border: 0;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        &[open] {
+            display: flex;
+        }
+
+        & .help-dialog-content {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            overflow: auto;
+            flex: auto;
+        }
+
+        & .help-dialog-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        & .help-dialog-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        & .help-dialog-actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+            gap: 0.5rem;
+            border-top: solid 1px #aaa;
+            background-color: #f0f0f0;
+        }
+
+        & .help-dialog-close-button {
+            width: fit-content;
+        }
+
+        &::backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
     }
 
     & .dropdown.icon {
@@ -46,16 +125,15 @@
         /* background-color: #eee; */
     }
 
+    & .id-widget {
+        display: none;
+    }
+
     & .boolean-widget {
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 0.5rem;
-
-        & label {
-            font-size: 1rem;
-            font-weight: normal;
-        }
 
         & .checkbox {
             width: 1rem;
@@ -188,6 +266,103 @@
                     }
                 }
             }
+        }
+    }
+
+    & .string-widget {
+        & .input-text {
+        }
+    }
+
+    & button.help-button {
+        width: 1rem;
+        height: 1rem;
+        padding: 0;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::before {
+            content: "?";
+            font-size: 0.75rem;
+        }
+    }
+
+    & .message {
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        font-size: 0.9rem;
+
+        &.text {
+            background-color: #f0f0f0;
+            color: #000;
+        }
+
+        &.info {
+            background-color: #d9edf7;
+            color: #31708f;
+            border: solid 1px #bce8f1;
+            padding: 0.5rem;
+        }
+
+        &.warning {
+            background-color: #fcf8e3;
+            color: #8a6d3b;
+            border: solid 1px #faebcc;
+            padding: 0.5rem;
+        }
+    }
+
+    & .formatted-text {
+        padding: 0.25rem;
+        font-size: 0.9rem;
+
+        & * {
+            margin: 0;
+            padding: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        & h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        & h2 {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        & h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        & p {
+            font-size: 1rem;
+        }
+
+        & strong {
+            font-weight: bold;
+        }
+
+        & em {
+            font-style: italic;
+        }
+
+        & a {
+            text-decoration: underline;
+        }
+
+        & ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+
+        & ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
         }
     }
 

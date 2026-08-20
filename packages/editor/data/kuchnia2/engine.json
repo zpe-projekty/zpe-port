@@ -48,7 +48,13 @@
                 "bowl_fit": true,
                 "burger": true,
                 "sushi": true
-            }
+            },
+            "timerSeconds": 300,
+            "allowTimerDisable": true,
+            "allowStudentRecipes": false,
+            "showCalories": true,
+            "showHistoricalInfo": true,
+            "requireAllIngredients": true
         },
         "editorIcon": "editor-icon.svg"
     }

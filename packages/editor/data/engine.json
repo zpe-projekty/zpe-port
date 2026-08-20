@@ -5,34 +5,55 @@
     "editor": {
         "entry": "editor.js",
         "defaultData": {
-            "playTime": 120,
-            "rebuses": {
+            "options": {
+                "enableHints": true,
+                "enableTimer": false,
+                "playTime": 120,
                 "numberOfRebusesToSolve": 5,
                 "mode": "medium",
                 "timeLimitPerRebus": 120,
-                "rebuses": [
-                    { "id": "rebus1", "enabled": true, "style": "classic" },
-                    { "id": "rebus2", "enabled": true, "style": "modern" },
-                    { "id": "rebus3", "enabled": false, "style": "retro" },
-                    { "id": "rebus4", "enabled": true, "style": "classic" },
-                    { "id": "rebus5", "enabled": false, "style": "modern" }
-                ]
-            }
-        },
-        "demoData": {
-            "playTime": 120,
-            "rebuses": {
-                "numberOfRebusesToSolve": 5,
-                "mode": "medium",
-                "timeLimitPerRebus": 120,
-                "rebuses": [
-                    { "id": "rebus1", "enabled": true, "style": "classic" },
-                    { "id": "rebus2", "enabled": true, "style": "modern" },
-                    { "id": "rebus3", "enabled": false, "style": "retro" },
-                    { "id": "rebus4", "enabled": true, "style": "classic" },
-                    { "id": "rebus5", "enabled": false, "style": "modern" }
-                ]
-            }
+                "testString": "Testowy string",
+                "testStringMultiline": "Hello"
+            },
+            "rebuses": [
+                {
+                    "id": "rebus1",
+                    "enabled": true,
+                    "style": "classic"
+                },
+                {
+                    "id": "rebus2",
+                    "enabled": true,
+                    "style": "modern"
+                },
+                {
+                    "id": "rebus3",
+                    "enabled": false,
+                    "style": "retro"
+                },
+                {
+                    "id": "rebus4",
+                    "enabled": true,
+                    "style": "classic"
+                },
+                {
+                    "id": "rebus5",
+                    "enabled": false,
+                    "style": "modern"
+                }
+            ],
+            "questions": [
+                {
+                    "id": "question1",
+                    "enabled": true,
+                    "text": "What is the capital of France?"
+                },
+                {
+                    "id": "question2",
+                    "enabled": false,
+                    "text": "What is 2 + 2?"
+                }
+            ]
         }
     }
 }

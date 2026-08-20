@@ -159,19 +159,12 @@ export class ArrayWidget extends Widget {
                     }
 
                     event.preventDefault();
-                    console.log("Drag over:", key);
                 })
                 .on("drop", (event) => {
                     event.preventDefault();
                     this.updateItemOrder();
                     this._editor.saveState();
                 });
-
-            // item.append(
-            //     create(item, "div")
-            //         .text(key)
-            // );
-
         }
 
         const itemIndex = create(item, "div")

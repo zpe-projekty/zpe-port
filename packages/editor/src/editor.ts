@@ -14,6 +14,8 @@ export type SchemaElement =
     | SchemaElementNumber
     | SchemaElementBoolean
     | SchemaElementRef
+    | SchemaElementId
+    | SchemaElementMessage
     ;
 
 export interface SchemaElementBase {
@@ -21,11 +23,17 @@ export interface SchemaElementBase {
     label?: string;
     title?: string;
     help?: string;
+    helpFile?: string;
+}
+
+export interface SchemaElementId extends SchemaElementBase {
+    type: "id";
 }
 
 export interface SchemaElementString extends SchemaElementBase {
     type: "string";
     enum?: Record<string, string>;
+    multiline: number;
     default?: string;
 }
 
@@ -52,10 +60,16 @@ export interface SchemaElementObject extends SchemaElementBase {
     properties: Record<string, SchemaElement>;
 }
 
+export interface SchemaElementMessage extends SchemaElementBase {
+    type: "message";
+    format?: "text" | "info" | "warning";
+    message: string;
+}
+
 export interface SchemaElementArray extends SchemaElementBase {
     type: "array";
     item: SchemaElement;
-    // Pozwala na zmainę kolejności elementów w tablicy, jeśli jest ustawione na true
+    // Pozwala na zmianę kolejności elementów w tablicy, jeśli jest ustawione na true
     reorderable?: boolean;
     // Pozwala na dodawanie i usuwanie elementów do tablicy, jeśli jest ustawione na true
     editable?: boolean;
@@ -82,6 +96,17 @@ export class Editor extends Disposable {
 
     get api(): ExerciseEditorApi {
         return this._api;
+    }
+
+    get container(): HTMLElement {
+        return this._container;
+    }
+
+    pathResolver(path: string): string {
+        if (path.startsWith("http://") || path.startsWith("https://")) {
+            return path;
+        }
+        return this._api.dataPath(path);
     }
 
     saveState(): void {

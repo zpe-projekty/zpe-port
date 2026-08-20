@@ -1,11 +1,14 @@
 import { create, DOMNode, ValueStore } from "@/duct-tape";
-import { Editor, SchemaElementBoolean, SchemaElementNumber, SchemaElementObject, SchemaElementString, UseDefaultData } from "~/editor";
+import { Editor, SchemaElement, SchemaElementBoolean, SchemaElementNumber, SchemaElementObject, SchemaElementString, UseDefaultData } from "~/editor";
 import { NumberWidget } from "./number-widget";
 import { ArrayWidget } from "./array-widget";
 import { StringWidget } from "./string-widget";
 import { BooleanWidget } from "./boolean-widget";
 import { RefWidget } from "./ref-widget";
 import { Widget } from "./widget";
+import { IdWidget } from "./id-widget";
+import { addId, createUniqueId } from "~/utils/id";
+import { MD2HTML } from "~/utils/md-to-html";
 
 export class ObjectWidget extends Widget {
     private _schema: SchemaElementObject;
@@ -48,14 +51,10 @@ export class ObjectWidget extends Widget {
 
     build(): void {
         for (const [key, prop] of Object.entries(this._schema.properties)) {
-            if (this._data !== UseDefaultData && this._data[key] === undefined && prop.type !== "ref") {
-                console.warn(`Data for key '${key}' is undefined.`);
-                continue;
-            }
-
-            if (prop.private === true) {
-                continue;
-            }
+            // if (this._data !== UseDefaultData && this._data[key] === undefined && prop.type !== "ref") {
+            //     console.warn(`Data for key '${key}' is undefined.`);
+            //     continue;
+            // }
 
             if (key.at(0) === "#") {
                 // Skip keys that start with '#' (internal or special keys)
@@ -71,7 +70,6 @@ export class ObjectWidget extends Widget {
                 const childWidget = new StringWidget(this._editor, key, prop, value).mount(this._content);
 
                 this._widgets.push(childWidget);
-                this.register(childWidget);
             } else if (prop.type === "number") {
                 if (this._data === UseDefaultData && prop.default === undefined) {
                     console.warn(`No default value provided for key '${key}' in schema! Using 0 as fallback.`);
@@ -81,7 +79,6 @@ export class ObjectWidget extends Widget {
                 const childWidget = new NumberWidget(this._editor, key, prop, value).mount(this._content);
 
                 this._widgets.push(childWidget);
-                this.register(childWidget);
             } else if (prop.type === "boolean") {
                 if (this._data === UseDefaultData && prop.default === undefined) {
                     console.warn(`No default value provided for key '${key}' in schema! Using false as fallback.`);
@@ -91,22 +88,40 @@ export class ObjectWidget extends Widget {
                 const childWidget = new BooleanWidget(this._editor, key, prop, value).mount(this._content);
 
                 this._widgets.push(childWidget);
-                this.register(childWidget);
             } else if (prop.type === "object") {
                 const dataObj = this._data[key] || null;
                 if (dataObj !== null && typeof dataObj === "object") {
                     const childWidget = new ObjectWidget(this._editor, key, prop, dataObj).mount(this._content);
                     this._widgets.push(childWidget);
-                    this.register(childWidget);
                 }
             } else if (prop.type === "array") {
                 const childWidget = new ArrayWidget(this._editor, key, prop, this._data[key] || []).mount(this._content);
                 this._widgets.push(childWidget);
-                this.register(childWidget);
             } else if (prop.type === "ref") {
                 const childWidget = new RefWidget(this._editor, key, prop, this._data).mount(this._content);
                 this._widgets.push(childWidget);
-                this.register(childWidget);
+            } else if (prop.type === "id") {
+                let value: string;
+
+                if (this._data === UseDefaultData || this._data[key] === undefined) {
+                    value = createUniqueId();
+                } else {
+                    value = this._data[key];
+                    addId(value); // Register the existing ID to avoid duplicates
+                }
+
+                const childWidget = new IdWidget(this._editor, key, prop, value).mount(this._content);
+                this._widgets.push(childWidget);
+            } else if (prop.type === "message") {
+                const messageText = prop.message || "No message provided.";
+                create(this, "div")
+                    .class("message")
+                    .class("formatted-text")
+                    .class(prop.format ?? "text")
+                    .mount(this._content)
+                    .html(MD2HTML(messageText));
+            } else {
+                console.warn(`Unsupported schema type '${(prop as SchemaElement).type}' for key '${key}'.`);
             }
         }
     }

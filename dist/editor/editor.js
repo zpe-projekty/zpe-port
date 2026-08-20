@@ -253,6 +253,16 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
         cursor: pointer;
     }
 
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 0.25rem;
+        border: solid 1px #aaa;
+        border-radius: 0.25rem;
+    }
+
     label {
         font-size: 0.75rem;
         font-weight: bold;
@@ -282,16 +292,15 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
         /* background-color: #eee; */
     }
 
+    & .id-widget {
+        display: none;
+    }
+
     & .boolean-widget {
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 0.5rem;
-
-        & label {
-            font-size: 1rem;
-            font-weight: normal;
-        }
 
         & .checkbox {
             width: 1rem;
@@ -424,6 +433,11 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
                     }
                 }
             }
+        }
+    }
+
+    & .string-widget {
+        & .input-text {
         }
     }
 
@@ -2633,17 +2647,12 @@ class ArrayWidget extends Widget {
                     }
                 }
                 event.preventDefault();
-                console.log("Drag over:", key);
             })
                 .on("drop", (event) => {
                 event.preventDefault();
                 this.updateItemOrder();
                 this._editor.saveState();
             });
-            // item.append(
-            //     create(item, "div")
-            //         .text(key)
-            // );
         }
         const itemIndex = create(item, "div")
             .class("item-index")
@@ -2727,10 +2736,13 @@ class StringWidget extends Widget {
         this.class("string-widget");
         this._value = value !== undefined ? value : schema.default ?? "";
         const label = schema.label || key;
+        const labelNode = create(this, "label")
+            .text(label)
+            .mount(this);
         if (schema.enum) {
             this._input = create(this, "select")
-                .style("display", "block")
-                .style("marginBottom", "8px")
+                .class("input-select")
+                .mount(this)
                 .on("change", () => {
                 this._value = this._input.property("value") || "";
                 this._editor.saveState();
@@ -2746,22 +2758,31 @@ class StringWidget extends Widget {
             }
         }
         else {
-            this._input = create(this, "input")
-                .attr("type", "text")
-                .style("display", "block")
-                .style("marginBottom", "8px")
-                .property("value", this._value)
-                .on("input", () => {
-                this._value = this._input.property("value") || "";
-                this._editor.saveState();
-            });
+            if (schema.multiline) {
+                this._input = create(this, "textarea")
+                    .class("input-textarea")
+                    .attr("rows", typeof schema.multiline === "number" ? schema.multiline : 2)
+                    .property("value", this._value)
+                    .mount(this)
+                    .on("input", () => {
+                    this._value = this._input.property("value") || "";
+                    this._editor.saveState();
+                });
+            }
+            else {
+                this._input = create(this, "input")
+                    .attr("type", "text")
+                    .class("input-text")
+                    .property("value", this._value)
+                    .mount(this)
+                    .on("input", () => {
+                    this._value = this._input.property("value") || "";
+                    this._editor.saveState();
+                });
+            }
         }
-        const labelNode = create(this, "label")
-            .text(label)
-            .style("display", "block")
-            .style("marginBottom", "4px");
-        this.append(labelNode);
-        this.append(this._input);
+        // this.append(labelNode);
+        // this.append(this._input);
     }
     getValue() {
         return this._value;
@@ -2786,15 +2807,15 @@ class BooleanWidget extends Widget {
             .attr("type", "checkbox")
             .style("marginRight", "8px")
             .property("checked", this._value)
+            .mount(this)
             .on("input", () => {
             this._value = Boolean(this._checkbox.property("checked")) || false;
             this._editor.saveState();
         });
         const labelNode = create(this, "label")
             .style("cursor", "pointer")
-            .append(this._checkbox)
+            .mount(this)
             .append(create(this, "span").text(label));
-        this.append(labelNode);
     }
     getValue() {
         return this._value;
@@ -2941,7 +2962,40 @@ class RefWidget extends Widget {
     }
 }
 
+;// ./packages/editor/src/widgets/id-widget.ts
+
+class IdWidget extends Widget {
+    _schema;
+    _value;
+    constructor(editor, key, schema, value) {
+        super(editor, key);
+        this._schema = schema;
+        this._value = value !== undefined ? value : crypto.randomUUID();
+        this.class("id-widget");
+        this.attr("data-id", this._value);
+    }
+    getValue() {
+        return this._value;
+    }
+}
+
+;// ./packages/editor/src/utils/id.ts
+const existingIds = new Set();
+function addId(id) {
+    existingIds.add(id);
+}
+function createUniqueId() {
+    let newId;
+    do {
+        newId = Date.now().toString(36);
+    } while (existingIds.has(newId));
+    existingIds.add(newId);
+    return newId;
+}
+
 ;// ./packages/editor/src/widgets/object-widget.ts
+
+
 
 
 
@@ -2999,7 +3053,6 @@ class ObjectWidget extends Widget {
                 const value = this._data !== UseDefaultData ? this._data[key] : this._schema.properties[key].default || "";
                 const childWidget = new StringWidget(this._editor, key, prop, value).mount(this._content);
                 this._widgets.push(childWidget);
-                this.register(childWidget);
             }
             else if (prop.type === "number") {
                 if (this._data === UseDefaultData && prop.default === undefined) {
@@ -3008,7 +3061,6 @@ class ObjectWidget extends Widget {
                 const value = this._data !== UseDefaultData ? this._data[key] : this._schema.properties[key].default || 0;
                 const childWidget = new NumberWidget(this._editor, key, prop, value).mount(this._content);
                 this._widgets.push(childWidget);
-                this.register(childWidget);
             }
             else if (prop.type === "boolean") {
                 if (this._data === UseDefaultData && prop.default === undefined) {
@@ -3017,25 +3069,42 @@ class ObjectWidget extends Widget {
                 const value = this._data !== UseDefaultData ? this._data[key] : this._schema.properties[key].default || false;
                 const childWidget = new BooleanWidget(this._editor, key, prop, value).mount(this._content);
                 this._widgets.push(childWidget);
-                this.register(childWidget);
             }
             else if (prop.type === "object") {
                 const dataObj = this._data[key] || null;
                 if (dataObj !== null && typeof dataObj === "object") {
                     const childWidget = new ObjectWidget(this._editor, key, prop, dataObj).mount(this._content);
                     this._widgets.push(childWidget);
-                    this.register(childWidget);
                 }
             }
             else if (prop.type === "array") {
                 const childWidget = new ArrayWidget(this._editor, key, prop, this._data[key] || []).mount(this._content);
                 this._widgets.push(childWidget);
-                this.register(childWidget);
             }
             else if (prop.type === "ref") {
                 const childWidget = new RefWidget(this._editor, key, prop, this._data).mount(this._content);
                 this._widgets.push(childWidget);
-                this.register(childWidget);
+            }
+            else if (prop.type === "id") {
+                let value;
+                if (this._data === UseDefaultData || this._data[key] === undefined) {
+                    value = createUniqueId();
+                }
+                else {
+                    value = this._data[key];
+                    addId(value); // Register the existing ID to avoid duplicates
+                }
+                const childWidget = new IdWidget(this._editor, key, prop, value).mount(this._content);
+                this._widgets.push(childWidget);
+            }
+            else if (prop.type === "message") {
+                const messageText = prop.message || "No message provided.";
+                create(this._content, "div")
+                    .class("message")
+                    .text(messageText);
+            }
+            else {
+                console.warn(`Unsupported schema type '${prop.type}' for key '${key}'.`);
             }
         }
     }

@@ -19,14 +19,14 @@
                     "type": "boolean",
                     "label": "Włącz timer"
                 },
-                "_playTime": {
+                "playTime": {
                     "type": "number",
                     "format": "integer",
                     "min": 1,
                     "max": 10000,
                     "label": "Całkowity czas gry (w minutach)"
                 },
-                "_numberOfRebusesToSolve": {
+                "numberOfRebusesToSolve": {
                     "type": "number",
                     "format": "integer",
                     "min": 1,
@@ -45,7 +45,33 @@
                 "timeLimitPerRebus": {
                     "type": "number",
                     "label": "Limit czasu na rozwiązanie każdego rebusu (w minutach)",
-                    "help": "Dotyczy tylko trybu 'trudny'."
+                    "helpFile": "help/help-file-test.md"
+                },
+                "testString": {
+                    "type": "string",
+                    "label": "Testowy string",
+                    "help": "Testowy hint do pola"
+                },
+                "testStringMultiline": {
+                    "type": "string",
+                    "multiline": 10,
+                    "label": "Komunikat testowy",
+                    "helpFile": "help/help-file-test.md"
+                },
+                "testMessageText": {
+                    "type": "message",
+                    "format": "text",
+                    "message": "To jest testowy komunikat, który nie jest powiązany z żadnym polem."
+                },
+                "testMessageInfo": {
+                    "type": "message",
+                    "format": "info",
+                    "message": "To jest testowy komunikat informacyjny."
+                },
+                "testMessageWarning": {
+                    "type": "message",
+                    "format": "warning",
+                    "message": "# Uwaga!\nTo jest testowy **komunikat** ostrzegawczy."
                 }
             }
         },
@@ -58,22 +84,47 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "type": "string",
-                        "private": true
+                        "type": "id"
                     },
                     "enabled": {
                         "type": "boolean",
+                        "default": true,
                         "label": "Dostępny dla uczniów"
                     },
                     "style": {
                         "type": "string",
                         "enum": "styles",
+                        "default": "classic",
                         "label": "Styl rebusu"
                     },
                     "answer": {
                         "type": "ref",
                         "path": "scenario.json#/rebuses/${id}/answer",
                         "label": "Odpowiedź"
+                    }
+                }
+            }
+        },
+        "questions": {
+            "type": "array",
+            "title": "Pytania",
+            "reorderable": true,
+            "editable": true,
+            "item": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "id"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "default": true,
+                        "label": "Dostępny dla uczniów"
+                    },
+                    "text": {
+                        "type": "string",
+                        "default": "Treść pytania",
+                        "label": "Treść pytania"
                     }
                 }
             }

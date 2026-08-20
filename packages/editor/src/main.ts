@@ -45,6 +45,7 @@ export function create() {
             _api = api;
             _api.addEditorTab("tab_data", "Edycja");
         },
+
         destroy() {
             // Cleanup code here
         },
@@ -70,6 +71,7 @@ export function create() {
                 console.warn("Editor instance is not initialized yet.");
             }
         },
+
         getState(): State {
             return editor ? editor.getData() : {};
         }

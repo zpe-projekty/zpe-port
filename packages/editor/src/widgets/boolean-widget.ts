@@ -16,21 +16,22 @@ export class BooleanWidget extends Widget {
         this.class("boolean-widget");
 
         const label = schema.label || key;
+
         this._checkbox = create(this, "input")
             .attr("type", "checkbox")
             .style("marginRight", "8px")
             .property("checked", this._value)
+            .mount(this)
             .on("input", () => {
                 this._value = Boolean(this._checkbox.property("checked")) || false;
                 this._editor.saveState();
-            });
+            })
+            ;
 
         const labelNode = create(this, "label")
             .style("cursor", "pointer")
-            .append(this._checkbox)
+            .mount(this)
             .append(create(this, "span").text(label));
-
-        this.append(labelNode);
     }
 
     getValue(): any {
