@@ -9,6 +9,7 @@ import { Widget } from "./widget";
 import { IdWidget } from "./id-widget";
 import { addId, createUniqueId } from "~/utils/id";
 import { MD2HTML } from "~/utils/md-to-html";
+import { createHelpButton } from "~/components/help";
 
 export class ObjectWidget extends Widget {
     private _schema: SchemaElementObject;
@@ -23,23 +24,31 @@ export class ObjectWidget extends Widget {
         this._data = data;
         this.class("object-widget");
 
+        let titleNode: DOMNode<"div"> | null = null;
         if (this._schema.title || this._schema.label) {
-            const titleText = this._schema.title ?? this._schema.label ?? key;
+            titleNode = create(this, "div")
+                .class("block-title")
+                .mount(this);
+
+            titleNode.text(this._schema.title ?? this._schema.label ?? key);
 
             if (this._schema.label) {
                 console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
             }
 
-            create(this, "div")
-                .class("title")
-                .text(titleText)
-                .mount(this);
+            if (this._schema.help || this._schema.helpFile) {
+                createHelpButton(this, this._editor, {
+                    content: this._schema.help,
+                    helpFile: this._schema.helpFile,
+                })
+                    .mount(titleNode);
+            }
         }
 
         this.append(
             this._content = create(this, "div")
-                .class("content")
-        )
+                .class("block-content")
+        );
 
         this.build();
     }

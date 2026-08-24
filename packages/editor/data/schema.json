@@ -10,10 +10,12 @@
         "options": {
             "type": "object",
             "title": "Opcje",
+            "help": "Ustawienia ogólne gry, które wpływają na jej przebieg i dostępne funkcje.",
             "properties": {
                 "enableHints": {
                     "type": "boolean",
-                    "label": "Włącz podpowiedzi do rebusów"
+                    "label": "Włącz podpowiedzi do rebusów",
+                    "help": "Włączenie tej opcji spowoduje, że uczniowie będą mogli korzystać z podpowiedzi do rebusów. Wyłączenie tej opcji spowoduje, że podpowiedzi nie będą dostępne."
                 },
                 "enableTimer": {
                     "type": "boolean",
@@ -24,7 +26,8 @@
                     "format": "integer",
                     "min": 1,
                     "max": 10000,
-                    "label": "Całkowity czas gry (w minutach)"
+                    "label": "Całkowity czas gry (w minutach)",
+                    "help": "Określa całkowity czas gry w minutach. Ustawienie tej wartości na 0 spowoduje, że gra będzie trwała bez ograniczeń czasowych."
                 },
                 "numberOfRebusesToSolve": {
                     "type": "number",
@@ -82,6 +85,7 @@
             "editable": true,
             "item": {
                 "type": "object",
+                "title": "Rebus",
                 "properties": {
                     "id": {
                         "type": "id"
@@ -116,15 +120,15 @@
                     "id": {
                         "type": "id"
                     },
-                    "enabled": {
-                        "type": "boolean",
-                        "default": true,
-                        "label": "Dostępny dla uczniów"
+                    "question": {
+                        "type": "ref",
+                        "path": "scenario.json#/questions/[{id:${id}}]/text",
+                        "_label": "Pytanie"
                     },
-                    "text": {
-                        "type": "string",
+                    "#text": {
+                        "type": "ref",
                         "default": "Treść pytania",
-                        "label": "Treść pytania"
+                        "_label": "Treść pytania"
                     }
                 }
             }

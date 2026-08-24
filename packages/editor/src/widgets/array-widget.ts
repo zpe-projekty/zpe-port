@@ -2,6 +2,7 @@ import { create, DOMNode } from "@/duct-tape";
 import { Editor, SchemaElementArray, SchemaElementObject, UseDefaultData } from "~/editor";
 import { ObjectWidget } from "./object-widget";
 import { Widget } from "./widget";
+import { createHelpButton } from "~/components/help";
 
 interface ArrayItem {
     key: string;
@@ -30,22 +31,30 @@ export class ArrayWidget extends Widget {
         this._editable = schema.editable ?? true;
         this.class("array-widget");
 
+        const titleNode = create(this, "div")
+            .class("block-title")
+            .mount(this);
+
+
         if (this._schema.title || this._schema.label) {
-            const titleText = this._schema.title ?? this._schema.label ?? key;
+            titleNode.text(this._schema.title ?? this._schema.label ?? key);
 
             if (this._schema.label) {
                 console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
             }
+        }
 
-            create(this, "div")
-                .class("title")
-                .text(titleText)
-                .mount(this);
+        if (this._schema.help || this._schema.helpFile) {
+            createHelpButton(this, this._editor, {
+                content: this._schema.help,
+                helpFile: this._schema.helpFile,
+            })
+                .mount(titleNode);
         }
 
         this.append(
             this._itemsContainer = create(this, "div")
-                .class("content")
+                .class("block-content")
         );
 
         if (data && Array.isArray(data)) {
@@ -99,16 +108,16 @@ export class ArrayWidget extends Widget {
             .mount(item);
 
         if (this._reorderable) {
-            create(item, "div")
-                .class("item-move-up")
-                .mount(itemHandle)
-                .append(
-                    create(this, "button")
-                        .text("⬆")
-                        .on("click", () => {
-                            this.moveItemUp(key);
-                        })
-                );
+            // create(item, "div")
+            //     .class("item-move-up")
+            //     .mount(itemHandle)
+            //     .append(
+            //         create(this, "button")
+            //             .text("⬆")
+            //             .on("click", () => {
+            //                 this.moveItemUp(key);
+            //             })
+            //     );
 
             create(item, "div")
                 .class("item-drag-handle")
@@ -128,16 +137,16 @@ export class ArrayWidget extends Widget {
                     item.style("opacity", "");
                 })
 
-            create(item, "div")
-                .class("item-move-down")
-                .mount(itemHandle)
-                .append(
-                    create(this, "button")
-                        .text("⬇")
-                        .on("click", () => {
-                            this.moveItemDown(key);
-                        })
-                );
+            // create(item, "div")
+            //     .class("item-move-down")
+            //     .mount(itemHandle)
+            //     .append(
+            //         create(this, "button")
+            //             .text("⬇")
+            //             .on("click", () => {
+            //                 this.moveItemDown(key);
+            //             })
+            //     );
 
             item
                 .on("dragover", (event) => {

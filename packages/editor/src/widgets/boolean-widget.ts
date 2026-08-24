@@ -1,6 +1,7 @@
 import { create, DOMNode } from "@/duct-tape";
 import { Editor, SchemaElementBoolean } from "~/editor";
 import { Widget } from "./widget";
+import { createHelpButton } from "~/components/help";
 
 export class BooleanWidget extends Widget {
     private _schema: SchemaElementBoolean;
@@ -28,10 +29,18 @@ export class BooleanWidget extends Widget {
             })
             ;
 
-        const labelNode = create(this, "label")
+        create(this, "label")
             .style("cursor", "pointer")
             .mount(this)
             .append(create(this, "span").text(label));
+
+        if (schema.help || schema.helpFile) {
+            createHelpButton(this, this._editor, {
+                content: schema.help,
+                helpFile: schema.helpFile,
+            })
+                .mount(this);
+        }
     }
 
     getValue(): any {

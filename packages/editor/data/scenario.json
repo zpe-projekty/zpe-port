@@ -1,9 +1,33 @@
 {
     "rebuses": {
-        "rebus1": { "answer": "rebus1" },
-        "rebus2": { "answer": "rebus2" },
-        "rebus3": { "answer": "rebus3" },
-        "rebus4": { "answer": "rebus4" },
-        "rebus5": { "answer": "rebus5" }
-    }
+        "rebus1": {
+            "answer": "rebus1"
+        },
+        "rebus2": {
+            "answer": "rebus2"
+        },
+        "rebus3": {
+            "answer": "rebus3"
+        },
+        "rebus4": {
+            "answer": "rebus4"
+        },
+        "rebus5": {
+            "answer": "rebus5"
+        }
+    },
+    "questions": [
+        {
+            "id": "question1",
+            "text": "Czy jabłko to owoc?"
+        },
+        {
+            "id": "question2",
+            "text": "Czy czarny kot to zwierzę?"
+        },
+        {
+            "id": "question3",
+            "text": "Czy delfin to ryba?"
+        }
+    ]
 }

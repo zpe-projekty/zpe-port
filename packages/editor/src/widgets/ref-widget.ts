@@ -16,18 +16,19 @@ export class RefWidget extends Widget {
         this._data = data;
         this.class("ref-widget");
 
-        const label = this._schema.label || key;
+        if (schema.help || schema.helpFile || schema.label) {
+            const label = this._schema.label || key;
+            create(this, "label")
+                .text(label)
+                .style("display", "block")
+                .style("marginBottom", "4px")
+                .mount(this);
+        }
+
         this._ref = create(this, "div")
             .style("display", "block")
             .style("marginBottom", "8px")
-
-        const labelNode = create(this, "label")
-            .text(label)
-            .style("display", "block")
-            .style("marginBottom", "4px");
-
-        this.append(labelNode);
-        this.append(this._ref);
+            .mount(this);
 
         this.build();
 

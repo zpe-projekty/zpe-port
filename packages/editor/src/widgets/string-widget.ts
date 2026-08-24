@@ -15,19 +15,19 @@ export class StringWidget extends Widget {
         this.class("string-widget");
         this._value = value !== undefined ? value : schema.default ?? "";
 
-        const label = schema.label || key;
+        if (schema.help || schema.helpFile || schema.label) {
+            const labelNode = create(this, "label")
+                .text(schema.label || "")
+                .mount(this)
+                ;
 
-        const labelNode = create(this, "label")
-            .text(label)
-            .mount(this)
-            ;
-
-        if (schema.help || schema.helpFile) {
-            createHelpButton(this, this._editor, {
-                content: schema.help,
-                helpFile: schema.helpFile,
-            })
-                .mount(labelNode);
+            if (schema.help || schema.helpFile) {
+                createHelpButton(this, this._editor, {
+                    content: schema.help,
+                    helpFile: schema.helpFile,
+                })
+                    .mount(labelNode);
+            }
         }
 
         if (schema.enum) {

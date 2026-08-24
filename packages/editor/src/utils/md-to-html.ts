@@ -15,6 +15,26 @@ export function MD2HTML(markdown: string, pathResolver: PathResolver = (p) => p)
             continue;
         }
 
+        const codeBlockMatch = /^\s{0,3}```\s*([^`]*)$/.exec(line);
+        if (codeBlockMatch) {
+            const codeLines: string[] = [];
+            const language = codeBlockMatch[1].trim().split(/\s+/)[0] ?? "";
+            index += 1;
+
+            while (index < lines.length && !/^\s{0,3}```\s*$/.test(lines[index])) {
+                codeLines.push(lines[index]);
+                index += 1;
+            }
+
+            if (index < lines.length) {
+                index += 1;
+            }
+
+            const languageClass = language === "" ? "" : ` class="language-${escapeAttribute(language)}"`;
+            blocks.push(`<pre><code${languageClass}>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+            continue;
+        }
+
         const headingMatch = /^(#{1,3})\s+(.*)$/.exec(line);
         if (headingMatch) {
             const level = headingMatch[1].length;
@@ -94,6 +114,15 @@ function parseInline(pathResolver: PathResolver, text: string, stopToken: string
     while (index < text.length) {
         if (stopToken !== null && text.startsWith(stopToken, index)) {
             return { html, nextIndex: index + stopToken.length, closed: true };
+        }
+
+        if (text[index] === "`") {
+            const closeIndex = text.indexOf("`", index + 1);
+            if (closeIndex !== -1) {
+                html += `<code>${escapeHtml(text.slice(index + 1, closeIndex))}</code>`;
+                index = closeIndex + 1;
+                continue;
+            }
         }
 
         if (text.startsWith("![", index)) {
