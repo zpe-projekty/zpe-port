@@ -28,13 +28,6 @@ export interface ExerciseEditorApi {
     // isWidgetSlotFilled(slotName): boolean;
 }
 
-//TODO:
-// [x] Czy init jest Promise? - TAK!
-// [ ] Czy setState jest wywoływany zawsze?
-// [ ] Czy addEditorTab można wywołać z setState?
-// [ ] Co dzieje się z defaultData jeżeli zostanie coś dodane/usunięte
-
-
 export function create() {
     let _api: ExerciseEditorApi | null = null;
     // let _data: State = {};

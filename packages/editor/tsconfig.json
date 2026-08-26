@@ -1,6 +1,7 @@
 {
     "include": [
         "**/*",
+        "src/**/*",
         "emulator/**/*",
         "packages/duct-tape/**/*"
     ],
@@ -12,9 +13,11 @@
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "outDir": "./build",
+        "rootDir": ".",
         "rootDirs": [
             "./src",
-            "./emulator/build",
+            "./emulator/dist",
+            "./packages/duct-tape",
         ],
         "paths": {
             "~/*": [

@@ -191,5 +191,11 @@ function setState(stateData) {
     _state = stateData;
     return _exerciseApi.triggerStateSave();
 }
-export { create, path, loadCss, getData, getState, setState };
+function getApi() {
+    if (!_exerciseApi) {
+        throw new Error("You must call getApi after the engine is initialized.");
+    }
+    return _exerciseApi;
+}
+export { create, path, loadCss, getData, getState, setState, getApi };
 //# sourceMappingURL=zpe.js.map

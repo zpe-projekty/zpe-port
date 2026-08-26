@@ -1,6 +1,7 @@
 {
     "include": [
-        "**/*"
+        "**/*",
+        "custom.d.ts"
     ],
     "compilerOptions": {
         "target": "esnext",
@@ -9,7 +10,14 @@
         "sourceMap": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
-        "moduleResolution": "node",
         "rootDir": "./src",
+        "paths": {
+            "~/*": [
+                "./src/*"
+            ],
+            "@/*": [
+                "./packages/*"
+            ]
+        }
     }
 }

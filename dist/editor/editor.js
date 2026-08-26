@@ -2,133 +2,436 @@ define(() => { return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 56
-(module, __unused_webpack_exports, __webpack_require__) {
+/***/ 256
+(module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(758);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(935);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
 
 
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    padding: 0.5rem;
+    background-color: #eee;
 
-/* istanbul ignore next  */
-function setAttributesWithoutAttributes(styleElement) {
-  var nonce =  true ? __webpack_require__.nc : 0;
-  if (nonce) {
-    styleElement.setAttribute("nonce", nonce);
-  }
+    & button {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: #007acc;
+        color: #fff;
+        gap: 0.3rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #005a9e;
+        }
+        &:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+    }
+
+    & button.help-button {
+        width: 1rem;
+        height: 1rem;
+        padding: 0;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::before {
+            content: "?";
+            font-size: 0.75rem;
+        }
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 0.25rem;
+        border: solid 1px #aaa;
+        border-radius: 0.25rem;
+    }
+
+    label {
+        font-size: 0.75rem;
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        line-height: 1.5rem;
+    }
+
+    & dialog {
+        position: fixed;
+        max-width: clamp(20rem, 80%, 40rem);
+        max-height: clamp(10rem, 80%, 30rem);
+        background-color: #fff;
+        border-radius: 0.25rem;
+        padding: 0;
+        border: 0;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        &[open] {
+            display: flex;
+        }
+
+        & .help-dialog-content {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            overflow: auto;
+            flex: auto;
+        }
+
+        & .help-dialog-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        & .help-dialog-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        & .help-dialog-actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+            gap: 0.5rem;
+            border-top: solid 1px #aaa;
+            background-color: #f0f0f0;
+        }
+
+        & .help-dialog-close-button {
+            width: fit-content;
+        }
+
+        &::backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    & .dropdown.icon {
+        width: 2em;
+        height: 2em;
+        background-color: turquoise;
+        transform: rotate(-90deg);
+
+        &::before {
+            content: "▼";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    & .active > .dropdown.icon {
+        transform: rotate(0deg);
+    }
+
+    & .content {
+        /* background-color: #eee; */
+    }
+
+    & .id-widget {
+        display: none;
+    }
+
+    & .boolean-widget {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+
+        & .checkbox {
+            width: 1rem;
+            height: 1rem;
+            padding-left: 0.5rem;
+        }
+    }
+
+    & .object-widget {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .array-widget {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+
+        & .title {
+            background-color: #000;
+            color: #fff;
+            padding: 0.25rem;
+        }
+
+        & .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        & .item {
+            display: flex;
+            flex-direction: row;
+            background-color: #ddd;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-right: 0.5rem;
+            /* gap: 0.5em; */
+            container-name: item-container;
+
+            & .item-header {
+                flex: 0 0 4rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 0.1rem;
+                border-right: solid 1px #aaa;
+
+                & .item-drag-handle {
+                    cursor: grab;
+                    user-select: none;
+                    width: 2rem;
+                    height: 2rem;
+                    font-size: 1.5rem;
+                    line-height: 1.7rem;
+                    justify-content: center;
+                    align-items: center;
+
+                    &::before {
+                        content: "☰";
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                & .item-move-up,
+                & .item-move-down {
+                    & button {
+                        width: 2rem;
+                        height: 2rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                & .item-index {
+                    font-size: 0.75rem;
+                    font-weight: bold;
+                    padding: 0.5rem;
+                }
+            }
+
+            & .item-content {
+                flex: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            & .item-actions {
+                display: flex;
+                gap: 0.5rem;
+
+                & .remove-button {
+                    background-color: #838383;
+
+                    &::before {
+                        content: "✖";
+                        font-size: 1rem;
+                    }
+                    &:hover {
+                        background-color: #db2828;
+                    }
+                }
+            }
+        }
+    }
+
+    & .string-widget {
+        & .input-text {
+        }
+    }
+
+    & .block-title {
+        font-size: 1rem;
+        font-weight: bold;
+        background-color: #ccc;
+        color: #000;
+        padding: 0.25rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    & .block-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    & .message {
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        font-size: 0.9rem;
+
+        &.text {
+            background-color: #f0f0f0;
+            color: #000;
+        }
+
+        &.info {
+            background-color: #d9edf7;
+            color: #31708f;
+            border: solid 1px #bce8f1;
+            padding: 0.5rem;
+        }
+
+        &.warning {
+            background-color: #fcf8e3;
+            color: #8a6d3b;
+            border: solid 1px #faebcc;
+            padding: 0.5rem;
+        }
+    }
+
+    & .formatted-text {
+        padding: 0.25rem;
+        font-size: 0.9rem;
+
+        & * {
+            margin: 0;
+            padding: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        & h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        & h2 {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        & h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        & p {
+            font-size: 1rem;
+        }
+
+        & strong {
+            font-weight: bold;
+        }
+
+        & em {
+            font-style: italic;
+        }
+
+        & a {
+            text-decoration: underline;
+        }
+
+        & code {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 0.1rem;
+            border-radius: 0.25rem;
+        }
+
+        & pre {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            overflow-x: auto;
+        }
+
+        & ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+
+        & ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+        }
+
+        & *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    & .add-button {
+        &::before {
+            content: "+";
+            font-size: 1rem;
+            color: white;
+        }
+
+        &:hover {
+            background-color: #21ba45;
+        }
+    }
+
+    & .root-widget {
+        padding: 0.1rem;
+    }
 }
-module.exports = setAttributesWithoutAttributes;
+`, ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
 
 /***/ },
 
-/***/ 72
-(module) {
-
-
-
-var stylesInDOM = [];
-function getIndexByIdentifier(identifier) {
-  var result = -1;
-  for (var i = 0; i < stylesInDOM.length; i++) {
-    if (stylesInDOM[i].identifier === identifier) {
-      result = i;
-      break;
-    }
-  }
-  return result;
-}
-function modulesToDom(list, options) {
-  var idCountMap = {};
-  var identifiers = [];
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i];
-    var id = options.base ? item[0] + options.base : item[0];
-    var count = idCountMap[id] || 0;
-    var identifier = "".concat(id, " ").concat(count);
-    idCountMap[id] = count + 1;
-    var indexByIdentifier = getIndexByIdentifier(identifier);
-    var obj = {
-      css: item[1],
-      media: item[2],
-      sourceMap: item[3],
-      supports: item[4],
-      layer: item[5]
-    };
-    if (indexByIdentifier !== -1) {
-      stylesInDOM[indexByIdentifier].references++;
-      stylesInDOM[indexByIdentifier].updater(obj);
-    } else {
-      var updater = addElementStyle(obj, options);
-      options.byIndex = i;
-      stylesInDOM.splice(i, 0, {
-        identifier: identifier,
-        updater: updater,
-        references: 1
-      });
-    }
-    identifiers.push(identifier);
-  }
-  return identifiers;
-}
-function addElementStyle(obj, options) {
-  var api = options.domAPI(options);
-  api.update(obj);
-  var updater = function updater(newObj) {
-    if (newObj) {
-      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
-        return;
-      }
-      api.update(obj = newObj);
-    } else {
-      api.remove();
-    }
-  };
-  return updater;
-}
-module.exports = function (list, options) {
-  options = options || {};
-  list = list || [];
-  var lastIdentifiers = modulesToDom(list, options);
-  return function update(newList) {
-    newList = newList || [];
-    for (var i = 0; i < lastIdentifiers.length; i++) {
-      var identifier = lastIdentifiers[i];
-      var index = getIndexByIdentifier(identifier);
-      stylesInDOM[index].references--;
-    }
-    var newLastIdentifiers = modulesToDom(newList, options);
-    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
-      var _identifier = lastIdentifiers[_i];
-      var _index = getIndexByIdentifier(_identifier);
-      if (stylesInDOM[_index].references === 0) {
-        stylesInDOM[_index].updater();
-        stylesInDOM.splice(_index, 1);
-      }
-    }
-    lastIdentifiers = newLastIdentifiers;
-  };
-};
-
-/***/ },
-
-/***/ 113
-(module) {
-
-
-
-/* istanbul ignore next  */
-function styleTagTransform(css, styleElement) {
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css;
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild);
-    }
-    styleElement.appendChild(document.createTextNode(css));
-  }
-}
-module.exports = styleTagTransform;
-
-/***/ },
-
-/***/ 314
+/***/ 935
 (module) {
 
 
@@ -219,269 +522,7 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ },
 
-/***/ 425
-(module, __webpack_exports__, __webpack_require__) {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(601);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(314);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
-// Imports
-
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-
-    & button {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        height: 1.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: none;
-        background-color: #007acc;
-        color: #fff;
-        gap: 0.3rem;
-        border-radius: 0.25rem;
-        cursor: pointer;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    select,
-    textarea {
-        width: 100%;
-        padding: 0.25rem;
-        border: solid 1px #aaa;
-        border-radius: 0.25rem;
-    }
-
-    label {
-        font-size: 0.75rem;
-        font-weight: bold;
-    }
-
-    & .dropdown.icon {
-        width: 2em;
-        height: 2em;
-        background-color: turquoise;
-        transform: rotate(-90deg);
-
-        &::before {
-            content: "▼";
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    & .active > .dropdown.icon {
-        transform: rotate(0deg);
-    }
-
-    & .content {
-        /* background-color: #eee; */
-    }
-
-    & .id-widget {
-        display: none;
-    }
-
-    & .boolean-widget {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.5rem;
-
-        & .checkbox {
-            width: 1rem;
-            height: 1rem;
-            padding-left: 0.5rem;
-        }
-    }
-
-    & .object-widget {
-        /* border: solid 1px #f00; */
-        padding: 0.5em;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
-
-        & .title {
-            background-color: #000;
-            color: #fff;
-            padding: 0.25rem;
-        }
-
-        & .content {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-
-            &.active {
-                display: block;
-            }
-        }
-    }
-
-    .array-widget {
-        padding: 0.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
-
-        & .title {
-            background-color: #000;
-            color: #fff;
-            padding: 0.25rem;
-        }
-
-        & .actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        & .content {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-
-            & .item {
-                display: flex;
-                flex-direction: row;
-                background-color: #ddd;
-                padding-top: 0.5rem;
-                padding-bottom: 0.5rem;
-                padding-right: 0.5rem;
-                /* gap: 0.5em; */
-
-                & .item-header {
-                    flex: 0 0 4rem;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 0.1rem;
-                    border-right: solid 1px #aaa;
-
-                    & .item-drag-handle {
-                        cursor: grab;
-                        user-select: none;
-                        width: 2rem;
-                        height: 2rem;
-                        font-size: 1.5rem;
-                        line-height: 1.5rem;
-                        justify-content: center;
-                        align-items: center;
-
-                        &::before {
-                            content: "☰";
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                        }
-                    }
-
-                    & .item-move-up,
-                    & .item-move-down {
-                        & button {
-                            width: 2rem;
-                            height: 2rem;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                        }
-                    }
-
-                    & .item-index {
-                        font-size: 0.75rem;
-                        font-weight: bold;
-                        padding: 0.5rem;
-                    }
-                }
-
-                & .item-content {
-                    flex: auto;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.5rem;
-                }
-
-                & .item-actions {
-                    display: flex;
-                    gap: 0.5rem;
-
-                    & .remove-button {
-                        background-color: #838383;
-
-                        &::before {
-                            content: "✖";
-                            font-size: 1rem;
-                        }
-                        &:hover {
-                            background-color: #db2828;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    & .string-widget {
-        & .input-text {
-        }
-    }
-
-    & .add-button {
-        &::before {
-            content: "+";
-            font-size: 1rem;
-            color: white;
-        }
-
-        &:hover {
-            background-color: #21ba45;
-        }
-    }
-
-    & .root-widget {
-        background-color: #eee;
-        padding: 0.1rem;
-    }
-}
-`, ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ },
-
-/***/ 540
-(module) {
-
-
-
-/* istanbul ignore next  */
-function insertStyleElement(options) {
-  var element = document.createElement("style");
-  options.setAttributes(element, options.attributes);
-  options.insert(element, options.options);
-  return element;
-}
-module.exports = insertStyleElement;
-
-/***/ },
-
-/***/ 601
+/***/ 758
 (module) {
 
 
@@ -492,7 +533,97 @@ module.exports = function (i) {
 
 /***/ },
 
-/***/ 659
+/***/ 591
+(module) {
+
+
+
+var stylesInDOM = [];
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+  for (var i = 0; i < stylesInDOM.length; i++) {
+    if (stylesInDOM[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+  return result;
+}
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var indexByIdentifier = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3],
+      supports: item[4],
+      layer: item[5]
+    };
+    if (indexByIdentifier !== -1) {
+      stylesInDOM[indexByIdentifier].references++;
+      stylesInDOM[indexByIdentifier].updater(obj);
+    } else {
+      var updater = addElementStyle(obj, options);
+      options.byIndex = i;
+      stylesInDOM.splice(i, 0, {
+        identifier: identifier,
+        updater: updater,
+        references: 1
+      });
+    }
+    identifiers.push(identifier);
+  }
+  return identifiers;
+}
+function addElementStyle(obj, options) {
+  var api = options.domAPI(options);
+  api.update(obj);
+  var updater = function updater(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
+        return;
+      }
+      api.update(obj = newObj);
+    } else {
+      api.remove();
+    }
+  };
+  return updater;
+}
+module.exports = function (list, options) {
+  options = options || {};
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDOM[index].references--;
+    }
+    var newLastIdentifiers = modulesToDom(newList, options);
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+      var _index = getIndexByIdentifier(_identifier);
+      if (stylesInDOM[_index].references === 0) {
+        stylesInDOM[_index].updater();
+        stylesInDOM.splice(_index, 1);
+      }
+    }
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ },
+
+/***/ 128
 (module) {
 
 
@@ -532,7 +663,39 @@ module.exports = insertBySelector;
 
 /***/ },
 
-/***/ 825
+/***/ 51
+(module) {
+
+
+
+/* istanbul ignore next  */
+function insertStyleElement(options) {
+  var element = document.createElement("style");
+  options.setAttributes(element, options.attributes);
+  options.insert(element, options.options);
+  return element;
+}
+module.exports = insertStyleElement;
+
+/***/ },
+
+/***/ 855
+(module, __unused_webpack_exports, __webpack_require__) {
+
+
+
+/* istanbul ignore next  */
+function setAttributesWithoutAttributes(styleElement) {
+  var nonce =  true ? __webpack_require__.nc : 0;
+  if (nonce) {
+    styleElement.setAttribute("nonce", nonce);
+  }
+}
+module.exports = setAttributesWithoutAttributes;
+
+/***/ },
+
+/***/ 740
 (module) {
 
 
@@ -596,6 +759,26 @@ function domAPI(options) {
   };
 }
 module.exports = domAPI;
+
+/***/ },
+
+/***/ 656
+(module) {
+
+
+
+/* istanbul ignore next  */
+function styleTagTransform(css, styleElement) {
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css;
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild);
+    }
+    styleElement.appendChild(document.createTextNode(css));
+  }
+}
+module.exports = styleTagTransform;
 
 /***/ }
 
@@ -842,6 +1025,7 @@ class DummyDisposable extends Disposable {
 }
 
 ;// ./packages/editor/packages/duct-tape/src/to.ts
+/* unused harmony import specifier */ var Value;
 
 function toBoolean(value, defaultValue = false) {
     if (value instanceof value_Value) {
@@ -2410,7 +2594,353 @@ class Widget extends DOMNode {
     }
 }
 
+;// ./packages/editor/src/utils/md-to-html.ts
+// import { path } from "@/zpe-port";
+function MD2HTML(markdown, pathResolver = (p) => p) {
+    const lines = markdown.replace(/\r\n?/g, "\n").split("\n");
+    const blocks = [];
+    let index = 0;
+    while (index < lines.length) {
+        const line = lines[index];
+        if (line.trim() === "") {
+            index += 1;
+            continue;
+        }
+        const codeBlockMatch = /^\s{0,3}```\s*([^`]*)$/.exec(line);
+        if (codeBlockMatch) {
+            const codeLines = [];
+            const language = codeBlockMatch[1].trim().split(/\s+/)[0] ?? "";
+            index += 1;
+            while (index < lines.length && !/^\s{0,3}```\s*$/.test(lines[index])) {
+                codeLines.push(lines[index]);
+                index += 1;
+            }
+            if (index < lines.length) {
+                index += 1;
+            }
+            const languageClass = language === "" ? "" : ` class="language-${escapeAttribute(language)}"`;
+            blocks.push(`<pre><code${languageClass}>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+            continue;
+        }
+        const headingMatch = /^(#{1,3})\s+(.*)$/.exec(line);
+        if (headingMatch) {
+            const level = headingMatch[1].length;
+            blocks.push(`<h${level}>${renderInline(pathResolver, headingMatch[2].trim())}</h${level}>`);
+            index += 1;
+            continue;
+        }
+        if (isTableRow(line) && index + 1 < lines.length && isTableSeparator(lines[index + 1])) {
+            const tableLines = [line, lines[index + 1]];
+            index += 2;
+            while (index < lines.length && isTableRow(lines[index])) {
+                tableLines.push(lines[index]);
+                index += 1;
+            }
+            blocks.push(renderTable(pathResolver, tableLines));
+            continue;
+        }
+        if (/^>\s?/.test(line)) {
+            const quoteLines = [];
+            while (index < lines.length && /^>\s?/.test(lines[index])) {
+                quoteLines.push(lines[index].replace(/^>\s?/, ""));
+                index += 1;
+            }
+            blocks.push(`<blockquote>${quoteLines.map((quoteLine) => renderInline(pathResolver, quoteLine)).join("<br>")}</blockquote>`);
+            continue;
+        }
+        if (/^\s*[-*+]\s+/.test(line)) {
+            const items = collectListItems(lines, index, "ul");
+            blocks.push(renderList(pathResolver, items.items, "ul"));
+            index = items.nextIndex;
+            continue;
+        }
+        if (/^\s*\d+\.\s+/.test(line)) {
+            const items = collectListItems(lines, index, "ol");
+            blocks.push(renderList(pathResolver, items.items, "ol"));
+            index = items.nextIndex;
+            continue;
+        }
+        const paragraphLines = [line.trim()];
+        index += 1;
+        while (index < lines.length) {
+            const nextLine = lines[index];
+            if (nextLine.trim() === "" || isBlockBoundary(nextLine, lines, index)) {
+                break;
+            }
+            paragraphLines.push(nextLine.trim());
+            index += 1;
+        }
+        blocks.push(`<p>${renderInline(pathResolver, paragraphLines.join(" "))}</p>`);
+    }
+    return blocks.join("").trim();
+}
+function renderInline(pathResolver, text) {
+    return parseInline(pathResolver, text, null).html;
+}
+function parseInline(pathResolver, text, stopToken) {
+    let html = "";
+    let index = 0;
+    while (index < text.length) {
+        if (stopToken !== null && text.startsWith(stopToken, index)) {
+            return { html, nextIndex: index + stopToken.length, closed: true };
+        }
+        if (text[index] === "`") {
+            const closeIndex = text.indexOf("`", index + 1);
+            if (closeIndex !== -1) {
+                html += `<code>${escapeHtml(text.slice(index + 1, closeIndex))}</code>`;
+                index = closeIndex + 1;
+                continue;
+            }
+        }
+        if (text.startsWith("![", index)) {
+            const image = parseImage(pathResolver, text, index);
+            if (image !== null) {
+                html += image.html;
+                index = image.nextIndex;
+                continue;
+            }
+        }
+        if (text.startsWith("[", index)) {
+            const link = parseLink(pathResolver, text, index);
+            if (link !== null) {
+                html += link.html;
+                index = link.nextIndex;
+                continue;
+            }
+        }
+        if (text.startsWith("**", index)) {
+            const nested = parseInline(pathResolver, text.slice(index + 2), "**");
+            if (nested.closed) {
+                html += `<strong>${nested.html}</strong>`;
+                index += 2 + nested.nextIndex;
+                continue;
+            }
+        }
+        if (text[index] === "*") {
+            const nested = parseInline(pathResolver, text.slice(index + 1), "*");
+            if (nested.closed) {
+                html += `<em>${nested.html}</em>`;
+                index += 1 + nested.nextIndex;
+                continue;
+            }
+        }
+        html += escapeHtml(text[index]);
+        index += 1;
+    }
+    return { html, nextIndex: index, closed: false };
+}
+function parseLink(pathResolver, text, startIndex) {
+    const closeBracket = findMatchingBracket(text, startIndex + 1, "[", "]");
+    if (closeBracket === -1 || text[closeBracket + 1] !== "(") {
+        return null;
+    }
+    const closeParen = findClosingParen(text, closeBracket + 2);
+    if (closeParen === -1) {
+        return null;
+    }
+    const label = text.slice(startIndex + 1, closeBracket);
+    const url = text.slice(closeBracket + 2, closeParen);
+    const renderedLabel = parseInline(pathResolver, label, null).html;
+    return {
+        html: `<a href="${escapeAttribute(url)}" data-link-url="${escapeAttribute(url)}">${renderedLabel}</a>`,
+        nextIndex: closeParen + 1,
+    };
+}
+function parseImage(pathResolver, text, startIndex) {
+    const openBracketIndex = startIndex + 1;
+    const closeBracket = text.indexOf("]", openBracketIndex + 1);
+    if (text[openBracketIndex] !== "[" || closeBracket === -1 || text[closeBracket + 1] !== "(") {
+        return null;
+    }
+    const closeParen = findClosingParen(text, closeBracket + 2);
+    if (closeParen === -1) {
+        return null;
+    }
+    const altText = text.slice(openBracketIndex + 1, closeBracket);
+    const url = text.slice(closeBracket + 2, closeParen);
+    return {
+        html: `<img src="${escapeAttribute(pathResolver(url))}" alt="${escapeAttribute(altText)}">`,
+        nextIndex: closeParen + 1,
+    };
+}
+function collectListItems(lines, startIndex, type) {
+    const items = [];
+    let index = startIndex;
+    while (index < lines.length) {
+        const line = lines[index];
+        const match = type === "ul"
+            ? /^(\s*[-*+]\s+)(.*)$/.exec(line)
+            : /^(\s*\d+\.\s+)(.*)$/.exec(line);
+        if (!match) {
+            break;
+        }
+        const currentIndent = match[1].match(/^\s*/)?.[0].length ?? 0;
+        let itemText = match[2].trimEnd();
+        index += 1;
+        while (index < lines.length) {
+            const continuationLine = lines[index];
+            if (continuationLine.trim() === "") {
+                break;
+            }
+            const continuationIndent = continuationLine.match(/^\s*/)?.[0].length ?? 0;
+            if (continuationIndent <= currentIndent && isBlockBoundary(continuationLine, lines, index)) {
+                break;
+            }
+            if (continuationIndent > currentIndent || (!isListItemLine(continuationLine) && !isBlockBoundary(continuationLine, lines, index))) {
+                itemText += ` ${continuationLine.trim()}`;
+                index += 1;
+                continue;
+            }
+            break;
+        }
+        items.push(itemText);
+    }
+    return { items, nextIndex: index };
+}
+function renderList(pathResolver, items, type) {
+    const tagName = type === "ul" ? "ul" : "ol";
+    const renderedItems = items.map((item) => `<li>${renderInline(pathResolver, item)}</li>`).join("");
+    return `<${tagName}>${renderedItems}</${tagName}>`;
+}
+function renderTable(pathResolver, lines) {
+    const rows = lines.map(splitTableRow).filter((row) => row.length > 0);
+    const header = rows[0] ?? [];
+    const body = rows.slice(2);
+    const headHtml = header.map((cell) => `<th>${renderInline(pathResolver, cell)}</th>`).join("");
+    const bodyHtml = body
+        .map((row) => `<tr>${row.map((cell) => `<td>${renderInline(pathResolver, cell)}</td>`).join("")}</tr>`)
+        .join("");
+    return `<table><thead><tr>${headHtml}</tr></thead><tbody>${bodyHtml}</tbody></table>`;
+}
+function splitTableRow(line) {
+    return line
+        .trim()
+        .replace(/^\|/, "")
+        .replace(/\|$/, "")
+        .split("|")
+        .map((cell) => cell.trim());
+}
+function isTableRow(line) {
+    return /^\s*\|.*\|\s*$/.test(line);
+}
+function isTableSeparator(line) {
+    const cells = splitTableRow(line);
+    return cells.length > 0 && cells.every((cell) => /^:?-{3,}:?$/.test(cell));
+}
+function isListItemLine(line) {
+    return /^(\s*[-*+]\s+|\s*\d+\.\s+)/.test(line);
+}
+function isBlockBoundary(line, lines, index) {
+    return (/^(#{1,3})\s+/.test(line)
+        || /^>\s?/.test(line)
+        || isListItemLine(line)
+        || (isTableRow(line) && index + 1 < lines.length && isTableSeparator(lines[index + 1])));
+}
+function findMatchingBracket(text, startIndex, open, close) {
+    let depth = 0;
+    for (let index = startIndex; index < text.length; index += 1) {
+        if (text[index] === open) {
+            depth += 1;
+            continue;
+        }
+        if (text[index] === close) {
+            if (depth === 0) {
+                return index;
+            }
+            depth -= 1;
+        }
+    }
+    return -1;
+}
+function findClosingParen(text, startIndex) {
+    let depth = 0;
+    for (let index = startIndex; index < text.length; index += 1) {
+        if (text[index] === "(") {
+            depth += 1;
+            continue;
+        }
+        if (text[index] === ")") {
+            if (depth === 0) {
+                return index;
+            }
+            depth -= 1;
+        }
+    }
+    return -1;
+}
+function escapeHtml(text) {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+function escapeAttribute(text) {
+    return escapeHtml(text).replace(/"/g, "&quot;");
+}
+
+;// ./packages/editor/src/components/help.ts
+
+
+function createHelpButton(owner, editor, options) {
+    return new HelpButton(owner, editor, options);
+}
+let dialogCount = 0;
+class HelpButton extends DOMNode {
+    _editor;
+    _dialog = null;
+    _dialogId;
+    _content = null;
+    constructor(owner, editor, options) {
+        super(owner, "button");
+        this._editor = editor;
+        this._dialogId = `help-dialog-${dialogCount++}`;
+        this.class("help-button");
+        this.attr("type", "button");
+        this.attr("commandfor", this._dialogId);
+        this.on("click", () => {
+            if (!this._dialog) {
+                this.createDialog();
+            }
+            if (options?.helpFile) {
+                fetch(this._editor.api.dataPath(options.helpFile))
+                    .then(response => response.text())
+                    .then(text => {
+                    this._content.html(MD2HTML(text, this._editor.pathResolver.bind(this._editor)));
+                    this._dialog.element.showModal();
+                })
+                    .catch(error => {
+                    console.error("Error loading help file:", error);
+                    this._content.html("<p>Nie można załadować pliku pomocy.</p>");
+                    this._dialog.element.showModal();
+                });
+            }
+            else {
+                this._content.html(MD2HTML(options?.content || "", this._editor.pathResolver.bind(this._editor)));
+                this._dialog.element.showModal();
+            }
+        });
+    }
+    createDialog() {
+        this._dialog = create(this, "dialog")
+            .attr("id", this._dialogId)
+            .mount(this._editor.container)
+            .append(create(this, "div")
+            .class("help-dialog-content")
+            .append(this._content = create(this, "div")
+            .class("formatted-text")), create(this, "div")
+            .class("help-dialog-actions")
+            .append(create(this, "button")
+            .text("Zamknij")
+            .class("help-dialog-close-button")
+            .on("click", () => {
+            this._dialog?.element.close();
+        })));
+        return this._dialog;
+    }
+}
+
 ;// ./packages/editor/src/widgets/number-widget.ts
+
 
 
 var NumberFormat;
@@ -2424,7 +2954,6 @@ class NumberWidget extends Widget {
     _format = NumberFormat.Number;
     _min = -Infinity;
     _max = Infinity;
-    // private _data: Record<string, any>;
     _input;
     _messageNode;
     _value;
@@ -2445,12 +2974,24 @@ class NumberWidget extends Widget {
         }
         this._min = schema.min !== undefined ? schema.min : -Infinity;
         this._max = schema.max !== undefined ? schema.max : Infinity;
-        const label = schema.label || key;
+        if (schema.help || schema.helpFile || schema.label) {
+            const label = create(this, "label")
+                .text(schema.label || "")
+                .mount(this);
+            if (schema.help || schema.helpFile) {
+                createHelpButton(this, this._editor, {
+                    content: schema.help,
+                    helpFile: schema.helpFile,
+                })
+                    .mount(label);
+            }
+        }
         this._input = create(this, "input")
             .attr("type", "number")
             .style("display", "block")
             .style("marginBottom", "8px")
             .property("value", this._value ?? 0)
+            .mount(this)
             .on("input", () => {
             const value = this._input.property("value");
             if (value === undefined || value === "") {
@@ -2486,16 +3027,12 @@ class NumberWidget extends Widget {
             this._value = numValue;
             this._editor.saveState();
         });
-        const labelNode = create(this, "label")
-            .text(label)
-            .style("display", "block")
-            .style("marginBottom", "4px");
         this._messageNode = create(this, "div")
             .class("message")
             .style("color", "red")
             .style("fontSize", "12px")
-            .style("marginBottom", "8px");
-        this.append(labelNode, this._input, this._messageNode);
+            .style("marginBottom", "8px")
+            .mount(this);
     }
     build() {
     }
@@ -2523,6 +3060,7 @@ class NumberWidget extends Widget {
 
 
 
+
 class ArrayWidget extends Widget {
     _schema;
     // private _data: any[];
@@ -2540,18 +3078,24 @@ class ArrayWidget extends Widget {
         this._reorderable = schema.reorderable ?? false;
         this._editable = schema.editable ?? true;
         this.class("array-widget");
+        const titleNode = create(this, "div")
+            .class("block-title")
+            .mount(this);
         if (this._schema.title || this._schema.label) {
-            const titleText = this._schema.title ?? this._schema.label ?? key;
+            titleNode.text(this._schema.title ?? this._schema.label ?? key);
             if (this._schema.label) {
                 console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
             }
-            create(this, "div")
-                .class("title")
-                .text(titleText)
-                .mount(this);
+        }
+        if (this._schema.help || this._schema.helpFile) {
+            createHelpButton(this, this._editor, {
+                content: this._schema.help,
+                helpFile: this._schema.helpFile,
+            })
+                .mount(titleNode);
         }
         this.append(this._itemsContainer = create(this, "div")
-            .class("content"));
+            .class("block-content"));
         if (data && Array.isArray(data)) {
             data.forEach((itemData, index) => {
                 const itemKey = `${key}[${index}]`;
@@ -2597,14 +3141,16 @@ class ArrayWidget extends Widget {
             .class("item-header")
             .mount(item);
         if (this._reorderable) {
-            create(item, "div")
-                .class("item-move-up")
-                .mount(itemHandle)
-                .append(create(this, "button")
-                .text("⬆")
-                .on("click", () => {
-                this.moveItemUp(key);
-            }));
+            // create(item, "div")
+            //     .class("item-move-up")
+            //     .mount(itemHandle)
+            //     .append(
+            //         create(this, "button")
+            //             .text("⬆")
+            //             .on("click", () => {
+            //                 this.moveItemUp(key);
+            //             })
+            //     );
             create(item, "div")
                 .class("item-drag-handle")
                 .mount(itemHandle)
@@ -2622,14 +3168,16 @@ class ArrayWidget extends Widget {
                 this._draggedItem = null;
                 item.style("opacity", "");
             });
-            create(item, "div")
-                .class("item-move-down")
-                .mount(itemHandle)
-                .append(create(this, "button")
-                .text("⬇")
-                .on("click", () => {
-                this.moveItemDown(key);
-            }));
+            // create(item, "div")
+            //     .class("item-move-down")
+            //     .mount(itemHandle)
+            //     .append(
+            //         create(this, "button")
+            //             .text("⬇")
+            //             .on("click", () => {
+            //                 this.moveItemDown(key);
+            //             })
+            //     );
             item
                 .on("dragover", (event) => {
                 if (this._draggedItem && this._draggedItem == item && this._draggedItem.element.parentElement === item.element.parentElement) {
@@ -2726,6 +3274,7 @@ class ArrayWidget extends Widget {
 ;// ./packages/editor/src/widgets/string-widget.ts
 
 
+
 class StringWidget extends Widget {
     _schema;
     _value;
@@ -2735,10 +3284,18 @@ class StringWidget extends Widget {
         this._schema = schema;
         this.class("string-widget");
         this._value = value !== undefined ? value : schema.default ?? "";
-        const label = schema.label || key;
-        const labelNode = create(this, "label")
-            .text(label)
-            .mount(this);
+        if (schema.help || schema.helpFile || schema.label) {
+            const labelNode = create(this, "label")
+                .text(schema.label || "")
+                .mount(this);
+            if (schema.help || schema.helpFile) {
+                createHelpButton(this, this._editor, {
+                    content: schema.help,
+                    helpFile: schema.helpFile,
+                })
+                    .mount(labelNode);
+            }
+        }
         if (schema.enum) {
             this._input = create(this, "select")
                 .class("input-select")
@@ -2792,6 +3349,7 @@ class StringWidget extends Widget {
 ;// ./packages/editor/src/widgets/boolean-widget.ts
 
 
+
 class BooleanWidget extends Widget {
     _schema;
     _checkbox;
@@ -2812,10 +3370,17 @@ class BooleanWidget extends Widget {
             this._value = Boolean(this._checkbox.property("checked")) || false;
             this._editor.saveState();
         });
-        const labelNode = create(this, "label")
+        create(this, "label")
             .style("cursor", "pointer")
             .mount(this)
             .append(create(this, "span").text(label));
+        if (schema.help || schema.helpFile) {
+            createHelpButton(this, this._editor, {
+                content: schema.help,
+                helpFile: schema.helpFile,
+            })
+                .mount(this);
+        }
     }
     getValue() {
         return this._value;
@@ -2835,16 +3400,18 @@ class RefWidget extends Widget {
         this._schema = schema;
         this._data = data;
         this.class("ref-widget");
-        const label = this._schema.label || key;
+        if (schema.help || schema.helpFile || schema.label) {
+            const label = this._schema.label || key;
+            create(this, "label")
+                .text(label)
+                .style("display", "block")
+                .style("marginBottom", "4px")
+                .mount(this);
+        }
         this._ref = create(this, "div")
             .style("display", "block")
-            .style("marginBottom", "8px");
-        const labelNode = create(this, "label")
-            .text(label)
-            .style("display", "block")
-            .style("marginBottom", "4px");
-        this.append(labelNode);
-        this.append(this._ref);
+            .style("marginBottom", "8px")
+            .mount(this);
         this.build();
     }
     async getFileData(path) {
@@ -3004,6 +3571,8 @@ function createUniqueId() {
 
 
 
+
+
 class ObjectWidget extends Widget {
     _schema;
     _data;
@@ -3014,18 +3583,25 @@ class ObjectWidget extends Widget {
         this._schema = schema;
         this._data = data;
         this.class("object-widget");
+        let titleNode = null;
         if (this._schema.title || this._schema.label) {
-            const titleText = this._schema.title ?? this._schema.label ?? key;
+            titleNode = create(this, "div")
+                .class("block-title")
+                .mount(this);
+            titleNode.text(this._schema.title ?? this._schema.label ?? key);
             if (this._schema.label) {
                 console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
             }
-            create(this, "div")
-                .class("title")
-                .text(titleText)
-                .mount(this);
+            if (this._schema.help || this._schema.helpFile) {
+                createHelpButton(this, this._editor, {
+                    content: this._schema.help,
+                    helpFile: this._schema.helpFile,
+                })
+                    .mount(titleNode);
+            }
         }
         this.append(this._content = create(this, "div")
-            .class("content"));
+            .class("block-content"));
         this.build();
     }
     dispose() {
@@ -3035,13 +3611,10 @@ class ObjectWidget extends Widget {
     }
     build() {
         for (const [key, prop] of Object.entries(this._schema.properties)) {
-            if (this._data !== UseDefaultData && this._data[key] === undefined && prop.type !== "ref") {
-                console.warn(`Data for key '${key}' is undefined.`);
-                continue;
-            }
-            if (prop.private === true) {
-                continue;
-            }
+            // if (this._data !== UseDefaultData && this._data[key] === undefined && prop.type !== "ref") {
+            //     console.warn(`Data for key '${key}' is undefined.`);
+            //     continue;
+            // }
             if (key.at(0) === "#") {
                 // Skip keys that start with '#' (internal or special keys)
                 continue;
@@ -3099,9 +3672,12 @@ class ObjectWidget extends Widget {
             }
             else if (prop.type === "message") {
                 const messageText = prop.message || "No message provided.";
-                create(this._content, "div")
+                create(this, "div")
                     .class("message")
-                    .text(messageText);
+                    .class("formatted-text")
+                    .class(prop.format ?? "text")
+                    .mount(this._content)
+                    .html(MD2HTML(messageText));
             }
             else {
                 console.warn(`Unsupported schema type '${prop.type}' for key '${key}'.`);
@@ -3144,6 +3720,15 @@ class Editor extends Disposable {
     }
     get api() {
         return this._api;
+    }
+    get container() {
+        return this._container;
+    }
+    pathResolver(path) {
+        if (path.startsWith("http://") || path.startsWith("https://")) {
+            return path;
+        }
+        return this._api.dataPath(path);
     }
     saveState() {
         this._api.triggerStateSave();
@@ -3198,26 +3783,26 @@ class Editor extends Disposable {
     }
 }
 
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js
-var injectStylesIntoStyleTag = __webpack_require__(72);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js
+var injectStylesIntoStyleTag = __webpack_require__(591);
 var injectStylesIntoStyleTag_default = /*#__PURE__*/__webpack_require__.n(injectStylesIntoStyleTag);
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/styleDomAPI.js
-var styleDomAPI = __webpack_require__(825);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/styleDomAPI.js
+var styleDomAPI = __webpack_require__(740);
 var styleDomAPI_default = /*#__PURE__*/__webpack_require__.n(styleDomAPI);
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/insertBySelector.js
-var insertBySelector = __webpack_require__(659);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/insertBySelector.js
+var insertBySelector = __webpack_require__(128);
 var insertBySelector_default = /*#__PURE__*/__webpack_require__.n(insertBySelector);
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js
-var setAttributesWithoutAttributes = __webpack_require__(56);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js
+var setAttributesWithoutAttributes = __webpack_require__(855);
 var setAttributesWithoutAttributes_default = /*#__PURE__*/__webpack_require__.n(setAttributesWithoutAttributes);
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/insertStyleElement.js
-var insertStyleElement = __webpack_require__(540);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/insertStyleElement.js
+var insertStyleElement = __webpack_require__(51);
 var insertStyleElement_default = /*#__PURE__*/__webpack_require__.n(insertStyleElement);
-// EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/styleTagTransform.js
-var styleTagTransform = __webpack_require__(113);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/styleTagTransform.js
+var styleTagTransform = __webpack_require__(656);
 var styleTagTransform_default = /*#__PURE__*/__webpack_require__.n(styleTagTransform);
-// EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./packages/editor/src/styles/styles.css
-var styles = __webpack_require__(425);
+// EXTERNAL MODULE: ../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./packages/editor/src/styles/styles.css
+var styles = __webpack_require__(256);
 ;// ./packages/editor/src/styles/styles.css
 
       
@@ -3248,11 +3833,6 @@ var update = injectStylesIntoStyleTag_default()(styles/* default */.A, options);
 ;// ./packages/editor/src/main.ts
 
 
-//TODO:
-// [x] Czy init jest Promise? - TAK!
-// [ ] Czy setState jest wywoływany zawsze?
-// [ ] Czy addEditorTab można wywołać z setState?
-// [ ] Co dzieje się z defaultData jeżeli zostanie coś dodane/usunięte
 function main_create() {
     let _api = null;
     // let _data: State = {};

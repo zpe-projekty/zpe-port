@@ -1,5 +1,8 @@
 {
     "name": "zpe-editor",
     "version": "1.2.0",
-    "description": "ZPE Developer Kit - Editor"
+    "description": "ZPE Developer Kit - Editor",
+    "scripts": {
+        "dist": "webpack --config ./webpack.editor.config.js --env production"
+    }
 }
