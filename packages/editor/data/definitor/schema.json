@@ -42,8 +42,7 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "type": "string",
-                        "private": true
+                        "type": "id"
                     },
                     "name": {
                         "type": "ref",
@@ -59,14 +58,14 @@
         },
         "definitions": {
             "type": "array",
+            "editable": true,
             "label": "Pojęcia (definicje)",
             "help": "Włącz lub wyłącz pojedyncze pojęcia. Wyłączone pojęcia nie będą losowane na kole.",
             "item": {
                 "type": "object",
                 "properties": {
                     "id": {
-                        "type": "string",
-                        "private": true
+                        "type": "id"
                     },
                     "enabled": {
                         "type": "boolean",

@@ -37,7 +37,7 @@ export class HelpButton extends DOMNode<"button"> {
 
             if (options?.helpFile) {
 
-                fetch(this._editor.api.dataPath(options.helpFile))
+                fetch(this._editor.api.enginePath(options.helpFile))
                     .then(response => response.text())
                     .then(text => {
                         this._content!.html(MD2HTML(text, this._editor.pathResolver.bind(this._editor)));
@@ -61,11 +61,16 @@ export class HelpButton extends DOMNode<"button"> {
             .mount(this._editor.container)
             .append(
                 create(this, "div")
-                    .class("help-dialog-content")
+                    .class("help-dialog-body")
                     .append(
-                        this._content = create(this, "div")
-                            .class("formatted-text")
-                    ),
+                        create(this, "div")
+                            .class("help-dialog-content")
+                            .append(
+                                this._content = create(this, "div")
+                                    .class("formatted-text")
+                            )
+                    )
+                ,
                 create(this, "div")
                     .class("help-dialog-actions")
                     .append(

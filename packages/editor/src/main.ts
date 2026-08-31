@@ -1,5 +1,6 @@
 import { Editor } from "./editor";
 import "~/styles/styles.css";
+import packageJson from "../package.json"
 
 type State = Record<string, any>;
 
@@ -35,6 +36,8 @@ export function create() {
 
     return {
         init(api: ExerciseEditorApi, options: EngineOptions) {
+            console.log("Editor version:", packageJson.version);
+
             _api = api;
             _api.addEditorTab("tab_data", "Edycja");
         },

@@ -1,4 +1,4 @@
-import { Disposable, DOMNode } from "@/duct-tape";
+import { create, Disposable, DOMNode } from "@/duct-tape";
 import { ObjectWidget } from "./widgets/object-widget";
 import { ExerciseEditorApi } from "./main";
 
@@ -28,6 +28,7 @@ export interface SchemaElementBase {
 
 export interface SchemaElementId extends SchemaElementBase {
     type: "id";
+    path?: string;
 }
 
 export interface SchemaElementString extends SchemaElementBase {
@@ -35,6 +36,9 @@ export interface SchemaElementString extends SchemaElementBase {
     enum?: Record<string, string>;
     multiline: number;
     default?: string;
+    placeholder?: string;
+    pattern?: string;
+    patternMessage?: string;
 }
 
 export interface SchemaElementNumber extends SchemaElementBase {
@@ -73,6 +77,8 @@ export interface SchemaElementArray extends SchemaElementBase {
     reorderable?: boolean;
     // Pozwala na dodawanie i usuwanie elementów do tablicy, jeśli jest ustawione na true
     editable?: boolean;
+    // Dodaje przyciski do zarządzania elementami tablicy, jeśli jest ustawione na true
+    controls?: "horizontal" | "vertical";
 }
 
 export const UseDefaultData: Record<string, boolean> = { __useDefaultData: true };
@@ -85,11 +91,20 @@ export class Editor extends Disposable {
     private _api: ExerciseEditorApi;
     private _types: Record<string, any> = {};
     private _rootWidget: ObjectWidget | null = null;
+    // private _view: DOMNode<"div">;
+    // private _content: DOMNode<"div">;
 
     constructor(container: HTMLElement, api: ExerciseEditorApi) {
         super();
         this._container = container;
         this._api = api;
+
+        // this._view = create(this, "div")
+        //     .class("editor-view")
+        //     .mount(this._container);
+        // this._content = create(this, "div")
+        //     .class("editor-content")
+        //     .mount(this._view);
 
         console.log("Editor created");
     }
@@ -106,7 +121,7 @@ export class Editor extends Disposable {
         if (path.startsWith("http://") || path.startsWith("https://")) {
             return path;
         }
-        return this._api.dataPath(path);
+        return this._api.enginePath(path);
     }
 
     saveState(): void {
@@ -135,7 +150,8 @@ export class Editor extends Disposable {
                     this.replaceDefinitions(propertiesSchema);
                 }
 
-                this._rootWidget = new ObjectWidget(this, "Root", propertiesSchema, this._data).mount(this._container);
+                this._rootWidget = new ObjectWidget(this, "Root", propertiesSchema, this._data)
+                    .mount(this._container);
                 this._rootWidget.class("root-widget");
 
                 resolve();

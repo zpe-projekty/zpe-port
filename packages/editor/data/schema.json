@@ -78,11 +78,12 @@
                 }
             }
         },
-        "rebuses": {
+        "#rebuses": {
             "type": "array",
             "title": "Rebusy",
             "reorderable": true,
             "editable": true,
+            "controls": "vertical",
             "item": {
                 "type": "object",
                 "title": "Rebus",
@@ -105,6 +106,34 @@
                         "type": "ref",
                         "path": "scenario.json#/rebuses/${id}/answer",
                         "label": "Odpowiedź"
+                    },
+                    "refquestions": {
+                        "type": "array",
+                        "title": "Pytania do rebusu - przez ref",
+                        "reorderable": true,
+                        "editable": false,
+                        "item": {
+                            "type": "id",
+                            "path": "scenario.json#/questions/[{id:${id}}]/text"
+                        }
+                    },
+                    "questions": {
+                        "type": "array",
+                        "title": "Pytania do rebusu",
+                        "reorderable": true,
+                        "editable": false,
+                        "item": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "id"
+                                },
+                                "question": {
+                                    "type": "ref",
+                                    "path": "scenario.json#/questions/[{id:${id}}]/text"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -125,10 +154,18 @@
                         "path": "scenario.json#/questions/[{id:${id}}]/text",
                         "_label": "Pytanie"
                     },
-                    "#text": {
-                        "type": "ref",
-                        "default": "Treść pytania",
-                        "_label": "Treść pytania"
+                    "traps": {
+                        "type": "array",
+                        "title": "Pułapki",
+                        "reorderable": false,
+                        "editable": true,
+                        "item": {
+                            "type": "string",
+                            "default": "",
+                            "placeholder": "Wpisz pułapkę",
+                            "pattern": ".*::.*",
+                            "patternMessage": "Uwaga! prawidłowy format to <treść> :: <definicja>"
+                        }
                     }
                 }
             }

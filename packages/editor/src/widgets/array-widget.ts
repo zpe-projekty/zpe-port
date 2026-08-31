@@ -1,8 +1,11 @@
 import { create, DOMNode } from "@/duct-tape";
-import { Editor, SchemaElementArray, SchemaElementObject, UseDefaultData } from "~/editor";
+import { Editor, SchemaElementArray, SchemaElementId, SchemaElementNumber, SchemaElementObject, SchemaElementString, UseDefaultData } from "~/editor";
 import { ObjectWidget } from "./object-widget";
 import { Widget } from "./widget";
 import { createHelpButton } from "~/components/help";
+import { IdWidget } from "./id-widget";
+import { StringWidget } from "./string-widget";
+import { NumberWidget } from "./number-widget";
 
 interface ArrayItem {
     key: string;
@@ -18,6 +21,7 @@ export class ArrayWidget extends Widget {
     private _items: ArrayItem[] = [];
     private _reorderable: boolean;
     private _editable: boolean;
+    private _controls: string | null;
     private _itemCounter: number = 0;
     private _draggedItem: DOMNode<"div"> | null = null;
 
@@ -28,7 +32,8 @@ export class ArrayWidget extends Widget {
         this._schema = schema;
         // this._data = data;
         this._reorderable = schema.reorderable ?? false;
-        this._editable = schema.editable ?? true;
+        this._editable = schema.editable ?? false;
+        this._controls = schema.controls ?? null;
         this.class("array-widget");
 
         const titleNode = create(this, "div")
@@ -60,7 +65,7 @@ export class ArrayWidget extends Widget {
         if (data && Array.isArray(data)) {
             data.forEach((itemData, index) => {
                 const itemKey = `${key}[${index}]`;
-                if (this._schema.item.type === "object") {
+                if (this._schema.item.type === "object" || this._schema.item.type === "id" || this._schema.item.type === "string") {
                     this.addItem(itemKey, itemData);
                 } else {
                     console.warn(`Unsupported array item type: ${this._schema.item.type}`);
@@ -79,9 +84,13 @@ export class ArrayWidget extends Widget {
                             const newItemKey = `${key}[${this._itemCounter++}]`;
                             if (this._schema.item.type === "object") {
                                 this.addItem(newItemKey, UseDefaultData);
+                            } else if (this._schema.item.type === "string") {
+                                this.addItem(newItemKey, "");
                             } else {
                                 console.warn(`Unsupported array item type: ${this._schema.item.type}`);
                             }
+                            this.updateItemOrder();
+                            this._editor.saveState();
                         })
                 )
                 .mount(this);
@@ -105,19 +114,22 @@ export class ArrayWidget extends Widget {
 
         const itemHandle = create(item, "div")
             .class("item-header")
+            .class("vertical", this._controls === "vertical")
             .mount(item);
 
         if (this._reorderable) {
-            // create(item, "div")
-            //     .class("item-move-up")
-            //     .mount(itemHandle)
-            //     .append(
-            //         create(this, "button")
-            //             .text("⬆")
-            //             .on("click", () => {
-            //                 this.moveItemUp(key);
-            //             })
-            //     );
+            if (this._controls) {
+                create(item, "div")
+                    .class("item-move-up")
+                    .mount(itemHandle)
+                    .append(
+                        create(this, "button")
+                            .text("⬆")
+                            .on("click", () => {
+                                this.moveItemUp(key);
+                            })
+                    );
+            }
 
             create(item, "div")
                 .class("item-drag-handle")
@@ -134,24 +146,30 @@ export class ArrayWidget extends Widget {
                 })
                 .on("dragend", (event) => {
                     this._draggedItem = null;
-                    item.style("opacity", "");
+                    // item.style("opacity", "");
+                    item.class("drag-drop", false);
                 })
 
-            // create(item, "div")
-            //     .class("item-move-down")
-            //     .mount(itemHandle)
-            //     .append(
-            //         create(this, "button")
-            //             .text("⬇")
-            //             .on("click", () => {
-            //                 this.moveItemDown(key);
-            //             })
-            //     );
+            create(item, "div")
+            if (this._controls) {
+                create(item, "div")
+                    .class("item-move-down")
+                    .mount(itemHandle)
+                    .append(
+                        create(this, "button")
+                            .text("⬇")
+                            .on("click", () => {
+                                this.moveItemDown(key);
+                            })
+                    );
+            }
 
             item
                 .on("dragover", (event) => {
                     if (this._draggedItem && this._draggedItem == item && this._draggedItem.element.parentElement === item.element.parentElement) {
-                        item.style("opacity", "0");
+                        // XXX: daje to czas żeby "dragstart" mógł zrobić screen capture, a następnie ukrywamy element.
+                        // item.style("opacity", "0");
+                        item.class("drag-drop");
                     }
 
                     if (this._draggedItem && this._draggedItem !== item && this._draggedItem.element.parentElement === item.element.parentElement) {
@@ -185,26 +203,48 @@ export class ArrayWidget extends Widget {
             .class("item-content")
             .mount(item);
 
-        const objectWidget = new ObjectWidget(this._editor, key, this._schema.item as SchemaElementObject, data);
-        this._items.push({
-            key, widget: objectWidget, container: item, itemIndexNode: itemIndex
-        });
-        objectWidget.mount(itemContent);
+        if (this._schema.item.type === "object" || this._schema.item.type === "string" || this._schema.item.type === "number") {
+            let childWidget: Widget | null = null;
+            if (this._schema.item.type === "object") {
+                childWidget = new ObjectWidget(this._editor, key, this._schema.item as SchemaElementObject, data);
+                this._items.push({
+                    key, widget: childWidget, container: item, itemIndexNode: itemIndex
+                });
+                childWidget.mount(itemContent);
+            } else if (this._schema.item.type === "string") {
+                childWidget = new StringWidget(this._editor, key, this._schema.item as SchemaElementString, data);
+                this._items.push({
+                    key, widget: childWidget, container: item, itemIndexNode: itemIndex
+                });
+                childWidget.mount(itemContent);
+            } else if (this._schema.item.type === "number") {
+                childWidget = new NumberWidget(this._editor, key, this._schema.item as SchemaElementNumber, data);
+                this._items.push({
+                    key, widget: childWidget, container: item, itemIndexNode: itemIndex
+                });
+                childWidget.mount(itemContent);
+            }
 
-        if (this._editable) {
-            create(item, "div")
-                .class("item-actions")
-                .mount(item)
-                .append(
-                    create(this, "button")
-                        .class("remove-button")
-                        .text("Usuń")
-                        .on("click", () => {
-                            this.removeItem(objectWidget);
-                        })
-                );
+            if (this._editable && childWidget) {
+                create(item, "div")
+                    .class("item-actions")
+                    .mount(item)
+                    .append(
+                        create(this, "button")
+                            .class("remove-button")
+                            .text("Usuń")
+                            .on("click", () => {
+                                this.removeItem(childWidget);
+                            })
+                    );
+            }
+        } else if (this._schema.item.type === "id") {
+            const idWidget = new IdWidget(this._editor, key, this._schema.item as SchemaElementId, data);
+            this._items.push({
+                key, widget: idWidget, container: item, itemIndexNode: itemIndex
+            });
+            idWidget.mount(itemContent);
         }
-
     }
 
     updateItemOrder(): void {
@@ -228,8 +268,8 @@ export class ArrayWidget extends Widget {
             const currentItem = this._items[index];
             const nextItem = this._items[index + 1];
             this._itemsContainer.element.insertBefore(nextItem.container.element, currentItem.container.element);
-            this._editor.saveState();
             this.updateItemOrder();
+            this._editor.saveState();
         }
     }
 
@@ -239,8 +279,8 @@ export class ArrayWidget extends Widget {
             const currentItem = this._items[index];
             const previousItem = this._items[index - 1];
             this._itemsContainer.element.insertBefore(currentItem.container.element, previousItem.container.element);
-            this._editor.saveState();
             this.updateItemOrder();
+            this._editor.saveState();
         }
     }
 
@@ -252,6 +292,7 @@ export class ArrayWidget extends Widget {
             item.dispose();
             itemNode.dispose();
             this.updateItemOrder();
+            this._editor.saveState();
         }
     }
 }

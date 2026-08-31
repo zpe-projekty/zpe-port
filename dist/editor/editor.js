@@ -20,8 +20,16 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
-    padding: 0.5rem;
-    background-color: #eee;
+
+    & * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    &:has(dialog[open]) {
+        overflow: hidden;
+    }
 
     & button {
         padding-left: 0.75rem;
@@ -69,6 +77,11 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
         padding: 0.25rem;
         border: solid 1px #aaa;
         border-radius: 0.25rem;
+        font-size: 1rem;
+    }
+    input[type="text"],
+    input[type="number"] {
+        height: 2rem;
     }
 
     label {
@@ -84,25 +97,29 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
     & dialog {
         position: fixed;
         max-width: clamp(20rem, 80%, 40rem);
-        max-height: clamp(10rem, 80%, 30rem);
+        min-width: clamp(20rem, 80%, 40rem);
+        max-height: 50%;
         background-color: #fff;
         border-radius: 0.25rem;
         padding: 0;
+        margin: auto;
         border: 0;
         flex-direction: column;
-        gap: 0.5rem;
 
         &[open] {
             display: flex;
         }
 
-        & .help-dialog-content {
-            padding-left: 1rem;
-            padding-right: 1rem;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            overflow: auto;
+        & .help-dialog-body {
             flex: auto;
+            display: flex;
+            overflow: hidden;
+        }
+
+        & .help-dialog-content {
+            height: auto;
+            width: 100%;
+            overflow: auto;
         }
 
         & .help-dialog-header {
@@ -126,6 +143,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
             gap: 0.5rem;
             border-top: solid 1px #aaa;
             background-color: #f0f0f0;
+            flex: 0 0 auto;
         }
 
         & .help-dialog-close-button {
@@ -159,6 +177,33 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
 
     & .content {
         /* background-color: #eee; */
+    }
+
+    & .block-title {
+        font-size: 1rem;
+        font-weight: bold;
+        background-color: #ccc;
+        color: #000;
+        padding: 0.25rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    & .block-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        /* background-color: #eee; */
+
+        &.active {
+            display: block;
+        }
     }
 
     & .id-widget {
@@ -204,11 +249,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
             display: flex;
             flex-direction: row;
             background-color: #ddd;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            padding-right: 0.5rem;
-            /* gap: 0.5em; */
-            container-name: item-container;
 
             & .item-header {
                 flex: 0 0 4rem;
@@ -218,6 +258,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
                 align-items: center;
                 gap: 0.1rem;
                 border-right: solid 1px #aaa;
+
+                &.vertical {
+                    flex-direction: column;
+                }
 
                 & .item-drag-handle {
                     cursor: grab;
@@ -260,13 +304,18 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
                 display: flex;
                 flex-direction: column;
                 gap: 0.5rem;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
+                padding: 0.5rem;
+                /* padding-right: 0.5rem; */
+                justify-content: center;
+                container-name: item-content;
             }
 
             & .item-actions {
                 display: flex;
                 gap: 0.5rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                padding-right: 0.5rem;
 
                 & .remove-button {
                     background-color: #838383;
@@ -281,63 +330,27 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
                 }
             }
         }
+
+        & .block-content {
+            background-color: unset;
+        }
     }
 
     & .string-widget {
         & .input-text {
         }
-    }
 
-    & .block-title {
-        font-size: 1rem;
-        font-weight: bold;
-        background-color: #ccc;
-        color: #000;
-        padding: 0.25rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-
-    & .block-content {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-
-        &.active {
-            display: block;
-        }
-    }
-
-    & .message {
-        padding: 0.25rem;
-        border-radius: 0.25rem;
-        font-size: 0.9rem;
-
-        &.text {
-            background-color: #f0f0f0;
-            color: #000;
-        }
-
-        &.info {
-            background-color: #d9edf7;
-            color: #31708f;
-            border: solid 1px #bce8f1;
-            padding: 0.5rem;
-        }
-
-        &.warning {
-            background-color: #fcf8e3;
-            color: #8a6d3b;
-            border: solid 1px #faebcc;
-            padding: 0.5rem;
+        & .pattern-info {
+            font-size: 0.75rem;
+            color: #fff;
+            background-color: #eaae00;
+            padding-left: 0.5rem;
         }
     }
 
     & .formatted-text {
+        display: flex;
+        flex-direction: column;
         padding: 0.25rem;
         font-size: 0.9rem;
 
@@ -403,8 +416,38 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
             padding-left: 1.5rem;
         }
 
+        & img {
+            width: 100%;
+            height: auto;
+        }
+
         & *:last-child {
             margin-bottom: 0;
+        }
+    }
+
+    & .message {
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        font-size: 0.5rem;
+
+        &.text {
+            background-color: #f0f0f0;
+            color: #000;
+        }
+
+        &.info {
+            background-color: #d9edf7;
+            color: #31708f;
+            border: solid 1px #bce8f1;
+            padding: 0.5rem;
+        }
+
+        &.warning {
+            background-color: #fcf8e3;
+            color: #8a6d3b;
+            border: solid 1px #faebcc;
+            padding: 0.5rem;
         }
     }
 
@@ -420,8 +463,24 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
         }
     }
 
+    & .has-ref-widget {
+        display: flex;
+        height: 100%;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    & .item.drag-drop {
+        background-color: #ccc;
+        & * {
+            opacity: 0;
+        }
+    }
+
     & .root-widget {
-        padding: 0.1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        background-color: #eee;
     }
 }
 `, ""]);
@@ -2902,7 +2961,7 @@ class HelpButton extends DOMNode {
                 this.createDialog();
             }
             if (options?.helpFile) {
-                fetch(this._editor.api.dataPath(options.helpFile))
+                fetch(this._editor.api.enginePath(options.helpFile))
                     .then(response => response.text())
                     .then(text => {
                     this._content.html(MD2HTML(text, this._editor.pathResolver.bind(this._editor)));
@@ -2925,9 +2984,11 @@ class HelpButton extends DOMNode {
             .attr("id", this._dialogId)
             .mount(this._editor.container)
             .append(create(this, "div")
+            .class("help-dialog-body")
+            .append(create(this, "div")
             .class("help-dialog-content")
             .append(this._content = create(this, "div")
-            .class("formatted-text")), create(this, "div")
+            .class("formatted-text"))), create(this, "div")
             .class("help-dialog-actions")
             .append(create(this, "button")
             .text("Zamknij")
@@ -3052,338 +3113,6 @@ class NumberWidget extends Widget {
             return null;
         }
         return numValue;
-    }
-}
-
-;// ./packages/editor/src/widgets/array-widget.ts
-
-
-
-
-
-class ArrayWidget extends Widget {
-    _schema;
-    // private _data: any[];
-    _itemsContainer;
-    _items = [];
-    _reorderable;
-    _editable;
-    _itemCounter = 0;
-    _draggedItem = null;
-    constructor(editor, key, schema, data) {
-        super(editor, key);
-        this._editor = editor;
-        this._schema = schema;
-        // this._data = data;
-        this._reorderable = schema.reorderable ?? false;
-        this._editable = schema.editable ?? true;
-        this.class("array-widget");
-        const titleNode = create(this, "div")
-            .class("block-title")
-            .mount(this);
-        if (this._schema.title || this._schema.label) {
-            titleNode.text(this._schema.title ?? this._schema.label ?? key);
-            if (this._schema.label) {
-                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
-            }
-        }
-        if (this._schema.help || this._schema.helpFile) {
-            createHelpButton(this, this._editor, {
-                content: this._schema.help,
-                helpFile: this._schema.helpFile,
-            })
-                .mount(titleNode);
-        }
-        this.append(this._itemsContainer = create(this, "div")
-            .class("block-content"));
-        if (data && Array.isArray(data)) {
-            data.forEach((itemData, index) => {
-                const itemKey = `${key}[${index}]`;
-                if (this._schema.item.type === "object") {
-                    this.addItem(itemKey, itemData);
-                }
-                else {
-                    console.warn(`Unsupported array item type: ${this._schema.item.type}`);
-                }
-            });
-        }
-        if (this._editable) {
-            create(this, "div")
-                .class("actions")
-                .append(create(this, "button")
-                .text("Dodaj element")
-                .class("add-button")
-                .on("click", () => {
-                const newItemKey = `${key}[${this._itemCounter++}]`;
-                if (this._schema.item.type === "object") {
-                    this.addItem(newItemKey, UseDefaultData);
-                }
-                else {
-                    console.warn(`Unsupported array item type: ${this._schema.item.type}`);
-                }
-            }))
-                .mount(this);
-        }
-    }
-    getValue() {
-        const containerChildren = Array.from(this._itemsContainer.element.children);
-        const orderedItems = this._items.slice().sort((a, b) => {
-            const aIndex = containerChildren.indexOf(a.container.element);
-            const bIndex = containerChildren.indexOf(b.container.element);
-            return aIndex - bIndex;
-        });
-        return orderedItems.map(item => item.widget.getValue());
-    }
-    addItem(key, data) {
-        const item = create(this, "div").class("item");
-        this._itemsContainer.append(item);
-        const itemHandle = create(item, "div")
-            .class("item-header")
-            .mount(item);
-        if (this._reorderable) {
-            // create(item, "div")
-            //     .class("item-move-up")
-            //     .mount(itemHandle)
-            //     .append(
-            //         create(this, "button")
-            //             .text("⬆")
-            //             .on("click", () => {
-            //                 this.moveItemUp(key);
-            //             })
-            //     );
-            create(item, "div")
-                .class("item-drag-handle")
-                .mount(itemHandle)
-                .attr("draggable", "true")
-                .on("dragstart", (event) => {
-                const bounding = item.element.getBoundingClientRect();
-                const x = event.clientX - bounding.left;
-                const y = event.clientY - bounding.top;
-                event.dataTransfer.setDragImage(item.element, x, y);
-                event.dataTransfer.effectAllowed = "move";
-                this._draggedItem = item;
-                // item.style("opacity", "0");
-            })
-                .on("dragend", (event) => {
-                this._draggedItem = null;
-                item.style("opacity", "");
-            });
-            // create(item, "div")
-            //     .class("item-move-down")
-            //     .mount(itemHandle)
-            //     .append(
-            //         create(this, "button")
-            //             .text("⬇")
-            //             .on("click", () => {
-            //                 this.moveItemDown(key);
-            //             })
-            //     );
-            item
-                .on("dragover", (event) => {
-                if (this._draggedItem && this._draggedItem == item && this._draggedItem.element.parentElement === item.element.parentElement) {
-                    item.style("opacity", "0");
-                }
-                if (this._draggedItem && this._draggedItem !== item && this._draggedItem.element.parentElement === item.element.parentElement) {
-                    const targetBounding = item.element.getBoundingClientRect();
-                    const draggedBounding = this._draggedItem.element.getBoundingClientRect();
-                    // console.log("Drag over:", key, "targetBounding:", targetBounding, "draggedBounding:", draggedBounding);
-                    if (draggedBounding.top > targetBounding.top) {
-                        item.element.parentElement.insertBefore(this._draggedItem.element, item.element);
-                    }
-                    else {
-                        item.element.parentElement.insertBefore(this._draggedItem.element, item.element.nextSibling);
-                    }
-                }
-                event.preventDefault();
-            })
-                .on("drop", (event) => {
-                event.preventDefault();
-                this.updateItemOrder();
-                this._editor.saveState();
-            });
-        }
-        const itemIndex = create(item, "div")
-            .class("item-index")
-            .mount(itemHandle)
-            .text(`${this._items.length + 1}`);
-        const itemContent = create(item, "div")
-            .class("item-content")
-            .mount(item);
-        const objectWidget = new ObjectWidget(this._editor, key, this._schema.item, data);
-        this._items.push({
-            key, widget: objectWidget, container: item, itemIndexNode: itemIndex
-        });
-        objectWidget.mount(itemContent);
-        if (this._editable) {
-            create(item, "div")
-                .class("item-actions")
-                .mount(item)
-                .append(create(this, "button")
-                .class("remove-button")
-                .text("Usuń")
-                .on("click", () => {
-                this.removeItem(objectWidget);
-            }));
-        }
-    }
-    updateItemOrder() {
-        const containerChildren = Array.from(this._itemsContainer.element.children);
-        this._items.sort((a, b) => {
-            const aIndex = containerChildren.indexOf(a.container.element);
-            const bIndex = containerChildren.indexOf(b.container.element);
-            return aIndex - bIndex;
-        });
-        this._items.forEach((item, index) => {
-            if (item.itemIndexNode) {
-                item.itemIndexNode.text(`${index + 1}`);
-            }
-        });
-    }
-    moveItemDown(key) {
-        const index = this._items.findIndex(i => i.widget.getKey() === key);
-        if (index < this._items.length - 1) {
-            const currentItem = this._items[index];
-            const nextItem = this._items[index + 1];
-            this._itemsContainer.element.insertBefore(nextItem.container.element, currentItem.container.element);
-            this._editor.saveState();
-            this.updateItemOrder();
-        }
-    }
-    moveItemUp(key) {
-        const index = this._items.findIndex(i => i.widget.getKey() === key);
-        if (index > 0) {
-            const currentItem = this._items[index];
-            const previousItem = this._items[index - 1];
-            this._itemsContainer.element.insertBefore(currentItem.container.element, previousItem.container.element);
-            this._editor.saveState();
-            this.updateItemOrder();
-        }
-    }
-    removeItem(item) {
-        const itemIndex = this._items.findIndex(i => i.widget === item);
-        if (itemIndex !== -1) {
-            const itemNode = this._items[itemIndex].container;
-            this._items.splice(itemIndex, 1);
-            item.dispose();
-            itemNode.dispose();
-            this.updateItemOrder();
-        }
-    }
-}
-
-;// ./packages/editor/src/widgets/string-widget.ts
-
-
-
-class StringWidget extends Widget {
-    _schema;
-    _value;
-    _input;
-    constructor(editor, key, schema, value) {
-        super(editor, key);
-        this._schema = schema;
-        this.class("string-widget");
-        this._value = value !== undefined ? value : schema.default ?? "";
-        if (schema.help || schema.helpFile || schema.label) {
-            const labelNode = create(this, "label")
-                .text(schema.label || "")
-                .mount(this);
-            if (schema.help || schema.helpFile) {
-                createHelpButton(this, this._editor, {
-                    content: schema.help,
-                    helpFile: schema.helpFile,
-                })
-                    .mount(labelNode);
-            }
-        }
-        if (schema.enum) {
-            this._input = create(this, "select")
-                .class("input-select")
-                .mount(this)
-                .on("change", () => {
-                this._value = this._input.property("value") || "";
-                this._editor.saveState();
-            });
-            for (const [enumKey, enumLabel] of Object.entries(schema.enum)) {
-                const option = create(this._input, "option")
-                    .attr("value", enumKey)
-                    .text(enumLabel);
-                if (this._value === enumKey) {
-                    option.attr("selected", "selected");
-                }
-                this._input.append(option);
-            }
-        }
-        else {
-            if (schema.multiline) {
-                this._input = create(this, "textarea")
-                    .class("input-textarea")
-                    .attr("rows", typeof schema.multiline === "number" ? schema.multiline : 2)
-                    .property("value", this._value)
-                    .mount(this)
-                    .on("input", () => {
-                    this._value = this._input.property("value") || "";
-                    this._editor.saveState();
-                });
-            }
-            else {
-                this._input = create(this, "input")
-                    .attr("type", "text")
-                    .class("input-text")
-                    .property("value", this._value)
-                    .mount(this)
-                    .on("input", () => {
-                    this._value = this._input.property("value") || "";
-                    this._editor.saveState();
-                });
-            }
-        }
-        // this.append(labelNode);
-        // this.append(this._input);
-    }
-    getValue() {
-        return this._value;
-    }
-}
-
-;// ./packages/editor/src/widgets/boolean-widget.ts
-
-
-
-class BooleanWidget extends Widget {
-    _schema;
-    _checkbox;
-    _value;
-    constructor(editor, key, schema, value) {
-        super(editor, key);
-        this._value = value !== undefined ? value : schema.default ?? false;
-        this._editor = editor;
-        this._schema = schema;
-        this.class("boolean-widget");
-        const label = schema.label || key;
-        this._checkbox = create(this, "input")
-            .attr("type", "checkbox")
-            .style("marginRight", "8px")
-            .property("checked", this._value)
-            .mount(this)
-            .on("input", () => {
-            this._value = Boolean(this._checkbox.property("checked")) || false;
-            this._editor.saveState();
-        });
-        create(this, "label")
-            .style("cursor", "pointer")
-            .mount(this)
-            .append(create(this, "span").text(label));
-        if (schema.help || schema.helpFile) {
-            createHelpButton(this, this._editor, {
-                content: schema.help,
-                helpFile: schema.helpFile,
-            })
-                .mount(this);
-        }
-    }
-    getValue() {
-        return this._value;
     }
 }
 
@@ -3531,6 +3260,7 @@ class RefWidget extends Widget {
 
 ;// ./packages/editor/src/widgets/id-widget.ts
 
+
 class IdWidget extends Widget {
     _schema;
     _value;
@@ -3540,6 +3270,404 @@ class IdWidget extends Widget {
         this._value = value !== undefined ? value : crypto.randomUUID();
         this.class("id-widget");
         this.attr("data-id", this._value);
+        if (this._schema.path) {
+            this.class("has-ref-widget");
+            this.register(new RefWidget(editor, "question1", {
+                type: "ref",
+                path: this._schema.path,
+            }, {
+                "id": this._value
+            }).mount(this));
+        }
+    }
+    getValue() {
+        return this._value;
+    }
+}
+
+;// ./packages/editor/src/widgets/string-widget.ts
+
+
+
+class StringWidget extends Widget {
+    _schema;
+    _value;
+    _input;
+    _patternInfo = null;
+    _patternInfoDisplay;
+    constructor(editor, key, schema, value) {
+        super(editor, key);
+        this._schema = schema;
+        this.class("string-widget");
+        this._value = value !== undefined ? value : schema.default ?? "";
+        this._patternInfoDisplay = new ValueStore(false);
+        if (schema.help || schema.helpFile || schema.label) {
+            const labelNode = create(this, "label")
+                .text(schema.label || "")
+                .mount(this);
+            if (schema.help || schema.helpFile) {
+                createHelpButton(this, this._editor, {
+                    content: schema.help,
+                    helpFile: schema.helpFile,
+                })
+                    .mount(labelNode);
+            }
+        }
+        if (schema.enum) {
+            this._input = create(this, "select")
+                .class("input-select")
+                .mount(this)
+                .on("change", () => {
+                this._value = this._input.property("value") || "";
+                this._editor.saveState();
+            });
+            for (const [enumKey, enumLabel] of Object.entries(schema.enum)) {
+                const option = create(this._input, "option")
+                    .attr("value", enumKey)
+                    .text(enumLabel);
+                if (this._value === enumKey) {
+                    option.attr("selected", "selected");
+                }
+                this._input.append(option);
+            }
+        }
+        else {
+            if (schema.multiline) {
+                this._input = create(this, "textarea")
+                    .class("input-textarea")
+                    .attr("rows", typeof schema.multiline === "number" ? schema.multiline : 2)
+                    .property("value", this._value)
+                    .mount(this)
+                    .on("input", () => {
+                    this._value = this._input.property("value") || "";
+                    this._editor.saveState();
+                });
+            }
+            else {
+                this._input = create(this, "input")
+                    .attr("type", "text")
+                    .class("input-text")
+                    .attr("placeholder", schema.placeholder || "")
+                    .property("value", this._value)
+                    .mount(this)
+                    .on("input", () => {
+                    this._value = this._input.property("value") || "";
+                    this._editor.saveState();
+                    if (schema.pattern) {
+                        const regex = new RegExp(schema.pattern);
+                        this._patternInfoDisplay.set(!regex.test(this._value));
+                    }
+                });
+                if (schema.patternMessage) {
+                    this._patternInfo = create(this, "div")
+                        .class("pattern-info")
+                        .display(this._patternInfoDisplay)
+                        .text(schema.patternMessage)
+                        .mount(this);
+                }
+            }
+        }
+        // this.append(labelNode);
+        // this.append(this._input);
+    }
+    getValue() {
+        return this._value;
+    }
+}
+
+;// ./packages/editor/src/widgets/array-widget.ts
+
+
+
+
+
+
+
+
+class ArrayWidget extends Widget {
+    _schema;
+    // private _data: any[];
+    _itemsContainer;
+    _items = [];
+    _reorderable;
+    _editable;
+    _controls;
+    _itemCounter = 0;
+    _draggedItem = null;
+    constructor(editor, key, schema, data) {
+        super(editor, key);
+        this._editor = editor;
+        this._schema = schema;
+        // this._data = data;
+        this._reorderable = schema.reorderable ?? false;
+        this._editable = schema.editable ?? false;
+        this._controls = schema.controls ?? null;
+        this.class("array-widget");
+        const titleNode = create(this, "div")
+            .class("block-title")
+            .mount(this);
+        if (this._schema.title || this._schema.label) {
+            titleNode.text(this._schema.title ?? this._schema.label ?? key);
+            if (this._schema.label) {
+                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
+            }
+        }
+        if (this._schema.help || this._schema.helpFile) {
+            createHelpButton(this, this._editor, {
+                content: this._schema.help,
+                helpFile: this._schema.helpFile,
+            })
+                .mount(titleNode);
+        }
+        this.append(this._itemsContainer = create(this, "div")
+            .class("block-content"));
+        if (data && Array.isArray(data)) {
+            data.forEach((itemData, index) => {
+                const itemKey = `${key}[${index}]`;
+                if (this._schema.item.type === "object" || this._schema.item.type === "id" || this._schema.item.type === "string") {
+                    this.addItem(itemKey, itemData);
+                }
+                else {
+                    console.warn(`Unsupported array item type: ${this._schema.item.type}`);
+                }
+            });
+        }
+        if (this._editable) {
+            create(this, "div")
+                .class("actions")
+                .append(create(this, "button")
+                .text("Dodaj element")
+                .class("add-button")
+                .on("click", () => {
+                const newItemKey = `${key}[${this._itemCounter++}]`;
+                if (this._schema.item.type === "object") {
+                    this.addItem(newItemKey, UseDefaultData);
+                }
+                else if (this._schema.item.type === "string") {
+                    this.addItem(newItemKey, "");
+                }
+                else {
+                    console.warn(`Unsupported array item type: ${this._schema.item.type}`);
+                }
+                this.updateItemOrder();
+                this._editor.saveState();
+            }))
+                .mount(this);
+        }
+    }
+    getValue() {
+        const containerChildren = Array.from(this._itemsContainer.element.children);
+        const orderedItems = this._items.slice().sort((a, b) => {
+            const aIndex = containerChildren.indexOf(a.container.element);
+            const bIndex = containerChildren.indexOf(b.container.element);
+            return aIndex - bIndex;
+        });
+        return orderedItems.map(item => item.widget.getValue());
+    }
+    addItem(key, data) {
+        const item = create(this, "div").class("item");
+        this._itemsContainer.append(item);
+        const itemHandle = create(item, "div")
+            .class("item-header")
+            .class("vertical", this._controls === "vertical")
+            .mount(item);
+        if (this._reorderable) {
+            if (this._controls) {
+                create(item, "div")
+                    .class("item-move-up")
+                    .mount(itemHandle)
+                    .append(create(this, "button")
+                    .text("⬆")
+                    .on("click", () => {
+                    this.moveItemUp(key);
+                }));
+            }
+            create(item, "div")
+                .class("item-drag-handle")
+                .mount(itemHandle)
+                .attr("draggable", "true")
+                .on("dragstart", (event) => {
+                const bounding = item.element.getBoundingClientRect();
+                const x = event.clientX - bounding.left;
+                const y = event.clientY - bounding.top;
+                event.dataTransfer.setDragImage(item.element, x, y);
+                event.dataTransfer.effectAllowed = "move";
+                this._draggedItem = item;
+                // item.style("opacity", "0");
+            })
+                .on("dragend", (event) => {
+                this._draggedItem = null;
+                // item.style("opacity", "");
+                item.class("drag-drop", false);
+            });
+            create(item, "div");
+            if (this._controls) {
+                create(item, "div")
+                    .class("item-move-down")
+                    .mount(itemHandle)
+                    .append(create(this, "button")
+                    .text("⬇")
+                    .on("click", () => {
+                    this.moveItemDown(key);
+                }));
+            }
+            item
+                .on("dragover", (event) => {
+                if (this._draggedItem && this._draggedItem == item && this._draggedItem.element.parentElement === item.element.parentElement) {
+                    // XXX: daje to czas żeby "dragstart" mógł zrobić screen capture, a następnie ukrywamy element.
+                    // item.style("opacity", "0");
+                    item.class("drag-drop");
+                }
+                if (this._draggedItem && this._draggedItem !== item && this._draggedItem.element.parentElement === item.element.parentElement) {
+                    const targetBounding = item.element.getBoundingClientRect();
+                    const draggedBounding = this._draggedItem.element.getBoundingClientRect();
+                    // console.log("Drag over:", key, "targetBounding:", targetBounding, "draggedBounding:", draggedBounding);
+                    if (draggedBounding.top > targetBounding.top) {
+                        item.element.parentElement.insertBefore(this._draggedItem.element, item.element);
+                    }
+                    else {
+                        item.element.parentElement.insertBefore(this._draggedItem.element, item.element.nextSibling);
+                    }
+                }
+                event.preventDefault();
+            })
+                .on("drop", (event) => {
+                event.preventDefault();
+                this.updateItemOrder();
+                this._editor.saveState();
+            });
+        }
+        const itemIndex = create(item, "div")
+            .class("item-index")
+            .mount(itemHandle)
+            .text(`${this._items.length + 1}`);
+        const itemContent = create(item, "div")
+            .class("item-content")
+            .mount(item);
+        if (this._schema.item.type === "object" || this._schema.item.type === "string" || this._schema.item.type === "number") {
+            let childWidget = null;
+            if (this._schema.item.type === "object") {
+                childWidget = new ObjectWidget(this._editor, key, this._schema.item, data);
+                this._items.push({
+                    key, widget: childWidget, container: item, itemIndexNode: itemIndex
+                });
+                childWidget.mount(itemContent);
+            }
+            else if (this._schema.item.type === "string") {
+                childWidget = new StringWidget(this._editor, key, this._schema.item, data);
+                this._items.push({
+                    key, widget: childWidget, container: item, itemIndexNode: itemIndex
+                });
+                childWidget.mount(itemContent);
+            }
+            else if (this._schema.item.type === "number") {
+                childWidget = new NumberWidget(this._editor, key, this._schema.item, data);
+                this._items.push({
+                    key, widget: childWidget, container: item, itemIndexNode: itemIndex
+                });
+                childWidget.mount(itemContent);
+            }
+            if (this._editable && childWidget) {
+                create(item, "div")
+                    .class("item-actions")
+                    .mount(item)
+                    .append(create(this, "button")
+                    .class("remove-button")
+                    .text("Usuń")
+                    .on("click", () => {
+                    this.removeItem(childWidget);
+                }));
+            }
+        }
+        else if (this._schema.item.type === "id") {
+            const idWidget = new IdWidget(this._editor, key, this._schema.item, data);
+            this._items.push({
+                key, widget: idWidget, container: item, itemIndexNode: itemIndex
+            });
+            idWidget.mount(itemContent);
+        }
+    }
+    updateItemOrder() {
+        const containerChildren = Array.from(this._itemsContainer.element.children);
+        this._items.sort((a, b) => {
+            const aIndex = containerChildren.indexOf(a.container.element);
+            const bIndex = containerChildren.indexOf(b.container.element);
+            return aIndex - bIndex;
+        });
+        this._items.forEach((item, index) => {
+            if (item.itemIndexNode) {
+                item.itemIndexNode.text(`${index + 1}`);
+            }
+        });
+    }
+    moveItemDown(key) {
+        const index = this._items.findIndex(i => i.widget.getKey() === key);
+        if (index < this._items.length - 1) {
+            const currentItem = this._items[index];
+            const nextItem = this._items[index + 1];
+            this._itemsContainer.element.insertBefore(nextItem.container.element, currentItem.container.element);
+            this.updateItemOrder();
+            this._editor.saveState();
+        }
+    }
+    moveItemUp(key) {
+        const index = this._items.findIndex(i => i.widget.getKey() === key);
+        if (index > 0) {
+            const currentItem = this._items[index];
+            const previousItem = this._items[index - 1];
+            this._itemsContainer.element.insertBefore(currentItem.container.element, previousItem.container.element);
+            this.updateItemOrder();
+            this._editor.saveState();
+        }
+    }
+    removeItem(item) {
+        const itemIndex = this._items.findIndex(i => i.widget === item);
+        if (itemIndex !== -1) {
+            const itemNode = this._items[itemIndex].container;
+            this._items.splice(itemIndex, 1);
+            item.dispose();
+            itemNode.dispose();
+            this.updateItemOrder();
+            this._editor.saveState();
+        }
+    }
+}
+
+;// ./packages/editor/src/widgets/boolean-widget.ts
+
+
+
+class BooleanWidget extends Widget {
+    _schema;
+    _checkbox;
+    _value;
+    constructor(editor, key, schema, value) {
+        super(editor, key);
+        this._value = value !== undefined ? value : schema.default ?? false;
+        this._editor = editor;
+        this._schema = schema;
+        this.class("boolean-widget");
+        const label = schema.label || key;
+        this._checkbox = create(this, "input")
+            .attr("type", "checkbox")
+            .style("marginRight", "8px")
+            .property("checked", this._value)
+            .mount(this)
+            .on("input", () => {
+            this._value = Boolean(this._checkbox.property("checked")) || false;
+            this._editor.saveState();
+        });
+        create(this, "label")
+            .style("cursor", "pointer")
+            .mount(this)
+            .append(create(this, "span").text(label));
+        if (schema.help || schema.helpFile) {
+            createHelpButton(this, this._editor, {
+                content: schema.help,
+                helpFile: schema.helpFile,
+            })
+                .mount(this);
+        }
     }
     getValue() {
         return this._value;
@@ -3610,11 +3738,13 @@ class ObjectWidget extends Widget {
         super.dispose();
     }
     build() {
+        let childWidget = null;
         for (const [key, prop] of Object.entries(this._schema.properties)) {
             // if (this._data !== UseDefaultData && this._data[key] === undefined && prop.type !== "ref") {
             //     console.warn(`Data for key '${key}' is undefined.`);
             //     continue;
             // }
+            childWidget = null;
             if (key.at(0) === "#") {
                 // Skip keys that start with '#' (internal or special keys)
                 continue;
@@ -3624,7 +3754,7 @@ class ObjectWidget extends Widget {
                     console.warn(`No default value provided for key '${key}' in schema! Using empty string as fallback.`);
                 }
                 const value = this._data !== UseDefaultData ? this._data[key] : this._schema.properties[key].default || "";
-                const childWidget = new StringWidget(this._editor, key, prop, value).mount(this._content);
+                childWidget = new StringWidget(this._editor, key, prop, value);
                 this._widgets.push(childWidget);
             }
             else if (prop.type === "number") {
@@ -3632,7 +3762,7 @@ class ObjectWidget extends Widget {
                     console.warn(`No default value provided for key '${key}' in schema! Using 0 as fallback.`);
                 }
                 const value = this._data !== UseDefaultData ? this._data[key] : this._schema.properties[key].default || 0;
-                const childWidget = new NumberWidget(this._editor, key, prop, value).mount(this._content);
+                childWidget = new NumberWidget(this._editor, key, prop, value);
                 this._widgets.push(childWidget);
             }
             else if (prop.type === "boolean") {
@@ -3640,23 +3770,20 @@ class ObjectWidget extends Widget {
                     console.warn(`No default value provided for key '${key}' in schema! Using false as fallback.`);
                 }
                 const value = this._data !== UseDefaultData ? this._data[key] : this._schema.properties[key].default || false;
-                const childWidget = new BooleanWidget(this._editor, key, prop, value).mount(this._content);
+                childWidget = new BooleanWidget(this._editor, key, prop, value);
                 this._widgets.push(childWidget);
             }
             else if (prop.type === "object") {
                 const dataObj = this._data[key] || null;
                 if (dataObj !== null && typeof dataObj === "object") {
-                    const childWidget = new ObjectWidget(this._editor, key, prop, dataObj).mount(this._content);
-                    this._widgets.push(childWidget);
+                    childWidget = new ObjectWidget(this._editor, key, prop, dataObj);
                 }
             }
             else if (prop.type === "array") {
-                const childWidget = new ArrayWidget(this._editor, key, prop, this._data[key] || []).mount(this._content);
-                this._widgets.push(childWidget);
+                childWidget = new ArrayWidget(this._editor, key, prop, this._data[key] || []);
             }
             else if (prop.type === "ref") {
-                const childWidget = new RefWidget(this._editor, key, prop, this._data).mount(this._content);
-                this._widgets.push(childWidget);
+                childWidget = new RefWidget(this._editor, key, prop, this._data);
             }
             else if (prop.type === "id") {
                 let value;
@@ -3667,8 +3794,7 @@ class ObjectWidget extends Widget {
                     value = this._data[key];
                     addId(value); // Register the existing ID to avoid duplicates
                 }
-                const childWidget = new IdWidget(this._editor, key, prop, value).mount(this._content);
-                this._widgets.push(childWidget);
+                childWidget = new IdWidget(this._editor, key, prop, value);
             }
             else if (prop.type === "message") {
                 const messageText = prop.message || "No message provided.";
@@ -3681,6 +3807,12 @@ class ObjectWidget extends Widget {
             }
             else {
                 console.warn(`Unsupported schema type '${prop.type}' for key '${key}'.`);
+            }
+            if (childWidget !== null) {
+                this._widgets.push(childWidget);
+                if (prop.private !== true) {
+                    childWidget.mount(this._content);
+                }
             }
         }
     }
@@ -3712,10 +3844,18 @@ class Editor extends Disposable {
     _api;
     _types = {};
     _rootWidget = null;
+    // private _view: DOMNode<"div">;
+    // private _content: DOMNode<"div">;
     constructor(container, api) {
         super();
         this._container = container;
         this._api = api;
+        // this._view = create(this, "div")
+        //     .class("editor-view")
+        //     .mount(this._container);
+        // this._content = create(this, "div")
+        //     .class("editor-content")
+        //     .mount(this._view);
         console.log("Editor created");
     }
     get api() {
@@ -3728,7 +3868,7 @@ class Editor extends Disposable {
         if (path.startsWith("http://") || path.startsWith("https://")) {
             return path;
         }
-        return this._api.dataPath(path);
+        return this._api.enginePath(path);
     }
     saveState() {
         this._api.triggerStateSave();
@@ -3750,7 +3890,8 @@ class Editor extends Disposable {
                     this._types = schema.definitions;
                     this.replaceDefinitions(propertiesSchema);
                 }
-                this._rootWidget = new ObjectWidget(this, "Root", propertiesSchema, this._data).mount(this._container);
+                this._rootWidget = new ObjectWidget(this, "Root", propertiesSchema, this._data)
+                    .mount(this._container);
                 this._rootWidget.class("root-widget");
                 resolve();
             }).catch((error) => {
@@ -3830,7 +3971,10 @@ var update = injectStylesIntoStyleTag_default()(styles/* default */.A, options);
 
        /* harmony default export */ const styles_styles = (styles/* default */.A && styles/* default */.A.locals ? styles/* default */.A.locals : undefined);
 
+;// ./packages/editor/package.json
+const package_namespaceObject = {"rE":"2.2.1"};
 ;// ./packages/editor/src/main.ts
+
 
 
 function main_create() {
@@ -3839,6 +3983,7 @@ function main_create() {
     let editor = null;
     return {
         init(api, options) {
+            console.log("Editor version:", package_namespaceObject.rE);
             _api = api;
             _api.addEditorTab("tab_data", "Edycja");
         },

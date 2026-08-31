@@ -59,11 +59,14 @@ export class ObjectWidget extends Widget {
     }
 
     build(): void {
+        let childWidget: Widget | null = null;
+
         for (const [key, prop] of Object.entries(this._schema.properties)) {
             // if (this._data !== UseDefaultData && this._data[key] === undefined && prop.type !== "ref") {
             //     console.warn(`Data for key '${key}' is undefined.`);
             //     continue;
             // }
+            childWidget = null;
 
             if (key.at(0) === "#") {
                 // Skip keys that start with '#' (internal or special keys)
@@ -76,7 +79,7 @@ export class ObjectWidget extends Widget {
                 }
 
                 const value = this._data !== UseDefaultData ? this._data[key] : (this._schema.properties[key] as SchemaElementString).default || "";
-                const childWidget = new StringWidget(this._editor, key, prop, value).mount(this._content);
+                childWidget = new StringWidget(this._editor, key, prop, value);
 
                 this._widgets.push(childWidget);
             } else if (prop.type === "number") {
@@ -85,7 +88,7 @@ export class ObjectWidget extends Widget {
                 }
 
                 const value = this._data !== UseDefaultData ? this._data[key] : (this._schema.properties[key] as SchemaElementNumber).default || 0;
-                const childWidget = new NumberWidget(this._editor, key, prop, value).mount(this._content);
+                childWidget = new NumberWidget(this._editor, key, prop, value);
 
                 this._widgets.push(childWidget);
             } else if (prop.type === "boolean") {
@@ -94,21 +97,18 @@ export class ObjectWidget extends Widget {
                 }
 
                 const value = this._data !== UseDefaultData ? this._data[key] : (this._schema.properties[key] as SchemaElementBoolean).default || false;
-                const childWidget = new BooleanWidget(this._editor, key, prop, value).mount(this._content);
+                childWidget = new BooleanWidget(this._editor, key, prop, value);
 
                 this._widgets.push(childWidget);
             } else if (prop.type === "object") {
                 const dataObj = this._data[key] || null;
                 if (dataObj !== null && typeof dataObj === "object") {
-                    const childWidget = new ObjectWidget(this._editor, key, prop, dataObj).mount(this._content);
-                    this._widgets.push(childWidget);
+                    childWidget = new ObjectWidget(this._editor, key, prop, dataObj);
                 }
             } else if (prop.type === "array") {
-                const childWidget = new ArrayWidget(this._editor, key, prop, this._data[key] || []).mount(this._content);
-                this._widgets.push(childWidget);
+                childWidget = new ArrayWidget(this._editor, key, prop, this._data[key] || []);
             } else if (prop.type === "ref") {
-                const childWidget = new RefWidget(this._editor, key, prop, this._data).mount(this._content);
-                this._widgets.push(childWidget);
+                childWidget = new RefWidget(this._editor, key, prop, this._data);
             } else if (prop.type === "id") {
                 let value: string;
 
@@ -119,8 +119,7 @@ export class ObjectWidget extends Widget {
                     addId(value); // Register the existing ID to avoid duplicates
                 }
 
-                const childWidget = new IdWidget(this._editor, key, prop, value).mount(this._content);
-                this._widgets.push(childWidget);
+                childWidget = new IdWidget(this._editor, key, prop, value);
             } else if (prop.type === "message") {
                 const messageText = prop.message || "No message provided.";
                 create(this, "div")
@@ -131,6 +130,13 @@ export class ObjectWidget extends Widget {
                     .html(MD2HTML(messageText));
             } else {
                 console.warn(`Unsupported schema type '${(prop as SchemaElement).type}' for key '${key}'.`);
+            }
+
+            if (childWidget !== null) {
+                this._widgets.push(childWidget);
+                if (prop.private !== true) {
+                    childWidget.mount(this._content);
+                }
             }
         }
     }
