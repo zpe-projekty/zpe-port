@@ -41,12 +41,8 @@ export class ArrayWidget extends Widget {
             .mount(this);
 
 
-        if (this._schema.title || this._schema.label) {
-            titleNode.text(this._schema.title ?? this._schema.label ?? key);
-
-            if (this._schema.label) {
-                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
-            }
+        if (this._schema.label) {
+            titleNode.text(this._schema.label ?? key);
         }
 
         if (this._schema.help || this._schema.helpFile) {

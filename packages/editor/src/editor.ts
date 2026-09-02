@@ -21,7 +21,6 @@ export type SchemaElement =
 export interface SchemaElementBase {
     private?: boolean;
     label?: string;
-    title?: string;
     help?: string;
     helpFile?: string;
 }

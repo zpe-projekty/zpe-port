@@ -1,57 +1,64 @@
 {
     "properties": {
-        "difficulty": {
-            "type": "string",
-            "enum": {
-                "normal": "Normalny",
-                "medium": "Średni",
-                "easy": "Łatwy"
-            },
-            "label": "Poziom trudności",
-            "help": "Wpływa na liczbę dodatkowych (mylących) słów w banku przy układaniu definicji. Normalny = wszystkie dostępne słowa, Średni = 4 mylące słowa, Łatwy = brak mylących słów."
-        },
-        "taskLimit": {
-            "type": "number",
-            "format": "integer",
-            "min": 0,
-            "max": 120,
-            "label": "Liczba zadań",
-            "help": "Po ilu ukończonych zadaniach gra przechodzi do ekranu końcowego. 0 = wszystkie dostępne pojęcia (z włączonych kategorii)."
-        },
-        "pointsPenalty": {
-            "type": "number",
-            "format": "integer",
-            "min": 0,
-            "max": 500,
-            "label": "Kara za błąd (punkty)",
-            "help": "Liczba żetonów odejmowanych od wyniku ucznia po każdej błędnej próbie ułożenia definicji. Wartość 0 wyłącza karę."
-        },
-        "hintCost": {
-            "type": "number",
-            "format": "integer",
-            "min": 0,
-            "max": 500,
-            "label": "Koszt użycia podpowiedzi",
-            "help": "Liczba żetonów pobieranych za skorzystanie z podpowiedzi. Uczeń musi posiadać co najmniej tyle żetonów, aby móc kupić podpowiedź."
-        },
-        "categories": {
-            "type": "array",
-            "label": "Kategorie wiedzy",
-            "help": "Włącz lub wyłącz całe kategorie. Wyłączona kategoria nie pojawia się na kole fortuny.",
-            "item": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "id"
+        "options": {
+            "type": "object",
+            "label": "Opcje",
+            "help": "Ustawienia ogólne gry, które wpływają na jej przebieg i dostępne funkcje.",
+            "properties": {
+                "difficulty": {
+                    "type": "string",
+                    "enum": {
+                        "normal": "Normalny",
+                        "medium": "Średni",
+                        "easy": "Łatwy"
                     },
-                    "name": {
-                        "type": "ref",
-                        "path": "scenario.json#/kategorie/[{identyfikator:${id}}]/nazwa",
-                        "label": "Kategoria"
-                    },
-                    "enabled": {
-                        "type": "boolean",
-                        "label": "Włączona"
+                    "label": "Poziom trudności",
+                    "help": "Wpływa na liczbę dodatkowych (mylących) słów w banku przy układaniu definicji. Normalny = wszystkie dostępne słowa, Średni = 4 mylące słowa, Łatwy = brak mylących słów."
+                },
+                "taskLimit": {
+                    "type": "number",
+                    "format": "integer",
+                    "min": 0,
+                    "max": 120,
+                    "label": "Liczba zadań",
+                    "help": "Po ilu ukończonych zadaniach gra przechodzi do ekranu końcowego. 0 = wszystkie dostępne pojęcia (z włączonych kategorii)."
+                },
+                "pointsPenalty": {
+                    "type": "number",
+                    "format": "integer",
+                    "min": 0,
+                    "max": 500,
+                    "label": "Kara za błąd (punkty)",
+                    "help": "Liczba żetonów odejmowanych od wyniku ucznia po każdej błędnej próbie ułożenia definicji. Wartość 0 wyłącza karę."
+                },
+                "hintCost": {
+                    "type": "number",
+                    "format": "integer",
+                    "min": 0,
+                    "max": 500,
+                    "label": "Koszt użycia podpowiedzi",
+                    "help": "Liczba żetonów pobieranych za skorzystanie z podpowiedzi. Uczeń musi posiadać co najmniej tyle żetonów, aby móc kupić podpowiedź."
+                },
+                "categories": {
+                    "type": "array",
+                    "label": "Kategorie wiedzy",
+                    "help": "Włącz lub wyłącz całe kategorie. Wyłączona kategoria nie pojawia się na kole fortuny.",
+                    "item": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "id"
+                            },
+                            "name": {
+                                "type": "ref",
+                                "path": "scenario.json#/kategorie/[{identyfikator:${id}}]/nazwa",
+                                "label": "Kategoria"
+                            },
+                            "enabled": {
+                                "type": "boolean",
+                                "label": "Włączona"
+                            }
+                        }
                     }
                 }
             }
@@ -114,8 +121,22 @@
                         "label": "Komunikat po poprawnej odpowiedzi"
                     },
                     "pulapki": {
-                        "type": "string",
-                        "label": "Pułapki — 'fraza :: komunikat', kolejne oddziel ' || '"
+                        "type": "array",
+                        "label": "Pułapki",
+                        "editable": true,
+                        "item": {
+                            "type": "object",
+                            "properties": {
+                                "fraza": {
+                                    "type": "string",
+                                    "label": "Fraza"
+                                },
+                                "komunikat": {
+                                    "type": "string",
+                                    "label": "Komunikat"
+                                }
+                            }
+                        }
                     }
                 }
             }

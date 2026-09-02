@@ -25,16 +25,12 @@ export class ObjectWidget extends Widget {
         this.class("object-widget");
 
         let titleNode: DOMNode<"div"> | null = null;
-        if (this._schema.title || this._schema.label) {
+        if (this._schema.label) {
             titleNode = create(this, "div")
                 .class("block-title")
                 .mount(this);
 
-            titleNode.text(this._schema.title ?? this._schema.label ?? key);
-
-            if (this._schema.label) {
-                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
-            }
+            titleNode.text(this._schema.label ?? key);
 
             if (this._schema.help || this._schema.helpFile) {
                 createHelpButton(this, this._editor, {
