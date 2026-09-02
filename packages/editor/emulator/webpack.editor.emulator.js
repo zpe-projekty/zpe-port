@@ -20,7 +20,8 @@ module.exports = function (env, argv) {
         output: {
             path: PATHS.DIST,
             filename: "editor-emulator.js",
-            libraryTarget: "module",
+            iife: true,
+            libraryTarget: "umd",
             clean: true
         },
         experiments: {

@@ -1,0 +1,192 @@
+{
+    "editor": {
+        "defaultData": {
+            "options": {
+                "difficulty": "normal",
+                "taskLimit": 0,
+                "pointsPenalty": 10,
+                "hintCost": 100,
+                "categories": [
+                    {
+                        "id": "geografia",
+                        "enabled": true
+                    },
+                    {
+                        "id": "fizyka",
+                        "enabled": true
+                    },
+                    {
+                        "id": "biologia",
+                        "enabled": true
+                    },
+                    {
+                        "id": "chemia",
+                        "enabled": true
+                    },
+                    {
+                        "id": "informatyka",
+                        "enabled": true
+                    },
+                    {
+                        "id": "logika",
+                        "enabled": true
+                    },
+                    {
+                        "id": "matematyka",
+                        "enabled": true
+                    },
+                    {
+                        "id": "technika",
+                        "enabled": true
+                    }
+                ]
+            },
+            "definitions": [
+                {
+                    "id": "def001",
+                    "enabled": true,
+                    "pojecie": "Mapa",
+                    "kategoria": "geografia",
+                    "poprawnaSekwencja": "Mapa jest to graficzne przedstawienie powierzchni Ziemi lub jej części w skali z zastosowaniem umownych znaków",
+                    "dostepneSlowa": "Mapa jest to graficzne dowolne przedstawienie wyłącznie powierzchni Ziemi lądowej lub jej części w skali dowolnej z zastosowaniem umownych znaków kartograficznych geoidalnych kolorowych papierowych",
+                    "slowaOpcjonalne": "jest",
+                    "blokiObowiazkowe": "powierzchni Ziemi;lub jej części;w skali;z zastosowaniem;umownych znaków",
+                    "frazyZamienne": "graficzne przedstawienie;przedstawienie graficzne",
+                    "komunikatSukcesu": "Definicja jest poprawna – wskazuje istotne cechy mapy: skalę, odniesienie do powierzchni Ziemi oraz zastosowanie znaków umownych.",
+                    "pulapki": [
+                        {
+                            "fraza": "graficzne dowolne przedstawienie",
+                            "komunikat": "definicja błędna – jest zbyt szeroka, ponieważ obejmuje dowolne przedstawienia graficzne"
+                        },
+                        {
+                            "fraza": "w skali dowolnej",
+                            "komunikat": "definicja błędna – jest zbyt szeroka, ponieważ dopuszcza dowolną skalę"
+                        },
+                        {
+                            "fraza": "wyłącznie powierzchni",
+                            "komunikat": "definicja błędna – jest zbyt wąska, ponieważ używa ograniczenia „wyłącznie”"
+                        },
+                        {
+                            "fraza": "powierzchni Ziemi lądowej",
+                            "komunikat": "definicja błędna – jest zbyt wąska, ponieważ zawęża się tylko do powierzchni lądowej"
+                        },
+                        {
+                            "fraza": "znaków kartograficznych",
+                            "komunikat": "definicja błędna – popełnia błąd ignotum per ignotum przez użycie nieznanego terminu „kartograficznych”"
+                        },
+                        {
+                            "fraza": "znaków geoidalnych",
+                            "komunikat": "definicja błędna – popełnia błąd ignotum per ignotum przez użycie pojęcia „geoidalnych”"
+                        },
+                        {
+                            "fraza": "kolorowych",
+                            "komunikat": "definicja błędna – zawiera cechę nieistotną: kolor mapy"
+                        },
+                        {
+                            "fraza": "papierowych",
+                            "komunikat": "definicja błędna – zawiera cechę nieistotną: nośnik papierowy"
+                        }
+                    ]
+                },
+                {
+                    "id": "def016",
+                    "enabled": true,
+                    "pojecie": "Ruch",
+                    "kategoria": "fizyka",
+                    "poprawnaSekwencja": "Ruch to zmiana położenia ciała względem innego ciała odniesienia w czasie",
+                    "dostepneSlowa": "Ruch jest to zawsze po linii prostej opisany w podręczniku tylko każda zmiana kształtu ciała ruch jednostajny położenia względem innego układzie inercjalnym odniesienia czasie ciała",
+                    "slowaOpcjonalne": "",
+                    "blokiObowiazkowe": "położenia ciała;ciała odniesienia;w czasie;względem innego",
+                    "frazyZamienne": "",
+                    "komunikatSukcesu": "Definicja jest poprawna – wskazuje na zmianę położenia względem ciała odniesienia w czasie.",
+                    "pulapki": [
+                        {
+                            "fraza": "każda zmiana kształtu ciała",
+                            "komunikat": "definicja błędna – zbyt szeroka: zwrot „każda zmiana kształtu ciała” rozszerza pojęcie „Ruch”."
+                        },
+                        {
+                            "fraza": "zawsze po linii prostej",
+                            "komunikat": "definicja błędna – zbyt wąska: zwrot „zawsze po linii prostej” zawęża pojęcie „Ruch”."
+                        },
+                        {
+                            "fraza": "tylko ruch jednostajny",
+                            "komunikat": "definicja błędna – zbyt wąska: zwrot „tylko ruch jednostajny” zawęża pojęcie „Ruch”."
+                        },
+                        {
+                            "fraza": "opisany w układzie inercjalnym",
+                            "komunikat": "definicja błędna – ignotum per ignotum: zwrot „opisany w układzie inercjalnym” wymaga dodatkowego wyjaśnienia."
+                        },
+                        {
+                            "fraza": "opisany w podręczniku",
+                            "komunikat": "definicja błędna – nieadekwatność definiensa: zwrot „opisany w podręczniku” nie dotyczy istoty pojęcia."
+                        }
+                    ]
+                },
+                {
+                    "id": "def046",
+                    "enabled": true,
+                    "pojecie": "Liczba Avogadra",
+                    "kategoria": "chemia",
+                    "poprawnaSekwencja": "Liczba Avogadra jest to stała określająca liczbę cząstek atomów lub jonów w jednym molu substancji",
+                    "dostepneSlowa": "Liczba Avogadra jest to stała określająca liczbę cząstek ilość dowolnych cząstek dotycząca tylko atomów zdefiniowana w oznaczana symbolem NA układzie SI lub jonów jednym molu substancji",
+                    "slowaOpcjonalne": "jest",
+                    "blokiObowiazkowe": "w jednym molu;jednym molu substancji;atomów lub jonów",
+                    "frazyZamienne": "",
+                    "komunikatSukcesu": "Definicja jest poprawna – wskazuje, że liczba Avogadra określa liczbę cząstek w jednym molu.",
+                    "pulapki": [
+                        {
+                            "fraza": "ilość dowolnych cząstek",
+                            "komunikat": "definicja błędna – zbyt szeroka: „ilość dowolnych cząstek” rozszerza pojęcie „Liczba Avogadra”."
+                        },
+                        {
+                            "fraza": "dotycząca tylko atomów",
+                            "komunikat": "definicja błędna – zbyt wąska: „dotycząca tylko atomów” zawęża pojęcie „Liczba Avogadra”."
+                        },
+                        {
+                            "fraza": "zdefiniowana w układzie SI",
+                            "komunikat": "definicja błędna – ignotum per ignotum: „zdefiniowana w układzie SI” wymaga dodatkowego wyjaśnienia."
+                        },
+                        {
+                            "fraza": "oznaczana symbolem NA",
+                            "komunikat": "definicja błędna – nieadekwatność definiensa: „oznaczana symbolem NA” nie dotyczy istoty pojęcia."
+                        }
+                    ]
+                },
+                {
+                    "id": "def076",
+                    "enabled": true,
+                    "pojecie": "Zdanie logiczne",
+                    "kategoria": "logika",
+                    "poprawnaSekwencja": "Zdanie logiczne to wypowiedź która ma określoną wartość logiczną prawdy lub fałszu",
+                    "dostepneSlowa": "jest to mająca wartość tylko zdanie matematyczne podlegająca kwantyfikacji w rachunku zdań wypowiedź która ma każda wypowiedź w języku określoną wypowiedziana na lekcji wartość logiczną prawdy lub fałszu Zdanie logiczne logiczną",
+                    "slowaOpcjonalne": "",
+                    "blokiObowiazkowe": "wypowiedź która ma;określoną wartość logiczną;prawdy lub fałszu",
+                    "frazyZamienne": "prawdy lub;lub prawdy;lub fałszu;fałszu lub",
+                    "komunikatSukcesu": "Definicja jest poprawna – wskazuje, że zdanie logiczne ma określoną wartość: prawdę albo fałsz.",
+                    "pulapki": [
+                        {
+                            "fraza": "każda wypowiedź w języku",
+                            "komunikat": "definicja błędna – zbyt szeroka: „każda wypowiedź w języku” rozszerza pojęcie „Zdanie logiczne”."
+                        },
+                        {
+                            "fraza": "tylko zdanie matematyczne",
+                            "komunikat": "definicja błędna – zbyt wąska: „tylko zdanie matematyczne” zawęża pojęcie „Zdanie logiczne”."
+                        },
+                        {
+                            "fraza": "mająca wartość w rachunku zdań",
+                            "komunikat": "definicja błędna – ignotum per ignotum: „mająca wartość w rachunku zdań” wymaga dodatkowego wyjaśnienia."
+                        },
+                        {
+                            "fraza": "podlegająca kwantyfikacji",
+                            "komunikat": "definicja błędna – ignotum per ignotum: „podlegająca kwantyfikacji” wymaga dodatkowego wyjaśnienia."
+                        },
+                        {
+                            "fraza": "wypowiedziana na lekcji",
+                            "komunikat": "definicja błędna – nieadekwatność definiensa: „wypowiedziana na lekcji” nie dotyczy istoty pojęcia."
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

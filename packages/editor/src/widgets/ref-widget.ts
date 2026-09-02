@@ -10,24 +10,25 @@ export class RefWidget extends Widget {
     private _ref: DOMNode<"div">;
 
     constructor(editor: Editor, key: string, schema: SchemaElementRef, data: Record<string, any>) {
-        super(editor);
+        super(editor, key);
 
         this._schema = schema;
         this._data = data;
-        this.class("string-component");
+        this.class("ref-widget");
 
-        const label = this._schema.label || key;
-        this._ref = create("div", this)
+        if (schema.help || schema.helpFile || schema.label) {
+            const label = this._schema.label || key;
+            create(this, "label")
+                .text(label)
+                .style("display", "block")
+                .style("marginBottom", "4px")
+                .mount(this);
+        }
+
+        this._ref = create(this, "div")
             .style("display", "block")
             .style("marginBottom", "8px")
-
-        const labelNode = create("label", this)
-            .text(label)
-            .style("display", "block")
-            .style("marginBottom", "4px");
-
-        this.append(labelNode);
-        this.append(this._ref);
+            .mount(this);
 
         this.build();
 
@@ -148,5 +149,9 @@ export class RefWidget extends Widget {
                 reject(error);
             }
         });
+    }
+
+    getValue(): any {
+        return null; // RefWidget does not have a direct value to return
     }
 }

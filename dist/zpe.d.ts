@@ -38,4 +38,5 @@ declare function loadCss(relativePath: string): Promise<void>;
 declare function getData(): Record<string, any>;
 declare function getState(): Promise<Record<string, any> | null>;
 declare function setState(stateData: Record<string, any>): Promise<void>;
-export { create, path, loadCss, getData, getState, setState };
+declare function getApi(): ExerciseApi;
+export { create, path, loadCss, getData, getState, setState, getApi };

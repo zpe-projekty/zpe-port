@@ -1,0 +1,20 @@
+{
+    "entry": "dist/loader_v0.0.132.js",
+    "stateful": true,
+    "useWebGL": true,
+    "editor": {
+        "entry": "editor.js",
+        "schema": "schema.json",
+        "defaultData": {
+            "controlMessage": "Bienvenue dans le jeu « Qui suis-je ? »",
+            "playTime": 20,
+            "timerEnabled": true
+        },
+        "demoData": {
+            "controlMessage": "Démo : configurez ce message dans l'éditeur ZPE.",
+            "playTime": 20,
+            "timerEnabled": true
+        },
+        "editorIcon": "editor-icon.svg"
+    }
+}

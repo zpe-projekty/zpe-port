@@ -7,24 +7,27 @@
         }
     },
     "properties": {
-        "settings": {
+        "options": {
             "type": "object",
-            "title": "Ustawienia gry",
+            "label": "Opcje",
+            "help": "Ustawienia ogólne gry, które wpływają na jej przebieg i dostępne funkcje.",
             "properties": {
                 "enableHints": {
                     "type": "boolean",
-                    "label": "Włącz podpowiedzi do rebusów"
+                    "label": "Włącz podpowiedzi do rebusów",
+                    "help": "Włączenie tej opcji spowoduje, że uczniowie będą mogli korzystać z podpowiedzi do rebusów. Wyłączenie tej opcji spowoduje, że podpowiedzi nie będą dostępne."
                 },
                 "enableTimer": {
                     "type": "boolean",
-                    "label": "Ograniczenie czasowe"
+                    "label": "Włącz timer"
                 },
                 "playTime": {
                     "type": "number",
                     "format": "integer",
                     "min": 1,
                     "max": 10000,
-                    "label": "Całkowity czas gry (w minutach)"
+                    "label": "Całkowity czas gry (w minutach)",
+                    "help": "Określa całkowity czas gry w minutach. Ustawienie tej wartości na 0 spowoduje, że gra będzie trwała bez ograniczeń czasowych."
                 },
                 "numberOfRebusesToSolve": {
                     "type": "number",
@@ -45,33 +48,124 @@
                 "timeLimitPerRebus": {
                     "type": "number",
                     "label": "Limit czasu na rozwiązanie każdego rebusu (w minutach)",
-                    "help": "Dotyczy tylko trybu 'trudny'."
+                    "helpFile": "help/help-file-test.md"
+                },
+                "testString": {
+                    "type": "string",
+                    "label": "Testowy string",
+                    "help": "Testowy hint do pola"
+                },
+                "testStringMultiline": {
+                    "type": "string",
+                    "multiline": 10,
+                    "label": "Komunikat testowy",
+                    "helpFile": "help/help-file-test.md"
+                },
+                "testMessageText": {
+                    "type": "message",
+                    "format": "text",
+                    "message": "To jest testowy komunikat, który nie jest powiązany z żadnym polem."
+                },
+                "testMessageInfo": {
+                    "type": "message",
+                    "format": "info",
+                    "message": "To jest testowy komunikat informacyjny."
+                },
+                "testMessageWarning": {
+                    "type": "message",
+                    "format": "warning",
+                    "message": "# Uwaga!\nTo jest testowy **komunikat** ostrzegawczy."
                 }
             }
         },
-        "rebuses": {
+        "#rebuses": {
             "type": "array",
-            "title": "Rebusy",
+            "label": "Rebusy",
+            "reorderable": true,
+            "editable": true,
+            "controls": "vertical",
             "item": {
                 "type": "object",
+                "label": "Rebus",
                 "properties": {
                     "id": {
-                        "type": "string",
-                        "private": true
+                        "type": "id"
                     },
                     "enabled": {
                         "type": "boolean",
+                        "default": true,
                         "label": "Dostępny dla uczniów"
                     },
                     "style": {
                         "type": "string",
                         "enum": "styles",
+                        "default": "classic",
                         "label": "Styl rebusu"
                     },
                     "answer": {
                         "type": "ref",
                         "path": "scenario.json#/rebuses/${id}/answer",
                         "label": "Odpowiedź"
+                    },
+                    "refquestions": {
+                        "type": "array",
+                        "label": "Pytania do rebusu - przez ref",
+                        "reorderable": true,
+                        "editable": false,
+                        "item": {
+                            "type": "id",
+                            "path": "scenario.json#/questions/[{id:${id}}]/text"
+                        }
+                    },
+                    "questions": {
+                        "type": "array",
+                        "label": "Pytania do rebusu",
+                        "reorderable": true,
+                        "editable": false,
+                        "item": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "id"
+                                },
+                                "question": {
+                                    "type": "ref",
+                                    "path": "scenario.json#/questions/[{id:${id}}]/text"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "questions": {
+            "type": "array",
+            "label": "Pytania",
+            "reorderable": true,
+            "editable": false,
+            "item": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "id"
+                    },
+                    "question": {
+                        "type": "ref",
+                        "path": "scenario.json#/questions/[{id:${id}}]/text",
+                        "_label": "Pytanie"
+                    },
+                    "traps": {
+                        "type": "array",
+                        "label": "Pułapki",
+                        "reorderable": false,
+                        "editable": true,
+                        "item": {
+                            "type": "string",
+                            "default": "",
+                            "placeholder": "Wpisz pułapkę",
+                            "pattern": ".*::.*",
+                            "patternMessage": "Uwaga! prawidłowy format to <treść> :: <definicja>"
+                        }
                     }
                 }
             }

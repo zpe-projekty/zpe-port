@@ -1,4 +1,4 @@
-import { Disposable, DOMNode } from "@/duct-tape";
+import { create, Disposable, DOMNode } from "@/duct-tape";
 import { ObjectWidget } from "./widgets/object-widget";
 import { ExerciseEditorApi } from "./main";
 
@@ -14,18 +14,30 @@ export type SchemaElement =
     | SchemaElementNumber
     | SchemaElementBoolean
     | SchemaElementRef
+    | SchemaElementId
+    | SchemaElementMessage
     ;
 
 export interface SchemaElementBase {
     private?: boolean;
     label?: string;
-    title?: string;
     help?: string;
+    helpFile?: string;
+}
+
+export interface SchemaElementId extends SchemaElementBase {
+    type: "id";
+    path?: string;
 }
 
 export interface SchemaElementString extends SchemaElementBase {
     type: "string";
     enum?: Record<string, string>;
+    multiline: number;
+    default?: string;
+    placeholder?: string;
+    pattern?: string;
+    patternMessage?: string;
 }
 
 export interface SchemaElementNumber extends SchemaElementBase {
@@ -33,10 +45,12 @@ export interface SchemaElementNumber extends SchemaElementBase {
     format?: "integer" | "float" | "number";
     min?: number;
     max?: number;
+    default?: number;
 }
 
 export interface SchemaElementBoolean extends SchemaElementBase {
     type: "boolean";
+    default?: boolean;
 }
 
 export interface SchemaElementRef extends SchemaElementBase {
@@ -49,10 +63,24 @@ export interface SchemaElementObject extends SchemaElementBase {
     properties: Record<string, SchemaElement>;
 }
 
+export interface SchemaElementMessage extends SchemaElementBase {
+    type: "message";
+    format?: "text" | "info" | "warning";
+    message: string;
+}
+
 export interface SchemaElementArray extends SchemaElementBase {
     type: "array";
     item: SchemaElement;
+    // Pozwala na zmianę kolejności elementów w tablicy, jeśli jest ustawione na true
+    reorderable?: boolean;
+    // Pozwala na dodawanie i usuwanie elementów do tablicy, jeśli jest ustawione na true
+    editable?: boolean;
+    // Dodaje przyciski do zarządzania elementami tablicy, jeśli jest ustawione na true
+    controls?: "horizontal" | "vertical";
 }
+
+export const UseDefaultData: Record<string, boolean> = { __useDefaultData: true };
 
 type Data = Record<string, any>;
 
@@ -62,17 +90,37 @@ export class Editor extends Disposable {
     private _api: ExerciseEditorApi;
     private _types: Record<string, any> = {};
     private _rootWidget: ObjectWidget | null = null;
+    // private _view: DOMNode<"div">;
+    // private _content: DOMNode<"div">;
 
     constructor(container: HTMLElement, api: ExerciseEditorApi) {
         super();
         this._container = container;
         this._api = api;
 
+        // this._view = create(this, "div")
+        //     .class("editor-view")
+        //     .mount(this._container);
+        // this._content = create(this, "div")
+        //     .class("editor-content")
+        //     .mount(this._view);
+
         console.log("Editor created");
     }
 
     get api(): ExerciseEditorApi {
         return this._api;
+    }
+
+    get container(): HTMLElement {
+        return this._container;
+    }
+
+    pathResolver(path: string): string {
+        if (path.startsWith("http://") || path.startsWith("https://")) {
+            return path;
+        }
+        return this._api.enginePath(path);
     }
 
     saveState(): void {
@@ -101,7 +149,9 @@ export class Editor extends Disposable {
                     this.replaceDefinitions(propertiesSchema);
                 }
 
-                this._rootWidget = new ObjectWidget(this, "Root", propertiesSchema, this._data).mount(this._container);
+                this._rootWidget = new ObjectWidget(this, "Root", propertiesSchema, this._data)
+                    .mount(this._container);
+                this._rootWidget.class("root-widget");
 
                 resolve();
             }).catch((error) => {
@@ -109,6 +159,10 @@ export class Editor extends Disposable {
                 resolve();
             });
         });
+    }
+
+    getData(): Data {
+        return this._rootWidget ? this._rootWidget.getValue() : {};
     }
 
     replaceDefinitions(schema: SchemaElementObject): void {

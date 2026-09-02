@@ -40,6 +40,7 @@ function isTrueParam(param) {
     const value = getUrlParameter(param)?.toLowerCase();
     return value !== undefined && ["1", "yes", "true"].includes(value);
 }
+let onFullscreenExitCallback = null;
 function define(fn) {
     const entry = fn().default();
     const container = document.getElementById("zpe-emulator-container");
@@ -65,6 +66,69 @@ function define(fn) {
                     resolve();
                 });
             });
+        },
+        requestFullscreen: (container, onFullscreenExit) => {
+            return new Promise((resolve, reject) => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen().then(() => {
+                        onFullscreenExitCallback = onFullscreenExit;
+                        console.log("Entered fullscreen");
+                        resolve();
+                    }).catch(err => {
+                        console.error("Failed to enter fullscreen:", err);
+                        reject(err);
+                    });
+                }
+                else {
+                    console.warn("Fullscreen API is not supported in this browser.");
+                    reject(new Error("Fullscreen API is not supported."));
+                }
+            });
+        },
+        exitFullscreen: () => {
+            return new Promise((resolve, reject) => {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen().then(() => {
+                        console.log("Exited fullscreen");
+                        resolve();
+                    }).catch(err => {
+                        console.error("Failed to exit fullscreen:", err);
+                        reject(err);
+                    });
+                }
+                else {
+                    console.warn("Fullscreen API is not supported in this browser.");
+                    reject(new Error("Fullscreen API is not supported."));
+                }
+            });
+        },
+        toggleFullscreen: (container, onFullscreenExit) => {
+            return new Promise((resolve, reject) => {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen().then(() => {
+                        console.log("Exited fullscreen");
+                        resolve();
+                    }).catch(err => {
+                        console.error("Failed to exit fullscreen:", err);
+                        reject(err);
+                    });
+                }
+                else {
+                    if (container.requestFullscreen) {
+                        container.requestFullscreen().then(() => {
+                            console.log("Entered fullscreen");
+                            resolve();
+                        }).catch(err => {
+                            console.error("Failed to enter fullscreen:", err);
+                            reject(err);
+                        });
+                    }
+                    else {
+                        console.warn("Fullscreen API is not supported in this browser.");
+                        reject(new Error("Fullscreen API is not supported."));
+                    }
+                }
+            });
         }
     };
     const options = {};
@@ -76,6 +140,15 @@ function define(fn) {
             }, 200);
         });
     }
+    document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement) {
+            console.log("Fullscreen exited");
+            if (onFullscreenExitCallback) {
+                onFullscreenExitCallback();
+                onFullscreenExitCallback = null;
+            }
+        }
+    });
     fetch(`/engine.json`).then(response => response.json()).then(async (engineManifest) => {
         console.log(engineManifest);
         options.data = engineManifest?.editor?.defaultData || {};

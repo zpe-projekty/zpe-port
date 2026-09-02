@@ -2,15 +2,15 @@ define(() => { return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 425
+/***/ 256
 (module, __webpack_exports__, __webpack_require__) {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(601);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(758);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(314);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(935);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
 // Imports
 
@@ -18,6 +18,143 @@ define(() => { return /******/ (() => { // webpackBootstrap
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+
+    & * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    &:has(dialog[open]) {
+        overflow: hidden;
+    }
+
+    & button {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: #007acc;
+        color: #fff;
+        gap: 0.3rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #005a9e;
+        }
+        &:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+    }
+
+    & button.help-button {
+        width: 1rem;
+        height: 1rem;
+        padding: 0;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::before {
+            content: "?";
+            font-size: 0.75rem;
+        }
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 0.25rem;
+        border: solid 1px #aaa;
+        border-radius: 0.25rem;
+        font-size: 1rem;
+    }
+    input[type="text"],
+    input[type="number"] {
+        height: 2rem;
+    }
+
+    label {
+        font-size: 0.75rem;
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        line-height: 1.5rem;
+    }
+
+    & dialog {
+        position: fixed;
+        max-width: clamp(20rem, 80%, 40rem);
+        min-width: clamp(20rem, 80%, 40rem);
+        max-height: 50%;
+        background-color: #fff;
+        border-radius: 0.25rem;
+        padding: 0;
+        margin: auto;
+        border: 0;
+        flex-direction: column;
+
+        &[open] {
+            display: flex;
+        }
+
+        & .help-dialog-body {
+            flex: auto;
+            display: flex;
+            overflow: hidden;
+        }
+
+        & .help-dialog-content {
+            height: auto;
+            width: 100%;
+            overflow: auto;
+        }
+
+        & .help-dialog-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        & .help-dialog-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        & .help-dialog-actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+            gap: 0.5rem;
+            border-top: solid 1px #aaa;
+            background-color: #f0f0f0;
+            flex: 0 0 auto;
+        }
+
+        & .help-dialog-close-button {
+            width: fit-content;
+        }
+
+        &::backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+
     & .dropdown.icon {
         width: 2em;
         height: 2em;
@@ -39,12 +176,60 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
     }
 
     & .content {
-        background-color: #eee;
+        /* background-color: #eee; */
     }
 
-    & .object-component {
-        /* border: solid 1px #f00; */
-        padding: 0.5em;
+    & .block-title {
+        font-size: 1rem;
+        font-weight: bold;
+        background-color: #ccc;
+        color: #000;
+        padding: 0.25rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    & .block-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        /* background-color: #eee; */
+
+        &.active {
+            display: block;
+        }
+    }
+
+    & .id-widget {
+        display: none;
+    }
+
+    & .boolean-widget {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+
+        & .checkbox {
+            width: 1rem;
+            height: 1rem;
+            padding-left: 0.5rem;
+        }
+    }
+
+    & .object-widget {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .array-widget {
         display: flex;
         flex-direction: column;
         gap: 0.5em;
@@ -52,37 +237,250 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
         & .title {
             background-color: #000;
             color: #fff;
-            padding: 0.25em;
+            padding: 0.25rem;
         }
 
-        & .content {
-            &.active {
-                display: block;
-            }
-        }
-    }
-
-    & .array-component {
-        padding: 0.5em;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
-
-        & .title {
-            background-color: #000;
-            color: #fff;
-            padding: 0.25em;
-        }
-
-        & .items-container {
+        & .actions {
             display: flex;
-            flex-direction: column;
-            gap: 0.5em;
+            gap: 0.5rem;
+        }
 
-            & .array-item {
-                border-bottom: solid 1px #000;
+        & .item {
+            display: flex;
+            flex-direction: row;
+            background-color: #ddd;
+
+            & .item-header {
+                flex: 0 0 4rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 0.1rem;
+                border-right: solid 1px #aaa;
+
+                &.vertical {
+                    flex-direction: column;
+                }
+
+                & .item-drag-handle {
+                    cursor: grab;
+                    user-select: none;
+                    width: 2rem;
+                    height: 2rem;
+                    font-size: 1.5rem;
+                    line-height: 1.7rem;
+                    justify-content: center;
+                    align-items: center;
+
+                    &::before {
+                        content: "☰";
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                & .item-move-up,
+                & .item-move-down {
+                    & button {
+                        width: 2rem;
+                        height: 2rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                & .item-index {
+                    font-size: 0.75rem;
+                    font-weight: bold;
+                    padding: 0.5rem;
+                }
+            }
+
+            & .item-content {
+                flex: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem;
+                /* padding-right: 0.5rem; */
+                justify-content: center;
+                container-name: item-content;
+            }
+
+            & .item-actions {
+                display: flex;
+                gap: 0.5rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                padding-right: 0.5rem;
+
+                & .remove-button {
+                    background-color: #838383;
+
+                    &::before {
+                        content: "✖";
+                        font-size: 1rem;
+                    }
+                    &:hover {
+                        background-color: #db2828;
+                    }
+                }
             }
         }
+
+        & .block-content {
+            background-color: unset;
+        }
+    }
+
+    & .string-widget {
+        & .input-text {
+        }
+
+        & .pattern-info {
+            font-size: 0.75rem;
+            color: #fff;
+            background-color: #eaae00;
+            padding-left: 0.5rem;
+        }
+    }
+
+    & .formatted-text {
+        display: flex;
+        flex-direction: column;
+        padding: 0.25rem;
+        font-size: 0.9rem;
+
+        & * {
+            margin: 0;
+            padding: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        & h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        & h2 {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        & h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        & p {
+            font-size: 1rem;
+        }
+
+        & strong {
+            font-weight: bold;
+        }
+
+        & em {
+            font-style: italic;
+        }
+
+        & a {
+            text-decoration: underline;
+        }
+
+        & code {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 0.1rem;
+            border-radius: 0.25rem;
+        }
+
+        & pre {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            overflow-x: auto;
+        }
+
+        & ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+
+        & ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+        }
+
+        & img {
+            width: 100%;
+            height: auto;
+        }
+
+        & *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    & .message {
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        font-size: 0.5rem;
+
+        &.text {
+            background-color: #f0f0f0;
+            color: #000;
+        }
+
+        &.info {
+            background-color: #d9edf7;
+            color: #31708f;
+            border: solid 1px #bce8f1;
+            padding: 0.5rem;
+        }
+
+        &.warning {
+            background-color: #fcf8e3;
+            color: #8a6d3b;
+            border: solid 1px #faebcc;
+            padding: 0.5rem;
+        }
+    }
+
+    & .add-button {
+        &::before {
+            content: "+";
+            font-size: 1rem;
+            color: white;
+        }
+
+        &:hover {
+            background-color: #21ba45;
+        }
+    }
+
+    & .has-ref-widget {
+        display: flex;
+        height: 100%;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    & .item.drag-drop {
+        background-color: #ccc;
+        & * {
+            opacity: 0;
+        }
+    }
+
+    & .root-widget {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        background-color: #eee;
     }
 }
 `, ""]);
@@ -92,7 +490,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.oseditor-nmzzpp1hty {
 
 /***/ },
 
-/***/ 314
+/***/ 935
 (module) {
 
 
@@ -183,7 +581,7 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ },
 
-/***/ 601
+/***/ 758
 (module) {
 
 
@@ -194,56 +592,7 @@ module.exports = function (i) {
 
 /***/ },
 
-/***/ 166
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(825);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(659);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(56);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(540);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(113);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_1_use_1_styles_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(425);
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-
-var options = {};
-
-options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
-options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
-options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
-options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
-options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_1_use_1_styles_css__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .A, options);
-
-
-
-
-       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_1_use_1_styles_css__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .A && _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_1_use_1_styles_css__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .A.locals ? _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_1_use_1_styles_css__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .A.locals : undefined);
-
-
-/***/ },
-
-/***/ 72
+/***/ 591
 (module) {
 
 
@@ -333,7 +682,7 @@ module.exports = function (list, options) {
 
 /***/ },
 
-/***/ 659
+/***/ 128
 (module) {
 
 
@@ -373,7 +722,7 @@ module.exports = insertBySelector;
 
 /***/ },
 
-/***/ 540
+/***/ 51
 (module) {
 
 
@@ -389,7 +738,7 @@ module.exports = insertStyleElement;
 
 /***/ },
 
-/***/ 56
+/***/ 855
 (module, __unused_webpack_exports, __webpack_require__) {
 
 
@@ -405,7 +754,7 @@ module.exports = setAttributesWithoutAttributes;
 
 /***/ },
 
-/***/ 825
+/***/ 740
 (module) {
 
 
@@ -472,7 +821,7 @@ module.exports = domAPI;
 
 /***/ },
 
-/***/ 113
+/***/ 656
 (module) {
 
 
@@ -490,435 +839,92 @@ function styleTagTransform(css, styleElement) {
 }
 module.exports = styleTagTransform;
 
-/***/ },
+/***/ }
 
-/***/ 415
-(__unused_webpack_module, exports, __webpack_require__) {
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			id: moduleId,
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/nonce */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nc = undefined;
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
 
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  create: () => (/* binding */ main_create),
+  "default": () => (/* binding */ main)
+});
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-__exportStar(__webpack_require__(237), exports);
-__exportStar(__webpack_require__(626), exports);
-__exportStar(__webpack_require__(546), exports);
-__exportStar(__webpack_require__(667), exports);
-__exportStar(__webpack_require__(460), exports);
-__exportStar(__webpack_require__(591), exports);
-__exportStar(__webpack_require__(21), exports);
-__exportStar(__webpack_require__(335), exports);
-__exportStar(__webpack_require__(245), exports);
-__exportStar(__webpack_require__(343), exports);
-__exportStar(__webpack_require__(302), exports);
-
-
-/***/ },
-
-/***/ 21
-(__unused_webpack_module, exports, __webpack_require__) {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.App = exports.PageType = void 0;
-exports.encodeParams = encodeParams;
-exports.decodeParams = decodeParams;
-const disposable_1 = __webpack_require__(626);
-const dom_1 = __webpack_require__(546);
-const value_1 = __webpack_require__(667);
-const log_1 = __webpack_require__(394);
-var PageType;
-(function (PageType) {
-    PageType[PageType["Normal"] = 0] = "Normal";
-    PageType[PageType["Background"] = 1] = "Background";
-    PageType[PageType["Overlay"] = 2] = "Overlay";
-})(PageType || (exports.PageType = PageType = {}));
-function encodeParams(map) {
-    const arr = [];
-    map.forEach((value, key) => {
-        arr.push(`${encodeURI(key)}=${encodeURI(value)}`);
-    });
-    return arr.join("&");
-}
-function decodeParams(value) {
-    const arr = value.split("&");
-    const params = new Map();
-    arr.forEach((v) => {
-        const kv = v.split("=");
-        if (kv.length === 2) {
-            params.set(decodeURI(kv[0]), decodeURI(kv[1]));
-        }
-    });
-    return params;
-}
-const FOCUSABLE_ELEMENT_SELECTOR = 'a[href], button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
-class App extends disposable_1.Disposable {
-    appDiv;
-    appContainer;
-    backgroundContainer;
-    pageContainer;
-    overflowContainer;
-    modalsContainer;
-    _services = new Map();
-    modals = [];
-    pagesConstructors = [];
-    backgroundPageConstructors = [];
-    overflowPageConstructors = [];
-    _options;
-    _parent;
-    store;
-    config;
-    backgroundPages = [];
-    overflowPages = [];
-    _currentPage;
-    pageId = new value_1.ValueStoreRaw(null);
-    _isFocusPageLocked = false;
-    isFullscreen = new value_1.ValueStoreRaw(false);
-    static create(parent, store, config, options = {}) {
-        return new App(parent, store, config, options);
-    }
-    constructor(parent, store, config, options = {}) {
-        super();
-        log_1.log.debug("Greetings from DuctTape Engine! 🥳");
-        this.store = store;
-        this.config = config;
-        this._options = options;
-        this._parent = parent;
-        this.appDiv = (0, dom_1.create)("div", this).class(options.appClassName ?? [])
-            .mount(this._parent);
-        this.appContainer = (0, dom_1.create)("div", this).class(options.appContainerClassName ?? [])
-            .mount(this.appDiv);
-        if (options.backgroundContainerEnabled === true) {
-            this.backgroundContainer = (0, dom_1.create)("div", this)
-                .class(options.backgroundContainerClassName ?? [])
-                .mount(this.appContainer);
-        }
-        this.pageContainer = (0, dom_1.create)("div", this).class(options.pageContainerClassName ?? [])
-            .mount(this.appContainer);
-        if (options.overflowContainerEnabled === true) {
-            this.overflowContainer = (0, dom_1.create)("div", this).class(options.overflowContainerClassName ?? [])
-                .mount(this.appContainer);
-        }
-        this.modalsContainer = (0, dom_1.create)("div", this).class(options.modalContainerClassName ?? [])
-            .style("display", "none")
-            .mount(this.appContainer);
-        document.addEventListener("fullscreenchange", () => {
-            const isFullscreen = !!document.fullscreenElement;
-            this.isFullscreen.set(isFullscreen);
-        });
-    }
-    dispose() {
-        this.removeAllModals();
-        if (this.backgroundPages.length > 0) {
-            this.backgroundPages.forEach(page => page.dispose());
-            this.backgroundPages = [];
-        }
-        if (this.overflowPages.length > 0) {
-            this.overflowPages.forEach(page => page.dispose());
-            this.overflowPages = [];
-        }
-        if (this._currentPage) {
-            this._currentPage.dispose();
-        }
-        this.pageId.dispose();
-        super.dispose();
-    }
-    fullscreen() {
-        this.appDiv.element.requestFullscreen();
-    }
-    exitFullscreen() {
-        if (document.fullscreenElement) {
-            document.exitFullscreen();
-        }
-    }
-    toggleFullscreen() {
-        if (document.fullscreenElement) {
-            this.exitFullscreen();
-        }
-        else {
-            this.fullscreen();
-        }
-    }
-    get parent() {
-        return this._parent;
-    }
-    findPageByName(name) {
-        for (const pageConstructor of this.pagesConstructors) {
-            if (pageConstructor.name === name) {
-                return pageConstructor;
-            }
-        }
-        log_1.log.error(`Page with name "${name}" not found.`);
-        return undefined;
-    }
-    registerPage(pageConstructor, type = PageType.Normal) {
-        if (type === PageType.Background) {
-            if (this._options.backgroundContainerEnabled !== true || !this.backgroundContainer) {
-                log_1.log.error("Background container is not enabled in App options.");
-                return;
-            }
-            for (const page of this.backgroundPages) {
-                if (pageConstructor === page.constructor) {
-                    log_1.log.error(`Background page "${pageConstructor.name}" is already added.`);
-                    return;
-                }
-            }
-            this.backgroundPageConstructors.push(pageConstructor);
-        }
-        else if (type === PageType.Overlay) {
-            if (this._options.overflowContainerEnabled !== true || !this.overflowContainer) {
-                log_1.log.error("Overflow container is not enabled in App options.");
-                return;
-            }
-            for (const page of this.overflowPageConstructors) {
-                if (pageConstructor === page) {
-                    log_1.log.error(`Overflow page "${pageConstructor.name}" is already added.`);
-                    return;
-                }
-            }
-            this.overflowPageConstructors.push(pageConstructor);
-        }
-        else {
-            if (this.pagesConstructors.includes(pageConstructor)) {
-                log_1.log.error(`Page "${pageConstructor.name}" is already registered.`);
-                return;
-            }
-            this.pagesConstructors.push(pageConstructor);
-        }
-    }
-    registerService(service) {
-        if (this._services.has(service.name)) {
-            throw new Error(`Service "${service.name}" is already registered.`);
-        }
-        this._services.set(service.name, service);
-        return this;
-    }
-    get currentPage() {
-        return this._currentPage;
-    }
-    saveAndLockPageFocusableElements() {
-        //find all focusable elements
-        const focusableElements = this.getPageFocusableElements();
-        focusableElements?.forEach(el => {
-            el.setAttribute("data-original-tabindex", el.getAttribute("tabindex") || "0");
-            el.setAttribute("tabindex", "-1");
-        });
-        const overflowFocusableElements = this.getOverflowFocusableElements();
-        overflowFocusableElements?.forEach(el => {
-            el.setAttribute("data-original-tabindex", el.getAttribute("tabindex") || "0");
-            el.setAttribute("tabindex", "-1");
-        });
-        this._isFocusPageLocked = true;
-    }
-    restorePageFocusableElements() {
-        const focusableElements = this.currentPage?.element.querySelectorAll('[data-original-tabindex]');
-        focusableElements?.forEach(el => {
-            const originalTabIndex = el.getAttribute("data-original-tabindex");
-            if (originalTabIndex) {
-                el.setAttribute("tabindex", originalTabIndex);
-                el.removeAttribute("data-original-tabindex");
-            }
-        });
-        const overflowFocusableElements = this.overflowContainer?.element.querySelectorAll('[data-original-tabindex]');
-        overflowFocusableElements?.forEach(el => {
-            const originalTabIndex = el.getAttribute("data-original-tabindex");
-            if (originalTabIndex) {
-                el.setAttribute("tabindex", originalTabIndex);
-                el.removeAttribute("data-original-tabindex");
-            }
-        });
-        this._isFocusPageLocked = false;
-    }
-    async navigate(to, params = new Map()) {
-        // const newHash = `${to}@${encodeParams(new Map([...params, ...this.getData()]))}`;
-        // if (newHash === this.lastHash) return;
-        // this.lastHash = newHash;
-        const nextPage = this.pagesConstructors.includes(to) ? to : undefined;
-        if (!nextPage) {
-            console.warn(`Page with name "${to.name}" not found.`);
-            throw new Error(`Unknown page "${to.name}". Did you forget to register it?`);
-        }
-        this.removeAllModals();
-        // setProgress(0);
-        // loader?.classList.remove("none");
-        // pages.style.setProperty("visibility", "hidden");
-        if (this._currentPage) {
-            await this._currentPage.unload();
-            this._currentPage.dispose();
-            if (this.pageContainer.element.children.length > 0) {
-                const className = this._currentPage.constructor.name;
-                console.warn(`Detect memory leak in class "${className}". Probably the class "${className}" left a content in the main container. ${this.appDiv.element.innerHTML}`);
-                this.appDiv.element.textContent = "";
-            }
-            this._currentPage = undefined;
-            this.pageId.set(null);
-        }
-        // const params: Map<string, string> = new Map();
-        // for (const s of params) {
-        //   const p = s.split("=");
-        //   params.set(p[0], p[1] ?? p[0]);
-        // }
-        this._currentPage = new nextPage(this, this.store, this.config);
-        await this._currentPage.load();
-        this._currentPage.mount(this.pageContainer);
-        this.pageId.set(to);
-        this.appDiv.element.setAttribute("data-page", to.name);
-        // loader?.classList.add("none");
-        // pages.style.removeProperty("visibility");
-        // if (location.hash.slice(1) !== newHash) {
-        //     location.hash = newHash;
-        // }
-    }
-    // TODO: zachowanie specyficzne, przenieść do rozszerzenia
-    // navigateFromHash(): void {
-    //     const path = location.hash.slice(1);
-    //     const params = path.split("@");
-    //     const to = params[0] ?? "";
-    //     const data = params[1] ?? "";
-    //     this.navigate(to, decodeParams(data));
-    // }
-    // getData(): Map<string, string> {
-    //     const path = location.hash.slice(1);
-    //     const params = path.split("@");
-    //     const data = params[1] ?? "";
-    //     return decodeParams(data);
-    // }
-    runViewportObserver() {
-        const appHeight = () => {
-            const doc = document.documentElement;
-            doc.style.setProperty("--app-height", `${window.innerHeight}px`);
-        };
-        window.addEventListener("resize", appHeight);
-        appHeight();
-    }
-    async setup() {
-        for (const [, service] of this._services) {
-            await service.load();
-        }
-        for (const [, service] of this._services) {
-            await service.run();
-        }
-        // Setup background pages
-        if (this.backgroundContainer) {
-            for (const pageConstructor of this.backgroundPageConstructors) {
-                const page = new pageConstructor(this, this.store, this.config);
-                page.mount(this.backgroundContainer);
-                this.backgroundPages.push(page);
-                await page.load();
-            }
-        }
-        // Setup overflow pages
-        if (this.overflowContainer) {
-            for (const pageConstructor of this.overflowPageConstructors) {
-                const page = new pageConstructor(this, this.store, this.config);
-                page.mount(this.overflowContainer);
-                this.overflowPages.push(page);
-                await page.load();
-            }
-        }
-    }
-    async addModal(modal) {
-        if (this.modals.includes(modal)) {
-            return;
-        }
-        if (this.modals.length > 0) {
-            this.modals[this.modals.length - 1].element.style.display = "none";
-        }
-        this.modals.push(modal);
-        modal.mount(this.modalsContainer);
-        await modal.load();
-        this.updateModals();
-        await modal.show();
-        // focus first focusable element in modal
-        const focusableElements = modal.element.querySelectorAll(FOCUSABLE_ELEMENT_SELECTOR);
-        if (focusableElements.length > 0) {
-            focusableElements[0].focus();
-        }
-    }
-    async removeModal(modal) {
-        if (!this.modals.includes(modal)) {
-            return;
-        }
-        this.modals.splice(this.modals.indexOf(modal), 1);
-        await modal.close();
-        await modal.unload();
-        modal.dispose();
-        if (this.modals.length > 0) {
-            this.modals[this.modals.length - 1].element.style.display = "flex";
-        }
-        this.updateModals();
-        if (this.modals.length > 0) {
-            const focusableElements = this.modals[this.modals.length - 1].element.querySelectorAll(FOCUSABLE_ELEMENT_SELECTOR);
-            if (focusableElements.length > 0) {
-                focusableElements[0].focus();
-            }
-        }
-        else {
-            // focus current page
-            const focusableElements = this.getPageFocusableElements();
-            if (focusableElements && focusableElements.length > 0) {
-                focusableElements[0].focus();
-            }
-        }
-    }
-    removeAllModals() {
-        let modal;
-        while ((modal = this.modals.pop())) {
-            modal.dispose();
-        }
-        this.updateModals();
-    }
-    getPageFocusableElements() {
-        return this.currentPage?.element.querySelectorAll(FOCUSABLE_ELEMENT_SELECTOR);
-    }
-    getOverflowFocusableElements() {
-        return this.overflowContainer?.element.querySelectorAll(FOCUSABLE_ELEMENT_SELECTOR);
-    }
-    updateModals() {
-        if (this.modals.length > 0) {
-            this.modalsContainer.element.style.display = "flex";
-            if (!this._isFocusPageLocked) {
-                this.saveAndLockPageFocusableElements();
-            }
-        }
-        else {
-            this.modalsContainer.element.style.display = "none";
-            if (this._isFocusPageLocked) {
-                this.restorePageFocusableElements();
-            }
-        }
-    }
-}
-exports.App = App;
-
-
-/***/ },
-
-/***/ 237
-(__unused_webpack_module, exports) {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.isObject = isObject;
-exports.isFunction = isFunction;
-exports.isDefined = isDefined;
-exports.hasOwnProperty = hasOwnProperty;
-exports.hasOwnFunction = hasOwnFunction;
-exports.isEmpty = isEmpty;
-exports.isTrue = isTrue;
-exports.isFalse = isFalse;
-exports.mergeDeep = mergeDeep;
+;// ./packages/editor/packages/duct-tape/src/common.ts
 function isObject(value) {
     return (typeof value === 'object' &&
         value !== null &&
@@ -932,7 +938,7 @@ function isFunction(value) {
 function isDefined(value) {
     return value !== undefined;
 }
-function hasOwnProperty(value, name) {
+function common_hasOwnProperty(value, name) {
     return typeof value === 'object' && Object.hasOwn(value, name);
 }
 function hasOwnFunction(value, name) {
@@ -1002,17 +1008,8 @@ function mergeDeep(target, ...sources) {
     return mergeDeep(target, ...sources);
 }
 
+;// ./packages/editor/packages/duct-tape/src/disposable.ts
 
-/***/ },
-
-/***/ 626
-(__unused_webpack_module, exports, __webpack_require__) {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.DummyDisposable = exports.Disposable = void 0;
-exports.createDisposeFn = createDisposeFn;
-const common_1 = __webpack_require__(237);
 function createDisposeFn(fn) {
     return fn;
 }
@@ -1049,21 +1046,21 @@ class Disposable {
             console.warn(`Cannot register ${o?.constructor?.name ?? o}. This object is already registered.`);
             return o;
         }
-        if ((0, common_1.isObject)(o)) {
-            if ((0, common_1.hasOwnFunction)(o, 'dispose')) {
+        if (isObject(o)) {
+            if (hasOwnFunction(o, 'dispose')) {
                 this._disposables.set(o, () => o.dispose());
             }
-            else if ((0, common_1.hasOwnFunction)(o, 'destroy')) {
+            else if (hasOwnFunction(o, 'destroy')) {
                 this._disposables.set(o, () => o.destroy());
             }
-            else if ((0, common_1.hasOwnFunction)(o, 'remove')) {
+            else if (hasOwnFunction(o, 'remove')) {
                 this._disposables.set(o, () => o.remove());
             }
             else {
                 console.warn(`The object ${o?.constructor?.name ?? o} has an unknown release function!`);
             }
         }
-        else if ((0, common_1.isFunction)(o)) {
+        else if (isFunction(o)) {
             this._disposables.set(o, o);
         }
         else {
@@ -1080,608 +1077,17 @@ class Disposable {
         }
     }
 }
-exports.Disposable = Disposable;
 class DummyDisposable extends Disposable {
     constructor() {
         super();
     }
 }
-exports.DummyDisposable = DummyDisposable;
 
+;// ./packages/editor/packages/duct-tape/src/to.ts
+/* unused harmony import specifier */ var Value;
 
-/***/ },
-
-/***/ 546
-(__unused_webpack_module, exports, __webpack_require__) {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.DOMNode = void 0;
-exports.create = create;
-const disposable_1 = __webpack_require__(626);
-const value_1 = __webpack_require__(667);
-// export const SELECTOR_REGEX = /([\w-]+)?(#([\w-]+))?((\.([\w-]+))*)/;
-// export enum DOMNamespace {
-//     HTML = "http://www.w3.org/1999/xhtml",
-//     SVG = "http://www.w3.org/2000/svg"
-// }
-// export type DOMAttrs = {
-//     [key: string]: undefined | string | number | EventListenerOrEventListenerObject;
-// };
-// export type DOMChild = Node | string | ((owner: Element) => Node);
-// create("div", this)
-//     .attr("id", "app")
-//     .class("container")
-//     .append(
-//         create("h1", this).text("Welcome to My App"),
-//         create("button", this)
-//             .text("Click Me")
-//             .on("click", () => alert("Button Clicked!"))
-//     )
-//     .mount(document.body);
-const SVG_TAGS = new Set([
-    "svg", "circle", "rect", "path", "line", "ellipse", "polygon", "polyline", "g", "defs", "symbol", "use", "text", "tspan"
-]);
-function create(selector, owner) {
-    const dom = DOMNode.create(selector, owner);
-    return dom;
-}
-class DOMNode extends disposable_1.Disposable {
-    _element = null;
-    _events = new Map();
-    _owner = null;
-    static create(selector, owner) {
-        const dom = new DOMNode(selector, owner);
-        return dom;
-    }
-    constructor(selector, owner) {
-        super();
-        this._owner = owner;
-        if (SVG_TAGS.has(selector)) {
-            this._element = document.createElementNS('http://www.w3.org/2000/svg', selector);
-        }
-        else {
-            this._element = document.createElement(selector);
-        }
-        if (this._owner) {
-            this._owner.register(this);
-        }
-        // const match = selector.split(':');
-        // if (match.length === 1) {
-        //   this._element = document.createElement(selector);
-        // } else if (match.length === 2) {
-        //   const namespace = match[0];
-        //   const tagName = match[1];
-        //   if (namespace === 'svg') {
-        //     this._element = document.createElementNS('http://www.w3.org/2000/svg', tagName) as unknown as SVGElement;
-        //   } if (namespace === 'html') {
-        //     this._element = document.createElementNS(
-        //       'http://www.w3.org/1999/xhtml',
-        //       tagName,
-        //     ) as HTMLElement;
-        //   } else {
-        //     throw new Error('Invalid selector');
-        //   }
-        //   if (this._owner) {
-        //     this._owner.register(this);
-        //   }
-        // }
-    }
-    dispose() {
-        if (this._disposed) {
-            return;
-        }
-        this._element.remove();
-        if (this._owner) {
-            this._owner.unregister(this);
-            this._owner = null;
-        }
-        super.dispose();
-    }
-    attr(name, value, condition) {
-        if (value === undefined && condition === undefined) {
-            return this._element.getAttribute(name);
-        }
-        if (condition instanceof value_1.Value) {
-            this.register(condition.subscribe((cond) => {
-                if (cond) {
-                    if (value instanceof value_1.Value) {
-                        this.register(value.subscribe((val) => {
-                            if (val === null || val === undefined || val === "") {
-                                this._element.removeAttribute(name);
-                            }
-                            else {
-                                this._element.setAttribute(name, String(val));
-                            }
-                        }));
-                    }
-                    else {
-                        if (value === null || value === undefined || value === "") {
-                            this._element.removeAttribute(name);
-                        }
-                        else {
-                            this._element.setAttribute(name, String(value));
-                        }
-                    }
-                }
-                else {
-                    this._element.removeAttribute(name);
-                }
-            }));
-        }
-        else if (condition === true) {
-            if (value instanceof value_1.Value) {
-                this.register(value.subscribe((val) => {
-                    if (val === null || val === undefined || val === "") {
-                        this._element.removeAttribute(name);
-                    }
-                    else {
-                        this._element.setAttribute(name, String(val));
-                    }
-                }));
-            }
-            else {
-                if (value === null || value === undefined || value === "") {
-                    this._element.removeAttribute(name);
-                }
-                else {
-                    this._element.setAttribute(name, String(value));
-                }
-            }
-        }
-        else {
-            if (value instanceof value_1.Value) {
-                this.register(value.subscribe((v) => {
-                    if (v === null || v === undefined || v === "" || condition === false) {
-                        this._element.removeAttribute(name);
-                    }
-                    else {
-                        this._element.setAttribute(name, String(v));
-                    }
-                }));
-            }
-            else {
-                if (value === null || value === undefined || value === "" || condition === false) {
-                    this._element.removeAttribute(name);
-                }
-                else {
-                    this._element.setAttribute(name, String(value));
-                }
-            }
-        }
-        return this;
-    }
-    property(name, value) {
-        if (value === undefined) {
-            return this._element[name];
-        }
-        if (value instanceof value_1.Value) {
-            this.register(value.subscribe((val) => {
-                this._element[name] = val;
-            }));
-        }
-        else {
-            if (value === null || value === undefined || value === "") {
-                delete this._element[name];
-            }
-            else {
-                this._element[name] = value;
-            }
-        }
-        return this;
-    }
-    style(name, value, condition) {
-        if (value === undefined) {
-            return this._element.style.getPropertyValue(name);
-        }
-        if (condition instanceof value_1.Value) {
-            this.register(condition.subscribe((cond) => {
-                if (cond) {
-                    if (value instanceof value_1.Value) {
-                        this.register(value.subscribe((val) => {
-                            this._element.style.setProperty(name, val);
-                        }));
-                    }
-                    else {
-                        this._element.style.setProperty(name, value);
-                    }
-                }
-                else {
-                    this._element.style.removeProperty(name);
-                }
-            }));
-        }
-        else if (condition === true || condition === undefined) {
-            if (value instanceof value_1.Value) {
-                this.register(value.subscribe((val) => {
-                    this._element.style.setProperty(name, val);
-                }));
-            }
-            else {
-                this._element.style.setProperty(name, value);
-            }
-        }
-        else {
-            this._element.style.removeProperty(name);
-        }
-        return this;
-    }
-    class(className, active = true) {
-        if (className === undefined) {
-            return this;
-        }
-        if (active instanceof value_1.Value) {
-            this.register(active.subscribe((val) => {
-                if (val) {
-                    if (Array.isArray(className)) {
-                        this._element.classList.add(...className);
-                    }
-                    else {
-                        this._element.classList.add(className);
-                    }
-                }
-                else {
-                    if (Array.isArray(className)) {
-                        this._element.classList.remove(...className);
-                    }
-                    else {
-                        this._element.classList.remove(className);
-                    }
-                }
-            }));
-        }
-        else {
-            if (active) {
-                if (Array.isArray(className)) {
-                    this._element.classList.add(...className);
-                }
-                else {
-                    this._element.classList.add(className);
-                }
-            }
-            else {
-                if (Array.isArray(className)) {
-                    this._element.classList.remove(...className);
-                }
-                else {
-                    this._element.classList.remove(className);
-                }
-            }
-        }
-        return this;
-    }
-    empty() {
-        [...this._disposables].forEach(([key, dispose]) => {
-            if (key instanceof DOMNode) {
-                if (key._owner !== this) {
-                    console.warn(`Cannot dispose child DOMNode that is not owned by this node.`, key);
-                    return;
-                }
-                key.dispose();
-            }
-        });
-        this._element.innerHTML = '';
-        return this;
-    }
-    on(eventType, listener, options) {
-        for (const [, event] of this._events.entries()) {
-            if (event.eventType === eventType && event.listener === listener) {
-                console.warn(`The event listener for ${eventType} is already registered on this element.`);
-                return this;
-            }
-        }
-        this._element.addEventListener(eventType, listener, options);
-        if (options && typeof options === 'object' && options.once) {
-            return this;
-        }
-        const dispose = (0, disposable_1.createDisposeFn)(() => {
-            this._element.removeEventListener(eventType, listener, options);
-        });
-        this.register(dispose);
-        this._events.set(dispose, { eventType, listener });
-        return this;
-    }
-    off(eventType, listener, options) {
-        this._element.removeEventListener(eventType, listener, options);
-        for (const [dispose, event] of this._events.entries()) {
-            if (event.eventType === eventType && event.listener === listener) {
-                this._events.delete(dispose);
-                this.unregister(dispose);
-                break;
-            }
-        }
-        return this;
-    }
-    dataset(name, value) {
-        if (arguments.length === 1) {
-            return this._element.dataset[name];
-        }
-        if (value instanceof value_1.Value) {
-            this.register(value.subscribe((val) => {
-                this._element.dataset[name] = String(val);
-            }));
-        }
-        else {
-            if (value === null || value === undefined) {
-                delete this._element.dataset[name];
-            }
-            else {
-                this._element.dataset[name] = String(value);
-            }
-        }
-        return this;
-    }
-    text(content) {
-        this.empty();
-        if (content instanceof value_1.Value) {
-            this.register(content.subscribe((val) => {
-                if (this.element instanceof HTMLElement) {
-                    if (val === null || val === undefined) {
-                        this._element.innerText = '';
-                    }
-                    else {
-                        this._element.innerText = String(val);
-                    }
-                }
-            }));
-        }
-        else {
-            if (this.element instanceof HTMLElement) {
-                this._element.innerText = String(content);
-            }
-        }
-        return this;
-    }
-    html(content) {
-        this.empty();
-        this._element.innerHTML = content;
-        return this;
-    }
-    display(isVisible) {
-        if (isVisible instanceof value_1.Value) {
-            this.register(isVisible.subscribe((visible) => {
-                this._element.style.display = visible ? '' : 'none';
-            }));
-        }
-        else {
-            this._element.style.display = isVisible ? '' : 'none';
-        }
-        return this;
-    }
-    visibility(isVisible) {
-        if (isVisible instanceof value_1.Value) {
-            this.register(isVisible.subscribe((visible) => {
-                this._element.style.visibility = visible ? 'visible' : 'hidden';
-            }));
-        }
-        else {
-            this._element.style.visibility = isVisible ? 'visible' : 'hidden';
-        }
-        return this;
-    }
-    append(...children) {
-        for (const child of children) {
-            child.mount(this);
-        }
-        return this;
-    }
-    mount(parent) {
-        if (parent instanceof DOMNode) {
-            parent._element.appendChild(this._element);
-        }
-        else {
-            parent.appendChild(this._element);
-        }
-        return this;
-    }
-    focus(options) {
-        if (this._element instanceof HTMLElement || this._element instanceof SVGElement) {
-            setTimeout(() => {
-                this._element.focus(options);
-            }, 100);
-        }
-        return this;
-    }
-    get element() {
-        return this._element;
-    }
-    get owner() {
-        return this._owner;
-    }
-}
-exports.DOMNode = DOMNode;
-
-
-/***/ },
-
-/***/ 460
-(__unused_webpack_module, exports, __webpack_require__) {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Emitter = void 0;
-const disposable_1 = __webpack_require__(626);
-class Emitter extends disposable_1.Disposable {
-    _emitterHandles;
-    constructor() {
-        super();
-        this._emitterHandles = {};
-    }
-    dispose() {
-        if (this.disposed)
-            return;
-        this._emitterHandles = {};
-        super.dispose();
-    }
-    on(name, callback, scope = this) {
-        this._addCallback(name, callback, scope, false);
-        return () => this.off(name, callback, scope);
-    }
-    once(name, callback, scope = this) {
-        this._addCallback(name, callback, scope, true);
-        return () => this.off(name, callback, scope);
-    }
-    off(name, callback, scope = this) {
-        const handlesByName = this._emitterHandles[name];
-        if (handlesByName) {
-            let i = handlesByName.length;
-            while (--i >= 0) {
-                if (handlesByName[i].callback === callback &&
-                    handlesByName[i].scope === scope) {
-                    handlesByName.splice(i, 1);
-                }
-            }
-        }
-    }
-    emit(name, value) {
-        const handlesByName = this._emitterHandles[name];
-        if (!handlesByName) {
-            return;
-        }
-        for (const handle of handlesByName) {
-            handle.callback.call(handle.scope, value);
-            if (handle.once)
-                this.off(name, handle.callback, handle.scope);
-        }
-    }
-    _addCallback(name, callback, scope, once) {
-        let handlesByName = this._emitterHandles[name];
-        if (!handlesByName) {
-            handlesByName = this._emitterHandles[name] = [];
-        }
-        handlesByName.push({
-            callback,
-            scope,
-            once,
-        });
-    }
-}
-exports.Emitter = Emitter;
-exports["default"] = Emitter;
-
-
-/***/ },
-
-/***/ 343
-(__unused_webpack_module, exports, __webpack_require__) {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Modal = void 0;
-const dom_1 = __webpack_require__(546);
-class Modal extends dom_1.DOMNode {
-    _app;
-    _store;
-    _config;
-    _options;
-    constructor(app, store, config, options) {
-        super("div");
-        this._app = app;
-        this._store = store;
-        this._config = config;
-        this._options = options;
-        if (options.classNames) {
-            if (Array.isArray(options.classNames)) {
-                this.class([...options.classNames]);
-            }
-            else {
-                this.class(options.classNames);
-            }
-        }
-    }
-    dispose() {
-        this._app.removeModal(this);
-        super.dispose();
-    }
-    async load() {
-        if (this._options?.onAfterLoad) {
-            this._options.onAfterLoad(this);
-        }
-    }
-    async unload() {
-        if (this._options?.onAfterUnload) {
-            this._options.onAfterUnload(this);
-        }
-    }
-    async show() {
-        if (this._options?.onAfterShow) {
-            this._options.onAfterShow(this);
-        }
-    }
-    async close() {
-        await this._app?.removeModal(this);
-        if (this._options?.onAfterClose) {
-            this._options.onAfterClose(this);
-        }
-    }
-}
-exports.Modal = Modal;
-
-
-/***/ },
-
-/***/ 335
-(__unused_webpack_module, exports, __webpack_require__) {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Page = void 0;
-const dom_1 = __webpack_require__(546);
-class Page extends dom_1.DOMNode {
-    _app;
-    _store;
-    _config;
-    constructor(app, store, config) {
-        super("div", null);
-        this._app = app;
-        this._store = store;
-        this._config = config;
-    }
-    async load() {
-        return Promise.resolve();
-    }
-    async unload() {
-        return Promise.resolve();
-    }
-    setActiveElement(element) {
-        if (element instanceof dom_1.DOMNode) {
-            setTimeout(() => {
-                element.element.focus();
-            }, 100);
-        }
-        else if (element instanceof HTMLElement) {
-            setTimeout(() => {
-                element.focus();
-            }, 100);
-        }
-    }
-}
-exports.Page = Page;
-
-
-/***/ },
-
-/***/ 245
-(__unused_webpack_module, exports) {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-
-
-/***/ },
-
-/***/ 413
-(__unused_webpack_module, exports, __webpack_require__) {
-
-var __webpack_unused_export__;
-
-__webpack_unused_export__ = ({ value: true });
-exports.toBoolean = toBoolean;
-__webpack_unused_export__ = toNumber;
-__webpack_unused_export__ = toString;
-const value_1 = __webpack_require__(667);
 function toBoolean(value, defaultValue = false) {
-    if (value instanceof value_1.Value) {
+    if (value instanceof value_Value) {
         value = value.get();
     }
     if (typeof value === 'boolean') {
@@ -1702,7 +1108,7 @@ function toBoolean(value, defaultValue = false) {
     return defaultValue;
 }
 function toNumber(value, defaultValue = 0) {
-    if (value instanceof value_1.Value) {
+    if (value instanceof Value) {
         value = value.get();
     }
     if (typeof value === 'number') {
@@ -1717,8 +1123,8 @@ function toNumber(value, defaultValue = 0) {
     }
     return defaultValue;
 }
-function toString(value, defaultValue = '') {
-    if (value instanceof value_1.Value) {
+function to_toString(value, defaultValue = '') {
+    if (value instanceof Value) {
         value = value.get();
     }
     if (typeof value === 'string') {
@@ -1730,28 +1136,346 @@ function toString(value, defaultValue = '') {
     return defaultValue;
 }
 
-
-/***/ },
-
-/***/ 591
-(__unused_webpack_module, exports) {
+;// ./packages/editor/packages/duct-tape/src/value.ts
 
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
 
+const ManualDispose = Symbol('ManualDispose');
+function arrayEquals(a, b) {
+    if (a.length !== b.length) {
+        return false;
+    }
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] !== b[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+function createValue(value, owner) {
+    return new ValueStore(value, owner);
+}
+class value_Value extends Disposable {
+    _transformers = [];
+    dispose() {
+        if (this.disposed)
+            return;
+        for (const transformer of this._transformers) {
+            transformer.dispose();
+        }
+        this._transformers.splice(0, this._transformers.length);
+        super.dispose();
+    }
+    equal(test) {
+        let transform;
+        if (test instanceof Function) {
+            transform = test;
+        }
+        else if (Array.isArray(test)) {
+            transform = (v) => test.includes(v);
+        }
+        else {
+            transform = (v) => v === test;
+        }
+        const transformer = new ValueObserver(this, transform);
+        this._transformers.push(transformer);
+        return transformer;
+    }
+    notEqual(test) {
+        let transform;
+        if (typeof test === 'string' || typeof test === 'number' || typeof test === 'boolean') {
+            transform = (v) => v !== test;
+        }
+        else if (Array.isArray(test)) {
+            transform = (v) => !test.includes(v);
+        }
+        else {
+            transform = (value) => !test(value);
+        }
+        const transformer = new ValueObserver(this, transform);
+        this._transformers.push(transformer);
+        return transformer;
+    }
+    format(formatter) {
+        const transformer = new ValueObserver(this, formatter);
+        this._transformers.push(transformer);
+        return transformer;
+    }
+    map(transformerFn) {
+        const transformer = new ValueObserver(this, transformerFn);
+        this._transformers.push(transformer);
+        return transformer;
+    }
+    mapBoolean(trueValue, falseValue) {
+        const transformer = new ValueObserver(this, (value) => {
+            if (toBoolean(value) === true) {
+                return trueValue;
+            }
+            else {
+                return falseValue;
+            }
+        });
+        this._transformers.push(transformer);
+        return transformer;
+    }
+    not() {
+        const transformer = new ValueObserver(this, (value) => !toBoolean(value));
+        this._transformers.push(transformer);
+        return transformer;
+    }
+    and(other) {
+        const transformer = new ValueLogicObserver(this, other, (a, b) => toBoolean(a) && toBoolean(b));
+        this._transformers.push(transformer);
+        return transformer;
+    }
+    or(other) {
+        const transformer = new ValueLogicObserver(this, other, (a, b) => toBoolean(a) || toBoolean(b));
+        this._transformers.push(transformer);
+        return transformer;
+    }
+}
+function isValue(object) {
+    return object instanceof value_Value;
+}
+class ValueStore extends value_Value {
+    listeners = [];
+    value;
+    initValue;
+    prev;
+    _owner;
+    constructor(value, owner) {
+        super();
+        this._owner = owner;
+        this.value = value;
+        this.initValue = value;
+        this.prev = undefined;
+        if (owner) {
+            owner.register(this);
+        }
+    }
+    dispose() {
+        if (this.disposed)
+            return;
+        this.listeners.splice(0, this.listeners.length);
+        if (this._owner) {
+            this._owner.unregister(this);
+            this._owner = undefined;
+        }
+        super.dispose();
+    }
+    subscribe(owner, callback, scope = this) {
+        const handle = {
+            callback,
+            scope,
+        };
+        this.listeners.push(handle);
+        setTimeout(() => {
+            this.deliveryValueToSubscriber(handle, this.value, this.prev);
+        });
+        const unsubscribe = () => {
+            this.listeners.splice(this.listeners.indexOf(handle), 1);
+        };
+        if (owner && owner !== ManualDispose) {
+            owner.register(unsubscribe);
+        }
+        return unsubscribe;
+    }
+    set(value) {
+        this.prev = this.get();
+        if (Array.isArray(this.value) && Array.isArray(value) && !arrayEquals(this.value, value)) {
+            this.value = [...value];
+            this.deliveryValue(this.value, this.prev);
+        }
+        else if (typeof this.value === 'object') {
+            this.value = mergeDeep(this.value, value);
+            this.deliveryValue(this.value, this.prev);
+        }
+        else if (this.value !== value) {
+            this.value = value;
+            this.deliveryValue(this.value, this.prev);
+        }
+    }
+    get() {
+        if (Array.isArray(this.value)) {
+            return [...this.value];
+        }
+        else if (typeof this.value === 'object') {
+            return mergeDeep({}, this.value);
+        }
+        return this.value;
+    }
+    toString() {
+        return this.value === undefined || this.value === null
+            ? 'undefined'
+            : this.value.toString();
+    }
+    deliveryValue(value, prev) {
+        setTimeout(() => {
+            for (const handle of this.listeners) {
+                this.deliveryValueToSubscriber(handle, value, prev);
+            }
+        });
+    }
+    deliveryValueToSubscriber(handle, value, prev) {
+        handle.callback.call(handle.scope, value, prev);
+    }
+}
+class ValueStoreRaw extends ValueStore {
+    constructor(value, register) {
+        super(value, register);
+    }
+    set(value) {
+        this.prev = this.get();
+        this.value = value;
+        this.deliveryValue(this.value, this.prev);
+    }
+}
+class ValueObserver extends value_Value {
+    listeners = [];
+    watch;
+    prev;
+    value;
+    _transform;
+    _unsubscribe = null;
+    constructor(watch, transform) {
+        super();
+        this.watch = watch;
+        this._transform = transform;
+        this.value = this._transform(this.watch.get());
+        this._unsubscribe = this.watch.subscribe(ManualDispose, (value) => {
+            const newValue = this._transform(value);
+            if (this.value !== newValue) {
+                this.prev = this.value;
+                this.value = newValue;
+                this.deliverValue(this.value, this.prev);
+            }
+        });
+    }
+    dispose() {
+        if (this.disposed)
+            return;
+        this.watch = undefined;
+        this._unsubscribe?.();
+        this.listeners.splice(0, this.listeners.length);
+        super.dispose();
+    }
+    subscribe(owner, callback, scope = this) {
+        const handle = {
+            callback,
+            scope,
+        };
+        this.listeners.push(handle);
+        setTimeout(() => {
+            this.deliverValueToSubscriber(handle, this.value, this.prev);
+        });
+        const unsubscribe = () => {
+            this.listeners.splice(this.listeners.indexOf(handle), 1);
+        };
+        if (owner && owner !== ManualDispose) {
+            owner.register(unsubscribe);
+        }
+        return unsubscribe;
+    }
+    get() {
+        return this.value;
+    }
+    toString() {
+        return this.watch?.toString() || '';
+    }
+    get subscribersLength() {
+        return this.listeners.length;
+    }
+    deliverValue(value, prev) {
+        setTimeout(() => {
+            for (const handle of this.listeners) {
+                this.deliverValueToSubscriber(handle, value, prev);
+            }
+        });
+    }
+    deliverValueToSubscriber(handle, value, prev) {
+        handle.callback.call(handle.scope, value, prev);
+    }
+}
+class ValueLogicObserver extends value_Value {
+    listeners = [];
+    watch1;
+    watch2;
+    prev;
+    value;
+    transform;
+    constructor(watch1, watch2, transform) {
+        super();
+        this.watch1 = watch1;
+        this.watch2 = watch2;
+        this.transform = transform;
+        this.value = this.transform(this.watch1.get(), this.watch2.get());
+        watch1.subscribe(this, (value) => {
+            const newValue = this.transform(value, watch2.get());
+            if (this.value !== newValue) {
+                this.prev = this.value;
+                this.value = newValue;
+                this.deliverValue(this.value, this.prev);
+            }
+        });
+        watch2.subscribe(this, (value) => {
+            const newValue = this.transform(watch1.get(), value);
+            if (this.value !== newValue) {
+                this.prev = this.value;
+                this.value = newValue;
+                this.deliverValue(this.value, this.prev);
+            }
+        });
+    }
+    dispose() {
+        if (this.disposed)
+            return;
+        this.watch1 = undefined;
+        this.watch2 = undefined;
+        this.listeners.splice(0, this.listeners.length);
+        super.dispose();
+    }
+    subscribe(owner, callback, scope = this) {
+        const handle = {
+            callback,
+            scope,
+        };
+        this.listeners.push(handle);
+        setTimeout(() => {
+            this.deliverValueToSubscriber(handle, this.value, this.prev);
+        });
+        const unsubscribe = () => {
+            this.listeners.splice(this.listeners.indexOf(handle), 1);
+        };
+        if (owner && owner !== ManualDispose) {
+            owner.register(unsubscribe);
+        }
+        return unsubscribe;
+    }
+    get() {
+        return this.value;
+    }
+    toString() {
+        return `${this.watch1?.toString()} ${this.watch2?.toString()}`;
+    }
+    get subscribersLength() {
+        return this.listeners.length;
+    }
+    deliverValue(value, prev) {
+        setTimeout(() => {
+            for (const handle of this.listeners) {
+                this.deliverValueToSubscriber(handle, value, prev);
+            }
+        });
+    }
+    deliverValueToSubscriber(handle, value, prev) {
+        handle.callback.call(handle.scope, value, prev);
+    }
+}
 
-/***/ },
-
-/***/ 302
-(__unused_webpack_module, exports) {
-
-
+;// ./packages/editor/packages/duct-tape/src/utils/console-colors.ts
 /* console-colors.ts
    Minimalna biblioteka do kolorowania logów w konsoli przeglądarki (%c + CSS)
 */
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.createLogger = createLogger;
-exports.tagged = tagged;
 const LEVEL_ORDER = {
     debug: 10,
     info: 20,
@@ -1910,543 +1634,1395 @@ function tagged(ns, opts) {
     return createLogger({ ...(opts ?? {}), namespace: ns });
 }
 
+;// ./packages/editor/packages/duct-tape/src/utils/log.ts
 
-/***/ },
+const log = createLogger({ namespace: "DUCT-TAPE", minLevel: "debug" });
 
-/***/ 394
-(__unused_webpack_module, exports, __webpack_require__) {
-
-var __webpack_unused_export__;
-
-__webpack_unused_export__ = ({ value: true });
-exports.log = void 0;
-const console_colors_1 = __webpack_require__(302);
-exports.log = (0, console_colors_1.createLogger)({ namespace: "DUCT-TAPE", minLevel: "debug" });
+;// ./packages/editor/packages/duct-tape/src/app.ts
 
 
-/***/ },
-
-/***/ 667
-(__unused_webpack_module, exports, __webpack_require__) {
 
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ValueLogicObserver = exports.ValueObserver = exports.ValueStoreRaw = exports.ValueStore = exports.Value = void 0;
-exports.createValue = createValue;
-exports.isValue = isValue;
-const common_1 = __webpack_require__(237);
-const disposable_1 = __webpack_require__(626);
-const to_1 = __webpack_require__(413);
-function createValue(value, register) {
-    return new ValueStore(value, register);
+var PageType;
+(function (PageType) {
+    PageType[PageType["Normal"] = 0] = "Normal";
+    PageType[PageType["Background"] = 1] = "Background";
+    PageType[PageType["Overlay"] = 2] = "Overlay";
+})(PageType || (PageType = {}));
+function encodeParams(map) {
+    const arr = [];
+    map.forEach((value, key) => {
+        arr.push(`${encodeURI(key)}=${encodeURI(value)}`);
+    });
+    return arr.join("&");
 }
-class Value extends disposable_1.Disposable {
-    equal(test, register) {
-        let transform;
-        if (test instanceof Function) {
-            transform = test;
+function decodeParams(value) {
+    const arr = value.split("&");
+    const params = new Map();
+    arr.forEach((v) => {
+        const kv = v.split("=");
+        if (kv.length === 2) {
+            params.set(decodeURI(kv[0]), decodeURI(kv[1]));
         }
-        else if (Array.isArray(test)) {
-            transform = (v) => test.includes(v);
+    });
+    return params;
+}
+const FOCUSABLE_ELEMENT_SELECTOR = 'a[href], button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+class App extends Disposable {
+    appDiv;
+    appContainer;
+    backgroundContainer;
+    pageContainer;
+    overflowContainer;
+    modalsContainer;
+    _services = new Map();
+    modals = [];
+    pagesConstructors = [];
+    backgroundPageConstructors = [];
+    overflowPageConstructors = [];
+    _options;
+    _parent;
+    store;
+    config;
+    _waitingModals = [];
+    backgroundPages = [];
+    overflowPages = [];
+    _currentPage;
+    pageId = new ValueStoreRaw(null);
+    _isFocusPageLocked = false;
+    isFullscreen = new ValueStoreRaw(false);
+    static create(parent, store, config, options = {}) {
+        return new App(parent, store, config, options);
+    }
+    constructor(parent, store, config, options = {}) {
+        super();
+        log.debug("Greetings from DuctTape Engine! 🥳");
+        this.store = store;
+        this.config = config;
+        this._options = options;
+        this._parent = parent;
+        this.appDiv = create(this, "div").class(options.appClassName ?? [])
+            .mount(this._parent);
+        this.appContainer = create(this, "div").class(options.appContainerClassName ?? [])
+            .mount(this.appDiv);
+        if (options.backgroundContainerEnabled === true) {
+            this.backgroundContainer = create(this, "div")
+                .class(options.backgroundContainerClassName ?? [])
+                .mount(this.appContainer);
+        }
+        this.pageContainer = create(this, "div").class(options.pageContainerClassName ?? [])
+            .mount(this.appContainer);
+        if (options.overflowContainerEnabled === true) {
+            this.overflowContainer = create(this, "div").class(options.overflowContainerClassName ?? [])
+                .mount(this.appContainer);
+        }
+        this.modalsContainer = create(this, "div").class(options.modalContainerClassName ?? [])
+            .style("display", "none")
+            .mount(this.appContainer);
+        document.addEventListener("fullscreenchange", () => {
+            const isFullscreen = !!document.fullscreenElement;
+            this.isFullscreen.set(isFullscreen);
+        });
+    }
+    dispose() {
+        for (const [, service] of this._services) {
+            try {
+                service.dispose();
+            }
+            catch (error) {
+                log.error(`Failed to dispose service:`, error);
+            }
+        }
+        this.removeAllModals();
+        if (this.backgroundPages.length > 0) {
+            this.backgroundPages.forEach(page => page.dispose());
+            this.backgroundPages = [];
+        }
+        if (this.overflowPages.length > 0) {
+            this.overflowPages.forEach(page => page.dispose());
+            this.overflowPages = [];
+        }
+        if (this._currentPage) {
+            this._currentPage.dispose();
+        }
+        this.pageId.dispose();
+        super.dispose();
+    }
+    fullscreen() {
+        this.appDiv.element.requestFullscreen();
+    }
+    exitFullscreen() {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
+    }
+    toggleFullscreen() {
+        if (document.fullscreenElement) {
+            this.exitFullscreen();
         }
         else {
-            transform = (v) => v === test;
+            this.fullscreen();
         }
-        const transformer = new ValueObserver(this, transform);
-        if (register) {
-            register.register(transformer);
-        }
-        return transformer;
     }
-    notEqual(test, register) {
-        let transform;
-        if (typeof test === 'string' || typeof test === 'number' || typeof test === 'boolean') {
-            transform = (v) => v !== test;
-        }
-        else if (Array.isArray(test)) {
-            transform = (v) => !test.includes(v);
-        }
-        else {
-            transform = (value) => !test(value);
-        }
-        const transformer = new ValueObserver(this, transform);
-        if (register) {
-            register.register(transformer);
-        }
-        return transformer;
+    get parent() {
+        return this._parent;
     }
-    format(formatter, register) {
-        const transformer = new ValueObserver(this, formatter);
-        if (register) {
-            register.register(transformer);
-        }
-        return transformer;
-    }
-    map(transformerFn, register) {
-        const transformer = new ValueObserver(this, transformerFn);
-        if (register) {
-            register.register(transformer);
-        }
-        return transformer;
-    }
-    mapBoolean(trueValue, falseValue, register) {
-        const transformer = new ValueObserver(this, (value) => {
-            if ((0, to_1.toBoolean)(value) === true) {
-                return trueValue;
+    findPageByName(name) {
+        for (const pageConstructor of this.pagesConstructors) {
+            if (pageConstructor.name === name) {
+                return pageConstructor;
             }
-            else {
-                return falseValue;
+        }
+        log.error(`Page with name "${name}" not found.`);
+        return undefined;
+    }
+    registerPage(pageConstructor, type = PageType.Normal) {
+        if (type === PageType.Background) {
+            if (this._options.backgroundContainerEnabled !== true || !this.backgroundContainer) {
+                log.error("Background container is not enabled in App options.");
+                return;
             }
-        });
-        if (register) {
-            register.register(transformer);
-        }
-        return transformer;
-    }
-    not(register) {
-        const transformer = new ValueObserver(this, (value) => !(0, to_1.toBoolean)(value));
-        if (register) {
-            register.register(transformer);
-        }
-        return transformer;
-    }
-    and(other, register) {
-        const transformer = new ValueLogicObserver(this, other, (a, b) => (0, to_1.toBoolean)(a) && (0, to_1.toBoolean)(b));
-        if (register) {
-            register.register(transformer);
-        }
-        return transformer;
-    }
-    or(other, register) {
-        const transformer = new ValueLogicObserver(this, other, (a, b) => (0, to_1.toBoolean)(a) || (0, to_1.toBoolean)(b));
-        if (register) {
-            register.register(transformer);
-        }
-        return transformer;
-    }
-}
-exports.Value = Value;
-function isValue(object) {
-    return object instanceof Value;
-}
-class ValueStore extends Value {
-    listeners = [];
-    value;
-    initValue;
-    prev;
-    _register;
-    constructor(value, register) {
-        super();
-        this._register = register;
-        this.value = value;
-        this.initValue = value;
-        this.prev = undefined;
-        if (register) {
-            register.register(this);
-        }
-    }
-    dispose() {
-        if (this.disposed)
-            return;
-        this.listeners.splice(0, this.listeners.length);
-        if (this._register) {
-            this._register.unregister(this);
-            this._register = undefined;
-        }
-        super.dispose();
-    }
-    subscribe(callback, scope = this) {
-        const handle = {
-            callback,
-            scope,
-        };
-        this.listeners.push(handle);
-        this.deliveryValueToSubscriber(handle, this.value, this.prev);
-        return () => {
-            this.listeners.splice(this.listeners.indexOf(handle), 1);
-        };
-    }
-    set(value) {
-        this.prev = this.get();
-        if (this.value !== value) {
-            if (Array.isArray(this.value)) {
-                this.value = [...value];
-            }
-            else if (typeof this.value === 'object') {
-                this.value = (0, common_1.mergeDeep)(this.value, value);
-            }
-            else {
-                this.value = value;
-            }
-            this.deliveryValue(this.value, this.prev);
-        }
-    }
-    get() {
-        if (Array.isArray(this.value)) {
-            return [...this.value];
-        }
-        else if (typeof this.value === 'object') {
-            return (0, common_1.mergeDeep)({}, this.value);
-        }
-        return this.value;
-    }
-    toString() {
-        return this.value === undefined || this.value === null
-            ? 'undefined'
-            : this.value.toString();
-    }
-    deliveryValue(value, prev) {
-        for (const handle of this.listeners) {
-            this.deliveryValueToSubscriber(handle, value, prev);
-        }
-    }
-    deliveryValueToSubscriber(handle, value, prev) {
-        handle.callback.call(handle.scope, value, prev);
-    }
-}
-exports.ValueStore = ValueStore;
-class ValueStoreRaw extends ValueStore {
-    constructor(value, register) {
-        super(value, register);
-    }
-    set(value) {
-        this.prev = this.get();
-        this.value = value;
-        this.deliveryValue(this.value, this.prev);
-    }
-}
-exports.ValueStoreRaw = ValueStoreRaw;
-class ValueObserver extends Value {
-    listeners = [];
-    watch;
-    prev;
-    value;
-    _transform;
-    _unsubscribe = null;
-    constructor(watch, transform) {
-        super();
-        this.watch = watch;
-        this._transform = transform;
-        this.value = this._transform(this.watch.get());
-        this._unsubscribe = this.watch.subscribe((value) => {
-            const newValue = this._transform(value);
-            if (this.value !== newValue) {
-                this.prev = this.value;
-                this.value = newValue;
-                this.deliverValue(this.value, this.prev);
-            }
-        });
-    }
-    dispose() {
-        if (this.disposed)
-            return;
-        this.watch = undefined;
-        this._unsubscribe?.();
-        this.listeners.splice(0, this.listeners.length);
-        super.dispose();
-    }
-    subscribe(callback, scope = this) {
-        const handle = {
-            callback,
-            scope,
-        };
-        this.listeners.push(handle);
-        this.deliverValueToSubscriber(handle, this.value, this.prev);
-        return () => {
-            this.listeners.splice(this.listeners.indexOf(handle), 1);
-        };
-    }
-    get() {
-        return this.value;
-    }
-    toString() {
-        return this.watch?.toString() || '';
-    }
-    get subscribersLength() {
-        return this.listeners.length;
-    }
-    deliverValue(value, prev) {
-        for (const handle of this.listeners) {
-            this.deliverValueToSubscriber(handle, value, prev);
-        }
-    }
-    deliverValueToSubscriber(handle, value, prev) {
-        handle.callback.call(handle.scope, value, prev);
-    }
-}
-exports.ValueObserver = ValueObserver;
-class ValueLogicObserver extends Value {
-    listeners = [];
-    watch1;
-    watch2;
-    prev;
-    value;
-    transform;
-    constructor(watch1, watch2, transform) {
-        super();
-        this.watch1 = watch1;
-        this.watch2 = watch2;
-        this.transform = transform;
-        this.value = this.transform(this.watch1.get(), this.watch2.get());
-        watch1.subscribe((value) => {
-            const newValue = this.transform(value, watch2.get());
-            if (this.value !== newValue) {
-                this.prev = this.value;
-                this.value = newValue;
-                this.deliverValue(this.value, this.prev);
-            }
-        });
-        watch2.subscribe((value) => {
-            const newValue = this.transform(watch1.get(), value);
-            if (this.value !== newValue) {
-                this.prev = this.value;
-                this.value = newValue;
-                this.deliverValue(this.value, this.prev);
-            }
-        });
-    }
-    dispose() {
-        if (this.disposed)
-            return;
-        this.watch1 = undefined;
-        this.watch2 = undefined;
-        this.listeners.splice(0, this.listeners.length);
-        super.dispose();
-    }
-    subscribe(callback, scope = this) {
-        const handle = {
-            callback,
-            scope,
-        };
-        this.listeners.push(handle);
-        this.deliverValueToSubscriber(handle, this.value, this.prev);
-        return () => {
-            this.listeners.splice(this.listeners.indexOf(handle), 1);
-        };
-    }
-    get() {
-        return this.value;
-    }
-    toString() {
-        return `${this.watch1?.toString()} ${this.watch2?.toString()}`;
-    }
-    get subscribersLength() {
-        return this.listeners.length;
-    }
-    deliverValue(value, prev) {
-        for (const handle of this.listeners) {
-            this.deliverValueToSubscriber(handle, value, prev);
-        }
-    }
-    deliverValueToSubscriber(handle, value, prev) {
-        handle.callback.call(handle.scope, value, prev);
-    }
-}
-exports.ValueLogicObserver = ValueLogicObserver;
-
-
-/***/ },
-
-/***/ 771
-(__unused_webpack_module, exports, __webpack_require__) {
-
-var __webpack_unused_export__;
-
-__webpack_unused_export__ = ({ value: true });
-exports.Editor = void 0;
-const duct_tape_1 = __webpack_require__(415);
-const object_widget_1 = __webpack_require__(488);
-class Editor extends duct_tape_1.Disposable {
-    _container;
-    _data = {};
-    _api;
-    _types = {};
-    _rootWidget = null;
-    constructor(container, api) {
-        super();
-        this._container = container;
-        this._api = api;
-        console.log("Editor created");
-    }
-    get api() {
-        return this._api;
-    }
-    saveState() {
-        this._api.triggerStateSave();
-    }
-    async run(data) {
-        if (this._rootWidget) {
-            this.unregister(this._rootWidget);
-            this._rootWidget.dispose();
-            this._rootWidget = null;
-        }
-        this._data = data;
-        return new Promise((resolve) => {
-            console.log("Editor running...");
-            fetch(this._api.enginePath("schema.json")).then(async (response) => {
-                const schema = await response.json();
-                console.log("Schema loaded:", schema);
-                const propertiesSchema = { type: "object", properties: schema.properties };
-                if (schema.definitions) {
-                    this._types = schema.definitions;
-                    this.replaceDefinitions(propertiesSchema);
+            for (const page of this.backgroundPages) {
+                if (pageConstructor === page.constructor) {
+                    log.error(`Background page "${pageConstructor.name}" is already added.`);
+                    return;
                 }
-                this._rootWidget = new object_widget_1.ObjectWidget(this, "Root", propertiesSchema, this._data).mount(this._container);
+            }
+            this.backgroundPageConstructors.push(pageConstructor);
+        }
+        else if (type === PageType.Overlay) {
+            if (this._options.overflowContainerEnabled !== true || !this.overflowContainer) {
+                log.error("Overflow container is not enabled in App options.");
+                return;
+            }
+            for (const page of this.overflowPageConstructors) {
+                if (pageConstructor === page) {
+                    log.error(`Overflow page "${pageConstructor.name}" is already added.`);
+                    return;
+                }
+            }
+            this.overflowPageConstructors.push(pageConstructor);
+        }
+        else {
+            if (this.pagesConstructors.includes(pageConstructor)) {
+                log.error(`Page "${pageConstructor.name}" is already registered.`);
+                return;
+            }
+            this.pagesConstructors.push(pageConstructor);
+        }
+    }
+    registerService(service) {
+        if (this._services.has(service.name)) {
+            throw new Error(`Service "${service.name}" is already registered.`);
+        }
+        this._services.set(service.name, service);
+        return this;
+    }
+    get currentPage() {
+        return this._currentPage;
+    }
+    saveAndLockPageFocusableElements() {
+        //find all focusable elements
+        const focusableElements = this.getPageFocusableElements();
+        focusableElements?.forEach(el => {
+            el.setAttribute("data-original-tabindex", el.getAttribute("tabindex") || "0");
+            el.setAttribute("tabindex", "-1");
+        });
+        const overflowFocusableElements = this.getOverflowFocusableElements();
+        overflowFocusableElements?.forEach(el => {
+            el.setAttribute("data-original-tabindex", el.getAttribute("tabindex") || "0");
+            el.setAttribute("tabindex", "-1");
+        });
+        this._isFocusPageLocked = true;
+    }
+    restorePageFocusableElements() {
+        const focusableElements = this.currentPage?.element.querySelectorAll('[data-original-tabindex]');
+        focusableElements?.forEach(el => {
+            const originalTabIndex = el.getAttribute("data-original-tabindex");
+            if (originalTabIndex) {
+                el.setAttribute("tabindex", originalTabIndex);
+                el.removeAttribute("data-original-tabindex");
+            }
+        });
+        const overflowFocusableElements = this.overflowContainer?.element.querySelectorAll('[data-original-tabindex]');
+        overflowFocusableElements?.forEach(el => {
+            const originalTabIndex = el.getAttribute("data-original-tabindex");
+            if (originalTabIndex) {
+                el.setAttribute("tabindex", originalTabIndex);
+                el.removeAttribute("data-original-tabindex");
+            }
+        });
+        this._isFocusPageLocked = false;
+    }
+    savePageFocus() {
+        const activeElement = document.activeElement;
+        this.removeAllDataLastFocusedAttributes(this.currentPage?.element);
+        this._currentPage?.element.contains(activeElement) && activeElement.setAttribute("data-last-focused", "true");
+    }
+    restorePageFocus() {
+        const lastFocused = this.currentPage?.element.querySelector("[data-last-focused='true']");
+        if (lastFocused) {
+            lastFocused.focus();
+            this.removeAllDataLastFocusedAttributes(this.currentPage?.element);
+        }
+    }
+    saveModalFocus() {
+        const activeElement = document.activeElement;
+        const topModal = this.modals[this.modals.length - 1];
+        this.removeAllDataLastFocusedAttributes(topModal?.element);
+        topModal?.element.contains(activeElement) && activeElement.setAttribute("data-last-focused", "true");
+    }
+    restoreModalFocus() {
+        const topModal = this.modals[this.modals.length - 1];
+        const lastFocused = topModal?.element.querySelector("[data-last-focused='true']");
+        if (lastFocused) {
+            lastFocused.focus();
+            this.removeAllDataLastFocusedAttributes(topModal?.element);
+        }
+    }
+    removeAllDataLastFocusedAttributes(elem) {
+        elem.querySelectorAll("[data-last-focused='true']").forEach(el => {
+            el.removeAttribute("data-last-focused");
+        });
+    }
+    async navigate(to, params = new Map()) {
+        // const newHash = `${to}@${encodeParams(new Map([...params, ...this.getData()]))}`;
+        // if (newHash === this.lastHash) return;
+        // this.lastHash = newHash;
+        const nextPage = this.pagesConstructors.includes(to) ? to : undefined;
+        if (!nextPage) {
+            console.warn(`Page with name "${to.name}" not found.`);
+            throw new Error(`Unknown page "${to.name}". Did you forget to register it?`);
+        }
+        this.removeAllModals();
+        // setProgress(0);
+        // loader?.classList.remove("none");
+        // pages.style.setProperty("visibility", "hidden");
+        if (this._currentPage) {
+            await this._currentPage.unload();
+            this._currentPage.dispose();
+            if (this.pageContainer.element.children.length > 0) {
+                const className = this._currentPage.constructor.name;
+                console.warn(`Detect memory leak in class "${className}". Probably the class "${className}" left a content in the main container. ${this.appDiv.element.innerHTML}`);
+                this.appDiv.element.textContent = "";
+            }
+            this._currentPage = undefined;
+            this.pageId.set(null);
+        }
+        // const params: Map<string, string> = new Map();
+        // for (const s of params) {
+        //   const p = s.split("=");
+        //   params.set(p[0], p[1] ?? p[0]);
+        // }
+        this._currentPage = new nextPage(this, this.store, this.config);
+        await this._currentPage.load();
+        this._currentPage.mount(this.pageContainer);
+        this.pageId.set(to);
+        this.appDiv.element.setAttribute("data-page", to.name);
+        if (this._waitingModals.length > 0) {
+            for (const { modal, resolve } of this._waitingModals) {
+                await this.addModal(modal);
                 resolve();
-            }).catch((error) => {
-                console.error("Error loading schema:", error);
-                resolve();
+            }
+            this._waitingModals = [];
+        }
+    }
+    runViewportObserver() {
+        const appHeight = () => {
+            const doc = document.documentElement;
+            doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+        };
+        window.addEventListener("resize", appHeight);
+        appHeight();
+    }
+    async setup() {
+        for (const [, service] of this._services) {
+            await service.load();
+        }
+        for (const [, service] of this._services) {
+            await service.run();
+        }
+        // Setup background pages
+        if (this.backgroundContainer) {
+            for (const pageConstructor of this.backgroundPageConstructors) {
+                const page = new pageConstructor(this, this.store, this.config);
+                page.mount(this.backgroundContainer);
+                this.backgroundPages.push(page);
+                await page.load();
+            }
+        }
+        // Setup overflow pages
+        if (this.overflowContainer) {
+            for (const pageConstructor of this.overflowPageConstructors) {
+                const page = new pageConstructor(this, this.store, this.config);
+                page.mount(this.overflowContainer);
+                this.overflowPages.push(page);
+                await page.load();
+            }
+        }
+    }
+    addModal(modal) {
+        if (this.modals.includes(modal)) {
+            return Promise.resolve();
+        }
+        // if there is no current page, we should wait until the page is loaded to show the modal
+        if (this.currentPage === undefined) {
+            return new Promise((resolve) => {
+                this._waitingModals.push({ modal, resolve });
             });
+        }
+        return new Promise(async (resolve) => {
+            if (this.modals.length === 0) {
+                this.savePageFocus();
+            }
+            else {
+                this.saveModalFocus();
+            }
+            if (this.modals.length > 0) {
+                this.modals[this.modals.length - 1].element.style.display = "none";
+            }
+            this.modals.push(modal);
+            modal.mount(this.modalsContainer);
+            await modal.load();
+            this.updateModals();
+            await modal.show();
+            // focus first focusable element in modal
+            const focusableElements = modal.element.querySelectorAll(FOCUSABLE_ELEMENT_SELECTOR);
+            if (focusableElements.length > 0) {
+                focusableElements[0].focus();
+            }
+            this.pageContainer.attr("aria-hidden", "true");
+            resolve();
         });
     }
-    replaceDefinitions(schema) {
-        for (const [key, prop] of Object.entries(schema.properties)) {
-            if (prop.type === "string" && prop.enum && typeof prop.enum === "string" && this._types[prop.enum]) {
-                schema.properties[key] = {
-                    ...prop,
-                    enum: this._types[prop.enum]
-                };
+    async removeModal(modal) {
+        if (!this.modals.includes(modal)) {
+            return;
+        }
+        this.modals.splice(this.modals.indexOf(modal), 1);
+        await modal.close();
+        await modal.unload();
+        modal.dispose();
+        if (this.modals.length > 0) {
+            this.modals[this.modals.length - 1].element.style.display = "flex";
+        }
+        this.updateModals();
+        // if (this.modals.length > 0) {
+        //     const focusableElements = this.modals[this.modals.length - 1].element.querySelectorAll<HTMLElement>(
+        //         FOCUSABLE_ELEMENT_SELECTOR
+        //     );
+        //     if (focusableElements.length > 0) {
+        //         focusableElements[0].focus();
+        //     }
+        // } else {
+        //     // focus current page
+        //     const focusableElements = this.getPageFocusableElements();
+        //     if (focusableElements && focusableElements.length > 0) {
+        //         focusableElements[0].focus();
+        //     }
+        // }
+        if (this.modals.length > 0) {
+            this.pageContainer.attr("aria-hidden", "false");
+            this.restoreModalFocus();
+        }
+        else {
+            this.restorePageFocus();
+        }
+    }
+    removeAllModals() {
+        let modal;
+        while ((modal = this.modals.pop())) {
+            modal.dispose();
+        }
+        this.updateModals();
+    }
+    getPageFocusableElements() {
+        return this.currentPage?.element.querySelectorAll(FOCUSABLE_ELEMENT_SELECTOR);
+    }
+    getOverflowFocusableElements() {
+        return this.overflowContainer?.element.querySelectorAll(FOCUSABLE_ELEMENT_SELECTOR);
+    }
+    updateModals() {
+        if (this.modals.length > 0) {
+            this.modalsContainer.element.style.display = "flex";
+            if (!this._isFocusPageLocked) {
+                this.saveAndLockPageFocusableElements();
             }
-            else if (prop.type === "object") {
-                this.replaceDefinitions(prop);
+        }
+        else {
+            this.modalsContainer.element.style.display = "none";
+            if (this._isFocusPageLocked) {
+                this.restorePageFocusableElements();
             }
-            else if (prop.type === "array") {
-                const item = prop.item;
-                if (item.type === "object") {
-                    this.replaceDefinitions(item);
+        }
+    }
+}
+
+;// ./packages/editor/packages/duct-tape/src/dom.ts
+
+
+
+// export const SELECTOR_REGEX = /([\w-]+)?(#([\w-]+))?((\.([\w-]+))*)/;
+// export enum DOMNamespace {
+//     HTML = "http://www.w3.org/1999/xhtml",
+//     SVG = "http://www.w3.org/2000/svg"
+// }
+// export type DOMAttrs = {
+//     [key: string]: undefined | string | number | EventListenerOrEventListenerObject;
+// };
+// export type DOMChild = Node | string | ((owner: Element) => Node);
+// create("div", this)
+//     .attr("id", "app")
+//     .class("container")
+//     .append(
+//         create("h1", this).text("Welcome to My App"),
+//         create("button", this)
+//             .text("Click Me")
+//             .on("click", () => alert("Button Clicked!"))
+//     )
+//     .mount(document.body);
+const SVG_TAGS = new Set([
+    "svg", "circle", "rect", "path", "line", "ellipse", "polygon", "polyline", "g", "defs", "symbol", "use", "text", "tspan"
+]);
+function create(owner, selector) {
+    const dom = DOMNode.create(owner, selector);
+    return dom;
+}
+class DOMNode extends Disposable {
+    _element = null;
+    _events = new Map();
+    _owner = null;
+    static create(owner, selector) {
+        const dom = new DOMNode(owner, selector);
+        return dom;
+    }
+    constructor(owner, selector) {
+        super();
+        this._owner = owner;
+        if (SVG_TAGS.has(selector)) {
+            this._element = document.createElementNS('http://www.w3.org/2000/svg', selector);
+        }
+        else {
+            this._element = document.createElement(selector);
+        }
+        if (this._owner) {
+            this._owner.register(this);
+        }
+        // const match = selector.split(':');
+        // if (match.length === 1) {
+        //   this._element = document.createElement(selector);
+        // } else if (match.length === 2) {
+        //   const namespace = match[0];
+        //   const tagName = match[1];
+        //   if (namespace === 'svg') {
+        //     this._element = document.createElementNS('http://www.w3.org/2000/svg', tagName) as unknown as SVGElement;
+        //   } if (namespace === 'html') {
+        //     this._element = document.createElementNS(
+        //       'http://www.w3.org/1999/xhtml',
+        //       tagName,
+        //     ) as HTMLElement;
+        //   } else {
+        //     throw new Error('Invalid selector');
+        //   }
+        //   if (this._owner) {
+        //     this._owner.register(this);
+        //   }
+        // }
+    }
+    dispose() {
+        if (this._disposed) {
+            return;
+        }
+        this._element.remove();
+        if (this._owner) {
+            this._owner.unregister(this);
+            this._owner = null;
+        }
+        super.dispose();
+    }
+    attr(name, value, condition) {
+        if (value === undefined && condition === undefined) {
+            return this._element.getAttribute(name);
+        }
+        if (condition instanceof value_Value) {
+            condition.subscribe(this, (cond) => {
+                if (cond) {
+                    if (value instanceof value_Value) {
+                        value.subscribe(this, (val) => {
+                            if (val === null || val === undefined || val === "") {
+                                this._element.removeAttribute(name);
+                            }
+                            else {
+                                this._element.setAttribute(name, String(val));
+                            }
+                        });
+                    }
+                    else {
+                        if (value === null || value === undefined || value === "") {
+                            this._element.removeAttribute(name);
+                        }
+                        else {
+                            this._element.setAttribute(name, String(value));
+                        }
+                    }
+                }
+                else {
+                    this._element.removeAttribute(name);
+                }
+            });
+        }
+        else if (condition === true) {
+            if (value instanceof value_Value) {
+                value.subscribe(this, (val) => {
+                    if (val === null || val === undefined || val === "") {
+                        this._element.removeAttribute(name);
+                    }
+                    else {
+                        this._element.setAttribute(name, String(val));
+                    }
+                });
+            }
+            else {
+                if (value === null || value === undefined || value === "") {
+                    this._element.removeAttribute(name);
+                }
+                else {
+                    this._element.setAttribute(name, String(value));
+                }
+            }
+        }
+        else {
+            if (value instanceof value_Value) {
+                value.subscribe(this, (v) => {
+                    if (v === null || v === undefined || v === "" || condition === false) {
+                        this._element.removeAttribute(name);
+                    }
+                    else {
+                        this._element.setAttribute(name, String(v));
+                    }
+                });
+            }
+            else {
+                if (value === null || value === undefined || value === "" || condition === false) {
+                    this._element.removeAttribute(name);
+                }
+                else {
+                    this._element.setAttribute(name, String(value));
+                }
+            }
+        }
+        return this;
+    }
+    property(name, value) {
+        if (value === undefined) {
+            return this._element[name];
+        }
+        if (value instanceof value_Value) {
+            value.subscribe(this, (val) => {
+                this._element[name] = val;
+            });
+        }
+        else {
+            if (value === null || value === undefined || value === "") {
+                delete this._element[name];
+            }
+            else {
+                this._element[name] = value;
+            }
+        }
+        return this;
+    }
+    style(name, value, condition) {
+        if (value === undefined) {
+            return this._element.style.getPropertyValue(name);
+        }
+        if (condition instanceof value_Value) {
+            condition.subscribe(this, (cond) => {
+                if (cond) {
+                    if (value instanceof value_Value) {
+                        value.subscribe(this, (val) => {
+                            this._element.style.setProperty(name, val);
+                        });
+                    }
+                    else {
+                        this._element.style.setProperty(name, value);
+                    }
+                }
+                else {
+                    this._element.style.removeProperty(name);
+                }
+            });
+        }
+        else if (condition === true || condition === undefined) {
+            if (value instanceof value_Value) {
+                value.subscribe(this, (val) => {
+                    this._element.style.setProperty(name, val);
+                });
+            }
+            else {
+                this._element.style.setProperty(name, value);
+            }
+        }
+        else {
+            this._element.style.removeProperty(name);
+        }
+        return this;
+    }
+    class(className, active = true) {
+        if (className === undefined) {
+            return this;
+        }
+        if (active instanceof value_Value) {
+            active.subscribe(this, (val) => {
+                if (val) {
+                    if (Array.isArray(className)) {
+                        this._element.classList.add(...className);
+                    }
+                    else {
+                        this._element.classList.add(className);
+                    }
+                }
+                else {
+                    if (Array.isArray(className)) {
+                        this._element.classList.remove(...className);
+                    }
+                    else {
+                        this._element.classList.remove(className);
+                    }
+                }
+            });
+        }
+        else {
+            if (active) {
+                if (Array.isArray(className)) {
+                    this._element.classList.add(...className);
+                }
+                else {
+                    this._element.classList.add(className);
+                }
+            }
+            else {
+                if (Array.isArray(className)) {
+                    this._element.classList.remove(...className);
+                }
+                else {
+                    this._element.classList.remove(className);
+                }
+            }
+        }
+        return this;
+    }
+    empty() {
+        [...this._disposables].forEach(([key, dispose]) => {
+            if (key instanceof DOMNode) {
+                if (key._owner !== this) {
+                    console.warn(`Cannot dispose child DOMNode that is not owned by this node.`, key);
+                    return;
+                }
+                key.dispose();
+            }
+        });
+        this._element.innerHTML = '';
+        return this;
+    }
+    on(eventType, listener, options) {
+        for (const [, event] of this._events.entries()) {
+            if (event.eventType === eventType && event.listener === listener) {
+                console.warn(`The event listener for ${eventType} is already registered on this element.`);
+                return this;
+            }
+        }
+        this._element.addEventListener(eventType, listener, options);
+        if (options && typeof options === 'object' && options.once) {
+            return this;
+        }
+        const dispose = createDisposeFn(() => {
+            this._element.removeEventListener(eventType, listener, options);
+        });
+        this.register(dispose);
+        this._events.set(dispose, { eventType, listener });
+        return this;
+    }
+    off(eventType, listener, options) {
+        this._element.removeEventListener(eventType, listener, options);
+        for (const [dispose, event] of this._events.entries()) {
+            if (event.eventType === eventType && event.listener === listener) {
+                this._events.delete(dispose);
+                this.unregister(dispose);
+                break;
+            }
+        }
+        return this;
+    }
+    dataset(name, value) {
+        if (arguments.length === 1) {
+            return this._element.dataset[name];
+        }
+        if (value instanceof value_Value) {
+            value.subscribe(this, (val) => {
+                this._element.dataset[name] = String(val);
+            });
+        }
+        else {
+            if (value === null || value === undefined) {
+                delete this._element.dataset[name];
+            }
+            else {
+                this._element.dataset[name] = String(value);
+            }
+        }
+        return this;
+    }
+    text(content) {
+        this.empty();
+        if (content instanceof value_Value) {
+            content.subscribe(this, (val) => {
+                if (this.element instanceof HTMLElement) {
+                    if (val === null || val === undefined) {
+                        this._element.innerText = '';
+                    }
+                    else {
+                        this._element.innerText = String(val);
+                    }
+                }
+            });
+        }
+        else {
+            if (this.element instanceof HTMLElement) {
+                this._element.innerText = String(content);
+            }
+        }
+        return this;
+    }
+    html(content) {
+        this.empty();
+        this._element.innerHTML = content;
+        return this;
+    }
+    display(isVisible) {
+        if (isVisible instanceof value_Value) {
+            this._element.style.display = isVisible.get() ? '' : 'none';
+            isVisible.subscribe(this, (visible) => {
+                this._element.style.display = visible ? '' : 'none';
+            });
+        }
+        else {
+            this._element.style.display = isVisible ? '' : 'none';
+        }
+        return this;
+    }
+    visibility(isVisible) {
+        if (isVisible instanceof value_Value) {
+            isVisible.subscribe(this, (visible) => {
+                this._element.style.visibility = visible ? 'visible' : 'hidden';
+            });
+        }
+        else {
+            this._element.style.visibility = isVisible ? 'visible' : 'hidden';
+        }
+        return this;
+    }
+    append(...children) {
+        for (const child of children) {
+            child.mount(this);
+        }
+        return this;
+    }
+    mount(parent, options) {
+        if (parent instanceof DOMNode) {
+            if (options?.first) {
+                parent._element.insertBefore(this._element, parent._element.firstChild);
+            }
+            else {
+                parent._element.appendChild(this._element);
+            }
+        }
+        else {
+            if (options?.first) {
+                parent.insertBefore(this._element, parent.firstChild);
+            }
+            else {
+                parent.appendChild(this._element);
+            }
+        }
+        return this;
+    }
+    insertBefore(referenceNode) {
+        const refElement = referenceNode instanceof DOMNode ? referenceNode._element : referenceNode;
+        if (refElement.parentElement) {
+            refElement.parentElement.insertBefore(this._element, refElement);
+        }
+        else {
+            console.warn('Reference node has no parent. Cannot insert before it.', referenceNode);
+        }
+        return this;
+    }
+    focus(options) {
+        if (this._element instanceof HTMLElement || this._element instanceof SVGElement) {
+            setTimeout(() => {
+                this._element.focus(options);
+            }, 100);
+        }
+        return this;
+    }
+    focusFirstElement(options) {
+        if (this._element instanceof HTMLElement) {
+            const firstFocusable = this._element.querySelector(FOCUSABLE_ELEMENT_SELECTOR);
+            if (firstFocusable) {
+                setTimeout(() => {
+                    firstFocusable.focus(options);
+                }, 100);
+            }
+        }
+        return this;
+    }
+    get element() {
+        return this._element;
+    }
+    get owner() {
+        return this._owner;
+    }
+}
+
+;// ./packages/editor/packages/duct-tape/src/emitter.ts
+
+class Emitter extends Disposable {
+    _emitterHandles;
+    constructor() {
+        super();
+        this._emitterHandles = {};
+    }
+    dispose() {
+        if (this.disposed)
+            return;
+        this._emitterHandles = {};
+        super.dispose();
+    }
+    on(name, callback, scope = this) {
+        this._addCallback(name, callback, scope, false);
+        return () => this.off(name, callback, scope);
+    }
+    once(name, callback, scope = this) {
+        this._addCallback(name, callback, scope, true);
+        return () => this.off(name, callback, scope);
+    }
+    off(name, callback, scope = this) {
+        const handlesByName = this._emitterHandles[name];
+        if (handlesByName) {
+            let i = handlesByName.length;
+            while (--i >= 0) {
+                if (handlesByName[i].callback === callback &&
+                    handlesByName[i].scope === scope) {
+                    handlesByName.splice(i, 1);
                 }
             }
         }
     }
-}
-exports.Editor = Editor;
-
-
-/***/ },
-
-/***/ 180
-(__unused_webpack_module, exports, __webpack_require__) {
-
-var __webpack_unused_export__;
-
-__webpack_unused_export__ = ({ value: true });
-exports.ArrayWidget = void 0;
-const duct_tape_1 = __webpack_require__(415);
-const object_widget_1 = __webpack_require__(488);
-const widget_1 = __webpack_require__(200);
-class ArrayWidget extends widget_1.Widget {
-    _schema;
-    _data;
-    _itemsContainer;
-    constructor(editor, key, schema, data) {
-        super(editor);
-        this._editor = editor;
-        this._schema = schema;
-        this._data = data;
-        this.class("array-component");
-        if (this._schema.title || this._schema.label) {
-            const titleText = this._schema.title ?? this._schema.label ?? key;
-            if (this._schema.label) {
-                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
-            }
-            (0, duct_tape_1.create)("div", this)
-                .class("title")
-                .text(titleText)
-                .mount(this);
-        }
-        this.append(this._itemsContainer = (0, duct_tape_1.create)("div", this)
-            .class("items-container"));
-        this.build();
-    }
-    build() {
-        if (this._schema.item === undefined) {
+    emit(name, value) {
+        const handlesByName = this._emitterHandles[name];
+        if (!handlesByName) {
             return;
         }
-        this._data.forEach((data, index) => {
-            const item = (0, duct_tape_1.create)("div", this).class("array-item");
-            this._itemsContainer.append(item);
-            if (this._schema.item.type === "object") {
-                item.append(new object_widget_1.ObjectWidget(this._editor, `Element #${index + 1}`, this._schema.item, data));
+        for (const handle of handlesByName) {
+            handle.callback.call(handle.scope, value);
+            if (handle.once)
+                this.off(name, handle.callback, handle.scope);
+        }
+    }
+    _addCallback(name, callback, scope, once) {
+        let handlesByName = this._emitterHandles[name];
+        if (!handlesByName) {
+            handlesByName = this._emitterHandles[name] = [];
+        }
+        handlesByName.push({
+            callback,
+            scope,
+            once,
+        });
+    }
+}
+/* harmony default export */ const emitter = ((/* unused pure expression or super */ null && (Emitter)));
+
+;// ./packages/editor/packages/duct-tape/src/page.ts
+
+class Page extends DOMNode {
+    _app;
+    _store;
+    _config;
+    constructor(app, store, config) {
+        super(null, "div");
+        this._app = app;
+        this._store = store;
+        this._config = config;
+    }
+    async load() {
+        return Promise.resolve();
+    }
+    async unload() {
+        return Promise.resolve();
+    }
+    setActiveElement(element) {
+        if (element instanceof DOMNode) {
+            setTimeout(() => {
+                element.element.focus();
+            }, 100);
+        }
+        else if (element instanceof HTMLElement) {
+            setTimeout(() => {
+                element.focus();
+            }, 100);
+        }
+    }
+}
+
+;// ./packages/editor/packages/duct-tape/src/modal.ts
+
+class Modal extends DOMNode {
+    _app;
+    _store;
+    _config;
+    _options;
+    constructor(app, store, config, options) {
+        super(null, "div");
+        this._app = app;
+        this._store = store;
+        this._config = config;
+        this._options = options;
+        if (options.classNames) {
+            if (Array.isArray(options.classNames)) {
+                this.class([...options.classNames]);
             }
             else {
-                console.warn(`Unsupported array item type: ${this._schema.item.type}`);
+                this.class(options.classNames);
+            }
+        }
+    }
+    dispose() {
+        this._app.removeModal(this);
+        super.dispose();
+    }
+    async load() {
+        if (this._options?.onAfterLoad) {
+            this._options.onAfterLoad(this);
+        }
+    }
+    async unload() {
+        if (this._options?.onAfterUnload) {
+            this._options.onAfterUnload(this);
+        }
+    }
+    async show() {
+        if (this._options?.onAfterShow) {
+            this._options.onAfterShow(this);
+        }
+    }
+    async close() {
+        await this._app?.removeModal(this);
+        if (this._options?.onAfterClose) {
+            this._options.onAfterClose(this);
+        }
+    }
+}
+
+;// ./packages/editor/packages/duct-tape/index.ts
+
+
+
+
+
+
+
+
+
+
+
+
+;// ./packages/editor/src/widgets/widget.ts
+
+class Widget extends DOMNode {
+    _key;
+    _editor;
+    constructor(editor, key) {
+        super(editor, "div");
+        this._key = key;
+        this._editor = editor;
+        this.class("widget");
+    }
+    getKey() {
+        return this._key;
+    }
+}
+
+;// ./packages/editor/src/utils/md-to-html.ts
+// import { path } from "@/zpe-port";
+function MD2HTML(markdown, pathResolver = (p) => p) {
+    const lines = markdown.replace(/\r\n?/g, "\n").split("\n");
+    const blocks = [];
+    let index = 0;
+    while (index < lines.length) {
+        const line = lines[index];
+        if (line.trim() === "") {
+            index += 1;
+            continue;
+        }
+        const codeBlockMatch = /^\s{0,3}```\s*([^`]*)$/.exec(line);
+        if (codeBlockMatch) {
+            const codeLines = [];
+            const language = codeBlockMatch[1].trim().split(/\s+/)[0] ?? "";
+            index += 1;
+            while (index < lines.length && !/^\s{0,3}```\s*$/.test(lines[index])) {
+                codeLines.push(lines[index]);
+                index += 1;
+            }
+            if (index < lines.length) {
+                index += 1;
+            }
+            const languageClass = language === "" ? "" : ` class="language-${escapeAttribute(language)}"`;
+            blocks.push(`<pre><code${languageClass}>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+            continue;
+        }
+        const headingMatch = /^(#{1,3})\s+(.*)$/.exec(line);
+        if (headingMatch) {
+            const level = headingMatch[1].length;
+            blocks.push(`<h${level}>${renderInline(pathResolver, headingMatch[2].trim())}</h${level}>`);
+            index += 1;
+            continue;
+        }
+        if (isTableRow(line) && index + 1 < lines.length && isTableSeparator(lines[index + 1])) {
+            const tableLines = [line, lines[index + 1]];
+            index += 2;
+            while (index < lines.length && isTableRow(lines[index])) {
+                tableLines.push(lines[index]);
+                index += 1;
+            }
+            blocks.push(renderTable(pathResolver, tableLines));
+            continue;
+        }
+        if (/^>\s?/.test(line)) {
+            const quoteLines = [];
+            while (index < lines.length && /^>\s?/.test(lines[index])) {
+                quoteLines.push(lines[index].replace(/^>\s?/, ""));
+                index += 1;
+            }
+            blocks.push(`<blockquote>${quoteLines.map((quoteLine) => renderInline(pathResolver, quoteLine)).join("<br>")}</blockquote>`);
+            continue;
+        }
+        if (/^\s*[-*+]\s+/.test(line)) {
+            const items = collectListItems(lines, index, "ul");
+            blocks.push(renderList(pathResolver, items.items, "ul"));
+            index = items.nextIndex;
+            continue;
+        }
+        if (/^\s*\d+\.\s+/.test(line)) {
+            const items = collectListItems(lines, index, "ol");
+            blocks.push(renderList(pathResolver, items.items, "ol"));
+            index = items.nextIndex;
+            continue;
+        }
+        const paragraphLines = [line.trim()];
+        index += 1;
+        while (index < lines.length) {
+            const nextLine = lines[index];
+            if (nextLine.trim() === "" || isBlockBoundary(nextLine, lines, index)) {
+                break;
+            }
+            paragraphLines.push(nextLine.trim());
+            index += 1;
+        }
+        blocks.push(`<p>${renderInline(pathResolver, paragraphLines.join(" "))}</p>`);
+    }
+    return blocks.join("").trim();
+}
+function renderInline(pathResolver, text) {
+    return parseInline(pathResolver, text, null).html;
+}
+function parseInline(pathResolver, text, stopToken) {
+    let html = "";
+    let index = 0;
+    while (index < text.length) {
+        if (stopToken !== null && text.startsWith(stopToken, index)) {
+            return { html, nextIndex: index + stopToken.length, closed: true };
+        }
+        if (text[index] === "`") {
+            const closeIndex = text.indexOf("`", index + 1);
+            if (closeIndex !== -1) {
+                html += `<code>${escapeHtml(text.slice(index + 1, closeIndex))}</code>`;
+                index = closeIndex + 1;
+                continue;
+            }
+        }
+        if (text.startsWith("![", index)) {
+            const image = parseImage(pathResolver, text, index);
+            if (image !== null) {
+                html += image.html;
+                index = image.nextIndex;
+                continue;
+            }
+        }
+        if (text.startsWith("[", index)) {
+            const link = parseLink(pathResolver, text, index);
+            if (link !== null) {
+                html += link.html;
+                index = link.nextIndex;
+                continue;
+            }
+        }
+        if (text.startsWith("**", index)) {
+            const nested = parseInline(pathResolver, text.slice(index + 2), "**");
+            if (nested.closed) {
+                html += `<strong>${nested.html}</strong>`;
+                index += 2 + nested.nextIndex;
+                continue;
+            }
+        }
+        if (text[index] === "*") {
+            const nested = parseInline(pathResolver, text.slice(index + 1), "*");
+            if (nested.closed) {
+                html += `<em>${nested.html}</em>`;
+                index += 1 + nested.nextIndex;
+                continue;
+            }
+        }
+        html += escapeHtml(text[index]);
+        index += 1;
+    }
+    return { html, nextIndex: index, closed: false };
+}
+function parseLink(pathResolver, text, startIndex) {
+    const closeBracket = findMatchingBracket(text, startIndex + 1, "[", "]");
+    if (closeBracket === -1 || text[closeBracket + 1] !== "(") {
+        return null;
+    }
+    const closeParen = findClosingParen(text, closeBracket + 2);
+    if (closeParen === -1) {
+        return null;
+    }
+    const label = text.slice(startIndex + 1, closeBracket);
+    const url = text.slice(closeBracket + 2, closeParen);
+    const renderedLabel = parseInline(pathResolver, label, null).html;
+    return {
+        html: `<a href="${escapeAttribute(url)}" data-link-url="${escapeAttribute(url)}">${renderedLabel}</a>`,
+        nextIndex: closeParen + 1,
+    };
+}
+function parseImage(pathResolver, text, startIndex) {
+    const openBracketIndex = startIndex + 1;
+    const closeBracket = text.indexOf("]", openBracketIndex + 1);
+    if (text[openBracketIndex] !== "[" || closeBracket === -1 || text[closeBracket + 1] !== "(") {
+        return null;
+    }
+    const closeParen = findClosingParen(text, closeBracket + 2);
+    if (closeParen === -1) {
+        return null;
+    }
+    const altText = text.slice(openBracketIndex + 1, closeBracket);
+    const url = text.slice(closeBracket + 2, closeParen);
+    return {
+        html: `<img src="${escapeAttribute(pathResolver(url))}" alt="${escapeAttribute(altText)}">`,
+        nextIndex: closeParen + 1,
+    };
+}
+function collectListItems(lines, startIndex, type) {
+    const items = [];
+    let index = startIndex;
+    while (index < lines.length) {
+        const line = lines[index];
+        const match = type === "ul"
+            ? /^(\s*[-*+]\s+)(.*)$/.exec(line)
+            : /^(\s*\d+\.\s+)(.*)$/.exec(line);
+        if (!match) {
+            break;
+        }
+        const currentIndent = match[1].match(/^\s*/)?.[0].length ?? 0;
+        let itemText = match[2].trimEnd();
+        index += 1;
+        while (index < lines.length) {
+            const continuationLine = lines[index];
+            if (continuationLine.trim() === "") {
+                break;
+            }
+            const continuationIndent = continuationLine.match(/^\s*/)?.[0].length ?? 0;
+            if (continuationIndent <= currentIndent && isBlockBoundary(continuationLine, lines, index)) {
+                break;
+            }
+            if (continuationIndent > currentIndent || (!isListItemLine(continuationLine) && !isBlockBoundary(continuationLine, lines, index))) {
+                itemText += ` ${continuationLine.trim()}`;
+                index += 1;
+                continue;
+            }
+            break;
+        }
+        items.push(itemText);
+    }
+    return { items, nextIndex: index };
+}
+function renderList(pathResolver, items, type) {
+    const tagName = type === "ul" ? "ul" : "ol";
+    const renderedItems = items.map((item) => `<li>${renderInline(pathResolver, item)}</li>`).join("");
+    return `<${tagName}>${renderedItems}</${tagName}>`;
+}
+function renderTable(pathResolver, lines) {
+    const rows = lines.map(splitTableRow).filter((row) => row.length > 0);
+    const header = rows[0] ?? [];
+    const body = rows.slice(2);
+    const headHtml = header.map((cell) => `<th>${renderInline(pathResolver, cell)}</th>`).join("");
+    const bodyHtml = body
+        .map((row) => `<tr>${row.map((cell) => `<td>${renderInline(pathResolver, cell)}</td>`).join("")}</tr>`)
+        .join("");
+    return `<table><thead><tr>${headHtml}</tr></thead><tbody>${bodyHtml}</tbody></table>`;
+}
+function splitTableRow(line) {
+    return line
+        .trim()
+        .replace(/^\|/, "")
+        .replace(/\|$/, "")
+        .split("|")
+        .map((cell) => cell.trim());
+}
+function isTableRow(line) {
+    return /^\s*\|.*\|\s*$/.test(line);
+}
+function isTableSeparator(line) {
+    const cells = splitTableRow(line);
+    return cells.length > 0 && cells.every((cell) => /^:?-{3,}:?$/.test(cell));
+}
+function isListItemLine(line) {
+    return /^(\s*[-*+]\s+|\s*\d+\.\s+)/.test(line);
+}
+function isBlockBoundary(line, lines, index) {
+    return (/^(#{1,3})\s+/.test(line)
+        || /^>\s?/.test(line)
+        || isListItemLine(line)
+        || (isTableRow(line) && index + 1 < lines.length && isTableSeparator(lines[index + 1])));
+}
+function findMatchingBracket(text, startIndex, open, close) {
+    let depth = 0;
+    for (let index = startIndex; index < text.length; index += 1) {
+        if (text[index] === open) {
+            depth += 1;
+            continue;
+        }
+        if (text[index] === close) {
+            if (depth === 0) {
+                return index;
+            }
+            depth -= 1;
+        }
+    }
+    return -1;
+}
+function findClosingParen(text, startIndex) {
+    let depth = 0;
+    for (let index = startIndex; index < text.length; index += 1) {
+        if (text[index] === "(") {
+            depth += 1;
+            continue;
+        }
+        if (text[index] === ")") {
+            if (depth === 0) {
+                return index;
+            }
+            depth -= 1;
+        }
+    }
+    return -1;
+}
+function escapeHtml(text) {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+function escapeAttribute(text) {
+    return escapeHtml(text).replace(/"/g, "&quot;");
+}
+
+;// ./packages/editor/src/components/help.ts
+
+
+function createHelpButton(owner, editor, options) {
+    return new HelpButton(owner, editor, options);
+}
+let dialogCount = 0;
+class HelpButton extends DOMNode {
+    _editor;
+    _dialog = null;
+    _dialogId;
+    _content = null;
+    constructor(owner, editor, options) {
+        super(owner, "button");
+        this._editor = editor;
+        this._dialogId = `help-dialog-${dialogCount++}`;
+        this.class("help-button");
+        this.attr("type", "button");
+        this.attr("commandfor", this._dialogId);
+        this.on("click", () => {
+            if (!this._dialog) {
+                this.createDialog();
+            }
+            if (options?.helpFile) {
+                fetch(this._editor.api.enginePath(options.helpFile))
+                    .then(response => response.text())
+                    .then(text => {
+                    this._content.html(MD2HTML(text, this._editor.pathResolver.bind(this._editor)));
+                    this._dialog.element.showModal();
+                })
+                    .catch(error => {
+                    console.error("Error loading help file:", error);
+                    this._content.html("<p>Nie można załadować pliku pomocy.</p>");
+                    this._dialog.element.showModal();
+                });
+            }
+            else {
+                this._content.html(MD2HTML(options?.content || "", this._editor.pathResolver.bind(this._editor)));
+                this._dialog.element.showModal();
             }
         });
     }
-}
-exports.ArrayWidget = ArrayWidget;
-
-
-/***/ },
-
-/***/ 367
-(__unused_webpack_module, exports, __webpack_require__) {
-
-var __webpack_unused_export__;
-
-__webpack_unused_export__ = ({ value: true });
-exports.BooleanWidget = void 0;
-const duct_tape_1 = __webpack_require__(415);
-const widget_1 = __webpack_require__(200);
-class BooleanWidget extends widget_1.Widget {
-    _schema;
-    _data;
-    _checkbox;
-    constructor(editor, key, schema, data) {
-        super(editor);
-        this._editor = editor;
-        this._schema = schema;
-        this._data = data;
-        this.class("boolean-component");
-        const label = schema.label || key;
-        this._checkbox = (0, duct_tape_1.create)("input", this)
-            .attr("type", "checkbox")
-            .style("marginRight", "8px")
-            .property("checked", !!this._data[key])
-            .on("input", () => {
-            this._data[key] = this._checkbox.property("checked");
-            this._editor.saveState();
-        });
-        const labelNode = (0, duct_tape_1.create)("label", this)
-            .style("cursor", "pointer")
-            .append(this._checkbox)
-            .append((0, duct_tape_1.create)("span", this).text(label));
-        this.append(labelNode);
+    createDialog() {
+        this._dialog = create(this, "dialog")
+            .attr("id", this._dialogId)
+            .mount(this._editor.container)
+            .append(create(this, "div")
+            .class("help-dialog-body")
+            .append(create(this, "div")
+            .class("help-dialog-content")
+            .append(this._content = create(this, "div")
+            .class("formatted-text"))), create(this, "div")
+            .class("help-dialog-actions")
+            .append(create(this, "button")
+            .text("Zamknij")
+            .class("help-dialog-close-button")
+            .on("click", () => {
+            this._dialog?.element.close();
+        })));
+        return this._dialog;
     }
 }
-exports.BooleanWidget = BooleanWidget;
+
+;// ./packages/editor/src/widgets/number-widget.ts
 
 
-/***/ },
 
-/***/ 226
-(__unused_webpack_module, exports, __webpack_require__) {
-
-var __webpack_unused_export__;
-
-__webpack_unused_export__ = ({ value: true });
-exports.NumberWidget = void 0;
-const duct_tape_1 = __webpack_require__(415);
-const widget_1 = __webpack_require__(200);
 var NumberFormat;
 (function (NumberFormat) {
     NumberFormat["Integer"] = "integer";
     NumberFormat["Float"] = "float";
     NumberFormat["Number"] = "number";
 })(NumberFormat || (NumberFormat = {}));
-class NumberWidget extends widget_1.Widget {
+class NumberWidget extends Widget {
     _schema;
     _format = NumberFormat.Number;
     _min = -Infinity;
     _max = Infinity;
-    _data;
     _input;
     _messageNode;
-    constructor(editor, key, schema, data) {
-        super(editor);
+    _value;
+    constructor(editor, key, schema, value) {
+        super(editor, key);
+        this._value = value !== undefined ? value : schema.default ?? 0;
         this._editor = editor;
         this._schema = schema;
-        this._data = data;
         this.class("number-component");
         if (schema.format === "integer") {
             this._format = NumberFormat.Integer;
@@ -2459,12 +3035,24 @@ class NumberWidget extends widget_1.Widget {
         }
         this._min = schema.min !== undefined ? schema.min : -Infinity;
         this._max = schema.max !== undefined ? schema.max : Infinity;
-        const label = schema.label || key;
-        this._input = (0, duct_tape_1.create)("input", this)
+        if (schema.help || schema.helpFile || schema.label) {
+            const label = create(this, "label")
+                .text(schema.label || "")
+                .mount(this);
+            if (schema.help || schema.helpFile) {
+                createHelpButton(this, this._editor, {
+                    content: schema.help,
+                    helpFile: schema.helpFile,
+                })
+                    .mount(label);
+            }
+        }
+        this._input = create(this, "input")
             .attr("type", "number")
             .style("display", "block")
             .style("marginBottom", "8px")
-            .property("value", this._data[key] || 0)
+            .property("value", this._value ?? 0)
+            .mount(this)
             .on("input", () => {
             const value = this._input.property("value");
             if (value === undefined || value === "") {
@@ -2497,135 +3085,62 @@ class NumberWidget extends widget_1.Widget {
             else {
                 this._messageNode.text("");
             }
-            this._data[key] = value;
+            this._value = numValue;
             this._editor.saveState();
         });
-        const labelNode = (0, duct_tape_1.create)("label", this)
-            .text(label)
-            .style("display", "block")
-            .style("marginBottom", "4px");
-        this._messageNode = (0, duct_tape_1.create)("div", this)
+        this._messageNode = create(this, "div")
             .class("message")
             .style("color", "red")
             .style("fontSize", "12px")
-            .style("marginBottom", "8px");
-        this.append(labelNode, this._input, this._messageNode);
-    }
-}
-exports.NumberWidget = NumberWidget;
-
-
-/***/ },
-
-/***/ 488
-(__unused_webpack_module, exports, __webpack_require__) {
-
-var __webpack_unused_export__;
-
-__webpack_unused_export__ = ({ value: true });
-exports.ObjectWidget = void 0;
-const duct_tape_1 = __webpack_require__(415);
-const number_widget_1 = __webpack_require__(226);
-const array_widget_1 = __webpack_require__(180);
-const string_widget_1 = __webpack_require__(970);
-const boolean_widget_1 = __webpack_require__(367);
-const ref_widget_1 = __webpack_require__(464);
-const widget_1 = __webpack_require__(200);
-class ObjectWidget extends widget_1.Widget {
-    _schema;
-    _data;
-    _content;
-    constructor(editor, key, schema, data) {
-        super(editor);
-        this._schema = schema;
-        this._data = data;
-        this.class("object-component");
-        if (this._schema.title || this._schema.label) {
-            const titleText = this._schema.title ?? this._schema.label ?? key;
-            if (this._schema.label) {
-                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
-            }
-            (0, duct_tape_1.create)("div", this)
-                .class("title")
-                .text(titleText)
-                .mount(this);
-        }
-        this.append(this._content = (0, duct_tape_1.create)("div", this)
-            .class("content"));
-        this.build();
-    }
-    dispose() {
-        if (this._disposed)
-            return;
-        super.dispose();
+            .style("marginBottom", "8px")
+            .mount(this);
     }
     build() {
-        for (const [key, prop] of Object.entries(this._schema.properties)) {
-            if (this._data[key] === undefined && prop.type !== "ref") {
-                console.warn(`Data for key '${key}' is undefined.`);
-                continue;
-            }
-            if (prop.private === true) {
-                continue;
-            }
-            if (prop.type === "string") {
-                this.register(new string_widget_1.StringWidget(this._editor, key, prop, this._data).mount(this._content));
-            }
-            else if (prop.type === "number") {
-                this.register(new number_widget_1.NumberWidget(this._editor, key, prop, this._data).mount(this._content));
-            }
-            else if (prop.type === "boolean") {
-                this.register(new boolean_widget_1.BooleanWidget(this._editor, key, prop, this._data).mount(this._content));
-            }
-            else if (prop.type === "object") {
-                const dataObj = this._data[key] || null;
-                if (dataObj !== null && typeof dataObj === "object") {
-                    this.register(new ObjectWidget(this._editor, key, prop, dataObj).mount(this._content));
-                }
-            }
-            else if (prop.type === "array") {
-                this.register(new array_widget_1.ArrayWidget(this._editor, key, prop, this._data[key] || []).mount(this._content));
-            }
-            else if (prop.type === "ref") {
-                this.register(new ref_widget_1.RefWidget(this._editor, key, prop, this._data).mount(this._content));
-            }
+    }
+    getValue() {
+        const value = this._input.property("value");
+        if (value === undefined || value === "") {
+            return null;
         }
+        let numValue;
+        if (this._format === NumberFormat.Integer) {
+            numValue = parseInt(value, 10);
+        }
+        else {
+            numValue = parseFloat(value);
+        }
+        if (isNaN(numValue)) {
+            return null;
+        }
+        return numValue;
     }
 }
-exports.ObjectWidget = ObjectWidget;
+
+;// ./packages/editor/src/widgets/ref-widget.ts
 
 
-/***/ },
-
-/***/ 464
-(__unused_webpack_module, exports, __webpack_require__) {
-
-var __webpack_unused_export__;
-
-__webpack_unused_export__ = ({ value: true });
-exports.RefWidget = void 0;
-const duct_tape_1 = __webpack_require__(415);
-const widget_1 = __webpack_require__(200);
 const cache = new Map();
-class RefWidget extends widget_1.Widget {
+class RefWidget extends Widget {
     _schema;
     _data;
     _ref;
     constructor(editor, key, schema, data) {
-        super(editor);
+        super(editor, key);
         this._schema = schema;
         this._data = data;
-        this.class("string-component");
-        const label = this._schema.label || key;
-        this._ref = (0, duct_tape_1.create)("div", this)
+        this.class("ref-widget");
+        if (schema.help || schema.helpFile || schema.label) {
+            const label = this._schema.label || key;
+            create(this, "label")
+                .text(label)
+                .style("display", "block")
+                .style("marginBottom", "4px")
+                .mount(this);
+        }
+        this._ref = create(this, "div")
             .style("display", "block")
-            .style("marginBottom", "8px");
-        const labelNode = (0, duct_tape_1.create)("label", this)
-            .text(label)
-            .style("display", "block")
-            .style("marginBottom", "4px");
-        this.append(labelNode);
-        this.append(this._ref);
+            .style("marginBottom", "8px")
+            .mount(this);
         this.build();
     }
     async getFileData(path) {
@@ -2738,186 +3253,737 @@ class RefWidget extends widget_1.Widget {
             }
         });
     }
+    getValue() {
+        return null; // RefWidget does not have a direct value to return
+    }
 }
-exports.RefWidget = RefWidget;
+
+;// ./packages/editor/src/widgets/id-widget.ts
 
 
-/***/ },
-
-/***/ 970
-(__unused_webpack_module, exports, __webpack_require__) {
-
-var __webpack_unused_export__;
-
-__webpack_unused_export__ = ({ value: true });
-exports.StringWidget = void 0;
-const duct_tape_1 = __webpack_require__(415);
-const widget_1 = __webpack_require__(200);
-class StringWidget extends widget_1.Widget {
+class IdWidget extends Widget {
     _schema;
-    _data;
-    _input;
-    constructor(editor, key, schema, data) {
-        super(editor);
+    _value;
+    constructor(editor, key, schema, value) {
+        super(editor, key);
         this._schema = schema;
-        this._data = data;
-        this.class("string-component");
-        const label = schema.label || key;
+        this._value = value !== undefined ? value : crypto.randomUUID();
+        this.class("id-widget");
+        this.attr("data-id", this._value);
+        if (this._schema.path) {
+            this.class("has-ref-widget");
+            this.register(new RefWidget(editor, "question1", {
+                type: "ref",
+                path: this._schema.path,
+            }, {
+                "id": this._value
+            }).mount(this));
+        }
+    }
+    getValue() {
+        return this._value;
+    }
+}
+
+;// ./packages/editor/src/widgets/string-widget.ts
+
+
+
+class StringWidget extends Widget {
+    _schema;
+    _value;
+    _input;
+    _patternInfo = null;
+    _patternInfoDisplay;
+    constructor(editor, key, schema, value) {
+        super(editor, key);
+        this._schema = schema;
+        this.class("string-widget");
+        this._value = value !== undefined ? value : schema.default ?? "";
+        this._patternInfoDisplay = new ValueStore(false);
+        if (schema.help || schema.helpFile || schema.label) {
+            const labelNode = create(this, "label")
+                .text(schema.label || "")
+                .mount(this);
+            if (schema.help || schema.helpFile) {
+                createHelpButton(this, this._editor, {
+                    content: schema.help,
+                    helpFile: schema.helpFile,
+                })
+                    .mount(labelNode);
+            }
+        }
         if (schema.enum) {
-            this._input = (0, duct_tape_1.create)("select", this)
-                .style("display", "block")
-                .style("marginBottom", "8px")
+            this._input = create(this, "select")
+                .class("input-select")
+                .mount(this)
                 .on("change", () => {
-                this._data[key] = this._input.property("value");
+                this._value = this._input.property("value") || "";
                 this._editor.saveState();
             });
             for (const [enumKey, enumLabel] of Object.entries(schema.enum)) {
-                const option = (0, duct_tape_1.create)("option", this._input)
+                const option = create(this._input, "option")
                     .attr("value", enumKey)
                     .text(enumLabel);
-                if (this._data[key] === enumKey) {
+                if (this._value === enumKey) {
                     option.attr("selected", "selected");
                 }
                 this._input.append(option);
             }
         }
         else {
-            this._input = (0, duct_tape_1.create)("input", this)
-                .attr("type", "text")
-                .style("display", "block")
-                .style("marginBottom", "8px")
-                .property("value", this._data[key] || "")
-                .on("input", () => {
-                this._data[key] = this._input.property("value");
+            if (schema.multiline) {
+                this._input = create(this, "textarea")
+                    .class("input-textarea")
+                    .attr("rows", typeof schema.multiline === "number" ? schema.multiline : 2)
+                    .property("value", this._value)
+                    .mount(this)
+                    .on("input", () => {
+                    this._value = this._input.property("value") || "";
+                    this._editor.saveState();
+                });
+            }
+            else {
+                this._input = create(this, "input")
+                    .attr("type", "text")
+                    .class("input-text")
+                    .attr("placeholder", schema.placeholder || "")
+                    .property("value", this._value)
+                    .mount(this)
+                    .on("input", () => {
+                    this._value = this._input.property("value") || "";
+                    this._editor.saveState();
+                    if (schema.pattern) {
+                        const regex = new RegExp(schema.pattern);
+                        this._patternInfoDisplay.set(!regex.test(this._value));
+                    }
+                });
+                if (schema.patternMessage) {
+                    this._patternInfo = create(this, "div")
+                        .class("pattern-info")
+                        .display(this._patternInfoDisplay)
+                        .text(schema.patternMessage)
+                        .mount(this);
+                }
+            }
+        }
+        // this.append(labelNode);
+        // this.append(this._input);
+    }
+    getValue() {
+        return this._value;
+    }
+}
+
+;// ./packages/editor/src/widgets/array-widget.ts
+
+
+
+
+
+
+
+
+class ArrayWidget extends Widget {
+    _schema;
+    // private _data: any[];
+    _itemsContainer;
+    _items = [];
+    _reorderable;
+    _editable;
+    _controls;
+    _itemCounter = 0;
+    _draggedItem = null;
+    constructor(editor, key, schema, data) {
+        super(editor, key);
+        this._editor = editor;
+        this._schema = schema;
+        // this._data = data;
+        this._reorderable = schema.reorderable ?? false;
+        this._editable = schema.editable ?? false;
+        this._controls = schema.controls ?? null;
+        this.class("array-widget");
+        const titleNode = create(this, "div")
+            .class("block-title")
+            .mount(this);
+        if (this._schema.title || this._schema.label) {
+            titleNode.text(this._schema.title ?? this._schema.label ?? key);
+            if (this._schema.label) {
+                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
+            }
+        }
+        if (this._schema.help || this._schema.helpFile) {
+            createHelpButton(this, this._editor, {
+                content: this._schema.help,
+                helpFile: this._schema.helpFile,
+            })
+                .mount(titleNode);
+        }
+        this.append(this._itemsContainer = create(this, "div")
+            .class("block-content"));
+        if (data && Array.isArray(data)) {
+            data.forEach((itemData, index) => {
+                const itemKey = `${key}[${index}]`;
+                if (this._schema.item.type === "object" || this._schema.item.type === "id" || this._schema.item.type === "string") {
+                    this.addItem(itemKey, itemData);
+                }
+                else {
+                    console.warn(`Unsupported array item type: ${this._schema.item.type}`);
+                }
+            });
+        }
+        if (this._editable) {
+            create(this, "div")
+                .class("actions")
+                .append(create(this, "button")
+                .text("Dodaj element")
+                .class("add-button")
+                .on("click", () => {
+                const newItemKey = `${key}[${this._itemCounter++}]`;
+                if (this._schema.item.type === "object") {
+                    this.addItem(newItemKey, UseDefaultData);
+                }
+                else if (this._schema.item.type === "string") {
+                    this.addItem(newItemKey, "");
+                }
+                else {
+                    console.warn(`Unsupported array item type: ${this._schema.item.type}`);
+                }
+                this.updateItemOrder();
+                this._editor.saveState();
+            }))
+                .mount(this);
+        }
+    }
+    getValue() {
+        const containerChildren = Array.from(this._itemsContainer.element.children);
+        const orderedItems = this._items.slice().sort((a, b) => {
+            const aIndex = containerChildren.indexOf(a.container.element);
+            const bIndex = containerChildren.indexOf(b.container.element);
+            return aIndex - bIndex;
+        });
+        return orderedItems.map(item => item.widget.getValue());
+    }
+    addItem(key, data) {
+        const item = create(this, "div").class("item");
+        this._itemsContainer.append(item);
+        const itemHandle = create(item, "div")
+            .class("item-header")
+            .class("vertical", this._controls === "vertical")
+            .mount(item);
+        if (this._reorderable) {
+            if (this._controls) {
+                create(item, "div")
+                    .class("item-move-up")
+                    .mount(itemHandle)
+                    .append(create(this, "button")
+                    .text("⬆")
+                    .on("click", () => {
+                    this.moveItemUp(key);
+                }));
+            }
+            create(item, "div")
+                .class("item-drag-handle")
+                .mount(itemHandle)
+                .attr("draggable", "true")
+                .on("dragstart", (event) => {
+                const bounding = item.element.getBoundingClientRect();
+                const x = event.clientX - bounding.left;
+                const y = event.clientY - bounding.top;
+                event.dataTransfer.setDragImage(item.element, x, y);
+                event.dataTransfer.effectAllowed = "move";
+                this._draggedItem = item;
+                // item.style("opacity", "0");
+            })
+                .on("dragend", (event) => {
+                this._draggedItem = null;
+                // item.style("opacity", "");
+                item.class("drag-drop", false);
+            });
+            create(item, "div");
+            if (this._controls) {
+                create(item, "div")
+                    .class("item-move-down")
+                    .mount(itemHandle)
+                    .append(create(this, "button")
+                    .text("⬇")
+                    .on("click", () => {
+                    this.moveItemDown(key);
+                }));
+            }
+            item
+                .on("dragover", (event) => {
+                if (this._draggedItem && this._draggedItem == item && this._draggedItem.element.parentElement === item.element.parentElement) {
+                    // XXX: daje to czas żeby "dragstart" mógł zrobić screen capture, a następnie ukrywamy element.
+                    // item.style("opacity", "0");
+                    item.class("drag-drop");
+                }
+                if (this._draggedItem && this._draggedItem !== item && this._draggedItem.element.parentElement === item.element.parentElement) {
+                    const targetBounding = item.element.getBoundingClientRect();
+                    const draggedBounding = this._draggedItem.element.getBoundingClientRect();
+                    // console.log("Drag over:", key, "targetBounding:", targetBounding, "draggedBounding:", draggedBounding);
+                    if (draggedBounding.top > targetBounding.top) {
+                        item.element.parentElement.insertBefore(this._draggedItem.element, item.element);
+                    }
+                    else {
+                        item.element.parentElement.insertBefore(this._draggedItem.element, item.element.nextSibling);
+                    }
+                }
+                event.preventDefault();
+            })
+                .on("drop", (event) => {
+                event.preventDefault();
+                this.updateItemOrder();
                 this._editor.saveState();
             });
         }
-        const labelNode = (0, duct_tape_1.create)("label", this)
-            .text(label)
-            .style("display", "block")
-            .style("marginBottom", "4px");
-        this.append(labelNode);
-        this.append(this._input);
+        const itemIndex = create(item, "div")
+            .class("item-index")
+            .mount(itemHandle)
+            .text(`${this._items.length + 1}`);
+        const itemContent = create(item, "div")
+            .class("item-content")
+            .mount(item);
+        if (this._schema.item.type === "object" || this._schema.item.type === "string" || this._schema.item.type === "number") {
+            let childWidget = null;
+            if (this._schema.item.type === "object") {
+                childWidget = new ObjectWidget(this._editor, key, this._schema.item, data);
+                this._items.push({
+                    key, widget: childWidget, container: item, itemIndexNode: itemIndex
+                });
+                childWidget.mount(itemContent);
+            }
+            else if (this._schema.item.type === "string") {
+                childWidget = new StringWidget(this._editor, key, this._schema.item, data);
+                this._items.push({
+                    key, widget: childWidget, container: item, itemIndexNode: itemIndex
+                });
+                childWidget.mount(itemContent);
+            }
+            else if (this._schema.item.type === "number") {
+                childWidget = new NumberWidget(this._editor, key, this._schema.item, data);
+                this._items.push({
+                    key, widget: childWidget, container: item, itemIndexNode: itemIndex
+                });
+                childWidget.mount(itemContent);
+            }
+            if (this._editable && childWidget) {
+                create(item, "div")
+                    .class("item-actions")
+                    .mount(item)
+                    .append(create(this, "button")
+                    .class("remove-button")
+                    .text("Usuń")
+                    .on("click", () => {
+                    this.removeItem(childWidget);
+                }));
+            }
+        }
+        else if (this._schema.item.type === "id") {
+            const idWidget = new IdWidget(this._editor, key, this._schema.item, data);
+            this._items.push({
+                key, widget: idWidget, container: item, itemIndexNode: itemIndex
+            });
+            idWidget.mount(itemContent);
+        }
+    }
+    updateItemOrder() {
+        const containerChildren = Array.from(this._itemsContainer.element.children);
+        this._items.sort((a, b) => {
+            const aIndex = containerChildren.indexOf(a.container.element);
+            const bIndex = containerChildren.indexOf(b.container.element);
+            return aIndex - bIndex;
+        });
+        this._items.forEach((item, index) => {
+            if (item.itemIndexNode) {
+                item.itemIndexNode.text(`${index + 1}`);
+            }
+        });
+    }
+    moveItemDown(key) {
+        const index = this._items.findIndex(i => i.widget.getKey() === key);
+        if (index < this._items.length - 1) {
+            const currentItem = this._items[index];
+            const nextItem = this._items[index + 1];
+            this._itemsContainer.element.insertBefore(nextItem.container.element, currentItem.container.element);
+            this.updateItemOrder();
+            this._editor.saveState();
+        }
+    }
+    moveItemUp(key) {
+        const index = this._items.findIndex(i => i.widget.getKey() === key);
+        if (index > 0) {
+            const currentItem = this._items[index];
+            const previousItem = this._items[index - 1];
+            this._itemsContainer.element.insertBefore(currentItem.container.element, previousItem.container.element);
+            this.updateItemOrder();
+            this._editor.saveState();
+        }
+    }
+    removeItem(item) {
+        const itemIndex = this._items.findIndex(i => i.widget === item);
+        if (itemIndex !== -1) {
+            const itemNode = this._items[itemIndex].container;
+            this._items.splice(itemIndex, 1);
+            item.dispose();
+            itemNode.dispose();
+            this.updateItemOrder();
+            this._editor.saveState();
+        }
     }
 }
-exports.StringWidget = StringWidget;
+
+;// ./packages/editor/src/widgets/boolean-widget.ts
 
 
-/***/ },
 
-/***/ 200
-(__unused_webpack_module, exports, __webpack_require__) {
-
-var __webpack_unused_export__;
-
-__webpack_unused_export__ = ({ value: true });
-exports.Widget = void 0;
-const duct_tape_1 = __webpack_require__(415);
-class Widget extends duct_tape_1.DOMNode {
-    _editor;
-    constructor(editor) {
-        super("div", editor);
+class BooleanWidget extends Widget {
+    _schema;
+    _checkbox;
+    _value;
+    constructor(editor, key, schema, value) {
+        super(editor, key);
+        this._value = value !== undefined ? value : schema.default ?? false;
         this._editor = editor;
+        this._schema = schema;
+        this.class("boolean-widget");
+        const label = schema.label || key;
+        this._checkbox = create(this, "input")
+            .attr("type", "checkbox")
+            .style("marginRight", "8px")
+            .property("checked", this._value)
+            .mount(this)
+            .on("input", () => {
+            this._value = Boolean(this._checkbox.property("checked")) || false;
+            this._editor.saveState();
+        });
+        create(this, "label")
+            .style("cursor", "pointer")
+            .mount(this)
+            .append(create(this, "span").text(label));
+        if (schema.help || schema.helpFile) {
+            createHelpButton(this, this._editor, {
+                content: schema.help,
+                helpFile: schema.helpFile,
+            })
+                .mount(this);
+        }
+    }
+    getValue() {
+        return this._value;
     }
 }
-exports.Widget = Widget;
+
+;// ./packages/editor/src/utils/id.ts
+const existingIds = new Set();
+function addId(id) {
+    existingIds.add(id);
+}
+function createUniqueId() {
+    let newId;
+    do {
+        newId = Date.now().toString(36);
+    } while (existingIds.has(newId));
+    existingIds.add(newId);
+    return newId;
+}
+
+;// ./packages/editor/src/widgets/object-widget.ts
 
 
-/***/ }
 
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/nonce */
-/******/ 	(() => {
-/******/ 		__webpack_require__.nc = undefined;
-/******/ 	})();
-/******/ 	
-/************************************************************************/
-var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it uses a non-standard name for the exports (exports).
-(() => {
-var exports = __webpack_exports__;
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.create = create;
-const editor_1 = __webpack_require__(771);
-__webpack_require__(166);
-//TODO:
-// [x] Czy init jest Promise? - TAK!
-// [ ] Czy setState jest wywoływany zawsze?
-// [ ] Czy addEditorTab można wywołać z setState?
-// [ ] Co dzieje się z defaultData jeżeli zostanie coś dodane/usunięte
-function create() {
+
+
+
+
+
+
+
+
+class ObjectWidget extends Widget {
+    _schema;
+    _data;
+    _content;
+    _widgets = [];
+    constructor(editor, key, schema, data) {
+        super(editor, key);
+        this._schema = schema;
+        this._data = data;
+        this.class("object-widget");
+        let titleNode = null;
+        if (this._schema.title || this._schema.label) {
+            titleNode = create(this, "div")
+                .class("block-title")
+                .mount(this);
+            titleNode.text(this._schema.title ?? this._schema.label ?? key);
+            if (this._schema.label) {
+                console.warn(`Schema element has 'label' property, which is deprecated. Use 'title' instead. (Element: ${key})`);
+            }
+            if (this._schema.help || this._schema.helpFile) {
+                createHelpButton(this, this._editor, {
+                    content: this._schema.help,
+                    helpFile: this._schema.helpFile,
+                })
+                    .mount(titleNode);
+            }
+        }
+        this.append(this._content = create(this, "div")
+            .class("block-content"));
+        this.build();
+    }
+    dispose() {
+        if (this._disposed)
+            return;
+        super.dispose();
+    }
+    build() {
+        let childWidget = null;
+        for (const [key, prop] of Object.entries(this._schema.properties)) {
+            // if (this._data !== UseDefaultData && this._data[key] === undefined && prop.type !== "ref") {
+            //     console.warn(`Data for key '${key}' is undefined.`);
+            //     continue;
+            // }
+            childWidget = null;
+            if (key.at(0) === "#") {
+                // Skip keys that start with '#' (internal or special keys)
+                continue;
+            }
+            if (prop.type === "string") {
+                if (this._data === UseDefaultData && prop.default === undefined) {
+                    console.warn(`No default value provided for key '${key}' in schema! Using empty string as fallback.`);
+                }
+                const value = this._data !== UseDefaultData ? this._data[key] : this._schema.properties[key].default || "";
+                childWidget = new StringWidget(this._editor, key, prop, value);
+                this._widgets.push(childWidget);
+            }
+            else if (prop.type === "number") {
+                if (this._data === UseDefaultData && prop.default === undefined) {
+                    console.warn(`No default value provided for key '${key}' in schema! Using 0 as fallback.`);
+                }
+                const value = this._data !== UseDefaultData ? this._data[key] : this._schema.properties[key].default || 0;
+                childWidget = new NumberWidget(this._editor, key, prop, value);
+                this._widgets.push(childWidget);
+            }
+            else if (prop.type === "boolean") {
+                if (this._data === UseDefaultData && prop.default === undefined) {
+                    console.warn(`No default value provided for key '${key}' in schema! Using false as fallback.`);
+                }
+                const value = this._data !== UseDefaultData ? this._data[key] : this._schema.properties[key].default || false;
+                childWidget = new BooleanWidget(this._editor, key, prop, value);
+                this._widgets.push(childWidget);
+            }
+            else if (prop.type === "object") {
+                const dataObj = this._data[key] || null;
+                if (dataObj !== null && typeof dataObj === "object") {
+                    childWidget = new ObjectWidget(this._editor, key, prop, dataObj);
+                }
+            }
+            else if (prop.type === "array") {
+                childWidget = new ArrayWidget(this._editor, key, prop, this._data[key] || []);
+            }
+            else if (prop.type === "ref") {
+                childWidget = new RefWidget(this._editor, key, prop, this._data);
+            }
+            else if (prop.type === "id") {
+                let value;
+                if (this._data === UseDefaultData || this._data[key] === undefined) {
+                    value = createUniqueId();
+                }
+                else {
+                    value = this._data[key];
+                    addId(value); // Register the existing ID to avoid duplicates
+                }
+                childWidget = new IdWidget(this._editor, key, prop, value);
+            }
+            else if (prop.type === "message") {
+                const messageText = prop.message || "No message provided.";
+                create(this, "div")
+                    .class("message")
+                    .class("formatted-text")
+                    .class(prop.format ?? "text")
+                    .mount(this._content)
+                    .html(MD2HTML(messageText));
+            }
+            else {
+                console.warn(`Unsupported schema type '${prop.type}' for key '${key}'.`);
+            }
+            if (childWidget !== null) {
+                this._widgets.push(childWidget);
+                if (prop.private !== true) {
+                    childWidget.mount(this._content);
+                }
+            }
+        }
+    }
+    getValue() {
+        const result = {};
+        for (const child of this._widgets) {
+            try {
+                if (child instanceof RefWidget) {
+                    // Skip RefWidget as it does not have a direct value to return
+                    continue;
+                }
+                result[child.getKey()] = child.getValue();
+            }
+            catch (error) {
+                console.error(`Failed to get value for key '${child.getKey()}':`, error);
+            }
+        }
+        return result;
+    }
+}
+
+;// ./packages/editor/src/editor.ts
+
+
+const UseDefaultData = { __useDefaultData: true };
+class Editor extends Disposable {
+    _container;
+    _data = {};
+    _api;
+    _types = {};
+    _rootWidget = null;
+    // private _view: DOMNode<"div">;
+    // private _content: DOMNode<"div">;
+    constructor(container, api) {
+        super();
+        this._container = container;
+        this._api = api;
+        // this._view = create(this, "div")
+        //     .class("editor-view")
+        //     .mount(this._container);
+        // this._content = create(this, "div")
+        //     .class("editor-content")
+        //     .mount(this._view);
+        console.log("Editor created");
+    }
+    get api() {
+        return this._api;
+    }
+    get container() {
+        return this._container;
+    }
+    pathResolver(path) {
+        if (path.startsWith("http://") || path.startsWith("https://")) {
+            return path;
+        }
+        return this._api.enginePath(path);
+    }
+    saveState() {
+        this._api.triggerStateSave();
+    }
+    async run(data) {
+        if (this._rootWidget) {
+            this.unregister(this._rootWidget);
+            this._rootWidget.dispose();
+            this._rootWidget = null;
+        }
+        this._data = data;
+        return new Promise((resolve) => {
+            console.log("Editor running...");
+            fetch(this._api.enginePath("schema.json")).then(async (response) => {
+                const schema = await response.json();
+                console.log("Schema loaded:", schema);
+                const propertiesSchema = { type: "object", properties: schema.properties };
+                if (schema.definitions) {
+                    this._types = schema.definitions;
+                    this.replaceDefinitions(propertiesSchema);
+                }
+                this._rootWidget = new ObjectWidget(this, "Root", propertiesSchema, this._data)
+                    .mount(this._container);
+                this._rootWidget.class("root-widget");
+                resolve();
+            }).catch((error) => {
+                console.error("Error loading schema:", error);
+                resolve();
+            });
+        });
+    }
+    getData() {
+        return this._rootWidget ? this._rootWidget.getValue() : {};
+    }
+    replaceDefinitions(schema) {
+        for (const [key, prop] of Object.entries(schema.properties)) {
+            if (prop.type === "string" && prop.enum && typeof prop.enum === "string" && this._types[prop.enum]) {
+                schema.properties[key] = {
+                    ...prop,
+                    enum: this._types[prop.enum]
+                };
+            }
+            else if (prop.type === "object") {
+                this.replaceDefinitions(prop);
+            }
+            else if (prop.type === "array") {
+                const item = prop.item;
+                if (item.type === "object") {
+                    this.replaceDefinitions(item);
+                }
+            }
+        }
+    }
+}
+
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js
+var injectStylesIntoStyleTag = __webpack_require__(591);
+var injectStylesIntoStyleTag_default = /*#__PURE__*/__webpack_require__.n(injectStylesIntoStyleTag);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/styleDomAPI.js
+var styleDomAPI = __webpack_require__(740);
+var styleDomAPI_default = /*#__PURE__*/__webpack_require__.n(styleDomAPI);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/insertBySelector.js
+var insertBySelector = __webpack_require__(128);
+var insertBySelector_default = /*#__PURE__*/__webpack_require__.n(insertBySelector);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js
+var setAttributesWithoutAttributes = __webpack_require__(855);
+var setAttributesWithoutAttributes_default = /*#__PURE__*/__webpack_require__.n(setAttributesWithoutAttributes);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/insertStyleElement.js
+var insertStyleElement = __webpack_require__(51);
+var insertStyleElement_default = /*#__PURE__*/__webpack_require__.n(insertStyleElement);
+// EXTERNAL MODULE: ../../node_modules/style-loader/dist/runtime/styleTagTransform.js
+var styleTagTransform = __webpack_require__(656);
+var styleTagTransform_default = /*#__PURE__*/__webpack_require__.n(styleTagTransform);
+// EXTERNAL MODULE: ../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./packages/editor/src/styles/styles.css
+var styles = __webpack_require__(256);
+;// ./packages/editor/src/styles/styles.css
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (styleTagTransform_default());
+options.setAttributes = (setAttributesWithoutAttributes_default());
+options.insert = insertBySelector_default().bind(null, "head");
+options.domAPI = (styleDomAPI_default());
+options.insertStyleElement = (insertStyleElement_default());
+
+var update = injectStylesIntoStyleTag_default()(styles/* default */.A, options);
+
+
+
+
+       /* harmony default export */ const styles_styles = (styles/* default */.A && styles/* default */.A.locals ? styles/* default */.A.locals : undefined);
+
+;// ./packages/editor/package.json
+const package_namespaceObject = {"rE":"2.2.1"};
+;// ./packages/editor/src/main.ts
+
+
+
+function main_create() {
     let _api = null;
-    let _data = {};
+    // let _data: State = {};
     let editor = null;
     return {
         init(api, options) {
+            console.log("Editor version:", package_namespaceObject.rE);
             _api = api;
             _api.addEditorTab("tab_data", "Edycja");
         },
@@ -2928,7 +3994,7 @@ function create() {
             if (tabId === "tab_data") {
                 console.log("Initializing tab:", tabId);
                 container.classList.add("oseditor-nmzzpp1hty");
-                editor = new editor_1.Editor(container, api);
+                editor = new Editor(container, api);
             }
         },
         destroyTab(tabId, container) {
@@ -2939,21 +4005,18 @@ function create() {
         },
         setState(stateData) {
             if (editor) {
-                _data = stateData;
-                editor.run(_data);
+                editor.run(stateData);
             }
             else {
                 console.warn("Editor instance is not initialized yet.");
             }
         },
         getState() {
-            return _data;
+            return editor ? editor.getData() : {};
         }
     };
 }
-exports["default"] = create;
-
-})();
+/* harmony default export */ const main = (main_create);
 
 /******/ 	return __webpack_exports__;
 /******/ })()

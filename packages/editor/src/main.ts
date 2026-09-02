@@ -1,5 +1,6 @@
 import { Editor } from "./editor";
 import "~/styles/styles.css";
+import packageJson from "../package.json"
 
 type State = Record<string, any>;
 
@@ -28,23 +29,19 @@ export interface ExerciseEditorApi {
     // isWidgetSlotFilled(slotName): boolean;
 }
 
-//TODO:
-// [x] Czy init jest Promise? - TAK!
-// [ ] Czy setState jest wywoływany zawsze?
-// [ ] Czy addEditorTab można wywołać z setState?
-// [ ] Co dzieje się z defaultData jeżeli zostanie coś dodane/usunięte
-
-
 export function create() {
     let _api: ExerciseEditorApi | null = null;
-    let _data: State = {};
+    // let _data: State = {};
     let editor: Editor | null = null;
 
     return {
         init(api: ExerciseEditorApi, options: EngineOptions) {
+            console.log("Editor version:", packageJson.version);
+
             _api = api;
             _api.addEditorTab("tab_data", "Edycja");
         },
+
         destroy() {
             // Cleanup code here
         },
@@ -65,14 +62,14 @@ export function create() {
 
         setState(stateData: State) {
             if (editor) {
-                _data = stateData;
-                editor.run(_data);
+                editor.run(stateData);
             } else {
                 console.warn("Editor instance is not initialized yet.");
             }
         },
+
         getState(): State {
-            return _data;
+            return editor ? editor.getData() : {};
         }
     }
 }

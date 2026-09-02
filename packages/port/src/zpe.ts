@@ -271,11 +271,20 @@ function setState(stateData: Record<string, any>): Promise<void> {
     return _exerciseApi.triggerStateSave();
 }
 
+function getApi(): ExerciseApi {
+    if (!_exerciseApi) {
+        throw new Error("You must call getApi after the engine is initialized.");
+    }
+
+    return _exerciseApi;
+}
+
 export {
     create,
     path,
     loadCss,
     getData,
     getState,
-    setState
+    setState,
+    getApi
 };

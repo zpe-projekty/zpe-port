@@ -1,80 +1,92 @@
 {
     "entry": "entry.js",
     "stateful": true,
-    "useWebGL": true,
+    "useWebGL": false,
     "editor": {
         "entry": "editor.js",
         "defaultData": {
-            "settings": {
+            "options": {
                 "enableHints": true,
                 "enableTimer": false,
                 "playTime": 120,
                 "numberOfRebusesToSolve": 5,
                 "mode": "medium",
-                "timeLimitPerRebus": 120
+                "timeLimitPerRebus": 120,
+                "testString": "Testowy string",
+                "testStringMultiline": "Hello"
             },
             "rebuses": [
                 {
                     "id": "rebus1",
                     "enabled": true,
-                    "style": "classic"
+                    "style": "classic",
+                    "refquestions": [
+                        "question1",
+                        "question2",
+                        "question3"
+                    ],
+                    "questions": [
+                        {
+                            "id": "question1"
+                        },
+                        {
+                            "id": "question2"
+                        },
+                        {
+                            "id": "question3"
+                        }
+                    ]
                 },
                 {
                     "id": "rebus2",
                     "enabled": true,
-                    "style": "modern"
+                    "style": "modern",
+                    "questions": []
                 },
                 {
                     "id": "rebus3",
                     "enabled": false,
-                    "style": "retro"
+                    "style": "retro",
+                    "questions": []
                 },
                 {
                     "id": "rebus4",
                     "enabled": true,
-                    "style": "classic"
+                    "style": "classic",
+                    "questions": []
                 },
                 {
                     "id": "rebus5",
                     "enabled": false,
-                    "style": "modern"
+                    "style": "modern",
+                    "questions": []
+                }
+            ],
+            "questions": [
+                {
+                    "id": "question1",
+                    "enabled": true,
+                    "text": "What is the capital of France?",
+                    "traps": [
+                        "każda wypowiedź w języku :: definicja błędna – zbyt szeroka: „każda wypowiedź w języku” rozszerza pojęcie „Zdanie logiczne”.",
+                        "tylko zdanie matematyczne :: definicja błędna – zbyt wąska: „tylko zdanie matematyczne” zawęża pojęcie „Zdanie logiczne”.",
+                        "mająca wartość w rachunku zdań :: definicja błędna – ignotum per ignotum: „mająca wartość w rachunku zdań” wymaga dodatkowego wyjaśnienia.",
+                        "podlegająca kwantyfikacji :: definicja błędna – ignotum per ignotum: „podlegająca kwantyfikacji” wymaga dodatkowego wyjaśnienia.",
+                        "wypowiedziana na lekcji :: definicja błędna – nieadekwatność definiensa: „wypowiedziana na lekcji” nie dotyczy istoty pojęcia."
+                    ]
+                },
+                {
+                    "id": "question2",
+                    "enabled": false,
+                    "text": "What is 2 + 2?",
+                    "traps": [
+                        "ilość dowolnych cząstek :: definicja błędna – zbyt szeroka: „ilość dowolnych cząstek” rozszerza pojęcie „Liczba Avogadra”.",
+                        "dotycząca tylko atomów :: definicja błędna – zbyt wąska: „dotycząca tylko atomów” zawęża pojęcie „Liczba Avogadra”.",
+                        "zdefiniowana w układzie SI :: definicja błędna – ignotum per ignotum: „zdefiniowana w układzie SI” wymaga dodatkowego wyjaśnienia.",
+                        "oznaczana symbolem NA :: definicja błędna – nieadekwatność definiensa: „oznaczana symbolem NA” nie dotyczy istoty pojęcia."
+                    ]
                 }
             ]
-        },
-        "demoData": {
-            "playTime": 120,
-            "rebuses": {
-                "numberOfRebusesToSolve": 5,
-                "mode": "medium",
-                "timeLimitPerRebus": 120,
-                "rebuses": [
-                    {
-                        "id": "rebus1",
-                        "enabled": true,
-                        "style": "classic"
-                    },
-                    {
-                        "id": "rebus2",
-                        "enabled": true,
-                        "style": "modern"
-                    },
-                    {
-                        "id": "rebus3",
-                        "enabled": false,
-                        "style": "retro"
-                    },
-                    {
-                        "id": "rebus4",
-                        "enabled": true,
-                        "style": "classic"
-                    },
-                    {
-                        "id": "rebus5",
-                        "enabled": false,
-                        "style": "modern"
-                    }
-                ]
-            }
         }
     }
 }

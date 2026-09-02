@@ -1,6 +1,7 @@
 import { create, DOMNode } from "@/duct-tape";
 import { Editor, SchemaElementNumber } from "~/editor";
 import { Widget } from "./widget";
+import { createHelpButton } from "~/components/help";
 
 enum NumberFormat {
     Integer = "integer",
@@ -13,16 +14,16 @@ export class NumberWidget extends Widget {
     private _format: NumberFormat = NumberFormat.Number;
     private _min: number = -Infinity;
     private _max: number = Infinity;
-    private _data: Record<string, any>;
     private _input: DOMNode<"input">;
     private _messageNode: DOMNode<"div">;
+    private _value: number;
 
-    constructor(editor: Editor, key: string, schema: SchemaElementNumber, data: Record<string, any>) {
-        super(editor);
+    constructor(editor: Editor, key: string, schema: SchemaElementNumber, value: number) {
+        super(editor, key);
 
+        this._value = value !== undefined ? value : schema.default ?? 0;
         this._editor = editor;
         this._schema = schema;
-        this._data = data;
         this.class("number-component");
 
         if (schema.format === "integer") {
@@ -36,12 +37,27 @@ export class NumberWidget extends Widget {
         this._min = schema.min !== undefined ? schema.min : -Infinity;
         this._max = schema.max !== undefined ? schema.max : Infinity;
 
-        const label = schema.label || key;
-        this._input = create("input", this)
+        if (schema.help || schema.helpFile || schema.label) {
+            const label = create(this, "label")
+                .text(schema.label || "")
+                .mount(this);
+
+            if (schema.help || schema.helpFile) {
+                createHelpButton(this, this._editor, {
+                    content: schema.help,
+                    helpFile: schema.helpFile,
+                })
+                    .mount(label);
+            }
+        }
+
+
+        this._input = create(this, "input")
             .attr("type", "number")
             .style("display", "block")
             .style("marginBottom", "8px")
-            .property("value", this._data[key] || 0)
+            .property("value", this._value ?? 0)
+            .mount(this)
             .on("input", () => {
                 const value = this._input.property("value");
 
@@ -73,21 +89,40 @@ export class NumberWidget extends Widget {
                     this._messageNode.text("");
                 }
 
-                this._data[key] = value;
+                this._value = numValue;
                 this._editor.saveState();
             });
 
-        const labelNode = create("label", this)
-            .text(label)
-            .style("display", "block")
-            .style("marginBottom", "4px");
-
-        this._messageNode = create("div", this)
+        this._messageNode = create(this, "div")
             .class("message")
             .style("color", "red")
             .style("fontSize", "12px")
-            .style("marginBottom", "8px");
+            .style("marginBottom", "8px")
+            .mount(this);
 
-        this.append(labelNode, this._input, this._messageNode);
+
+    }
+
+    build(): void {
+    }
+
+    getValue(): number | null {
+        const value = this._input.property("value");
+        if (value === undefined || value === "") {
+            return null;
+        }
+
+        let numValue: number;
+        if (this._format === NumberFormat.Integer) {
+            numValue = parseInt(value, 10);
+        } else {
+            numValue = parseFloat(value);
+        }
+
+        if (isNaN(numValue)) {
+            return null;
+        }
+
+        return numValue;
     }
 }
